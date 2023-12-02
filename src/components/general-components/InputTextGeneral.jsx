@@ -1,0 +1,25 @@
+import React from "react";
+
+const InputTextGeneral = ({ name, label, placeholder, value, onChange, required, disabled }) => {
+  return (
+    <div className="mb-6">
+      <label className="block mb-1 font-semibold text-sm text-brand-500 capitalize" for={name}>
+        {label}
+        {required && <span className={`text-danger-500`}>*</span>}
+      </label>
+      <input
+        className={`w-full px-3 h-9 rounded-lg text-sm border border-neutral-400 ${disabled && "bg-neutral-300 text-neutral-500"}`}
+        id={name}
+        type="text"
+        placeholder={placeholder}
+        value={value}
+        required={required}
+        disabled={disabled}
+        onChange={onChange}
+        // onChange={(e) => onChange(e.target.value)}
+      />
+    </div>
+  );
+};
+
+export default InputTextGeneral;
