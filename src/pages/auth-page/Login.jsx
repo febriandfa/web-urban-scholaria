@@ -6,6 +6,8 @@ import InputTextGeneral from "../../components/general-components/InputTextGener
 import InputPasswordAuthPage from "../../components/auth-page-components/InputPasswordAuthPage";
 
 const Login = () => {
+  const role = "operator";
+
   return (
     <AuthPageLayout>
       <div className="grid grid-cols-2 w-full h-full pt-10">
@@ -21,11 +23,19 @@ const Login = () => {
               <Link to="/lupa-password" className="block mb-6 font-semibold text-xs text-brand-500 text-right">
                 Lupa Kata Sandi?
               </Link>
-              <Link to="/dashboard">
-                <button className="py-2 px-4 bg-brand-500 w-full rounded-lg text-base font-semibold text-white" type="submit">
-                  Masuk
-                </button>
-              </Link>
+              {role === "pemohon" ? (
+                <Link to="/dashboard">
+                  <button className="py-2 px-4 bg-brand-500 w-full rounded-lg text-base font-semibold text-white" type="submit">
+                    Masuk
+                  </button>
+                </Link>
+              ) : (
+                <Link to="/dashboard-administrator">
+                  <button className="py-2 px-4 bg-brand-500 w-full rounded-lg text-base font-semibold text-white" type="submit">
+                    Masuk
+                  </button>
+                </Link>
+              )}
               <p className="inline-block mt-1 font-semibold text-xs">Belum memiliki akun? </p>
               <Link to="/daftar" className="inline-block mb-9 font-semibold text-xs text-brand-500">
                 Daftar Sekarang

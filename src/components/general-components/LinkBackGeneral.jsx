@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const LinkBackGeneral = ({ link }) => {
   return (
-    <a className="text-brand-500 font-semibold flex items-center gap-1.5" href={link}>
+    <Link className="text-brand-500 font-semibold flex items-center gap-1.5" to={link}>
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
         <path
           fill-rule="evenodd"
@@ -12,7 +13,7 @@ const LinkBackGeneral = ({ link }) => {
         />
       </svg>
       Kembali
-    </a>
+    </Link>
   );
 };
 

@@ -6,7 +6,7 @@ import DropdownSidebar from "./DropdownSidebar";
 
 const Sidebar = ({ role }) => {
   let sidebarData = [];
-  if (role === "user") {
+  if (role === "pemohon") {
     sidebarData = userSidebar;
   } else if (role === "operator") {
     sidebarData = operatorSidebar;

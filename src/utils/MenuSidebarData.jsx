@@ -84,7 +84,7 @@ const operatorSidebar = [
         />
       </svg>
     ),
-    link: "/dashboard-op",
+    link: "/dashboard-administrator",
     title: "Dashboard",
   },
   {
@@ -99,7 +99,7 @@ const operatorSidebar = [
         />
       </svg>
     ),
-    link: "/data-perizinan-op",
+    link: "/data-perizinan-administrator",
     title: "Data Perizinan",
   },
   {
@@ -109,7 +109,7 @@ const operatorSidebar = [
         <path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
       </svg>
     ),
-    link: "/data-diri-op",
+    link: "/data-diri-administrator",
     title: "Data Diri",
   },
   {
@@ -123,7 +123,7 @@ const operatorSidebar = [
         />
       </svg>
     ),
-    link: "/verifikasi-dokumen-op",
+    link: "/verifikasi-dokumen-operator",
     title: "Verifikasi Dokumen",
   },
   {
@@ -138,7 +138,7 @@ const operatorSidebar = [
         />
       </svg>
     ),
-    link: "/feedback-op",
+    link: "/feedback-administrator",
     title: "Feedback",
   },
   {
@@ -153,7 +153,7 @@ const operatorSidebar = [
         />
       </svg>
     ),
-    link: "/notifikasi",
+    link: "/notifikasi-administrator",
     title: "Notifikasi",
   },
   {
@@ -168,7 +168,7 @@ const operatorSidebar = [
         />
       </svg>
     ),
-    link: "/obrolan-op",
+    link: "/obrolan-administrator",
     title: "Obrolan",
   },
 ];

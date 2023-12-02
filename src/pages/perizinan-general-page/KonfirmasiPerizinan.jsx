@@ -1,6 +1,7 @@
 import React from "react";
 import { bgConfirmed } from "../../assets";
 import LandingPageLayout from "../../layouts/LandingPageLayout";
+import { Link } from "react-router-dom";
 
 const KonfirmasiPerizinan = () => {
   return (
@@ -13,12 +14,12 @@ const KonfirmasiPerizinan = () => {
             Pengajuan permohonan pengajuan perizinan telah kami terima dan akan melewati tahapan perizinan. Kamu bisa melihat permohonan mu di menu riwayat dan bisa melacak tiap tahapan perizinan dengan ID Dokumen.
           </p>
           <div className="flex gap-20 mx-auto w-fit">
-            <a className="flex items-center gap-2 w-fit px-20 py-2 bg-brand-200 text-white text-base font-semibold rounded-lg" href="/riwayat">
+            <Link className="flex items-center gap-2 w-fit px-20 py-2 bg-brand-200 text-white text-base font-semibold rounded-lg" to="/riwayat">
               Riwayat
-            </a>
-            <a className="flex items-center gap-2 w-fit px-20 py-2 bg-brand-500 text-white text-base font-semibold rounded-lg" href="/">
+            </Link>
+            <Link className="flex items-center gap-2 w-fit px-20 py-2 bg-brand-500 text-white text-base font-semibold rounded-lg" to="/">
               Selesai
-            </a>
+            </Link>
           </div>
         </div>
       </section>

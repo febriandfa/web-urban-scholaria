@@ -6,7 +6,7 @@ import AlamatRincianDashboardUser from "../../components/rincian-pengajuan-dashb
 import ListDokumenRincianDashboardUser from "../../components/rincian-pengajuan-dashboard-user-components/ListDokumenRincianDashboardUser";
 import FooterRincianDashboardUser from "../../components/rincian-pengajuan-dashboard-user-components/FooterRincianDashboardUser";
 
-const RincianPengajuan = () => {
+const RincianPengajuanUser = () => {
   return (
     <MainPageLayout>
       <div className="mb-16">
@@ -23,4 +23,4 @@ const RincianPengajuan = () => {
   );
 };
 
-export default RincianPengajuan;
+export default RincianPengajuanUser;

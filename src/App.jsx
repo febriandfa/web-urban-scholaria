@@ -17,8 +17,17 @@ import ObrolanUser from "./pages/dashboard-user-page/ObrolanUser";
 import DataDiriUser from "./pages/dashboard-user-page/DataDiriUser";
 import NotifikasiUser from "./pages/dashboard-user-page/NotifikasiUser";
 import RiwayatPengajuanUser from "./pages/dashboard-user-page/RiwayatPengajuanUser";
-import RincianPengajuan from "./pages/dashboard-user-page/RincianPengajuan";
 import FeedbackUser from "./pages/dashboard-user-page/FeedbackUser";
+import RincianPengajuanUser from "./pages/dashboard-user-page/RincianPengajuanUser";
+import TentangPengajuan from "./pages/perizinan-general-page/TentangPengajuan";
+import DashboardAdministrator from "./pages/dashboard-administrator-page/DashboardAdministrator";
+import DataPerizinanAdministrator from "./pages/dashboard-administrator-page/DataPerizinanAdministrator";
+import DataDiriAdministrator from "./pages/dashboard-administrator-page/DataDiriAdministrator";
+import FeedbackAdministrator from "./pages/dashboard-administrator-page/FeedbackAdministrator";
+import NotifikasiAdministrator from "./pages/dashboard-administrator-page/NotifikasiAdministrator";
+import ObrolanAdministrator from "./pages/dashboard-administrator-page/ObrolanAdministrator";
+import VerifikasiDokumenOperator from "./pages/dashboard-operator-page/VerifikasiDokumenOperator";
+import KelengkapanPengajuanOperator from "./pages/dashboard-operator-page/KelengkapanPengajuanOperator";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -57,6 +66,7 @@ function App() {
             <Route path="/perizinan-tk" element={<InformasiPerizinan />} />
             <Route path="/perizinan-operasional-tk" element={<PerizinanOperasional />} />
             <Route path="/form-pengajuan-operasional-tk" element={<FormPengajuanOperasional />} />
+            <Route path="/tentang-pengajuan-perizinan" element={<TentangPengajuan />} />
             <Route path="/konfirmasi-pengajuan-perizinan" element={<KonfirmasiPerizinan />} />
 
             {/* User */}
@@ -66,7 +76,19 @@ function App() {
             <Route path="/notifikasi" element={<NotifikasiUser />} />
             <Route path="/obrolan" element={<ObrolanUser />} />
             <Route path="/feedback" element={<FeedbackUser />} />
-            <Route path="/rincian-pengajuan" element={<RincianPengajuan />} />
+            <Route path="/rincian-pengajuan" element={<RincianPengajuanUser />} />
+
+            {/* Administrator */}
+            <Route path="/dashboard-administrator" element={<DashboardAdministrator />} />
+            <Route path="/data-perizinan-administrator" element={<DataPerizinanAdministrator />} />
+            <Route path="/data-diri-administrator" element={<DataDiriAdministrator />} />
+            <Route path="/feedback-administrator" element={<FeedbackAdministrator />} />
+            <Route path="/notifikasi-administrator" element={<NotifikasiAdministrator />} />
+            <Route path="/obrolan-administrator" element={<ObrolanAdministrator />} />
+
+            {/* Operator */}
+            <Route path="/verifikasi-dokumen-operator" element={<VerifikasiDokumenOperator />} />
+            <Route path="/kelengkapan-dokumen-operator" element={<KelengkapanPengajuanOperator />} />
           </Routes>
         </>
       )}
