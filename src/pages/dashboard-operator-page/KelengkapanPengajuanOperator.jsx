@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import MainPageLayout from "../../layouts/MainPageLayout";
 import LinkBackGeneral from "../../components/general-components/LinkBackGeneral";
-import CekSesuaiVerifikasiDashboardOperator from "../../components/verifikasi-dokumen-dashboard-operator-verifikator-components/CekSesuaiVerifikasiDashboardOperator.jsx";
+import CekSesuaiVerifikasiDashboardOperator from "../../components/verifikasi-dashboard-operator-components/CekSesuaiVerifikasiDashboardOperator.jsx";
 import { dokumenPengajuan } from "../../utils/DaftarDokumenPengajuanData.jsx";
-import VerifikatorButtonVerifikasiDashboardOperator from "../../components/verifikasi-dokumen-dashboard-operator-verifikator-components/VerifikatorButtonVerifikasiDashboardOperator.jsx";
+import VerifikatorButtonVerifikasiDashboardOperator from "../../components/verifikasi-dashboard-operator-components/VerifikatorButtonVerifikasiDashboardOperator.jsx";
 import InformasiDetailPengajuanDashboardAdministrator from "../../components/detail-pengajuan-dashboard-administrator/InformasiDetailPengajuanDashboardAdministrator.jsx";
 import AlamatDetailPengajuanDashboardAdministrator from "../../components/detail-pengajuan-dashboard-administrator/AlamatDetailPengajuanDashboardAdministrator.jsx";
 

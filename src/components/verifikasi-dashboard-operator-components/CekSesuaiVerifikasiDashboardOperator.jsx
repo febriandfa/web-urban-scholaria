@@ -1,16 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import TableGeneral from "../general-components/TableGeneral";
 import TableHeadGeneral from "../general-components/TableHeadGeneral";
 import TableBodyGeneral from "../general-components/TableBodyGeneral";
 import TableItemGeneral from "../general-components/TableItemGeneral";
 import TableRowGeneral from "../general-components/TableRowGeneral";
 import { dokumenPengajuan } from "../../utils/DaftarDokumenPengajuanData";
-import CheckboxVerifikasiDashboardAdministrator from "../verifikasi-dokumen-dashboard-administrator-components/CheckboxVerifikasiDashboardOperator";
-import LihatFileVerifikasiDashboardAdministrator from "../verifikasi-dokumen-dashboard-administrator-components/LihatFileVerifikasiDashboardAdministrator";
+import CheckboxVerifikasiDashboardAdministrator from "../verifikasi-dashboard-administrator-components/CheckboxVerifikasiDashboardOperator";
 
-const CekSesuaiVerifikasiDashboardVerifikator = ({ handleCheckboxChange, checklist }) => {
+const CekSesuaiVerifikasiDashboardOperator = ({ handleCheckboxChange, checklist }) => {
   let dokumenPengajuanData = dokumenPengajuan;
-  const tableHead = ["Berkas Persyaratan", "File", "Lihat"];
+  const tableHead = ["Berkas Persyaratan", "File"];
 
   return (
     <div>
@@ -36,7 +35,6 @@ const CekSesuaiVerifikasiDashboardVerifikator = ({ handleCheckboxChange, checkli
             <TableRowGeneral>
               <TableItemGeneral key={index} tableItem={item.dokumen} wrap />
               <TableItemGeneral key={index} tableItem="File Ini Panjang Banget Namanya" customColor="text-brand-500" />
-              <TableItemGeneral key={index} tableItem={<LihatFileVerifikasiDashboardAdministrator link="#" />} />
               <TableItemGeneral key={index} tableItem={<CheckboxVerifikasiDashboardAdministrator onChange={() => handleCheckboxChange(index)} checked={checklist[index]} />} />
             </TableRowGeneral>
           ))}
@@ -46,4 +44,4 @@ const CekSesuaiVerifikasiDashboardVerifikator = ({ handleCheckboxChange, checkli
   );
 };
 
-export default CekSesuaiVerifikasiDashboardVerifikator;
+export default CekSesuaiVerifikasiDashboardOperator;

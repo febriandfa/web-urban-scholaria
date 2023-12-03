@@ -1,8 +1,8 @@
 import React from "react";
 import LabelGeneral from "../general-components/LabelGeneral";
 import CardGeneral from "../general-components/CardGeneral";
-import CheckboxVerifikasiDashboardAdministrator from "../verifikasi-dokumen-dashboard-administrator-components/CheckboxVerifikasiDashboardOperator";
-import LihatFileVerifikasiDashboardAdministrator from "../verifikasi-dokumen-dashboard-administrator-components/LihatFileVerifikasiDashboardAdministrator";
+import CheckboxVerifikasiDashboardAdministrator from "../verifikasi-dashboard-administrator-components/CheckboxVerifikasiDashboardOperator";
+import LihatFileVerifikasiDashboardAdministrator from "../verifikasi-dashboard-administrator-components/LihatFileVerifikasiDashboardAdministrator";
 
 const HasilSurveyPengesahanDashboardVerifikator = ({ handleCheckboxChange, checklist }) => {
   return (

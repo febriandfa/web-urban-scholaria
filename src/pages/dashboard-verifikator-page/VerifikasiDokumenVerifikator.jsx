@@ -7,8 +7,8 @@ import TableBodyGeneral from "../../components/general-components/TableBodyGener
 import TableRowGeneral from "../../components/general-components/TableRowGeneral";
 import TableItemGeneral from "../../components/general-components/TableItemGeneral";
 import MainPageLayout from "../../layouts/MainPageLayout";
-import TitleVerifikasiDashboardAdministrator from "../../components/verifikasi-dokumen-dashboard-administrator-components/TitleVerifikasiDashboardOperator";
-import LihatKelengkapanVerifikasiDashboardAdministrator from "../../components/verifikasi-dokumen-dashboard-administrator-components/LihatKelengkapanVerifikasiDashboardOperator";
+import TitleVerifikasiDashboardAdministrator from "../../components/verifikasi-dashboard-administrator-components/TitleVerifikasiDashboardOperator";
+import LihatKelengkapanVerifikasiDashboardAdministrator from "../../components/verifikasi-dashboard-administrator-components/LihatKelengkapanVerifikasiDashboardOperator";
 
 const getStatusColor = (status) => {
   let colorClass = "";

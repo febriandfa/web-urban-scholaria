@@ -5,7 +5,7 @@ import TableBodyGeneral from "../general-components/TableBodyGeneral";
 import TableRowGeneral from "../general-components/TableRowGeneral";
 import TableItemGeneral from "../general-components/TableItemGeneral";
 import { dokumenPengajuan } from "../../utils/DaftarDokumenPengajuanData";
-import LihatFileVerifikasiDashboardAdministrator from "../verifikasi-dokumen-dashboard-administrator-components/LihatFileVerifikasiDashboardAdministrator";
+import LihatFileVerifikasiDashboardAdministrator from "../verifikasi-dashboard-administrator-components/LihatFileVerifikasiDashboardAdministrator";
 
 const ListDokumenPengesahanDashboardVerifikator = () => {
   const headDokumenPengesahan = ["Berkas Persyaratan", "File"];

@@ -4,8 +4,6 @@ import LinkBackGeneral from "../../components/general-components/LinkBackGeneral
 import InformasiDetailPengajuanDashboardAdministrator from "../../components/detail-pengajuan-dashboard-administrator/InformasiDetailPengajuanDashboardAdministrator";
 import AlamatDetailPengajuanDashboardAdministrator from "../../components/detail-pengajuan-dashboard-administrator/AlamatDetailPengajuanDashboardAdministrator";
 import HasilSurveyPengesahanDashboardVerifikator from "../../components/pengesahan-dashboard-verifikator-components/HasilSurveyPengesahanDashboardVerifikator";
-import ListDokumenRincianDashboardUser from "../../components/rincian-pengajuan-dashboard-user-components/ListDokumenRincianDashboardUser";
-import SurveyorButtonVerifikasiDashboardVerifikator from "../../components/verifikasi-dokumen-dashboard-verifikator-components/SurveyorButtonVerifikasiDashboardVerifikator";
 import ListDokumenPengesahanDashboardVerifikator from "../../components/pengesahan-dashboard-verifikator-components/ListDokumenPengesahanDashboardVerifikator";
 import BuatPerizinanButtonDashboardVerifikator from "../../components/pengesahan-dashboard-verifikator-components/BuatPerizinanButtonDashboardVerifikator";
 
