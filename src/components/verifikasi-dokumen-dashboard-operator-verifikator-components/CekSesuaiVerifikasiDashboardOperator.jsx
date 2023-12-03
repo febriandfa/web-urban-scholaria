@@ -5,20 +5,11 @@ import TableBodyGeneral from "../general-components/TableBodyGeneral";
 import TableItemGeneral from "../general-components/TableItemGeneral";
 import TableRowGeneral from "../general-components/TableRowGeneral";
 import { dokumenPengajuan } from "../../utils/DaftarDokumenPengajuanData";
-import CheckboxVerifikasiDashboardOperator from "./CheckboxVerifikasiDashboardOperator";
+import CheckboxVerifikasiDashboardAdministrator from "../verifikasi-dokumen-dashboard-administrator-components/CheckboxVerifikasiDashboardOperator";
 
 const CekSesuaiVerifikasiDashboardOperator = ({ handleCheckboxChange, checklist }) => {
   let dokumenPengajuanData = dokumenPengajuan;
   const tableHead = ["Berkas Persyaratan", "File"];
-  // const [isChecked, setIsChecked] = useState(Array(dokumenPengajuanData.length).fill(false));
-
-  // const handleCheckboxChange = (index) => {
-  //   const updatedCheckedState = [...isChecked];
-  //   updatedCheckedState[index] = !updatedCheckedState[index];
-  //   setIsChecked(updatedCheckedState);
-  // };
-
-  // const allChecked = isChecked.every((item) => item);
 
   return (
     <div>
@@ -44,7 +35,7 @@ const CekSesuaiVerifikasiDashboardOperator = ({ handleCheckboxChange, checklist 
             <TableRowGeneral>
               <TableItemGeneral key={index} tableItem={item.dokumen} wrap />
               <TableItemGeneral key={index} tableItem="File Ini Panjang Banget Namanya" customColor="text-brand-500" />
-              <TableItemGeneral key={index} tableItem={<CheckboxVerifikasiDashboardOperator onChange={() => handleCheckboxChange(index)} checked={checklist[index]} />} />
+              <TableItemGeneral key={index} tableItem={<CheckboxVerifikasiDashboardAdministrator onChange={() => handleCheckboxChange(index)} checked={checklist[index]} />} />
             </TableRowGeneral>
           ))}
         </TableBodyGeneral>

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const LihatKelengkapanVerifikasiDashboardOperator = ({ link }) => {
+const VerifikasiLinkPengesahanDashboardVerfikator = ({ link }) => {
   return (
     <Link className="flex w-fit items-center gap-2 text-base font-semibold text-brand-500" to={link}>
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -13,9 +13,9 @@ const LihatKelengkapanVerifikasiDashboardOperator = ({ link }) => {
           stroke-linecap="round"
         />
       </svg>
-      Lihat Kelengkapan
+      Verifikasi
     </Link>
   );
 };
 
-export default LihatKelengkapanVerifikasiDashboardOperator;
+export default VerifikasiLinkPengesahanDashboardVerfikator;

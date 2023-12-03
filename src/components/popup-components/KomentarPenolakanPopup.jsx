@@ -2,7 +2,7 @@ import React from "react";
 
 const KomentarPenolakanPopup = () => {
   return (
-    <div className="p-4 bg-white">
+    <div className="p-6 bg-white rounded-xl">
       <h1 className="text-2xl font-semibold text-center text-danger-500">Komentar Penolakan</h1>
       <hr className="w-full h-0.5 rounded-full bg-neutral-300 mt-2 mb-4" />
       <p className="capitalized text-sm font-semibold">Nama File Tidak Valid</p>

@@ -1,8 +1,8 @@
 import React from "react";
 import LandingPageLayout from "../../layouts/LandingPageLayout";
 import { iconQuestion } from "../../assets";
-import pertanyaanFaq from "../../utils/DaftarPertanyaanFaqData";
 import AccordionFaqLandingPage from "../../components/landing-page-components/AccordionFaqLandingPage";
+import pertanyaanFaq from "../../utils/DaftarPertanyaanFaqData";
 
 const Faq = () => {
   const daftarPertanyaanData = pertanyaanFaq;

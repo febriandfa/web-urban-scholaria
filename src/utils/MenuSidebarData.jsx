@@ -186,7 +186,7 @@ const verifikatorSidebar = [
         />
       </svg>
     ),
-    link: "/dashboard",
+    link: "/dashboard-administrator",
     title: "Dashboard",
   },
   {
@@ -201,7 +201,7 @@ const verifikatorSidebar = [
         />
       </svg>
     ),
-    link: "/data-perizinan-op",
+    link: "/data-perizinan-administrator",
     title: "Data Perizinan",
   },
   {
@@ -211,7 +211,7 @@ const verifikatorSidebar = [
         <path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
       </svg>
     ),
-    link: "/data-diri-op",
+    link: "/data-diri-administrator",
     title: "Data Diri",
   },
   {
@@ -225,7 +225,7 @@ const verifikatorSidebar = [
         />
       </svg>
     ),
-    link: "/verifikasi-dokumen-op",
+    link: "/verifikasi-dokumen-verifikator",
     title: "Verifikasi Dokumen",
   },
   {
@@ -237,7 +237,7 @@ const verifikatorSidebar = [
         />
       </svg>
     ),
-    link: "/pengesahan-perizinan",
+    link: "/pengesahan-perizinan-verifikator",
     title: "Pengesahan Perizinan",
   },
   {
@@ -252,7 +252,7 @@ const verifikatorSidebar = [
         />
       </svg>
     ),
-    link: "/feedback-op",
+    link: "/feedback-administrator",
     title: "Feedback",
   },
   {
@@ -267,7 +267,7 @@ const verifikatorSidebar = [
         />
       </svg>
     ),
-    link: "/notifikasi",
+    link: "/notifikasi-administrator",
     title: "Notifikasi",
   },
   {
@@ -282,7 +282,7 @@ const verifikatorSidebar = [
         />
       </svg>
     ),
-    link: "/obrolan-op",
+    link: "/obrolan-administrator",
     title: "Obrolan",
   },
 ];

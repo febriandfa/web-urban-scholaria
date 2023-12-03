@@ -1,6 +1,6 @@
 import React from "react";
 
-const InformasiKelengkapanDashboardOperator = () => {
+const InformasiDetailPengajuanDashboardAdministrator = () => {
   return (
     <div>
       <h1 className="text-2xl text-brand-500 font-semibold text-center mb-3">Perizinan Pembangunan TK</h1>
@@ -60,4 +60,4 @@ const InformasiKelengkapanDashboardOperator = () => {
   );
 };
 
-export default InformasiKelengkapanDashboardOperator;
+export default InformasiDetailPengajuanDashboardAdministrator;

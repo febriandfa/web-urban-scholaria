@@ -3,8 +3,8 @@ import TitlePerizinan from "../../../components/pengajuan-perizinan-components/T
 import PerizinanPageLayout from "../../../layouts/PerizinanPageLayout";
 import DeskripsiPerizinan from "../../../components/pengajuan-perizinan-components/DeskripsiPerizinan";
 import InformasiTambahan from "../../../components/pengajuan-perizinan-components/InformasiTambahan";
-import syaratPeangajuanOperasionalTK from "../../../utils/SyaratPengajuanPerizinanTKData";
 import LinkButtonGeneral from "../../../components/general-components/LinkButtonGeneral";
+import syaratPeangajuanOperasionalTK from "../../../utils/SyaratPengajuanPerizinanTKData";
 
 const InformasiPerizinanHeader = () => {
   return <TitlePerizinan subtitle="INFORMASI PERIZINAN TAMAN KANAK-KANAK" title="Perizinan Operasional Taman Kanak-Kanak" />;

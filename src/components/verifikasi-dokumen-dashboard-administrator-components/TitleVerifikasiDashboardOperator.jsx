@@ -1,7 +1,7 @@
 import React from "react";
 import { bgVerifDokumen } from "../../assets";
 
-const TitleVerifikasiDashboardOperator = ({ title }) => {
+const TitleVerifikasiDashboardAdministrator = ({ title }) => {
   return (
     <div>
       <h1 className="text-center text-xl font-semibold text-brand-500 mb-11">{title}</h1>
@@ -10,4 +10,4 @@ const TitleVerifikasiDashboardOperator = ({ title }) => {
   );
 };
 
-export default TitleVerifikasiDashboardOperator;
+export default TitleVerifikasiDashboardAdministrator;

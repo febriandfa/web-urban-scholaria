@@ -1,6 +1,6 @@
 import React from "react";
 
-const AlamatKelengkapanDashboardOperator = () => {
+const AlamatDetailPengajuanDashboardAdministrator = () => {
   return (
     <div className="flex items-start">
       <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
@@ -22,4 +22,4 @@ const AlamatKelengkapanDashboardOperator = () => {
   );
 };
 
-export default AlamatKelengkapanDashboardOperator;
+export default AlamatDetailPengajuanDashboardAdministrator;

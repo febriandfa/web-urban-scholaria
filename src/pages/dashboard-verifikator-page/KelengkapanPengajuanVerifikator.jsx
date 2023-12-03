@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import MainPageLayout from "../../layouts/MainPageLayout";
 import LinkBackGeneral from "../../components/general-components/LinkBackGeneral";
-import CekSesuaiVerifikasiDashboardOperator from "../../components/verifikasi-dokumen-dashboard-operator-verifikator-components/CekSesuaiVerifikasiDashboardOperator.jsx";
 import { dokumenPengajuan } from "../../utils/DaftarDokumenPengajuanData.jsx";
-import VerifikatorButtonVerifikasiDashboardOperator from "../../components/verifikasi-dokumen-dashboard-operator-verifikator-components/VerifikatorButtonVerifikasiDashboardOperator.jsx";
+import CekSesuaiVerifikasiDashboardVerifikator from "../../components/verifikasi-dokumen-dashboard-verifikator-components/CekSesuaiVerifikasiDashboardVerifikator.jsx";
+import SurveyorButtonVerifikasiDashboardVerifikator from "../../components/verifikasi-dokumen-dashboard-verifikator-components/SurveyorButtonVerifikasiDashboardVerifikator.jsx";
 import InformasiDetailPengajuanDashboardAdministrator from "../../components/detail-pengajuan-dashboard-administrator/InformasiDetailPengajuanDashboardAdministrator.jsx";
 import AlamatDetailPengajuanDashboardAdministrator from "../../components/detail-pengajuan-dashboard-administrator/AlamatDetailPengajuanDashboardAdministrator.jsx";
 
-const KelengkapanPengajuanOperator = () => {
+const KelengkapanPengajuanVerifikator = () => {
   let dokumenPengajuanData = dokumenPengajuan;
 
   const [isChecked, setIsChecked] = useState(Array(dokumenPengajuanData.length).fill(false));
@@ -23,17 +23,17 @@ const KelengkapanPengajuanOperator = () => {
   return (
     <MainPageLayout>
       <div className="mb-16">
-        <LinkBackGeneral link="/verifikasi-dokumen-operator" />
+        <LinkBackGeneral link="/verifikasi-dokumen-verifikator" />
         <hr className="w-full h-0.5 rounded-full bg-neutral-300 my-6" />
         <InformasiDetailPengajuanDashboardAdministrator />
         <hr className="w-full h-0.5 rounded-full bg-neutral-300 my-6" />
         <AlamatDetailPengajuanDashboardAdministrator />
         <hr className="w-full h-0.5 rounded-full bg-neutral-300 my-6" />
-        <CekSesuaiVerifikasiDashboardOperator handleCheckboxChange={handleCheckboxChange} checklist={isChecked} />
+        <CekSesuaiVerifikasiDashboardVerifikator handleCheckboxChange={handleCheckboxChange} checklist={isChecked} />
       </div>
-      <VerifikatorButtonVerifikasiDashboardOperator verified={allChecked} disabled={!allChecked} />
+      <SurveyorButtonVerifikasiDashboardVerifikator verified={allChecked} disabled={!allChecked} />
     </MainPageLayout>
   );
 };
 
-export default KelengkapanPengajuanOperator;
+export default KelengkapanPengajuanVerifikator;

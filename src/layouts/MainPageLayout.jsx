@@ -11,7 +11,7 @@ const MainPageLayout = ({ children }) => {
       </header>
       <article>
         <aside>
-          <Sidebar role="operator" />
+          <Sidebar role="verifikator" />
         </aside>
         <section className="min-h-screen ml-[17rem] mr-20 pb-20 pt-[6rem]">
           <div className="w-full rounded-xl bg-white p-6">{children}</div>

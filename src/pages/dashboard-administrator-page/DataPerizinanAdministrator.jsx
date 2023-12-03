@@ -10,11 +10,11 @@ import FilterButtonDataPerizinan from "../../components/data-perizinan-dashboard
 import CariDataPerizinan from "../../components/data-perizinan-dashboard-administrator-components/CariDataPerizinan";
 import PaginationGeneral from "../../components/general-components/PaginationGeneral";
 import UnduhButtonDataPerizinan from "../../components/data-perizinan-dashboard-administrator-components/UnduhButtonDataPerizinan";
-import { dataPerizinanHead, dataPerizinanItem } from "../../utils/PerizinanData";
+import verifikasiDokumenItem from "../../utils/PengajuanPerizinanData";
 
 const DataPerizinanAdministrator = ({ isEmpty }) => {
-  const headPerizinan = dataPerizinanHead;
-  const dataPerizinan = dataPerizinanItem;
+  const headPerizinan = ["ID Dokumen", "Nama Pemohonon", "Perizinan", "Tanggal Pengajuan"];
+  const dataPerizinan = verifikasiDokumenItem;
 
   const itemsPerPage = 5;
   const totalPages = Math.ceil(dataPerizinan.length / itemsPerPage);

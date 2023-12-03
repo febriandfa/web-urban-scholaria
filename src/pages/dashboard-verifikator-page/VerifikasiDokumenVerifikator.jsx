@@ -7,8 +7,8 @@ import TableBodyGeneral from "../../components/general-components/TableBodyGener
 import TableRowGeneral from "../../components/general-components/TableRowGeneral";
 import TableItemGeneral from "../../components/general-components/TableItemGeneral";
 import MainPageLayout from "../../layouts/MainPageLayout";
-import LihatKelengkapanVerifikasiDashboardAdministrator from "../../components/verifikasi-dokumen-dashboard-administrator-components/LihatKelengkapanVerifikasiDashboardOperator";
 import TitleVerifikasiDashboardAdministrator from "../../components/verifikasi-dokumen-dashboard-administrator-components/TitleVerifikasiDashboardOperator";
+import LihatKelengkapanVerifikasiDashboardAdministrator from "../../components/verifikasi-dokumen-dashboard-administrator-components/LihatKelengkapanVerifikasiDashboardOperator";
 
 const getStatusColor = (status) => {
   let colorClass = "";
@@ -30,7 +30,7 @@ const getStatusColor = (status) => {
   return colorClass;
 };
 
-const VerifikasiDokumenOperator = () => {
+const VerifikasiDokumenVerifikator = () => {
   const headVerifikasiDokumen = ["ID Dokumen", "Nama Pemohonon", "Perizinan", "Tanggal Pengajuan", "Status"];
   const itemVerifikasiDokumen = verifikasiDokumenItem;
 
@@ -60,7 +60,7 @@ const VerifikasiDokumenOperator = () => {
               <TableItemGeneral key={index} tableItem={item.perizinan} />
               <TableItemGeneral key={index} tableItem={item.tanggal} />
               <TableItemGeneral key={index} tableItem={item.status} customColor={getStatusColor(item.status)} />
-              <TableItemGeneral key={index} tableItem={<LihatKelengkapanVerifikasiDashboardAdministrator link={item.link} />} />
+              <TableItemGeneral key={index} tableItem={<LihatKelengkapanVerifikasiDashboardAdministrator link={item.link_2} />} />
             </TableRowGeneral>
           ))}
         </TableBodyGeneral>
@@ -70,4 +70,4 @@ const VerifikasiDokumenOperator = () => {
   );
 };
 
-export default VerifikasiDokumenOperator;
+export default VerifikasiDokumenVerifikator;

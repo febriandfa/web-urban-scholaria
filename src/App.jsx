@@ -28,6 +28,11 @@ import NotifikasiAdministrator from "./pages/dashboard-administrator-page/Notifi
 import ObrolanAdministrator from "./pages/dashboard-administrator-page/ObrolanAdministrator";
 import VerifikasiDokumenOperator from "./pages/dashboard-operator-page/VerifikasiDokumenOperator";
 import KelengkapanPengajuanOperator from "./pages/dashboard-operator-page/KelengkapanPengajuanOperator";
+import VerifikasiDokumenVerifikator from "./pages/dashboard-verifikator-page/VerifikasiDokumenVerifikator";
+import KelengkapanPengajuanVerifikator from "./pages/dashboard-verifikator-page/KelengkapanPengajuanVerifikator";
+import PengesahanPerizinanVerifikator from "./pages/dashboard-verifikator-page/PengesahanPerizinanVerifikator";
+import TerbitkanPerizinanVerifikator from "./pages/dashboard-verifikator-page/TerbitkanPerizinanVerifikator";
+import DetailPengesahanPerizinanVerifikator from "./pages/dashboard-verifikator-page/DetailPengesahanPerizinanVerifikator";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -89,6 +94,13 @@ function App() {
             {/* Operator */}
             <Route path="/verifikasi-dokumen-operator" element={<VerifikasiDokumenOperator />} />
             <Route path="/kelengkapan-dokumen-operator" element={<KelengkapanPengajuanOperator />} />
+
+            {/* Verifikator */}
+            <Route path="/verifikasi-dokumen-verifikator" element={<VerifikasiDokumenVerifikator />} />
+            <Route path="/kelengkapan-dokumen-verifikator" element={<KelengkapanPengajuanVerifikator />} />
+            <Route path="/pengesahan-perizinan-verifikator" element={<PengesahanPerizinanVerifikator />} />
+            <Route path="/detail-pengesahan-verifikator" element={<DetailPengesahanPerizinanVerifikator />} />
+            <Route path="/terbitkan-perizinan-verifikator" element={<TerbitkanPerizinanVerifikator />} />
           </Routes>
         </>
       )}

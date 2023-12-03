@@ -1,5 +1,3 @@
-const verifikasiDokumenHead = ["ID Dokumen", "Nama Pemohonon", "Perizinan", "Tanggal Pengajuan", "Status"];
-
 const verifikasiDokumenItem = [
   {
     id: "URSBY1234567891",
@@ -7,7 +5,10 @@ const verifikasiDokumenItem = [
     perizinan: "Pembangunan TK",
     tanggal: "13 November 2023",
     status: "Terlambat",
+    status_survey: "Sudah Survey",
     link: "/kelengkapan-dokumen-operator",
+    link_2: "/kelengkapan-dokumen-verifikator",
+    link_3: "/detail-pengesahan-verifikator",
   },
   {
     id: "URSBY1234567892",
@@ -15,7 +16,10 @@ const verifikasiDokumenItem = [
     perizinan: "Pembangunan TK",
     tanggal: "13 November 2023",
     status: "Terlambat",
+    status_survey: "Sedang Survey",
     link: "/kelengkapan-dokumen-operator",
+    link_2: "/kelengkapan-dokumen-verifikator",
+    link_3: "/detail-pengesahan-verifikator",
   },
   {
     id: "URSBY1234567893",
@@ -23,7 +27,10 @@ const verifikasiDokumenItem = [
     perizinan: "Pembangunan TK",
     tanggal: "13 November 2023",
     status: "Selesai",
+    status_survey: "Sedang Survey",
     link: "/kelengkapan-dokumen-operator",
+    link_2: "/kelengkapan-dokumen-verifikator",
+    link_3: "/detail-pengesahan-verifikator",
   },
   {
     id: "URSBY1234567894",
@@ -31,7 +38,10 @@ const verifikasiDokumenItem = [
     perizinan: "Pembangunan TK",
     tanggal: "13 November 2023",
     status: "Perlu Verifikasi",
+    status_survey: "Sudah Survey",
     link: "/kelengkapan-dokumen-operator",
+    link_2: "/kelengkapan-dokumen-verifikator",
+    link_3: "/detail-pengesahan-verifikator",
   },
   {
     id: "URSBY1234567895",
@@ -39,7 +49,10 @@ const verifikasiDokumenItem = [
     perizinan: "Pembangunan TK",
     tanggal: "13 November 2023",
     status: "Terlambat",
+    status_survey: "Sedang Survey",
     link: "/kelengkapan-dokumen-operator",
+    link_2: "/kelengkapan-dokumen-verifikator",
+    link_3: "/detail-pengesahan-verifikator",
   },
   {
     id: "URSBY1234567896",
@@ -47,8 +60,11 @@ const verifikasiDokumenItem = [
     perizinan: "Pembangunan TK",
     tanggal: "13 November 2023",
     status: "Terlambat",
+    status_survey: "Sedang Survey",
     link: "/kelengkapan-dokumen-operator",
+    link_2: "/kelengkapan-dokumen-verifikator",
+    link_3: "/detail-pengesahan-verifikator",
   },
 ];
 
-export { verifikasiDokumenHead, verifikasiDokumenItem };
+export default verifikasiDokumenItem;
