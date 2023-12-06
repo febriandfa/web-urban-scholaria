@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import InputFileGeneral from "../../../components/general-components/InputFileGeneral";
 import CardGeneral from "../../../components/general-components/CardGeneral";
 import InputTextGeneral from "../../../components/general-components/InputTextGeneral";
@@ -7,28 +7,16 @@ import TitlePerizinan from "../../../components/pengajuan-perizinan-components/T
 import KetentuanPerizinan from "../../../components/pengajuan-perizinan-components/KetentuanPerizinan";
 import { Link } from "react-router-dom";
 import { userService } from "../../../services";
-import { getKategoriPerizinan, getSuratJenisID } from "../../../services/storage.service";
+import { getKategoriPerizinan } from "../../../services/storage.service";
 import MapPerizinan from "../../../components/pengajuan-perizinan-components/MapPerizinan";
-import LoadingPopup from "../../../components/popup-components/LoadingPopup";
 
-const kategoriPerizinan = getKategoriPerizinan();
-let subtitle;
-if (kategoriPerizinan === "TK") {
-  subtitle = "Taman Kanak-Kanak";
-} else if (kategoriPerizinan === "SD") {
-  subtitle = "Sekolah Dasar";
-} else if (kategoriPerizinan === "SMP") {
-  subtitle = "Sekolah Menengah Pertama";
-} else if (kategoriPerizinan === "SMA") {
-  subtitle = "Sekolah Menengah Akhir";
-}
-
-const FormPerizinanHeader = ({ title }) => {
-  return <TitlePerizinan subtitle={`AJUKAN PERIZINAN ${subtitle}`} title={`${title} ${subtitle}`} />;
+const FormPerizinanHeader = () => {
+  return <TitlePerizinan subtitle="AJUKAN PERIZINAN TAMAN KANAK-KANAK" title="Perizinan Operasional Taman Kanak-Kanak" />;
 };
 
-const FormPerizinanBody = ({ title, loading }) => {
+const FormPerizinanBody = ({ inputValue, onInputChange, selectedFiles, onFileInputChange }) => {
   const [showInputSection, setShowInputSection] = useState(true);
+  const kategoriPerizinan = getKategoriPerizinan();
   const [formData, setFormData] = useState({
     kategori: kategoriPerizinan,
     nama: "",
@@ -74,10 +62,7 @@ const FormPerizinanBody = ({ title, loading }) => {
 
   return (
     <div>
-      <LoadingPopup loading={loading} />
-      <h1 className="text-brand-500 font-semibold text-xl text-center mb-5">
-        {title} {kategoriPerizinan}
-      </h1>
+      <h1 className="text-brand-500 font-semibold text-xl text-center mb-5">Perizinan Operasional TK</h1>
       <form className="w-4/5 mx-auto" action="#" method="post">
         <CardGeneral customClass="w-full mb-7" color="bg-brand-50">
           <InputTextGeneral name="kategori" label="Kategori" value={formData.kategori} onChange={handleInputChange} required disabled />
@@ -203,58 +188,40 @@ const FormPerizinanBody = ({ title, loading }) => {
 };
 
 const FormPengajuanOperasional = () => {
-  const jenisSuratID = getSuratJenisID();
-  const [loading, setLoading] = useState(true);
-  const [jenisPerizinan, setJenisPerizinan] = useState([]);
+  const [inputValue, setInputValue] = useState({
+    "nama-sekolah": "",
+    "alamat-sekolah": "",
+  });
 
-  const jenisPerizinanData = async (surat_jenis_id) => {
-    try {
-      // setLoading(true);
-      const response = await userService.getSuratJenisDetailByID(surat_jenis_id);
-      console.log("Hasil Get Detail Jenis Surat:", response);
-      setJenisPerizinan(response?.data?.data);
-      setLoading(false);
-    } catch (error) {
-      console.error(error);
-      setLoading(false);
-    }
+  const [selectedFiles, setSelectedFiles] = useState({
+    "ktp-surat-domisili": null,
+    "bpjs-ketenagakerjaan": null,
+    "bpjs-kesehatan": null,
+    "susunan-pengurus": null,
+    "hasil-penilaian": null,
+    "izin-rt-rw": null,
+    "perkiraan-pembiayaan": null,
+    "program-kerja": null,
+    "rencana-pengembangan": null,
+  });
+
+  const handleInputChange = (name, value) => {
+    setInputValue({
+      ...inputValue,
+      [name]: value,
+    });
   };
 
-  useEffect(() => {
-    jenisPerizinanData(jenisSuratID);
-  }, []);
-  // const [inputValue, setInputValue] = useState({
-  //   "nama-sekolah": "",
-  //   "alamat-sekolah": "",
-  // });
+  const handleFileInputChange = (name, file) => {
+    setSelectedFiles({
+      ...selectedFiles,
+      [name]: file,
+    });
+  };
 
-  // const [selectedFiles, setSelectedFiles] = useState({
-  //   "ktp-surat-domisili": null,
-  //   "bpjs-ketenagakerjaan": null,
-  //   "bpjs-kesehatan": null,
-  //   "susunan-pengurus": null,
-  //   "hasil-penilaian": null,
-  //   "izin-rt-rw": null,
-  //   "perkiraan-pembiayaan": null,
-  //   "program-kerja": null,
-  //   "rencana-pengembangan": null,
-  // });
-
-  // const handleInputChange = (name, value) => {
-  //   setInputValue({
-  //     ...inputValue,
-  //     [name]: value,
-  //   });
-  // };
-
-  // const handleFileInputChange = (name, file) => {
-  //   setSelectedFiles({
-  //     ...selectedFiles,
-  //     [name]: file,
-  //   });
-  // };
-
-  return <PerizinanPageLayout childrenHeader={<FormPerizinanHeader title={jenisPerizinan.nama} />} childrenBody={<FormPerizinanBody title={jenisPerizinan.nama} loading={loading} />} />;
+  return (
+    <PerizinanPageLayout childrenHeader={<FormPerizinanHeader />} childrenBody={<FormPerizinanBody inputValue={inputValue} onInputChange={handleInputChange} selectedFiles={selectedFiles} onFileInputChange={handleFileInputChange} />} />
+  );
 };
 
 export default FormPengajuanOperasional;

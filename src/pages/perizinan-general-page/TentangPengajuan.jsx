@@ -1,14 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { bgInfoIzin } from "../../assets";
 import PerizinanPageLayout from "../../layouts/PerizinanPageLayout";
 import TitlePerizinan from "../../components/pengajuan-perizinan-components/TitlePerizinan";
 import CardGeneral from "../../components/general-components/CardGeneral";
+import { userService } from "../../services";
 
 const TentangPerizinanHeader = () => {
   return <TitlePerizinan subtitle="INFORMASI AJUKAN PERIZINAN" title="Nikmati Kemudahan Perizinan Sekolah Secara Digital" />;
 };
 
 const TentangPerizinanBody = () => {
+  const [jenisPerizinan, setJenisPerizinan] = useState([]);
+
+  const jenisPerizinanData = async () => {
+    try {
+      const response = await userService.getSuratJenis();
+      console.log("Hasil Get Jenis Surat:", response);
+      setJenisPerizinan(response?.data?.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    jenisPerizinanData();
+  }, []);
+
   return (
     <div className="">
       <img className="w-[35rem] mx-auto mb-20" src={bgInfoIzin} alt="" />
@@ -42,14 +59,14 @@ const TentangPerizinanBody = () => {
               />
             </svg>
             <div>
-              <h1 className="font-semibold">3</h1>
+              <h1 className="font-semibold">{jenisPerizinan.length}</h1>
               <p className="font-sm text-neutral-500">Perizinan</p>
             </div>
           </div>
         </CardGeneral>
         <CardGeneral customClass="w-72">
           <div className="flex items-center gap-7">
-            <svg className="bg-brand-500" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+            <svg className="bg-brand-500 rounded" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
               <path
                 fillRule="evenodd"
                 clipRule="evenodd"

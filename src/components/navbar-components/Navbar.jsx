@@ -5,10 +5,11 @@ import DropdownNavbar from "./DropdownNavbar";
 import { Link } from "react-router-dom";
 import checkUserLoggedIn from "../../utils/functions/CheckUserLoggedIn";
 import { userService } from "../../services";
+import { getToken } from "../../services/storage.service";
 
 const Navbar = ({ hideLogoOnUserLayout }) => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const isLoggedIn = localStorage.getItem("TOKEN") !== null;
+  const isLoggedIn = getToken() !== null;
   const [profile, setProfile] = useState(null);
 
   const getProfile = async () => {

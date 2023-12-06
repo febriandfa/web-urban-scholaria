@@ -1,7 +1,8 @@
 import React from "react";
 import CardGeneral from "../general-components/CardGeneral";
+import { Link } from "react-router-dom";
 
-const InformasiTambahan = ({ alur, durasi, jumlah }) => {
+const InformasiTambahan = ({ alur, durasi, linkSyarat }) => {
   return (
     <CardGeneral>
       <div className="flex flex-col gap-4">
@@ -19,7 +20,7 @@ const InformasiTambahan = ({ alur, durasi, jumlah }) => {
           </div>
           <div className="border-b border-neutral-500 w-full">
             <p className="text-sm font-semibold text-neutral-800">Alur Perizinan</p>
-            <p className="text-xs font-normal text-neutral-500">{alur}</p>
+            <p className="text-xs font-normal text-brand-500">{alur}</p>
           </div>
         </div>
         <div className="flex items-center gap-4">
@@ -35,7 +36,7 @@ const InformasiTambahan = ({ alur, durasi, jumlah }) => {
           </div>
           <div className="border-b border-neutral-500 w-full">
             <p className="text-sm font-semibold text-neutral-800">Waktu Proses Kerja</p>
-            <p className="text-xs font-normal text-neutral-500">{durasi} Hari </p>
+            <p className="text-xs font-normal text-brand-500">{durasi} Hari </p>
           </div>
         </div>
         <div className="flex items-center gap-4">
@@ -46,7 +47,10 @@ const InformasiTambahan = ({ alur, durasi, jumlah }) => {
           </div>
           <div className="border-b border-neutral-500 w-full">
             <p className="text-sm font-semibold text-neutral-800">Jumlah Persyaratan</p>
-            <p className="text-xs font-normal text-neutral-500">{jumlah} Syarat Dokumen</p>
+            {/* <p className="text-xs font-normal text-neutral-500">{jumlah} Syarat Dokumen</p> */}
+            <Link to={`/syarat-perizinan/${linkSyarat}`} className="text-xs font-normal text-brand-500">
+              Lihat Persyaratan
+            </Link>
           </div>
         </div>
       </div>

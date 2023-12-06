@@ -9,6 +9,8 @@ import api from "./api.service";
 // } from "../types";
 
 // API GET DATA
+
+// AUTH API START
 export const postRegister = async (data) => {
   return await api.post("register", data);
 };
@@ -20,7 +22,9 @@ export const postLogin = async (data) => {
 export const postLogout = async (data) => {
   return await api.post("logout", data);
 };
+// AUTH API END
 
+// PROFILE API START
 export const getProfile = async () => {
   return await api.get("profile");
 };
@@ -28,9 +32,26 @@ export const getProfile = async () => {
 export const updateProfile = async (data) => {
   return await api.post("update-profile", data);
 };
+// PROFILE API END
+
+export const postPengajuan = async (data) => {
+  return await api.post("surat", data);
+};
 
 export const getSuratJenis = async () => {
   return await api.get("surat-jenis");
+};
+
+export const getSuratJenisDetailByID = async (surat_jenis_id) => {
+  return await api.get(`surat-jenis/` + surat_jenis_id);
+};
+
+export const getSyaratBySuratJenisID = async (surat_jenis_id) => {
+  return await api.get(`surat-syarat?surat_jenis_id=` + surat_jenis_id);
+};
+
+export const getSuratSyaratByID = async (surat_jenis_id) => {
+  return await api.get(`surat/` + surat_jenis_id + `/syarat`);
 };
 
 // export const getSuratByUserID = async () => {

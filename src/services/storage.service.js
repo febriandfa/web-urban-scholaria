@@ -4,4 +4,8 @@ const getToken = () => localStorage.getItem("TOKEN");
 
 const removeToken = () => localStorage.removeItem("TOKEN");
 
-export { setToken, getToken, removeToken };
+const getSuratJenisID = () => localStorage.getItem("SuratJenisID");
+
+const getKategoriPerizinan = () => localStorage.getItem("KategoriPerizinan");
+
+export { setToken, getToken, removeToken, getSuratJenisID, getKategoriPerizinan };

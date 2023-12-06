@@ -34,6 +34,7 @@ import PengesahanPerizinanVerifikator from "./pages/dashboard-verifikator-page/P
 import TerbitkanPerizinanVerifikator from "./pages/dashboard-verifikator-page/TerbitkanPerizinanVerifikator";
 import DetailPengesahanPerizinanVerifikator from "./pages/dashboard-verifikator-page/DetailPengesahanPerizinanVerifikator";
 import Register from "./pages/auth-page/Register";
+import PersyaratanOperasional from "./pages/perizinan-tk-page/operasional/PersyaratanOperasional";
 // import CobaDaftar from "./pages/auth-page/CobaDaftar";
 
 function ScrollToTop() {
@@ -70,8 +71,9 @@ function App() {
             <Route path="/masuk" element={<Login />} />
 
             {/* Perizinan */}
-            <Route path="/perizinan-tk" element={<InformasiPerizinan />} />
-            <Route path="/perizinan-operasional-tk" element={<PerizinanOperasional />} />
+            <Route path="/informasi-perizinan" element={<InformasiPerizinan />} />
+            <Route path="/pengajuan-perizinan/:id" element={<PerizinanOperasional />} />
+            <Route path="/syarat-perizinan/:id" element={<PersyaratanOperasional />} />
             <Route path="/form-pengajuan-operasional-tk" element={<FormPengajuanOperasional />} />
             <Route path="/tentang-pengajuan-perizinan" element={<TentangPengajuan />} />
             <Route path="/konfirmasi-pengajuan-perizinan" element={<KonfirmasiPerizinan />} />

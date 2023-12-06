@@ -1,8 +1,13 @@
 import React from "react";
 import LinkButtonGeneral from "../general-components/LinkButtonGeneral";
 import CardGeneral from "../general-components/CardGeneral";
+import { Link } from "react-router-dom";
 
 const KategoriPerizinan = ({ img, title, syarat, durasi, link }) => {
+  const handleLihatDetailClick = (id) => {
+    localStorage.setItem("SuratJenisID", id);
+  };
+
   return (
     <CardGeneral>
       <div className="flex items-center  w-[95%] mx-auto">
@@ -29,7 +34,9 @@ const KategoriPerizinan = ({ img, title, syarat, durasi, link }) => {
             </li>
           </ul>
         </div>
-        <LinkButtonGeneral link={link} text="Lihat Detail" />
+        <Link className="flex items-center gap-2 w-fit px-4 py-2 bg-brand-500 text-white text-base font-semibold rounded-lg cursor-pointer" to={`/pengajuan-perizinan/${link}`} onClick={() => handleLihatDetailClick(link)}>
+          Lihat Detail
+        </Link>
       </div>
     </CardGeneral>
   );
