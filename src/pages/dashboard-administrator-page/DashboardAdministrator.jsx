@@ -58,9 +58,9 @@ const DashboardAdministrator = () => {
             <path
               d="M3.33398 13.3337L3.33398 14.167C3.33398 15.5477 4.45327 16.667 5.83398 16.667L14.1673 16.667C15.548 16.667 16.6673 15.5477 16.6673 14.167L16.6673 13.3337M13.334 10.0003L10.0007 13.3337M10.0007 13.3337L6.66732 10.0003M10.0007 13.3337L10.0006 3.33366"
               stroke="#1E293B"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
           Unduh Laporan

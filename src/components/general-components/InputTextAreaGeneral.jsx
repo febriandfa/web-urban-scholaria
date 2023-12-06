@@ -3,7 +3,7 @@ import React from "react";
 const InputTextAreaGeneral = ({ name, label, placeholder, value, required, disabled }) => {
   return (
     <div className="mb-6">
-      <label className="block mb-1 font-semibold text-sm text-brand-500 capitalize" for={name}>
+      <label className="block mb-1 font-semibold text-sm text-brand-500 capitalize" htmlFor={name}>
         {label}
         {required && <span className={`text-danger-500`}>*</span>}
       </label>

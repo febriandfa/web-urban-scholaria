@@ -18,7 +18,7 @@ const PaginationGeneral = ({ totalPages, currentPage, onPageChange }) => {
       {currentPage != 1 && (
         <button className="rotate-180" onClick={handlePrevPage} disabled={currentPage === 1}>
           <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
-            <path d="M10.5 5.83342L18.6667 14.0001L10.5 22.1667" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M10.5 5.83342L18.6667 14.0001L10.5 22.1667" stroke="#64748B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </button>
       )}
@@ -35,7 +35,7 @@ const PaginationGeneral = ({ totalPages, currentPage, onPageChange }) => {
       {currentPage != totalPages && (
         <button onClick={handleNextPage} disabled={currentPage === totalPages}>
           <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
-            <path d="M10.5 5.83342L18.6667 14.0001L10.5 22.1667" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M10.5 5.83342L18.6667 14.0001L10.5 22.1667" stroke="#64748B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </button>
       )}

@@ -3,7 +3,7 @@ import React from "react";
 const InputDateGeneral = ({ name, label, placeholder, value, onChange, required, disabled }) => {
   return (
     <div className="mb-6">
-      <label className="block mb-1 font-semibold text-sm text-brand-500 capitalize" for={name}>
+      <label className="block mb-1 font-semibold text-sm text-brand-500 capitalize" htmlFor={name}>
         {label}
         {required && <span className={`text-danger-500`}>*</span>}
       </label>
@@ -15,7 +15,7 @@ const InputDateGeneral = ({ name, label, placeholder, value, onChange, required,
         value={value}
         required={required}
         disabled={disabled}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={(e) => onChange({ name, value: e.target.value })}
       />
     </div>
   );

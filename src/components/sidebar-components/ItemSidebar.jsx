@@ -7,9 +7,9 @@ const ItemSidebar = ({ link, icon, title }) => {
 
   return (
     <li>
-      <Link to={link} class={`flex items-center p-2 ${activeItem ? "text-brand-500" : "text-neutral-800"}`}>
+      <Link to={link} className={`flex items-center p-2 ${activeItem ? "text-brand-500" : "text-neutral-800"}`}>
         <div className="w-6 h-6">{icon}</div>
-        <span class="ml-3">{title}</span>
+        <span className="ml-3">{title}</span>
       </Link>
     </li>
   );

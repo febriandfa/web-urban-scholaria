@@ -33,6 +33,8 @@ import KelengkapanPengajuanVerifikator from "./pages/dashboard-verifikator-page/
 import PengesahanPerizinanVerifikator from "./pages/dashboard-verifikator-page/PengesahanPerizinanVerifikator";
 import TerbitkanPerizinanVerifikator from "./pages/dashboard-verifikator-page/TerbitkanPerizinanVerifikator";
 import DetailPengesahanPerizinanVerifikator from "./pages/dashboard-verifikator-page/DetailPengesahanPerizinanVerifikator";
+import Register from "./pages/auth-page/Register";
+// import CobaDaftar from "./pages/auth-page/CobaDaftar";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -64,7 +66,7 @@ function App() {
             <Route path="/syarat-ketentuan" element={<SyaratKententuan />} />
 
             {/* Auth */}
-            <Route path="/daftar" element={<Daftar />} />
+            <Route path="/daftar" element={<Register />} />
             <Route path="/masuk" element={<Login />} />
 
             {/* Perizinan */}
@@ -101,6 +103,8 @@ function App() {
             <Route path="/pengesahan-perizinan-verifikator" element={<PengesahanPerizinanVerifikator />} />
             <Route path="/detail-pengesahan-verifikator" element={<DetailPengesahanPerizinanVerifikator />} />
             <Route path="/terbitkan-perizinan-verifikator" element={<TerbitkanPerizinanVerifikator />} />
+
+            {/* <Route path="/coba-daftar" element={<CobaDaftar />} /> */}
           </Routes>
         </>
       )}

@@ -43,8 +43,8 @@ const DragDropUploadGeneral = ({ onDrop, uploadedFiles }) => {
         <div className="flex flex-col items-center">
           <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none">
             <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
+              fillRule="evenodd"
+              clipRule="evenodd"
               d="M25.5996 25.6001C25.5996 18.5308 31.3304 12.8 38.3996 12.8H67.7486C71.1434 12.8 74.3991 14.1486 76.7996 16.5491L98.6506 38.4C101.051 40.8005 102.4 44.0562 102.4 47.451V102.4C102.4 109.469 96.6689 115.2 89.5996 115.2H38.3996C31.3304 115.2 25.5996 109.469 25.5996 102.4V25.6001Z"
               fill="#64748B"
             />

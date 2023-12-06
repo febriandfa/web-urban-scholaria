@@ -1,8 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import LabelGeneral from "../general-components/LabelGeneral";
 import { bgHome } from "../../assets";
+import { userService } from "../../services";
 
 const ShowDataDiriDashboardAdministrator = () => {
+  const [profile, setProfile] = useState();
+
+  const profileData = async () => {
+    try {
+      const response = await userService.getProfile();
+      console.log(response);
+      setProfile(response?.data?.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    profileData();
+    // console.log(profile);
+  }, []);
+
   return (
     <div className="px-10">
       <img className="w-24 h-24 object-cover object-center rounded-full mx-auto mb-16" src={bgHome} alt="" />

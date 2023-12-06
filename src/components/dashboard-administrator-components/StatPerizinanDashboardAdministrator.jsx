@@ -74,16 +74,16 @@ const StatPerizinanDashboardAdministrator = () => {
         <div className="w-44">
           <div className="flex items-center gap-1">
             <svg xmlns="http://www.w3.org/2000/svg" width="19" height="20" viewBox="0 0 19 20" fill="none">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M11.5262 1.58594L7.80827 5.58594V18.4144L11.5262 14.4144V1.58594Z" fill="#191D88" />
+              <path fillRule="evenodd" clipRule="evenodd" d="M11.5262 1.58594L7.80827 5.58594V18.4144L11.5262 14.4144V1.58594Z" fill="#191D88" />
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M3.81815 3.29304C3.55232 3.00705 3.15254 2.92149 2.80522 3.07627C2.4579 3.23105 2.23145 3.59569 2.23145 4.00015V14.0002C2.23145 14.2654 2.32937 14.5197 2.50368 14.7073L5.94933 18.4144V5.58594L3.81815 3.29304Z"
                 fill="#191D88"
               />
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M16.8307 5.29304L13.3851 1.58594V14.4144L15.5163 16.7073C15.7821 16.9933 16.1819 17.0788 16.5292 16.924C16.8765 16.7692 17.103 16.4046 17.103 16.0002V6.00015C17.103 5.73493 17.0051 5.48058 16.8307 5.29304Z"
                 fill="#191D88"
               />
@@ -105,8 +105,8 @@ const StatPerizinanDashboardAdministrator = () => {
           <div className="flex items-center gap-1">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M10.1672 18C14.2739 18 17.603 14.4183 17.603 10C17.603 5.58172 14.2739 2 10.1672 2C6.06055 2 2.73145 5.58172 2.73145 10C2.73145 14.4183 6.06055 18 10.1672 18ZM11.1672 6C11.1672 5.44772 10.7195 5 10.1672 5C9.61493 5 9.16721 5.44772 9.16721 6V10C9.16721 10.2526 9.26279 10.4958 9.43475 10.6808L12.0637 13.5092C12.4397 13.9138 13.0724 13.9369 13.477 13.5609C13.8815 13.1849 13.9046 12.5522 13.5286 12.1476L11.1672 9.60703V6Z"
                 fill="#334155"
               />

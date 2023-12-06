@@ -35,8 +35,8 @@ const TentangPerizinanBody = () => {
           <div className="flex items-center gap-7">
             <svg className="bg-brand-500 rounded" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M8 8C8 5.79086 9.79086 4 12 4H21.1716C22.2324 4 23.2499 4.42143 24 5.17157L30.8284 12C31.5786 12.7501 32 13.7676 32 14.8284V32C32 34.2091 30.2091 36 28 36H12C9.79086 36 8 34.2091 8 32V8ZM12 20C12 18.8954 12.8954 18 14 18H26C27.1046 18 28 18.8954 28 20C28 21.1046 27.1046 22 26 22H14C12.8954 22 12 21.1046 12 20ZM14 26C12.8954 26 12 26.8954 12 28C12 29.1046 12.8954 30 14 30H26C27.1046 30 28 29.1046 28 28C28 26.8954 27.1046 26 26 26H14Z"
                 fill="white"
               />
@@ -51,8 +51,8 @@ const TentangPerizinanBody = () => {
           <div className="flex items-center gap-7">
             <svg className="bg-brand-500" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M8 8C8 5.79086 9.79086 4 12 4H28C30.2091 4 32 5.79086 32 8V32C33.1046 32 34 32.8954 34 34C34 35.1046 33.1046 36 32 36H25C24.4477 36 24 35.5523 24 35V30C24 28.8954 23.1046 28 22 28H18C16.8954 28 16 28.8954 16 30V35C16 35.5523 15.5523 36 15 36H8C6.89543 36 6 35.1046 6 34C6 32.8954 6.89543 32 8 32V8ZM14 10H18V14H14V10ZM18 18H14V22H18V18ZM22 10H26V14H22V10ZM26 18H22V22H26V18Z"
                 fill="white"
               />

@@ -19,8 +19,8 @@ const KategoriPerizinan = ({ img, title, syarat, durasi, link }) => {
             <li className="flex items-center gap-3">
               <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
                 <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
+                  fillRule="evenodd"
+                  clipRule="evenodd"
                   d="M12.5 22.5C18.0228 22.5 22.5 18.0228 22.5 12.5C22.5 6.97715 18.0228 2.5 12.5 2.5C6.97715 2.5 2.5 6.97715 2.5 12.5C2.5 18.0228 6.97715 22.5 12.5 22.5ZM13.5 7.5C13.5 6.94772 13.0523 6.5 12.5 6.5C11.9477 6.5 11.5 6.94772 11.5 7.5V12.5C11.5 12.7652 11.6054 13.0196 11.7929 13.2071L15.3284 16.7426C15.719 17.1332 16.3521 17.1332 16.7426 16.7426C17.1332 16.3521 17.1332 15.719 16.7426 15.3284L13.5 12.0858V7.5Z"
                   fill="#64748B"
                 />

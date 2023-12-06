@@ -8,6 +8,9 @@ import KontakLandingPage from "../../components/landing-page-components/KontakLa
 import TentangLandingPage from "../../components/landing-page-components/TentangLandingPage";
 
 const Home = () => {
+  // const user = localStorage.getItem("UserDetail");
+  // console.log(user);
+
   return (
     <LandingPageLayout>
       <HeroLandingPage />

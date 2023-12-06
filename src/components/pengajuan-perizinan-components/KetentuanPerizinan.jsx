@@ -21,7 +21,7 @@ const KetentuanPerizinan = () => {
       </ol>
       <div className="flex items-center gap-4 h-fit">
         <input className="w-5 h-5" type="checkbox" name="setuju" id="setuju" />
-        <label for="setuju">Saya telah telah bersedia mengikuti persyaratan yang ada pada formulir komitmen perizinan ini.</label>
+        <label htmlFor="setuju">Saya telah telah bersedia mengikuti persyaratan yang ada pada formulir komitmen perizinan ini.</label>
       </div>
     </div>
   );
