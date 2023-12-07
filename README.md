@@ -1,3 +1,17 @@
+## HOW TO RUN
+- Download dan Install Node JS di Perangkat,
+[Klik Disini](https://nodejs.org/en) Untuk Download
+- Clone Repository Ini
+- Buka Directory dan Buka Project Menggunakan Visual Studio Code
+- Buka Terminal dan Jalankan Perintah
+```terminal
+npm install
+```
+- Jalankan Website Dengan Perintah
+```terminal
+npm run dev
+```
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
