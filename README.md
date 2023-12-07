@@ -11,6 +11,11 @@ npm install
 ```terminal
 npm run dev
 ```
+- Buka Link Yang Didapatkan di Terminal Setelah Menjalankan Website,
+misalnya
+```terminal
+http://localhost:5173/
+```
 
 # React + Vite
 
