@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { bgHome } from "../../assets";
+import { bgHome, iconUser } from "../../assets";
 import InputTextGeneral from "../general-components/InputTextGeneral";
 import InputDateGeneral from "../general-components/InputDateGeneral";
 import InputSelectGeneral from "../general-components/InputSelectGeneral";
@@ -9,6 +9,7 @@ import InputFileGeneralCoba from "../general-components/InputFileGeneralCoba";
 
 const EditDataDiriDashboardUser = ({ onViewChange }) => {
   const [isChecked, setIsChecked] = useState(false);
+  const [isUpdateFoto, setIsUpdateFoto] = useState(false);
   const [formData, setFormData] = useState({
     foto: null,
     username: "",
@@ -46,10 +47,13 @@ const EditDataDiriDashboardUser = ({ onViewChange }) => {
     form.append("username", formData.username);
     form.append("email", formData.email);
     form.append("nama_lengkap", formData.nama_lengkap);
-    form.append("foto", formData.foto);
+    // form.append("foto", formData.foto);
     // if (formData.foto !== null && formData.foto !== "null") {
     //   form.append("foto", formData.foto);
     // }
+    if (isUpdateFoto) {
+      form.append("foto", formData.foto);
+    }
     form.append("nomor_identitas", formData.nomor_identitas);
     form.append("jenis_kelamin", formData.jenis_kelamin);
     form.append("tempat_lahir", formData.tempat_lahir);
@@ -65,20 +69,18 @@ const EditDataDiriDashboardUser = ({ onViewChange }) => {
       const response = await userService.updateProfile(form);
       // const response = await axios.post("https://urbanscholaria.my.id/api/update-profile", form);
       // const response = await userService.postRegister("register", form);
+      setIsUpdateFoto(false);
       console.log("Successful register:", response.data);
       console.log(formData);
       onViewChange();
     } catch (error) {
       console.error("Register error:", error);
+      setIsUpdateFoto(false);
     }
+    console.log(formData);
   };
 
   const handleProfileChange = ({ name, value }) => {
-    // const maxValueLength = {
-    //   nomor_identitas: 16,
-    //   no_telp: 13,
-    // };
-
     if (name === "no_telp" && value.length > 13) {
       return;
     }
@@ -186,7 +188,7 @@ const EditDataDiriDashboardUser = ({ onViewChange }) => {
   return (
     <form>
       <div className="px-10">
-        <img className="w-24 h-24 object-cover object-center rounded-full mx-auto mb-6" src={formData.foto || "URL_default_foto_profil"} alt="" />
+        <img className="w-24 h-24 object-cover object-center rounded-full mx-auto mb-6" src={formData.foto || "URL_default_foto_profil" || iconUser} alt="" />
 
         <label className="flex items-center cursor-pointer rounded-lg w-fit h-9 px-4 py-2 bg-brand-500 mx-auto mb-16" htmlFor="foto">
           <span className="flex items-center text-base font-semibold text-white">Ubah Foto Profil</span>
@@ -196,7 +198,9 @@ const EditDataDiriDashboardUser = ({ onViewChange }) => {
             type="file"
             onChange={
               // handleProfileChange
-              (e) => handleProfileChange({ name: "foto", value: e.target.files[0] })
+              (e) => {
+                handleProfileChange({ name: "foto", value: e.target.files[0] }), setIsUpdateFoto(true);
+              }
             }
           />
         </label>

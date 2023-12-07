@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import LabelGeneral from "../general-components/LabelGeneral";
-import { bgHome } from "../../assets";
+import { bgHome, iconUser } from "../../assets";
 import { userService } from "../../services";
 
 const ShowDataDiriDashboardUser = () => {
@@ -24,7 +24,7 @@ const ShowDataDiriDashboardUser = () => {
   return (
     <>
       <div className="px-10">
-        <img className="w-24 h-24 object-cover object-center rounded-full mx-auto mb-16" src={profile?.foto} alt="" />
+        <img className="w-24 h-24 object-cover object-center rounded-full mx-auto mb-16" src={profile?.foto || iconUser} alt="" />
         <div className="grid grid-cols-2">
           <div>
             {/* <div className="w-60">

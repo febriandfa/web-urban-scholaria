@@ -7,36 +7,48 @@ import TitlePerizinan from "../../../components/pengajuan-perizinan-components/T
 import KetentuanPerizinan from "../../../components/pengajuan-perizinan-components/KetentuanPerizinan";
 import { Link } from "react-router-dom";
 import { userService } from "../../../services";
-import { getKategoriPerizinan, getSuratJenisID } from "../../../services/storage.service";
+import { getIdSuratDiajukan, getKategoriPerizinan, getSuratJenisID } from "../../../services/storage.service";
 import MapPerizinan from "../../../components/pengajuan-perizinan-components/MapPerizinan";
 import LoadingPopup from "../../../components/popup-components/LoadingPopup";
+import InputFileGeneralCoba from "../../../components/general-components/InputFileGeneralCoba";
 
-const kategoriPerizinan = getKategoriPerizinan();
-let subtitle;
-if (kategoriPerizinan === "TK") {
-  subtitle = "Taman Kanak-Kanak";
-} else if (kategoriPerizinan === "SD") {
-  subtitle = "Sekolah Dasar";
-} else if (kategoriPerizinan === "SMP") {
-  subtitle = "Sekolah Menengah Pertama";
-} else if (kategoriPerizinan === "SMA") {
-  subtitle = "Sekolah Menengah Akhir";
-}
+// const jenisSuratID = getSuratJenisID();
+// const kategoriPerizinan = getKategoriPerizinan();
+// const idSuratPengajuan = getIdSuratDiajukan();
+// let subtitle;
+// if (kategoriPerizinan === "TK") {
+//   subtitle = "Taman Kanak-Kanak";
+// } else if (kategoriPerizinan === "SD") {
+//   subtitle = "Sekolah Dasar";
+// } else if (kategoriPerizinan === "SMP") {
+//   subtitle = "Sekolah Menengah Pertama";
+// } else if (kategoriPerizinan === "SMA") {
+//   subtitle = "Sekolah Menengah Akhir";
+// }
 
-const FormPerizinanHeader = ({ title }) => {
+const FormPerizinanHeader = ({ title, subtitle }) => {
   return <TitlePerizinan subtitle={`AJUKAN PERIZINAN ${subtitle}`} title={`${title} ${subtitle}`} />;
 };
 
-const FormPerizinanBody = ({ title, loading }) => {
+const FormPerizinanBody = ({ title, loading, kategoriPerizinan, id_surat_pengajuan, id_jenis_surat }) => {
   const [showInputSection, setShowInputSection] = useState(true);
+  const [showKetentuanSection, setShowKetentuanSection] = useState(false);
+  const [showFileInputSection, setShowFileInputSection] = useState(false);
+
+  // INISIASI FORM PENGAJUAN START
+  const [idSyaratDokumen, setIdSyaratDokumen] = useState([]);
+  const [syaratSurat, setSyaratSurat] = useState([]);
   const [formData, setFormData] = useState({
     kategori: kategoriPerizinan,
     nama: "",
     alamat_lokasi: "",
     longitude: "",
     latitude: "",
+    dokumen_upload: null,
   });
+  // INISIASI FORM PENGAJUAN END
 
+  // HANDLE POST TEXT FORM START
   const handleTextFormSubmit = async () => {
     let form = new FormData();
     form.append("kategori", formData.kategori);
@@ -44,27 +56,78 @@ const FormPerizinanBody = ({ title, loading }) => {
     form.append("alamat_lokasi", formData.alamat_lokasi);
     form.append("longitude", formData.longitude);
     form.append("latitude", formData.latitude);
+    // form.append("dokumen_upload", formData.dokumen_upload);
     try {
-      const response = userService.postPengajuan(form);
+      const response = await userService.postPengajuan(form);
       console.log("Successful ajukan:", response);
+      localStorage.setItem("IdSuratDiajukan", response?.data?.data?.id);
+      setShowFileInputSection(!showFileInputSection);
     } catch (error) {
       console.error("Ada yg error", error);
     }
   };
+  // HANDLE POST TEXT FORM END
 
-  const handleInputChange = ({ name, value }) => {
+  // HANDLE INPUT TEXT CHANGE START
+  const handleInputChange = ({ name, value, file }) => {
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
+      // dokumen_upload: file,
     }));
   };
+  // HANDLE INPUT TEXT CHANGE END
 
+  // HANDLE INPUT LOCATION CHANGE START
   const handleLocationChange = ({ latitude, longitude }) => {
     setFormData((prevData) => ({
       ...prevData,
       longitude,
       latitude,
     }));
+  };
+  // HANDLE INPUT LOCATION CHANGE END
+
+  // GET SYARAT BERDASARKAN JENIS START
+  const syaratPerizinanData = async (surat_jenis_id) => {
+    try {
+      const response = await userService.getSyaratBySuratJenisID(surat_jenis_id);
+      setSyaratSurat(response?.data?.data);
+      console.log("Syarat Response:", response);
+      console.log(
+        "Syarat ID:",
+        response?.data?.data?.map((item) => item.id)
+      );
+      const idSyarat = response?.data?.data?.map((item) => item.id) || [];
+      setIdSyaratDokumen(idSyarat);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    syaratPerizinanData(id_jenis_surat);
+  }, []);
+  // GET SYARAT BERDASARKAN JENIS END
+
+  // HANDLE UPLOAD FORM SUBMIT START
+  const handleUploadFormSubmit = async (surat_syarat_id, dokumen_upload) => {
+    let form = new FormData();
+    form.append("dokumen_upload", dokumen_upload);
+    try {
+      const response = await userService.postSuratUpload(id_surat_pengajuan, id_jenis_surat, surat_syarat_id, form);
+      console.log(response);
+    } catch (error) {
+      console.error("Upload Form Error: ", error);
+    }
+    console.log({ surat_syarat_id, dokumen_upload });
+  };
+  // HANDLE UPLOAD FORM SUBMIT END
+
+  const toggleKetentuanSection = (e) => {
+    e.preventDefault();
+    setShowKetentuanSection(!showKetentuanSection);
+    setShowFileInputSection(!setShowFileInputSection);
   };
 
   const toggleInputSection = (e) => {
@@ -80,115 +143,37 @@ const FormPerizinanBody = ({ title, loading }) => {
       </h1>
       <form className="w-4/5 mx-auto" action="#" method="post">
         <CardGeneral customClass="w-full mb-7" color="bg-brand-50">
-          <InputTextGeneral name="kategori" label="Kategori" value={formData.kategori} onChange={handleInputChange} required disabled />
-          <InputTextGeneral name="nama" label="Nama" placeholder="Masukkan Nama Sekolah..." value={formData.nama} onChange={handleInputChange} required />
-          <InputTextGeneral name="alamat_lokasi" label="Alamat" placeholder="Masukkan Alamat..." value={formData.alamat_lokasi} onChange={handleInputChange} required />
-          <MapPerizinan onLocationChange={handleLocationChange} />
-          <InputTextGeneral name="longitude" label="Longitude" placeholder="Masukkan Longitude..." value={formData.longitude} onChange={handleInputChange} required />
-          <InputTextGeneral name="latitude" label="Latitude" placeholder="Masukkan Latitude..." value={formData.latitude} onChange={handleInputChange} required />
-
-          {/* {showInputSection ? (
+          {!showFileInputSection ? (
             <>
-              <InputTextGeneral name="nama-sekolah" label="Nama Sekolah" placeholder="Masukkan Nama Sekolah..." value={inputValue["nama-sekolah"]} onChange={(e) => onInputChange("nama-sekolah", e.target.value)} required />
-              <InputTextGeneral name="alamat-sekolah" label="Alamat Sekolah" placeholder="Masukkan Alamat Sekolah..." value={inputValue["alamat-sekolah"]} onChange={(e) => onInputChange("alamat-sekolah", e.target.value)} required />
-              <InputFileGeneral
-                name="ktp-surat-domisili"
-                label="KTP/Surat Keterangan Domisili Penanggung Jawab"
-                tipeFile="PDF"
-                ukuranFile={5}
-                file=".pdf"
-                selectedFile={selectedFiles["ktp-surat-domisili"]}
-                onFileInputChange={(file) => onFileInputChange("ktp-surat-domisili", file)}
-                required
-              />
-              <InputFileGeneral
-                name="bpjs-ketenagakerjaan"
-                label="BPJS Ketenagakerjaan"
-                tipeFile="PDF"
-                ukuranFile={5}
-                file=".pdf"
-                selectedFile={selectedFiles["bpjs-ketenagakerjaan"]}
-                onFileInputChange={(file) => onFileInputChange("bpjs-ketenagakerjaan", file)}
-                required
-              />
-              <InputFileGeneral
-                name="bpjs-kesehatan"
-                label="BPJS Kesehatan"
-                tipeFile="PDF"
-                ukuranFile={5}
-                file=".pdf"
-                selectedFile={selectedFiles["bpjs-kesehatan"]}
-                onFileInputChange={(file) => onFileInputChange("bpjs-kesehatan", file)}
-                required
-              />
-              <InputFileGeneral
-                name="susunan-pengurus"
-                label="Susunan Pengurus dan Rincian Tugas"
-                tipeFile="PDF"
-                ukuranFile={5}
-                file=".pdf"
-                selectedFile={selectedFiles["susunan-pengurus"]}
-                onFileInputChange={(file) => onFileInputChange("susunan-pengurus", file)}
-                required
-              />
-              <InputFileGeneral
-                name="hasil-penilaian"
-                label="Hasil Penilaian Kelayakan"
-                tipeFile="PDF"
-                ukuranFile={5}
-                file=".pdf"
-                selectedFile={selectedFiles["hasil-penilaian"]}
-                onFileInputChange={(file) => onFileInputChange("hasil-penilaian", file)}
-                required
-              />
-              <InputFileGeneral
-                name="izin-rt-rw"
-                label="Surat Keterangan Izin dari RT/RW atau Setempat"
-                tipeFile="PDF"
-                ukuranFile={5}
-                file=".pdf"
-                selectedFile={selectedFiles["izin-rt-rw"]}
-                onFileInputChange={(file) => onFileInputChange("izin-rt-rw", file)}
-                required
-              />
-              <InputFileGeneral
-                name="perkiraan-pembiayaan"
-                label="Data Mengenai Perkiraan Pembiayaan Untuk Kelangsungan Pendidikan"
-                tipeFile="PDF"
-                ukuranFile={5}
-                file=".pdf"
-                selectedFile={selectedFiles["perkiraan-pembiayaan"]}
-                onFileInputChange={(file) => onFileInputChange("perkiraan-pembiayaan", file)}
-                required
-              />
-              <InputFileGeneral
-                name="program-kerja"
-                label="Program Kerja"
-                tipeFile="PDF"
-                ukuranFile={5}
-                file=".pdf"
-                selectedFile={selectedFiles["program-kerja"]}
-                onFileInputChange={(file) => onFileInputChange("program-kerja", file)}
-                required
-              />
-              <InputFileGeneral
-                name="rencana-pengembangan"
-                label="Profil Rencana Pengembangan (Dalam 5 Tahun)"
-                tipeFile="PDF"
-                ukuranFile={5}
-                file=".pdf"
-                selectedFile={selectedFiles["rencana-pengembangan"]}
-                onFileInputChange={(file) => onFileInputChange("rencana-pengembangan", file)}
-                required
-              />
+              <InputTextGeneral name="kategori" label="Kategori" value={formData.kategori} onChange={handleInputChange} required disabled />
+              <InputTextGeneral name="nama" label="Nama" placeholder="Masukkan Nama Sekolah..." value={formData.nama} onChange={handleInputChange} required />
+              <InputTextGeneral name="alamat_lokasi" label="Alamat" placeholder="Masukkan Alamat..." value={formData.alamat_lokasi} onChange={handleInputChange} required />
+              <MapPerizinan onLocationChange={handleLocationChange} />
+              <InputTextGeneral name="longitude" label="Longitude" placeholder="Masukkan Longitude..." value={formData.longitude} onChange={handleInputChange} required />
+              <InputTextGeneral name="latitude" label="Latitude" placeholder="Masukkan Latitude..." value={formData.latitude} onChange={handleInputChange} required />
             </>
           ) : (
-            <KetentuanPerizinan />
-          )} */}
+            <>
+              {syaratSurat.map((item, index) => (
+                <InputFileGeneralCoba key={index} name={formData.dokumen_upload} label={item.nama} ukuranFile={5} selectedFile={formData.dokumen_upload} onFileInputChange={(e) => handleUploadFormSubmit(item.id, e.value)} required />
+              ))}
+            </>
+          )}
+          {showKetentuanSection && <KetentuanPerizinan />}
         </CardGeneral>
-        <button type="button" onClick={() => handleTextFormSubmit()} className={`py-2 px-4 text-center cursor-pointer bg-brand-200 w-full rounded-lg text-base font-semibold text-neutral-800 block ${showInputSection ? "block" : "hidden"}`}>
-          Selanjutnya
-        </button>
+        {!showFileInputSection ? (
+          <button
+            type="button"
+            onClick={() => handleTextFormSubmit()}
+            className={`py-2 px-4 text-center cursor-pointer bg-brand-200 w-full rounded-lg text-base font-semibold text-neutral-800 block ${showInputSection ? "block" : "hidden"}`}
+          >
+            Selanjutnya
+          </button>
+        ) : (
+          <button type="button" onClick={toggleKetentuanSection} className={`py-2 px-4 text-center cursor-pointer bg-brand-200 w-full rounded-lg text-base font-semibold text-neutral-800 block ${showInputSection ? "block" : "hidden"}`}>
+            Selanjutnya
+          </button>
+        )}
         <div className={`${!showInputSection ? "block" : "hidden"}`}>
           <button onClick={toggleInputSection} className="block text-center py-2 px-4 mb-4 bg-brand-200 w-full rounded-lg text-base font-semibold text-neutral-800 cursor-pointer">
             Kembali
@@ -203,13 +188,26 @@ const FormPerizinanBody = ({ title, loading }) => {
 };
 
 const FormPengajuanOperasional = () => {
-  const jenisSuratID = getSuratJenisID();
   const [loading, setLoading] = useState(true);
   const [jenisPerizinan, setJenisPerizinan] = useState([]);
 
+  const jenisSuratID = getSuratJenisID();
+  const kategoriPerizinan = getKategoriPerizinan();
+  const idSuratPengajuan = getIdSuratDiajukan();
+  let subtitle;
+  if (kategoriPerizinan === "TK") {
+    subtitle = "Taman Kanak-Kanak";
+  } else if (kategoriPerizinan === "SD") {
+    subtitle = "Sekolah Dasar";
+  } else if (kategoriPerizinan === "SMP") {
+    subtitle = "Sekolah Menengah Pertama";
+  } else if (kategoriPerizinan === "SMA") {
+    subtitle = "Sekolah Menengah Akhir";
+  }
+
+  // GET JENIS PERIZINAN START
   const jenisPerizinanData = async (surat_jenis_id) => {
     try {
-      // setLoading(true);
       const response = await userService.getSuratJenisDetailByID(surat_jenis_id);
       console.log("Hasil Get Detail Jenis Surat:", response);
       setJenisPerizinan(response?.data?.data);
@@ -223,38 +221,14 @@ const FormPengajuanOperasional = () => {
   useEffect(() => {
     jenisPerizinanData(jenisSuratID);
   }, []);
-  // const [inputValue, setInputValue] = useState({
-  //   "nama-sekolah": "",
-  //   "alamat-sekolah": "",
-  // });
+  // GET JENIS PERIZINAN END
 
-  // const [selectedFiles, setSelectedFiles] = useState({
-  //   "ktp-surat-domisili": null,
-  //   "bpjs-ketenagakerjaan": null,
-  //   "bpjs-kesehatan": null,
-  //   "susunan-pengurus": null,
-  //   "hasil-penilaian": null,
-  //   "izin-rt-rw": null,
-  //   "perkiraan-pembiayaan": null,
-  //   "program-kerja": null,
-  //   "rencana-pengembangan": null,
-  // });
-
-  // const handleInputChange = (name, value) => {
-  //   setInputValue({
-  //     ...inputValue,
-  //     [name]: value,
-  //   });
-  // };
-
-  // const handleFileInputChange = (name, file) => {
-  //   setSelectedFiles({
-  //     ...selectedFiles,
-  //     [name]: file,
-  //   });
-  // };
-
-  return <PerizinanPageLayout childrenHeader={<FormPerizinanHeader title={jenisPerizinan.nama} />} childrenBody={<FormPerizinanBody title={jenisPerizinan.nama} loading={loading} />} />;
+  return (
+    <PerizinanPageLayout
+      childrenHeader={<FormPerizinanHeader title={jenisPerizinan.nama} subtitle={subtitle} />}
+      childrenBody={<FormPerizinanBody title={jenisPerizinan.nama} loading={loading} kategoriPerizinan={kategoriPerizinan} id_surat_pengajuan={idSuratPengajuan} id_jenis_surat={jenisSuratID} />}
+    />
+  );
 };
 
 export default FormPengajuanOperasional;

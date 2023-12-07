@@ -18,6 +18,7 @@ import iconResetPass from "./icons/icon-reset-pass.png";
 import iconGplay from "./icons/icon-gplay.png";
 import iconQuestion from "./icons/icon-question.png";
 import iconTKIzin from "./icons/icon-tk-izin.png";
+import iconUser from "./icons/icon-user.svg";
 import bgHome from "./images/background-home.png";
 import bgApp from "./images/background-app.png";
 import bgAuth from "./images/background-auth.png";
@@ -58,6 +59,7 @@ export {
   iconGplay,
   iconQuestion,
   iconTKIzin,
+  iconUser,
   bgHome,
   bgApp,
   bgAuth,

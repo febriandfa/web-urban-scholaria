@@ -2,7 +2,7 @@ import React from "react";
 import CardGeneral from "../general-components/CardGeneral";
 import { Link } from "react-router-dom";
 
-const InformasiTambahan = ({ alur, durasi, linkSyarat }) => {
+const InformasiTambahan = ({ linkAlur, linkSyarat }) => {
   return (
     <CardGeneral>
       <div className="flex flex-col gap-4">
@@ -20,7 +20,10 @@ const InformasiTambahan = ({ alur, durasi, linkSyarat }) => {
           </div>
           <div className="border-b border-neutral-500 w-full">
             <p className="text-sm font-semibold text-neutral-800">Alur Perizinan</p>
-            <p className="text-xs font-normal text-brand-500">{alur}</p>
+            <a className="text-xs font-normal text-brand-500" href={linkAlur}>
+              Lihat Alur Perizinan
+            </a>
+            {/* <button className="text-xs font-normal text-brand-500">{alur}</button> */}
           </div>
         </div>
         <div className="flex items-center gap-4">
@@ -36,7 +39,7 @@ const InformasiTambahan = ({ alur, durasi, linkSyarat }) => {
           </div>
           <div className="border-b border-neutral-500 w-full">
             <p className="text-sm font-semibold text-neutral-800">Waktu Proses Kerja</p>
-            <p className="text-xs font-normal text-brand-500">{durasi} Hari </p>
+            <p className="text-xs font-normal text-brand-500">14 Hari </p>
           </div>
         </div>
         <div className="flex items-center gap-4">

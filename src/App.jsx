@@ -35,6 +35,10 @@ import TerbitkanPerizinanVerifikator from "./pages/dashboard-verifikator-page/Te
 import DetailPengesahanPerizinanVerifikator from "./pages/dashboard-verifikator-page/DetailPengesahanPerizinanVerifikator";
 import Register from "./pages/auth-page/Register";
 import PersyaratanOperasional from "./pages/perizinan-tk-page/operasional/PersyaratanOperasional";
+import LupaPassword from "./pages/auth-page/LupaPassword";
+import ResetPassword from "./pages/auth-page/ResetPassword";
+import FormTextPengajuanOperasional from "./pages/perizinan-tk-page/operasional/FormTextPengajuanOperasional";
+import FormUploadPengajuanOperasional from "./pages/perizinan-tk-page/operasional/FormUploadPengajuanOperasional";
 // import CobaDaftar from "./pages/auth-page/CobaDaftar";
 
 function ScrollToTop() {
@@ -69,12 +73,16 @@ function App() {
             {/* Auth */}
             <Route path="/daftar" element={<Register />} />
             <Route path="/masuk" element={<Login />} />
+            <Route path="/lupa-password" element={<LupaPassword />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
 
             {/* Perizinan */}
             <Route path="/informasi-perizinan" element={<InformasiPerizinan />} />
             <Route path="/pengajuan-perizinan/:id" element={<PerizinanOperasional />} />
             <Route path="/syarat-perizinan/:id" element={<PersyaratanOperasional />} />
-            <Route path="/form-pengajuan-operasional-tk" element={<FormPengajuanOperasional />} />
+            {/* <Route path="/form-pengajuan-operasional-tk" element={<FormPengajuanOperasional />} /> */}
+            <Route path="/pengajuan-perizinan" element={<FormTextPengajuanOperasional />} />
+            <Route path="/pengajuan-perizinan-upload-dokumen" element={<FormUploadPengajuanOperasional />} />
             <Route path="/tentang-pengajuan-perizinan" element={<TentangPengajuan />} />
             <Route path="/konfirmasi-pengajuan-perizinan" element={<KonfirmasiPerizinan />} />
 

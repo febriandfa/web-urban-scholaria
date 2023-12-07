@@ -1,21 +1,59 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { iconSD2, iconSMA2, iconSMP2, iconTK2 } from "../../assets";
 import CardGeneral from "../general-components/CardGeneral";
 import { Link } from "react-router-dom";
+import { userService } from "../../services";
 
-const AktivitasBerjalanPerizinan = ({ schoolType, jenisPerizinan, namaPerizinan, tanggal, sekolah, pengaju, status }) => {
-  const schoolIconMap = {
-    tk: iconTK2,
-    sd: iconSD2,
-    smp: iconSMP2,
-    sma: iconSMA2,
-  };
-  const schoolIcon = schoolIconMap[schoolType];
+const AktivitasBerjalanPerizinan = ({ kategoriPerizinan, namaPerizinan, tanggalPengajuan, namaSekolah, pemohon, status }) => {
+  // const [pengajuan, setPengajuan] = useState();
+  // const [profile, setProfile] = useState();
+  // const pengajuanDetailData = async () => {
+  //   try {
+  //     const response = await userService.getProfile();
+  //     const userID = response?.data?.data?.id;
+  //     setProfile(response?.data?.data);
+  //     console.log("Profile", response);
+  //     const responsePengajuan = await userService.getPengajuan(userID);
+
+  //     const idSuratTerbaru = responsePengajuan?.data?.data?.slice(-1)[0].id;
+  //     console.log("Surat Terbaru", idSuratTerbaru);
+
+  //     const responsePengajuanDetail = await userService.getPengajuanByID(idSuratTerbaru);
+  //     console.log("Pengajuan", responsePengajuanDetail?.data?.data[0]);
+  //     setPengajuan(responsePengajuanDetail?.data?.data[0]);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   pengajuanDetailData();
+  //   // console.log(pengajuan);
+  // }, []);
+
+  // const formatTanggal = (dateString) => {
+  //   const options = { year: "numeric", month: "long", day: "numeric" };
+  //   const formattedDate = new Date(dateString).toLocaleDateString("id-ID", options);
+  //   return formattedDate;
+  // };
+
+  // const tanggalPengajuan = formatTanggal(pengajuan?.created_at);
+
+  let schoolIcon;
+  if (kategoriPerizinan === "TK") {
+    schoolIcon = iconTK2;
+  } else if (kategoriPerizinan === "SD") {
+    schoolIcon = iconSD2;
+  } else if (kategoriPerizinan === "SMP") {
+    schoolIcon = iconSMP2;
+  } else if (kategoriPerizinan === "SMA") {
+    schoolIcon = iconSMA2;
+  }
 
   let statusColor = "";
   if (status === "Ditolak") {
     statusColor = "bg-danger-500";
-  } else if (status === "Diproses") {
+  } else if (status === "Diproses" || "Pengisian Dokumen") {
     statusColor = "bg-warn-500";
   } else if (status === "Diterima") {
     statusColor = "bg-done-500";
@@ -23,13 +61,15 @@ const AktivitasBerjalanPerizinan = ({ schoolType, jenisPerizinan, namaPerizinan,
 
   return (
     <CardGeneral>
-      <Link className="flex gap-5 w-fit mx-auto" to="/rincian-pengajuan">
-        <div>
+      <Link className="flex gap-5 w-full mx-auto" to="/rincian-pengajuan">
+        <div className="flex-grow">
           <div className="flex items-center gap-4 border-b-2 border-neutral-300 pb-6 mb-6 px-5">
             <img className="w-20 h-20" src={schoolIcon} alt="" />
             <div>
-              <p className="text-brand-900 font-normal text-sm">{jenisPerizinan}</p>
-              <h5 className="text-brand-500 font-semibold text-base mb-4">{namaPerizinan}</h5>
+              <p className="text-brand-900 font-normal text-sm">Perizinan {kategoriPerizinan}</p>
+              {/* <p className="text-brand-900 font-normal text-sm">{jenisPerizinan}</p> */}
+              <h5 className="text-brand-500 font-semibold text-base mb-4 capitalize">{namaPerizinan}</h5>
+              {/* <h5 className="text-brand-500 font-semibold text-base mb-4 capitalize">Perizinan Pembangunan Sekolah Menengah Atas</h5> */}
               <ul className="flex gap-10">
                 <li className="flex items-center gap-4 text-xs font-normal text-neutral-500">
                   <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
@@ -40,7 +80,7 @@ const AktivitasBerjalanPerizinan = ({ schoolType, jenisPerizinan, namaPerizinan,
                       fill="#64748B"
                     />
                   </svg>
-                  {tanggal}
+                  {tanggalPengajuan}
                 </li>
                 <li className="flex items-center gap-4 text-xs font-normal text-neutral-500">
                   <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
@@ -51,19 +91,19 @@ const AktivitasBerjalanPerizinan = ({ schoolType, jenisPerizinan, namaPerizinan,
                       fill="#64748B"
                     />
                   </svg>
-                  {sekolah}
+                  {namaSekolah}
                 </li>
                 <li className="flex items-center gap-4 text-xs font-normal text-neutral-500">
                   <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
                     <path d="M12.5 11.25C14.5711 11.25 16.25 9.57107 16.25 7.5C16.25 5.42893 14.5711 3.75 12.5 3.75C10.4289 3.75 8.75 5.42893 8.75 7.5C8.75 9.57107 10.4289 11.25 12.5 11.25Z" fill="#64748B" />
                     <path d="M3.75 22.5C3.75 17.6675 7.66751 13.75 12.5 13.75C17.3325 13.75 21.25 17.6675 21.25 22.5H3.75Z" fill="#64748B" />
                   </svg>
-                  {pengaju}
+                  {pemohon}
                 </li>
               </ul>
             </div>
           </div>
-          <p className={`text-sm font-normal text-white py-1 text-center rounded ${statusColor}`}>Pengajuan {status}</p>
+          <p className={`text-sm font-normal text-white py-1 text-center rounded ${statusColor}`}>{status}</p>
         </div>
         <div className="flex items-end">
           <button className="flex items-center w-10 h-10 bg-brand-500 rounded">
