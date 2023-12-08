@@ -38,6 +38,10 @@ export const postPengajuan = async (data) => {
   return await api.post("surat", data);
 };
 
+export const getSemuaPengajuan = async () => {
+  return await api.get("surat");
+};
+
 export const getPengajuan = async (user_id) => {
   return await api.get("surat/" + user_id);
 };
