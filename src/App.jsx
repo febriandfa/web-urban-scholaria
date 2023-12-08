@@ -39,6 +39,8 @@ import LupaPassword from "./pages/auth-page/LupaPassword";
 import ResetPassword from "./pages/auth-page/ResetPassword";
 import FormTextPengajuanOperasional from "./pages/perizinan-tk-page/operasional/FormTextPengajuanOperasional";
 import FormUploadPengajuanOperasional from "./pages/perizinan-tk-page/operasional/FormUploadPengajuanOperasional";
+// import LihatDokumenUser from "./pages/dashboard-user-page/LihatDokumenUser";
+// import LihatDokumenPageUser from "./pages/dashboard-user-page/LihatDokumenPageUser";
 // import CobaDaftar from "./pages/auth-page/CobaDaftar";
 
 function ScrollToTop() {
@@ -115,6 +117,7 @@ function App() {
             <Route path="/terbitkan-perizinan-verifikator" element={<TerbitkanPerizinanVerifikator />} />
 
             {/* <Route path="/coba-daftar" element={<CobaDaftar />} /> */}
+            {/* <Route path="/lihat-dokumen" element={<LihatDokumenPageUser />} /> */}
           </Routes>
         </>
       )}

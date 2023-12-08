@@ -25,7 +25,7 @@ const MapPerizinan = ({ onLocationChange }) => {
       onLocationChange({ latitude, longitude });
     });
 
-    console.log(selectedLocation);
+    // console.log(selectedLocation);
 
     return () => {
       map.remove();

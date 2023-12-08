@@ -3,8 +3,9 @@ import { iconSD2, iconSMA2, iconSMP2, iconTK2 } from "../../assets";
 import CardGeneral from "../general-components/CardGeneral";
 import { Link } from "react-router-dom";
 import { userService } from "../../services";
+import { getIdSuratDiajukan } from "../../services/storage.service";
 
-const AktivitasBerjalanPerizinan = ({ kategoriPerizinan, namaPerizinan, tanggalPengajuan, namaSekolah, pemohon, status }) => {
+const AktivitasBerjalanPerizinan = ({ id_surat, kategoriPerizinan, namaPerizinan, tanggalPengajuan, namaSekolah, pemohon, status }) => {
   // const [pengajuan, setPengajuan] = useState();
   // const [profile, setProfile] = useState();
   // const pengajuanDetailData = async () => {
@@ -38,6 +39,20 @@ const AktivitasBerjalanPerizinan = ({ kategoriPerizinan, namaPerizinan, tanggalP
   // };
 
   // const tanggalPengajuan = formatTanggal(pengajuan?.created_at);
+  const handleAktivitasClick = async () => {
+    try {
+      localStorage.setItem("IdSuratDiajukan", id_surat);
+      // const response = await userService.getPengajuanByID(idSuratDiajukan);
+      // console.log(idSuratDiajukan);
+      // console.log("Info", response);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    handleAktivitasClick();
+  }, []);
 
   let schoolIcon;
   if (kategoriPerizinan === "TK") {
@@ -61,7 +76,7 @@ const AktivitasBerjalanPerizinan = ({ kategoriPerizinan, namaPerizinan, tanggalP
 
   return (
     <CardGeneral>
-      <Link className="flex gap-5 w-full mx-auto" to="/rincian-pengajuan">
+      <Link className="flex gap-5 w-full mx-auto" to="/rincian-pengajuan" onClick={() => handleAktivitasClick(id_surat)}>
         <div className="flex-grow">
           <div className="flex items-center gap-4 border-b-2 border-neutral-300 pb-6 mb-6 px-5">
             <img className="w-20 h-20" src={schoolIcon} alt="" />

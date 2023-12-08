@@ -51,7 +51,7 @@ const FormPerizinanBody = ({ title, loading, kategoriPerizinan, id_surat_pengaju
     form.append("dokumen_upload", dokumen_upload);
     try {
       const response = await userService.postSuratUpload(id_surat_pengajuan, id_jenis_surat, surat_syarat_id, form);
-      console.log(response);
+      // console.log(response);
     } catch (error) {
       console.error("Upload Form Error: ", error);
     }

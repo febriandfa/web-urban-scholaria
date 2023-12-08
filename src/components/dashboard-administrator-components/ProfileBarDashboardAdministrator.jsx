@@ -12,7 +12,7 @@ const ProfileBarDashboardAdministrator = ({ onClick }) => {
   const profile = async () => {
     try {
       const response = await userService.getProfile();
-      console.log(response);
+      // console.log(response);
       setProfil(response?.data?.data);
     } catch (error) {
       console.error("Login error:", error);

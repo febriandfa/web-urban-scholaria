@@ -11,8 +11,8 @@ const KategoriLandingPage = () => {
     <section className="py-20 h-full px-20">
       <TitleLandingPage subtitle="Kategori Perizinan" title="Ajukan Perizinan Melalui Urban Scholaria" align="text-center" width="w-2/5" />
       <div className="flex gap-12 w-fit mx-auto">
-        {kategoriPerizinanData.map((kategoriItem) => (
-          <Link to={kategoriItem.link}>
+        {kategoriPerizinanData.map((kategoriItem, index) => (
+          <Link key={index} to={kategoriItem.link}>
             <CardGeneral color="bg-neutral-100">
               <div className="w-48 h-48 flex flex-col justify-center items-center gap-4">
                 <img className="w-[3.75rem] h-[3.75rem]" src={kategoriItem.icon} alt="" />

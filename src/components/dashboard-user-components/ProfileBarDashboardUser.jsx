@@ -20,7 +20,7 @@ const ProfileBarDashboardUser = ({ onClick }) => {
     // };
     try {
       const response = await userService.getProfile();
-      console.log(response);
+      // console.log(response);
       // const response = await axios.get("https://urbanscholaria.my.id/api/profile", config);
       // localStorage.setItem("tokenUser", JSON.stringify(response.data.access_token));
       // navigate("/dashboard");

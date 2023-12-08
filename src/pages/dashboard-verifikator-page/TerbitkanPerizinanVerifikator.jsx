@@ -13,7 +13,7 @@ const TerbitkanPerizinanVerifikator = () => {
 
   const handleDrop = (files) => {
     setUploadedFiles(files);
-    console.log(files);
+    // console.log(files);
   };
 
   const triggerAlert = (e) => {

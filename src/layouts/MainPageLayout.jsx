@@ -5,7 +5,7 @@ import Footer from "../components/footer-components/Footer";
 
 const MainPageLayout = ({ children }) => {
   const roleUser = localStorage.getItem("UserDetail");
-  console.log(roleUser);
+  console.log("Role User", roleUser);
 
   return (
     <main className="min-w-screen h-full bg-neutral-100">

@@ -13,7 +13,7 @@ const InputFileGeneralCoba = ({ name, label, tipeFile, ukuranFile, required, sel
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     const maxSizeInBytes = ukuranFile * 1024 * 1024;
-    console.log(selectedFile);
+    // console.log(selectedFile);
 
     if (selectedFile && selectedFile.size > maxSizeInBytes) {
       setFileSizeError(true);

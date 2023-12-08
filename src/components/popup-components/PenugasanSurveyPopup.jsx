@@ -26,7 +26,7 @@ const PenugasanSurveyPopup = ({ close }) => {
 
   const handleDrop = (files) => {
     setUploadedFiles(files);
-    console.log(files);
+    // console.log(files);
   };
 
   return (

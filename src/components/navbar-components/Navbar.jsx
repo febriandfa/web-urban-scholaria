@@ -15,7 +15,7 @@ const Navbar = ({ hideLogoOnUserLayout }) => {
   const getProfile = async () => {
     try {
       const response = await userService.getProfile();
-      console.log(response);
+      // console.log(response);
       setProfile(response?.data?.data);
     } catch (error) {
       console.error("Error fetching profile:", error);

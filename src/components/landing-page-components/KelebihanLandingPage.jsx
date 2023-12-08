@@ -33,8 +33,8 @@ const KelebihanLandingPage = () => {
         <div className="col-span-4 justify-self-end">
           <h1 className="text-brand-900 font-semibold text-4xl mx-auto mb-12 capitalize">Kelebihan Urban Scholaria</h1>
           <div className="grid grid-cols-2 grid-rows-2 gap-12">
-            {kelebihan.map((kelebihanItem) => (
-              <CardGeneral customClass="w-[17.5rem] h-full" color="bg-neutral-100">
+            {kelebihan.map((kelebihanItem, index) => (
+              <CardGeneral key={index} customClass="w-[17.5rem] h-full" color="bg-neutral-100">
                 <div className="flex flex-shrink-0 gap-5">
                   <img className="w-[3.125rem] h-[3.125rem]" src={kelebihanItem.img} alt="" />
                   <div>

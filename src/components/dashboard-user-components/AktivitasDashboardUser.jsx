@@ -15,6 +15,7 @@ const AktivitasDashboardUser = ({ isPropose }) => {
       const userID = response?.data?.data?.id;
       setProfile(response?.data?.data);
       console.log("Profile", response);
+
       const responsePengajuan = await userService.getPengajuan(userID);
 
       const idSuratTerbaru = responsePengajuan?.data?.data?.slice(-1)[0].id;
@@ -49,8 +50,9 @@ const AktivitasDashboardUser = ({ isPropose }) => {
       <h1 className="block mb-2 font-semibold text-base text-brand-500 capitalize">Aktivitas</h1>
       {pengajuan ? (
         <AktivitasBerjalanPerizinan
+          id_surat={pengajuan?.id}
           kategoriPerizinan={pengajuan?.kategori}
-          namaPerizinan="Perizinan Pembangunan Sekolah"
+          namaPerizinan={pengajuan?.surat_dokumen[0]?.surat_syarat?.surat_jenis?.nama}
           tanggalPengajuan={tanggalPengajuan}
           namaSekolah={pengajuan?.nama}
           pemohon={profile?.nama_lengkap}

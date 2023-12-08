@@ -1,6 +1,7 @@
 import React from "react";
+import SalinTeks from "../../utils/functions/SalinTeks";
 
-const AlamatRincianDashboardUser = () => {
+const AlamatRincianDashboardUser = ({ alamat, latitude, longitude }) => {
   return (
     <div>
       <div className="flex items-start">
@@ -14,22 +15,22 @@ const AlamatRincianDashboardUser = () => {
         </svg>
         <div className="ml-4">
           <p className="font-semibold mb-4">Alamat</p>
-          <p className="text-neutral-500">Jl. Putat Gede Slt 2 Putat Gede, Sukomanunggal, Surabaya, 60189, Jawa Timur</p>
+          <p className="text-neutral-500">{alamat}</p>
         </div>
-        <a className="text-warn-500 font-semibold ml-auto" href="#">
+        <button className="text-warn-500 font-semibold ml-auto" type="button" onClick={() => SalinTeks(alamat)}>
           Salin
-        </a>
+        </button>
       </div>
       <hr className="w-full h-0.5 rounded-full bg-neutral-300 my-6" />
       <div className="grid grid-cols-2 gap-20">
         <div className="ml-9 flex flex-col gap-3">
           <div className="flex text-neutral-500">
             <p>Latitude</p>
-            <p className="ml-auto">10000000</p>
+            <p className="ml-auto">{latitude}</p>
           </div>
           <div className="flex text-neutral-500">
             <p>Longitude</p>
-            <p className="ml-auto">20000</p>
+            <p className="ml-auto">{longitude}</p>
           </div>
         </div>
         <button className="text-warn-500 font-semibold ml-auto place-self-start">Lihat Lokasi</button>

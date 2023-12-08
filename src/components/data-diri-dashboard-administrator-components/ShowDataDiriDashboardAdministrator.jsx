@@ -9,7 +9,7 @@ const ShowDataDiriDashboardAdministrator = () => {
   const profileData = async () => {
     try {
       const response = await userService.getProfile();
-      console.log(response);
+      // console.log(response);
       setProfile(response?.data?.data);
     } catch (error) {
       console.log(error);

@@ -5,7 +5,7 @@ const HeaderRincianDashboardUser = ({ status }) => {
   let statusColor = "";
   if (status === "Ditolak") {
     statusColor = "bg-danger-500";
-  } else if (status === "Diproses") {
+  } else if (status === "Diproses" || "Pengisian Dokumen") {
     statusColor = "bg-warn-500";
   } else if (status === "Diterima") {
     statusColor = "bg-done-500";
@@ -16,7 +16,7 @@ const HeaderRincianDashboardUser = ({ status }) => {
       <LinkBackGeneral link="/riwayat" />
       <div className="flex items-center gap-4">
         <p className="text-base font-semibold">Status</p>
-        <p className={`block w-80 text-sm font-normal text-white py-1 text-center rounded ${statusColor}`}>Pengajuan {status}</p>
+        <p className={`block w-80 text-sm font-normal text-white py-1 text-center rounded ${statusColor}`}>{status}</p>
       </div>
     </div>
   );

@@ -17,12 +17,13 @@ const ProsesRiwayatDashboardUser = ({ isPropose }) => {
       console.log("Profile", response);
 
       const responsePengajuan = await userService.getPengajuan(userID);
-      const pengajuanData = responsePengajuan?.data?.data || [];
+
+      const idSuratTerbaru = responsePengajuan?.data?.data?.map((item) => item.id);
+      const pengajuanData = responsePengajuan?.data?.data;
       console.log("Semua Pengajuan", pengajuanData);
       setPengajuan(pengajuanData);
 
       // const idSuratTerbaru = responsePengajuan?.data?.data[0]?.id;
-      const idSuratTerbaru = responsePengajuan?.data?.data?.map((item) => item.id);
       console.log("Surat Terbaru", idSuratTerbaru);
 
       const responsePengajuanDetail = await userService.getPengajuanByID(idSuratTerbaru);
@@ -54,8 +55,9 @@ const ProsesRiwayatDashboardUser = ({ isPropose }) => {
         pengajuan.map((item, index) => (
           <AktivitasBerjalanPerizinan
             key={index}
+            id_surat={item?.id}
             kategoriPerizinan={item?.kategori}
-            namaPerizinan="Perizinan Pembangunan Sekolah"
+            namaPerizinan={item?.surat_dokumen[0]?.surat_syarat?.surat_jenis?.nama}
             tanggalPengajuan={formatTanggal(item?.created_at)}
             namaSekolah={item?.nama}
             pemohon={profile?.nama_lengkap}

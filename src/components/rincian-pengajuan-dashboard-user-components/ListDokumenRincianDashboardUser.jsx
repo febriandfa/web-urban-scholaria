@@ -1,9 +1,10 @@
-import React from "react";
+import React, { Children } from "react";
 import { dokumenPengajuan } from "../../utils/DaftarDokumenPengajuanData";
 import ItemDokumenRincianDashboardUser from "./ItemDokumenRincianDashboardUser";
 
-const ListDokumenRincianDashboardUser = () => {
+const ListDokumenRincianDashboardUser = ({ daftarSyarat, children }) => {
   let dokumenPengajuanData = dokumenPengajuan;
+  const syarat = daftarSyarat;
 
   return (
     <div>
@@ -14,9 +15,10 @@ const ListDokumenRincianDashboardUser = () => {
         <p className="font-semibold ml-4">Dokumen Pengajuan Perizinan</p>
       </div>
       <div className="flex flex-col gap-3">
-        {dokumenPengajuanData.map((dokumenItem) => (
-          <ItemDokumenRincianDashboardUser dokumen={dokumenItem.dokumen} link={dokumenItem.link} />
-        ))}
+        {children}
+        {/* {dokumenPengajuanData.map((dokumenItem, index) => (
+          <ItemDokumenRincianDashboardUser key={index} dokumen={dokumenItem.dokumen} link={dokumenItem.link} />
+        ))} */}
       </div>
     </div>
   );
