@@ -6,10 +6,11 @@ import TableItemGeneral from "../general-components/TableItemGeneral";
 import TableRowGeneral from "../general-components/TableRowGeneral";
 import { dokumenPengajuan } from "../../utils/DaftarDokumenPengajuanData";
 import CheckboxVerifikasiDashboardAdministrator from "../verifikasi-dashboard-administrator-components/CheckboxVerifikasiDashboardOperator";
+import LihatFileVerifikasiDashboardAdministrator from "../verifikasi-dashboard-administrator-components/LihatFileVerifikasiDashboardAdministrator";
 
 const CekSesuaiVerifikasiDashboardOperator = ({ handleCheckboxChange, checklist }) => {
   let dokumenPengajuanData = dokumenPengajuan;
-  const tableHead = ["Berkas Persyaratan", "File"];
+  const tableHead = ["Berkas Persyaratan", "Lihat", "File"];
 
   return (
     <div>
@@ -35,6 +36,7 @@ const CekSesuaiVerifikasiDashboardOperator = ({ handleCheckboxChange, checklist 
             <TableRowGeneral>
               <TableItemGeneral key={index} tableItem={item.dokumen} wrap />
               <TableItemGeneral key={index} tableItem="File Ini Panjang Banget Namanya" customColor="text-brand-500" />
+              <TableItemGeneral key={index} tableItem={<LihatFileVerifikasiDashboardAdministrator link="#" />} />
               <TableItemGeneral key={index} tableItem={<CheckboxVerifikasiDashboardAdministrator onChange={() => handleCheckboxChange(index)} checked={checklist[index]} />} />
             </TableRowGeneral>
           ))}

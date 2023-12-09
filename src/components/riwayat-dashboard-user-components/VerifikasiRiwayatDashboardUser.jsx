@@ -53,7 +53,7 @@ const VerifikasiRiwayatDashboardUser = ({ isPropose }) => {
       <LoadingPopup loading={loading} />
       {pengajuan && pengajuan.length > 0 ? (
         pengajuan
-          .filter((item) => item.status === "Verifikasi Operator")
+          .filter((item) => item.status === "Verifikasi Operator" || item.status === "Verifikasi Verifikator")
           .map((item, index) => (
             <AktivitasBerjalanPerizinan
               key={index}

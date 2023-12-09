@@ -39,6 +39,7 @@ import LupaPassword from "./pages/auth-page/LupaPassword";
 import ResetPassword from "./pages/auth-page/ResetPassword";
 import FormTextPengajuanOperasional from "./pages/perizinan-tk-page/operasional/FormTextPengajuanOperasional";
 import FormUploadPengajuanOperasional from "./pages/perizinan-tk-page/operasional/FormUploadPengajuanOperasional";
+import AlurOperasional from "./pages/perizinan-tk-page/operasional/AlurOperasional";
 // import LihatDokumenUser from "./pages/dashboard-user-page/LihatDokumenUser";
 // import LihatDokumenPageUser from "./pages/dashboard-user-page/LihatDokumenPageUser";
 // import CobaDaftar from "./pages/auth-page/CobaDaftar";
@@ -81,6 +82,7 @@ function App() {
             {/* Perizinan */}
             <Route path="/informasi-perizinan" element={<InformasiPerizinan />} />
             <Route path="/pengajuan-perizinan/:id" element={<PerizinanOperasional />} />
+            <Route path="/alur-perizinan/:id" element={<AlurOperasional />} />
             <Route path="/syarat-perizinan/:id" element={<PersyaratanOperasional />} />
             {/* <Route path="/form-pengajuan-operasional-tk" element={<FormPengajuanOperasional />} /> */}
             <Route path="/pengajuan-perizinan" element={<FormTextPengajuanOperasional />} />

@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { bgHome, iconUser } from "../../assets";
+import { iconUser } from "../../assets";
 import InputTextGeneral from "../general-components/InputTextGeneral";
 import InputDateGeneral from "../general-components/InputDateGeneral";
 import InputSelectGeneral from "../general-components/InputSelectGeneral";
 import { userService } from "../../services";
-import axios from "axios";
-import InputFileGeneralCoba from "../general-components/InputFileGeneralCoba";
 
 const EditDataDiriDashboardUser = ({ onViewChange }) => {
   const [isChecked, setIsChecked] = useState(false);

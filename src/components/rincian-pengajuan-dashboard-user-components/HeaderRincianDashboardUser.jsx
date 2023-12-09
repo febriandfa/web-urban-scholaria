@@ -5,8 +5,10 @@ const HeaderRincianDashboardUser = ({ status }) => {
   let statusColor = "";
   if (status === "Ditolak") {
     statusColor = "bg-danger-500";
-  } else if (status === "Diproses" || "Pengisian Dokumen") {
+  } else if (status === "Pengisian Dokumen" || status === "Verifikasi Operator" || status === "Verifikasi Verifikator") {
     statusColor = "bg-warn-500";
+  } else if (status === "Penjadwalan Survey" || status === "Verifikasi Hasil Survey") {
+    statusColor = "bg-brand-300";
   } else if (status === "Diterima") {
     statusColor = "bg-done-500";
   }

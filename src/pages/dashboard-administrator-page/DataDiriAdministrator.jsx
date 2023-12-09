@@ -12,25 +12,25 @@ const DataDiriAdministrator = () => {
     setIsShowEdit(!isShowEdit);
   };
 
+  const handleViewShow = () => {
+    setIsShowEdit(false);
+  };
+
   return (
     <MainPageLayout>
       <ProfileBarDashboardAdministrator onClick={handleViewEdit} />
       <div className="my-8 w-11/12 mx-auto flex flex-col gap-12">
         <CardGeneral>
-          <form>
+          <div>
             <h1 className="font-semibold text-base text-neutral-500 mb-6">Data Diri</h1>
-            {!isShowEdit ? <ShowDataDiriDashboardAdministrator /> : <EditDataDiriDashboardAdministrator />}
-            <hr className="w-full h-0.5 rounded-full bg-neutral-300 mb-6" />
-            <div className="flex items-center mb-12">
-              <input className="w-5 h-5" type="checkbox" checked />
-              <p className="text-sm font-normal text-neutral-500 ml-4">Saya menyatakan bahwa seluruh data benar.</p>
-            </div>
-            {isShowEdit && (
-              <button className="py-2 px-14 bg-brand-500 w-full rounded-lg text-base font-semibold text-white" type="submit">
-                Simpan
-              </button>
+            {!isShowEdit ? <ShowDataDiriDashboardAdministrator /> : <EditDataDiriDashboardAdministrator onViewChange={handleViewShow} />}
+            {!isShowEdit && (
+              <div className="flex items-center mb-12">
+                <input className="w-5 h-5" type="checkbox" readOnly checked />
+                <p className="text-sm font-normal text-neutral-500 ml-4">Saya menyatakan bahwa seluruh data benar.</p>
+              </div>
             )}
-          </form>
+          </div>
         </CardGeneral>
       </div>
     </MainPageLayout>

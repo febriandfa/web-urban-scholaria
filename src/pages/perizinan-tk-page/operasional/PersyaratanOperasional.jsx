@@ -5,12 +5,13 @@ import LoadingPopup from "../../../components/popup-components/LoadingPopup";
 import { userService } from "../../../services";
 import { getKategoriPerizinan, getSuratJenisID } from "../../../services/storage.service";
 import { bgInfoIzin } from "../../../assets";
+import LinkBackGeneral from "../../../components/general-components/LinkBackGeneral";
 
 const PersyaratanPerizinanHeader = () => {
   return <TitlePerizinan title="PERSYARATAN PERIZINAN" />;
 };
 
-const PersyaratanPerizinanBody = ({ loading, title, syarat }) => {
+const PersyaratanPerizinanBody = ({ loading, title, syarat, idJenis }) => {
   const kategoriPerizinan = getKategoriPerizinan();
   let subtitle;
   if (kategoriPerizinan === "TK") {
@@ -25,6 +26,9 @@ const PersyaratanPerizinanBody = ({ loading, title, syarat }) => {
 
   return (
     <div>
+      <div className="mb-4">
+        <LinkBackGeneral link={`/pengajuan-perizinan/${idJenis}`} />
+      </div>
       <LoadingPopup loading={loading} />
       <h1 className="text-xl font-semibold text-center text-brand-500 mb-8">
         {title} {subtitle}
@@ -49,6 +53,8 @@ const PersyaratanOperasional = () => {
   const [loading, setLoading] = useState(true);
   const [syaratSurat, setSyaratSurat] = useState([]);
   const [jenisPerizinan, setJenisPerizinan] = useState([]);
+
+  const suratJenisID = getSuratJenisID();
 
   const syaratPerizinanData = async (surat_jenis_id) => {
     try {
@@ -81,7 +87,7 @@ const PersyaratanOperasional = () => {
     console.log("state", syaratSurat);
   }, []);
 
-  return <PerizinanPageLayout childrenHeader={<PersyaratanPerizinanHeader />} childrenBody={<PersyaratanPerizinanBody loading={loading} title={jenisPerizinan.nama} syarat={syaratSurat} />} />;
+  return <PerizinanPageLayout childrenHeader={<PersyaratanPerizinanHeader />} childrenBody={<PersyaratanPerizinanBody loading={loading} title={jenisPerizinan.nama} syarat={syaratSurat} idJenis={suratJenisID} />} />;
 };
 
 export default PersyaratanOperasional;

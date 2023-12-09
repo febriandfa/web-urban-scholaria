@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import AuthPageLayout from "../../layouts/AuthPageLayout";
 import { bgAuth } from "../../assets";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import InputTextGeneral from "../../components/general-components/InputTextGeneral";
 import InputPasswordAuthPage from "../../components/auth-page-components/InputPasswordAuthPage";
-import axios from "axios";
 import { userService } from "../../services";
 
 const Login = () => {
+  const [akunError, setAkunError] = useState(false);
   let navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
@@ -28,6 +28,7 @@ const Login = () => {
       }
     } catch (error) {
       console.error("Login error:", error);
+      setAkunError(true);
     }
   };
 
@@ -56,24 +57,11 @@ const Login = () => {
               <button className="py-2 px-4 bg-brand-500 w-full rounded-lg text-base font-semibold text-white" type="submit">
                 Masuk
               </button>
-              {/* {role === "pemohon" ? (
-                <Link to="/dashboard">
-                  <button className="py-2 px-4 bg-brand-500 w-full rounded-lg text-base font-semibold text-white" type="submit">
-                    Masuk
-                  </button>
-                </Link>
-              ) : (
-                <Link to="/dashboard-administrator">
-                  <button className="py-2 px-4 bg-brand-500 w-full rounded-lg text-base font-semibold text-white" type="submit">
-                    Masuk
-                  </button>
-                </Link>
-              )} */}
               <p className="inline-block mt-1 font-semibold text-xs">Belum memiliki akun? </p>
-              <Link to="/daftar" type="submit" className="inline-block mb-9 font-semibold text-xs text-brand-500">
+              <Link to="/daftar" type="submit" className="inline-block font-semibold text-xs text-brand-500">
                 Daftar Sekarang
               </Link>
-              <p className="text-danger-500 font-semibold text-sm text-center">Kata Sandi Salah</p>
+              {akunError && <p className="text-danger-500 font-semibold text-base text-center my-4">Akun Tidak Terdaftar</p>}
               <div>
                 <p className="mt-3 text-xs font-normal text-neutral-600">
                   Dengan masuk Urban Scholaria, saya menyetujui{" "}
