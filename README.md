@@ -17,6 +17,10 @@ misalnya
 http://localhost:5173/
 ```
 
+## FOR TESTER AND DOCUMENTATION
+- Rubah Branch ke `testing-documentation`
+- Clone Branch Tersebut
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
