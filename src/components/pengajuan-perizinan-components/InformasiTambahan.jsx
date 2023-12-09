@@ -1,6 +1,7 @@
 import React from "react";
 import CardGeneral from "../general-components/CardGeneral";
 import { Link } from "react-router-dom";
+import LinkBackGeneral from "../general-components/LinkBackGeneral";
 
 const InformasiTambahan = ({ linkAlur, linkSyarat }) => {
   return (
@@ -20,9 +21,9 @@ const InformasiTambahan = ({ linkAlur, linkSyarat }) => {
           </div>
           <div className="border-b border-neutral-500 w-full">
             <p className="text-sm font-semibold text-neutral-800">Alur Perizinan</p>
-            <a className="text-xs font-normal text-brand-500" href={linkAlur}>
+            <Link to={`/alur-perizinan/${linkAlur}`} className="text-xs font-normal text-brand-500">
               Lihat Alur Perizinan
-            </a>
+            </Link>
             {/* <button className="text-xs font-normal text-brand-500">{alur}</button> */}
           </div>
         </div>

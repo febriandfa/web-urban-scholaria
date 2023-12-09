@@ -22,6 +22,10 @@ export const postLogin = async (data) => {
 export const postLogout = async (data) => {
   return await api.post("logout", data);
 };
+
+export const getUserByID = async (user_id) => {
+  return await api.get("users?user_id=" + user_id);
+};
 // AUTH API END
 
 // PROFILE API START

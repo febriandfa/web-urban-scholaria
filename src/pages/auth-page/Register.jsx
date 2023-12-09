@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { bgAuth } from "../../assets";
 import AuthPageLayout from "../../layouts/AuthPageLayout";
 import InputTextGeneral from "../../components/general-components/InputTextGeneral";
@@ -28,14 +27,12 @@ const Register = () => {
   const [nikError, setNikError] = useState(false);
 
   const [formData, setFormData] = useState({
-    // username: "",
     email: "",
     password: "",
     password_confirm: "",
     nama_lengkap: "",
     foto: null,
     ktp: null,
-    // jenis_identitas: "",
     nomor_identitas: "",
     jenis_kelamin: "",
     tempat_lahir: "",
@@ -92,16 +89,13 @@ const Register = () => {
     setTelpError(false);
     // Validasi End
 
-    // e.preventDefault();
     let form = new FormData();
-    // form.append("username", formData.username);
     form.append("email", formData.email);
     form.append("password", formData.password);
     form.append("password_confirm", formData.password_confirm);
     form.append("nama_lengkap", formData.nama_lengkap);
     form.append("foto", formData.foto);
     form.append("ktp", formData.ktp);
-    // form.append("jenis_identitas", formData.jenis_identitas);
     form.append("nomor_identitas", formData.nomor_identitas);
     form.append("jenis_kelamin", formData.jenis_kelamin);
     form.append("tempat_lahir", formData.tempat_lahir);
@@ -114,7 +108,6 @@ const Register = () => {
     form.append("no_telp", formData.no_telp);
     form.append("pekerjaan", formData.pekerjaan);
     try {
-      // const response = await axios.post("https://urbanscholaria.my.id/api/register", form);
       const response = await userService.postRegister(form);
       console.log("Successful register:", response.data);
 
@@ -187,21 +180,6 @@ const Register = () => {
     },
   ];
 
-  const optionJenisDokumen = [
-    {
-      value: "",
-      text: "Pilih Jenis Dokumen",
-    },
-    {
-      value: "KTP",
-      text: "KTP",
-    },
-    {
-      value: "Ijazah",
-      text: "Ijazah",
-    },
-  ];
-
   return (
     <AuthPageLayout>
       <div className="grid grid-cols-2 w-full h-full pt-10">
@@ -217,7 +195,6 @@ const Register = () => {
             <form className="w-[28rem]" action="#" method="post" onSubmit={handleFormSubmit}>
               {showFirstSection ? (
                 <>
-                  {/* <InputTextGeneral name="username" label="Username" placeholder="Masukkan username..." value={formData.username} onChange={handleInputChange} required /> */}
                   <InputTextGeneral name="email" label="email" placeholder="Masukkan Email..." value={formData.email} onChange={handleInputChange} required />
                   <InputPasswordAuthPage name="password" label="Kata Sandi" placeholder="Masukkan Kata Sandi..." value={formData.password} onChange={handleInputChange} required />
                   <InputPasswordAuthPage name="password_confirm" label="Konfirmasi Kata Sandi" placeholder="Masukkan Kata Sandi Lagi..." value={formData.password_confirm} onChange={handleInputChange} required />
@@ -225,7 +202,6 @@ const Register = () => {
                   <InputFileGeneralCoba name="foto" label="Foto Profil" tipeFile="*" ukuranFile={5} selectedFile={formData.foto} onFileInputChange={handleInputChange} required />
                   <InputFileGeneralCoba name="ktp" label="KTP" tipeFile="*" ukuranFile={5} selectedFile={formData.ktp} onFileInputChange={handleInputChange} required />
                   <InputTextGeneral name="nomor_identitas" label="NIK (Nomor Induk Kependudukan)" placeholder="Masukkan NIK..." maxLength={16} type="number" value={formData.nomor_identitas} onChange={handleInputChange} required />
-                  {/* <InputSelectGeneral name="jenis_identitas" label="Jenis Identitas" placeholder="Pilih Jenis Dokumen..." value={formData.jenis_identitas} onChange={handleInputChange} option={optionJenisDokumen} required /> */}
                   <InputSelectGeneral name="jenis_kelamin" label="Jenis Kelamin" placeholder="Pilih Jenis Kelamin..." value={formData.jenis_kelamin} onChange={handleInputChange} option={optionJenisKelamin} required />
                   <InputTextGeneral name="no_telp" label="Nomor Telepon" placeholder="Masukkan Nomor Telpon..." type="number" maxLength={13} value={formData.no_telp} onChange={handleInputChange} required />
                   <InputTextGeneral name="pekerjaan" label="Pekerjaan" placeholder="Masukkan Pekerjaan..." value={formData.pekerjaan} onChange={handleInputChange} required />
@@ -241,10 +217,6 @@ const Register = () => {
                   <InputTextGeneral name="alamat" label="Alamat" placeholder="Masukkan alamat..." value={formData.alamat} onChange={handleInputChange} required />
                 </>
               )}
-
-              {/* <InputPasswordAuthPage name="konfirmasi-kata-sandi" label="Konfirmasi Kata Sandi" placeholder="Masukkan Kata Sandi Lagi..." value={formData.konfirmasiKataSandi} onChange={handleInputChange} required /> */}
-              {/* <Link to="/masuk"> */}
-
               {showFirstSection ? (
                 <button className={`py-2 px-4 w-full rounded-lg text-base font-semibold bg-brand-200 text-neutral-800`} type="button" onClick={() => toggleSecondSection()}>
                   Selanjutnya
@@ -262,7 +234,6 @@ const Register = () => {
               >
                 Daftar Sekarang
               </button>
-              {/* </Link> */}
               <p className="inline-block mt-1 font-semibold text-xs">Sudah memiliki akun? </p>
               <Link to="/masuk" className="inline-block font-semibold text-xs text-brand-500">
                 Masuk

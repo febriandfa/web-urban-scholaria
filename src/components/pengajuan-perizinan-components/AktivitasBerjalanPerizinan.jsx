@@ -6,45 +6,9 @@ import { userService } from "../../services";
 import { getIdSuratDiajukan } from "../../services/storage.service";
 
 const AktivitasBerjalanPerizinan = ({ id_surat, kategoriPerizinan, namaPerizinan, tanggalPengajuan, namaSekolah, pemohon, status }) => {
-  // const [pengajuan, setPengajuan] = useState();
-  // const [profile, setProfile] = useState();
-  // const pengajuanDetailData = async () => {
-  //   try {
-  //     const response = await userService.getProfile();
-  //     const userID = response?.data?.data?.id;
-  //     setProfile(response?.data?.data);
-  //     console.log("Profile", response);
-  //     const responsePengajuan = await userService.getPengajuan(userID);
-
-  //     const idSuratTerbaru = responsePengajuan?.data?.data?.slice(-1)[0].id;
-  //     console.log("Surat Terbaru", idSuratTerbaru);
-
-  //     const responsePengajuanDetail = await userService.getPengajuanByID(idSuratTerbaru);
-  //     console.log("Pengajuan", responsePengajuanDetail?.data?.data[0]);
-  //     setPengajuan(responsePengajuanDetail?.data?.data[0]);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   pengajuanDetailData();
-  //   // console.log(pengajuan);
-  // }, []);
-
-  // const formatTanggal = (dateString) => {
-  //   const options = { year: "numeric", month: "long", day: "numeric" };
-  //   const formattedDate = new Date(dateString).toLocaleDateString("id-ID", options);
-  //   return formattedDate;
-  // };
-
-  // const tanggalPengajuan = formatTanggal(pengajuan?.created_at);
   const handleAktivitasClick = async () => {
     try {
       localStorage.setItem("IdSuratDiajukan", id_surat);
-      // const response = await userService.getPengajuanByID(idSuratDiajukan);
-      // console.log(idSuratDiajukan);
-      // console.log("Info", response);
     } catch (error) {
       console.error(error);
     }
@@ -68,9 +32,11 @@ const AktivitasBerjalanPerizinan = ({ id_surat, kategoriPerizinan, namaPerizinan
   let statusColor = "";
   if (status === "Ditolak") {
     statusColor = "bg-danger-500";
-  } else if (status === "Diproses" || "Pengisian Dokumen") {
+  } else if (status === "Pengisian Dokumen" || status === "Verifikasi Operator" || status === "Verifikasi Verifikator") {
     statusColor = "bg-warn-500";
-  } else if (status === "Diterima") {
+  } else if (status === "Penjadwalan Survey" || status === "Verifikasi Hasil Survey") {
+    statusColor = "bg-brand-300";
+  } else if (status === "Selesai") {
     statusColor = "bg-done-500";
   }
 

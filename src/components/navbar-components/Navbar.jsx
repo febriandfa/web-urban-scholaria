@@ -11,6 +11,7 @@ const Navbar = ({ hideLogoOnUserLayout }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const isLoggedIn = getToken() !== null;
   const [profile, setProfile] = useState(null);
+  const roleUser = localStorage.getItem("UserDetail");
 
   const getProfile = async () => {
     try {
@@ -76,7 +77,7 @@ const Navbar = ({ hideLogoOnUserLayout }) => {
             </svg>
             <p className="break-words text-ellipsis whitespace-nowrap overflow-hidden">{isLoggedIn ? (profile ? profile.nama_lengkap : "Loading...") : "Masuk/Daftar"}</p>
           </Link> */}
-          <LinkButtonNavbar link={isLoggedIn ? "/dashboard" : "/masuk"} text={isLoggedIn ? (profile ? profile?.nama_lengkap : "Loading...") : "Masuk/Daftar"} />
+          <LinkButtonNavbar link={isLoggedIn ? (roleUser === "Pemohon" ? "/dashboard" : "/dashboard-administrator") : "/masuk"} text={isLoggedIn ? (profile ? profile?.nama_lengkap : "Loading...") : "Masuk/Daftar"} />
         </div>
       </div>
     </nav>
