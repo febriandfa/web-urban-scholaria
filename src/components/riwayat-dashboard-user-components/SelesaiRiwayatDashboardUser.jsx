@@ -19,15 +19,18 @@ const SelesaiRiwayatDashboardUser = ({ isPropose }) => {
       const responsePengajuan = await userService.getPengajuan(userID);
 
       const idSuratTerbaru = responsePengajuan?.data?.data?.map((item) => item.id);
+      console.log("Surat Terbaru", idSuratTerbaru);
       const pengajuanData = responsePengajuan?.data?.data;
       console.log("Semua Pengajuan", pengajuanData);
-      setPengajuan(pengajuanData);
+
+      const sortedPengajuan = pengajuanData.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+
+      setPengajuan(sortedPengajuan);
 
       // const idSuratTerbaru = responsePengajuan?.data?.data[0]?.id;
-      console.log("Surat Terbaru", idSuratTerbaru);
 
-      const responsePengajuanDetail = await userService.getPengajuanByID(idSuratTerbaru);
-      console.log("Pengajuan", responsePengajuanDetail?.data?.data[0]);
+      // const responsePengajuanDetail = await userService.getPengajuanByID(idSuratTerbaru);
+      // console.log("Pengajuan", responsePengajuanDetail?.data?.data[0]);
       // setPengajuan(responsePengajuanDetail?.data?.data[0]);
       setLoading(false);
     } catch (error) {
@@ -46,23 +49,24 @@ const SelesaiRiwayatDashboardUser = ({ isPropose }) => {
     return formattedDate;
   };
 
-  const tanggalPengajuan = formatTanggal(pengajuan?.created_at);
+  const filteredPengajuan = pengajuan?.filter((item) => item?.status === "Selesai");
 
   return (
     <div className="flex flex-col gap-10">
       <LoadingPopup loading={loading} />
-      {pengajuan && pengajuan.length > 0 ? (
-        pengajuan
-          .filter((item) => item.status === "Selesai")
+      {filteredPengajuan && filteredPengajuan.length > 0 ? (
+        filteredPengajuan
+          // .filter((item) => item.status === "Selesai")
           .map((item, index) => (
             <AktivitasBerjalanPerizinan
               key={index}
               id_surat={item?.id}
+              id_surat_jenis={item?.surat_jenis?.id}
               kategoriPerizinan={item?.kategori}
-              namaPerizinan={item?.surat_dokumen[0]?.surat_syarat?.surat_jenis?.nama}
+              namaPerizinan={item?.surat_jenis?.nama}
               tanggalPengajuan={formatTanggal(item?.created_at)}
               namaSekolah={item?.nama}
-              pemohon={profile?.nama_lengkap}
+              pemohon={item?.user?.nama_lengkap}
               status={item?.status}
             />
           ))

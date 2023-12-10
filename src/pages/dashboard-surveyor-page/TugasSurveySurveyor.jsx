@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
-import verifikasiDokumenItem from "../../utils/PengajuanPerizinanData";
-import PaginationGeneral from "../../components/general-components/PaginationGeneral";
+import TitleVerifikasiDashboardAdministrator from "../../components/verifikasi-dashboard-administrator-components/TitleVerifikasiDashboardOperator";
+import MainPageLayout from "../../layouts/MainPageLayout";
 import TableGeneral from "../../components/general-components/TableGeneral";
 import TableHeadGeneral from "../../components/general-components/TableHeadGeneral";
 import TableBodyGeneral from "../../components/general-components/TableBodyGeneral";
 import TableRowGeneral from "../../components/general-components/TableRowGeneral";
 import TableItemGeneral from "../../components/general-components/TableItemGeneral";
-import MainPageLayout from "../../layouts/MainPageLayout";
-import TitleVerifikasiDashboardAdministrator from "../../components/verifikasi-dashboard-administrator-components/TitleVerifikasiDashboardOperator";
-import LihatKelengkapanVerifikasiDashboardAdministrator from "../../components/verifikasi-dashboard-administrator-components/LihatKelengkapanVerifikasiDashboardOperator";
+import PaginationGeneral from "../../components/general-components/PaginationGeneral";
 import { userService } from "../../services";
+import LihatKelengkapanVerifikasiDashboardAdministrator from "../../components/verifikasi-dashboard-administrator-components/LihatKelengkapanVerifikasiDashboardOperator";
 import FormatTanggal from "../../utils/functions/FormatTanggal";
+import LihatDetailTugasTugasSurveyDashboardSurveyor from "../../components/dashboard-surveyor-components/LihatDetailTugasTugasSurveyDashboardSurveyor";
 
-const VerifikasiDokumenVerifikator = () => {
+const TugasSurveySurveyor = () => {
   const [semuaPengajuan, setSemuaPengajuan] = useState();
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
@@ -63,7 +63,7 @@ const VerifikasiDokumenVerifikator = () => {
 
   return (
     <MainPageLayout>
-      <TitleVerifikasiDashboardAdministrator title="Verifikasi Dokumen" />
+      <TitleVerifikasiDashboardAdministrator title="Tugas Survey" />
       <TableGeneral>
         <TableHeadGeneral headTitles={headVerifikasiDokumen} />
         <TableBodyGeneral>
@@ -79,7 +79,7 @@ const VerifikasiDokumenVerifikator = () => {
                   tableItem={pengajuan?.status === "Verifikasi Verifikator" ? "Perlu Verifikasi" : pengajuan?.status}
                   customColor={getStatusColor(pengajuan?.status === "Verifikasi Verifikator" ? "Perlu Verifikasi" : pengajuan?.status)}
                 />
-                <TableItemGeneral tableItem={<LihatKelengkapanVerifikasiDashboardAdministrator id_surat={pengajuan?.id} />} />
+                <TableItemGeneral tableItem={<LihatDetailTugasTugasSurveyDashboardSurveyor />} />
               </TableRowGeneral>
             ))}
         </TableBodyGeneral>
@@ -89,4 +89,4 @@ const VerifikasiDokumenVerifikator = () => {
   );
 };
 
-export default VerifikasiDokumenVerifikator;
+export default TugasSurveySurveyor;

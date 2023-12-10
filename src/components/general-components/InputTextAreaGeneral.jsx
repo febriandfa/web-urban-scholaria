@@ -1,6 +1,6 @@
 import React from "react";
 
-const InputTextAreaGeneral = ({ name, label, placeholder, value, required, disabled }) => {
+const InputTextAreaGeneral = ({ name, label, placeholder, value, required, disabled, onChange }) => {
   return (
     <div className="mb-6">
       <label className="block mb-1 font-semibold text-sm text-brand-500 capitalize" htmlFor={name}>
@@ -16,6 +16,7 @@ const InputTextAreaGeneral = ({ name, label, placeholder, value, required, disab
         value={value}
         required={required}
         disabled={disabled}
+        onChange={(e) => onChange({ name, value: e.target.value })}
       ></textarea>
     </div>
   );

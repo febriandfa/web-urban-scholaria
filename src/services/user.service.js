@@ -82,6 +82,13 @@ export const patchSuratDiajukan = async (surat_id) => {
   return await api.patch(`surat/` + surat_id + `/surat-diajukan`);
 };
 
+export const postFeedback = async (data) => {
+  return await api.post("feedback-pemohon", data);
+};
+
+export const getFeedback = async () => {
+  return await api.get("feedback-pemohon");
+};
 // export const detail = async (id: any): Promise<AxiosResponse<Transaksi>> => {
 //   return await api.get("transaksi/detail?id=" + id);
 // };
@@ -92,3 +99,19 @@ export const patchSuratDiajukan = async (surat_id) => {
 // ): Promise<AxiosResponse<LoginResponse>> => {
 //   return await api.post("user/update?id=" + id, data);
 // };
+
+export const getSuratStatusVerifOperator = async () => {
+  return await api.get("surat?status=Verifikasi Operator");
+};
+
+export const accVerifikasiOperator = async (surat_id) => {
+  return await api.patch(`surat/` + surat_id + `/terima-operator`);
+};
+
+export const getSuratStatusVerifVerifikator = async () => {
+  return await api.get("surat?status=Verifikasi Verifikator");
+};
+
+export const getSuratStatusSelesai = async () => {
+  return await api.get("surat?status=Selesai");
+};

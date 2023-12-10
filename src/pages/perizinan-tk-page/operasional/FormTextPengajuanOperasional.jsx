@@ -13,16 +13,17 @@ const FormPerizinanHeader = ({ title, subtitle }) => {
   return <TitlePerizinan subtitle={`AJUKAN PERIZINAN ${subtitle}`} title={`${title} ${subtitle}`} />;
 };
 
-const FormPerizinanBody = ({ title, loading, kategoriPerizinan }) => {
+const FormPerizinanBody = ({ title, loading, kategoriPerizinan, idSuratJenis }) => {
   const navigate = useNavigate();
   // INISIASI FORM PENGAJUAN START
   const [formData, setFormData] = useState({
     kategori: kategoriPerizinan,
+    surat_jenis_id: idSuratJenis,
     nama: "",
     alamat_lokasi: "",
     longitude: "",
     latitude: "",
-    dokumen_upload: null,
+    // dokumen_upload: null,
   });
   // INISIASI FORM PENGAJUAN END
 
@@ -30,6 +31,7 @@ const FormPerizinanBody = ({ title, loading, kategoriPerizinan }) => {
   const handleTextFormSubmit = async () => {
     let form = new FormData();
     form.append("kategori", formData.kategori);
+    form.append("surat_jenis_id", formData.surat_jenis_id);
     form.append("nama", formData.nama);
     form.append("alamat_lokasi", formData.alamat_lokasi);
     form.append("longitude", formData.longitude);
@@ -64,6 +66,24 @@ const FormPerizinanBody = ({ title, loading, kategoriPerizinan }) => {
   };
   // HANDLE INPUT LOCATION CHANGE END
 
+  const allFieldsFilled = () => {
+    for (const key in formData) {
+      if (formData[key] === null || formData[key] === "") {
+        return false;
+      }
+    }
+    return true;
+  };
+
+  let namaJenisSurat;
+  if (formData.surat_jenis_id === "1") {
+    namaJenisSurat = "Pengajuan Perizinan Pembangunan";
+  } else if (formData.surat_jenis_id === "2") {
+    namaJenisSurat = "Pengajuan Perizinan Operasional";
+  } else if (formData.surat_jenis_id === "3") {
+    namaJenisSurat = "Pengajuan Perizinan Perubahan Operasional";
+  }
+
   return (
     <div>
       <LoadingPopup loading={loading} />
@@ -73,13 +93,19 @@ const FormPerizinanBody = ({ title, loading, kategoriPerizinan }) => {
       <form className="w-4/5 mx-auto" action="#" method="post">
         <CardGeneral customClass="w-full mb-7" color="bg-brand-50">
           <InputTextGeneral name="kategori" label="Kategori" value={formData.kategori} onChange={handleInputChange} required disabled />
+          <InputTextGeneral name="surat_jenis_id" label="ID Surat Jenis" value={namaJenisSurat} onChange={handleInputChange} required disabled />
           <InputTextGeneral name="nama" label="Nama" placeholder="Masukkan Nama Sekolah..." value={formData.nama} onChange={handleInputChange} required />
           <InputTextGeneral name="alamat_lokasi" label="Alamat" placeholder="Masukkan Alamat..." value={formData.alamat_lokasi} onChange={handleInputChange} required />
           <MapPerizinan onLocationChange={handleLocationChange} />
           <InputTextGeneral name="longitude" label="Longitude" placeholder="Masukkan Longitude..." value={formData.longitude} onChange={handleInputChange} required />
           <InputTextGeneral name="latitude" label="Latitude" placeholder="Masukkan Latitude..." value={formData.latitude} onChange={handleInputChange} required />
         </CardGeneral>
-        <button type="button" onClick={() => handleTextFormSubmit()} className={`py-2 px-4 text-center cursor-pointer bg-brand-200 w-full rounded-lg text-base font-semibold text-neutral-800 block`}>
+        <button
+          type="button"
+          onClick={() => handleTextFormSubmit()}
+          className={`py-2 px-4 text-center w-full rounded-lg text-base font-semibold  block ${!allFieldsFilled() ? "bg-neutral-200 text-neutral-400" : "bg-brand-200 text-neutral-800"}`}
+          disabled={!allFieldsFilled()}
+        >
           Selanjutnya
         </button>
       </form>
@@ -126,7 +152,7 @@ const FormTextPengajuanOperasional = () => {
   return (
     <PerizinanPageLayout
       childrenHeader={<FormPerizinanHeader title={jenisPerizinan.nama} subtitle={subtitle} />}
-      childrenBody={<FormPerizinanBody title={jenisPerizinan.nama} loading={loading} kategoriPerizinan={kategoriPerizinan} id_surat_pengajuan={idSuratPengajuan} id_jenis_surat={jenisSuratID} />}
+      childrenBody={<FormPerizinanBody title={jenisPerizinan.nama} loading={loading} kategoriPerizinan={kategoriPerizinan} idSuratJenis={jenisSuratID} />}
     />
   );
 };

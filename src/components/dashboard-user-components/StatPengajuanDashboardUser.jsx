@@ -1,7 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CardGeneral from "../general-components/CardGeneral";
+import { userService } from "../../services";
 
 const StatPengajuanDashboardUser = () => {
+  const [pengajuan, setPengajuan] = useState();
+  const [pengajuanSelesai, setPengajuanSelesai] = useState([0]);
+  const pengajuanDetailData = async () => {
+    try {
+      const response = await userService.getProfile();
+      const userID = response?.data?.data?.id;
+      const responsePengajuan = await userService.getPengajuan(userID);
+      const pengajuanData = responsePengajuan?.data?.data;
+      console.log("Semua Pengajuan", pengajuanData);
+      setPengajuan(pengajuanData);
+
+      const pengajuanSelesaiData = pengajuanData.filter((item) => item.status === "Selesai");
+      setPengajuanSelesai(pengajuanSelesaiData);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    pengajuanDetailData();
+  }, []);
+
   return (
     <div className="flex justify-center gap-8">
       <CardGeneral customClass="w-fit">
@@ -15,7 +38,7 @@ const StatPengajuanDashboardUser = () => {
           </svg>
           <div className="text-sm">
             <p className="font-normal text-neutral-500">Pengajuan</p>
-            <p className="font-semibold">1 Pengajuan</p>
+            <p className="font-semibold">{pengajuan?.length} Pengajuan</p>
           </div>
         </div>
       </CardGeneral>
@@ -30,7 +53,7 @@ const StatPengajuanDashboardUser = () => {
           </svg>
           <div className="text-sm">
             <p className="font-normal text-neutral-500">Diterima</p>
-            <p className="font-semibold">1 Pengajuan</p>
+            <p className="font-semibold">{pengajuanSelesai?.length} Pengajuan</p>
           </div>
         </div>
       </CardGeneral>

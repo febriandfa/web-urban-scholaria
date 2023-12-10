@@ -1,14 +1,15 @@
 import React from "react";
+import SalinTeks from "../../utils/functions/SalinTeks";
 
-const InformasiDetailPengajuanDashboardAdministrator = () => {
+const InformasiDetailPengajuanDashboardAdministrator = ({ idPengajuan, jenisPerizinan, tanggalPengajuan, namaSekolah, pemohon }) => {
   return (
     <div>
-      <h1 className="text-2xl text-brand-500 font-semibold text-center mb-3">Perizinan Pembangunan TK</h1>
+      <h1 className="text-2xl text-brand-500 font-semibold text-center mb-3">{jenisPerizinan}</h1>
       <div className="flex items-center justify-center mb-10">
-        <p className="text-sm font-semibold">ID Pengajuan: URSBY1234567891</p>
-        <a className="text-warn-500 font-semibold ml-4" href="#">
+        <p className="text-sm font-semibold">ID Pengajuan: {idPengajuan}</p>
+        <button className="text-warn-500 font-semibold ml-4" type="button" onClick={() => SalinTeks(idPengajuan)}>
           Salin
-        </a>
+        </button>
       </div>
       <div className="grid grid-cols-2 gap-20">
         <div className="flex flex-col gap-3">
@@ -22,7 +23,7 @@ const InformasiDetailPengajuanDashboardAdministrator = () => {
               />
             </svg>
             <p className="text-neutral-500 ml-4">Tanggal Pengajuan</p>
-            <p className="text-neutral-500 ml-auto">13 November 2023</p>
+            <p className="text-neutral-500 ml-auto">{tanggalPengajuan}</p>
           </div>
           <div className="flex items-center">
             <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
@@ -34,7 +35,7 @@ const InformasiDetailPengajuanDashboardAdministrator = () => {
               />
             </svg>
             <p className="text-neutral-500 ml-4">Nama Sekolah</p>
-            <p className="text-neutral-500 ml-auto">TK Asih Kinasih</p>
+            <p className="text-neutral-500 ml-auto">{namaSekolah}</p>
           </div>
           <div className="flex items-center">
             <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
@@ -42,17 +43,7 @@ const InformasiDetailPengajuanDashboardAdministrator = () => {
               <path d="M4.5 27C4.5 21.201 9.20101 16.5 15 16.5C20.799 16.5 25.5 21.201 25.5 27H4.5Z" fill="#64748B" />
             </svg>
             <p className="text-neutral-500 ml-4">Pemohon</p>
-            <p className="text-neutral-500 ml-auto">Alda Elsa Faradila</p>
-          </div>
-        </div>
-        <div className="flex flex-col gap-3">
-          <div className="flex">
-            <p className="text-neutral-500 ml-4">NIB</p>
-            <p className="text-neutral-500 ml-auto">0123456789012</p>
-          </div>
-          <div className="flex">
-            <p className="text-neutral-500 ml-4">NPWP</p>
-            <p className="text-neutral-500 ml-auto">012345678901234</p>
+            <p className="text-neutral-500 ml-auto">{pemohon}</p>
           </div>
         </div>
       </div>

@@ -54,7 +54,7 @@ const PersyaratanOperasional = () => {
   const [syaratSurat, setSyaratSurat] = useState([]);
   const [jenisPerizinan, setJenisPerizinan] = useState([]);
 
-  const suratJenisID = getSuratJenisID();
+  // const suratJenisID = getSuratJenisID();
 
   const syaratPerizinanData = async (surat_jenis_id) => {
     try {
@@ -87,7 +87,7 @@ const PersyaratanOperasional = () => {
     console.log("state", syaratSurat);
   }, []);
 
-  return <PerizinanPageLayout childrenHeader={<PersyaratanPerizinanHeader />} childrenBody={<PersyaratanPerizinanBody loading={loading} title={jenisPerizinan.nama} syarat={syaratSurat} idJenis={suratJenisID} />} />;
+  return <PerizinanPageLayout childrenHeader={<PersyaratanPerizinanHeader />} childrenBody={<PersyaratanPerizinanBody loading={loading} title={jenisPerizinan.nama} syarat={syaratSurat} idJenis={jenisSuratID} />} />;
 };
 
 export default PersyaratanOperasional;
