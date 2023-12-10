@@ -4,7 +4,7 @@ import AktivitasKosongPerizinan from "../pengajuan-perizinan-components/Aktivita
 import { userService } from "../../services";
 import LoadingPopup from "../popup-components/LoadingPopup";
 
-const VerifikasiRiwayatDashboardUser = ({ isPropose }) => {
+const DitolakRiwayatDashboardUser = ({ isPropose }) => {
   const [loading, setLoading] = useState(true);
   const [pengajuan, setPengajuan] = useState();
   const [profile, setProfile] = useState();
@@ -26,6 +26,12 @@ const VerifikasiRiwayatDashboardUser = ({ isPropose }) => {
       const sortedPengajuan = pengajuanData.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
 
       setPengajuan(sortedPengajuan);
+
+      // const idSuratTerbaru = responsePengajuan?.data?.data[0]?.id;
+
+      // const responsePengajuanDetail = await userService.getPengajuanByID(idSuratTerbaru);
+      // console.log("Pengajuan", responsePengajuanDetail?.data?.data[0]);
+      // setPengajuan(responsePengajuanDetail?.data?.data[0]);
       setLoading(false);
     } catch (error) {
       console.error(error);
@@ -43,14 +49,14 @@ const VerifikasiRiwayatDashboardUser = ({ isPropose }) => {
     return formattedDate;
   };
 
-  const filteredPengajuan = pengajuan?.filter((item) => item?.status === "Verifikasi Operator" || item?.status === "Verifikasi Verifikator");
+  const filteredPengajuan = pengajuan?.filter((item) => item?.status === "Ditolak");
 
   return (
     <div className="flex flex-col gap-10">
       <LoadingPopup loading={loading} />
       {filteredPengajuan && filteredPengajuan.length > 0 ? (
         filteredPengajuan
-          // .filter((item) => item.status === "Verifikasi Operator" || item.status === "Verifikasi Verifikator")
+          // .filter((item) => item.status === "Penjadwalan Survey" || item.status === "Verifikasi Hasil Survey")
           .map((item, index) => (
             <AktivitasBerjalanPerizinan
               key={index}
@@ -71,4 +77,4 @@ const VerifikasiRiwayatDashboardUser = ({ isPropose }) => {
   );
 };
 
-export default VerifikasiRiwayatDashboardUser;
+export default DitolakRiwayatDashboardUser;

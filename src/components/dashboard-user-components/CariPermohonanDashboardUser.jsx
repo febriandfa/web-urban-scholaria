@@ -71,10 +71,10 @@ const CariPermohonanDashboardUser = () => {
               id_surat={pengajuan?.id}
               id_surat_jenis={pengajuan?.surat_dokumen[0]?.surat_syarat?.surat_jenis_id}
               kategoriPerizinan={pengajuan?.kategori}
-              namaPerizinan={pengajuan?.surat_dokumen[0]?.surat_syarat?.surat_jenis?.nama}
+              namaPerizinan={pengajuan?.surat_jenis?.nama}
               tanggalPengajuan={formatTanggal(pengajuan?.created_at)}
               namaSekolah={pengajuan?.nama}
-              pemohon={profile?.nama_lengkap}
+              pemohon={pengajuan?.user?.nama_lengkap}
               status={pengajuan?.status}
             />
           </div>

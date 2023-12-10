@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { logoUrban } from "../../assets";
 import ItemSidebar from "./ItemSidebar";
 import { userSidebar, operatorSidebar, verifikatorSidebar, surveyorSidebar, auditorSidebar, adminUtamaSidebar, adminDinasSidebar } from "../../utils/MenuSidebarData";
@@ -37,7 +37,7 @@ const Sidebar = ({ role }) => {
       if (response.status === 200) {
         removeToken();
         localStorage.setItem("UserDetail", null);
-        localStorage.setItem("USER_DETAIL", null);
+        // localStorage.setItem("USER_DETAIL", null);
         navigate("/");
         console.log("Berhasil logout");
       }

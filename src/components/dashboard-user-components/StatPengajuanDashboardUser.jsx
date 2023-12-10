@@ -4,6 +4,7 @@ import { userService } from "../../services";
 
 const StatPengajuanDashboardUser = () => {
   const [pengajuan, setPengajuan] = useState();
+  const [pengajuanDitolak, setPengajuanDitolak] = useState([0]);
   const [pengajuanSelesai, setPengajuanSelesai] = useState([0]);
   const pengajuanDetailData = async () => {
     try {
@@ -13,6 +14,9 @@ const StatPengajuanDashboardUser = () => {
       const pengajuanData = responsePengajuan?.data?.data;
       console.log("Semua Pengajuan", pengajuanData);
       setPengajuan(pengajuanData);
+
+      const pengajuanDitolakData = pengajuanData.filter((item) => item.status === "Selesai");
+      setPengajuanDitolak(pengajuanDitolakData);
 
       const pengajuanSelesaiData = pengajuanData.filter((item) => item.status === "Selesai");
       setPengajuanSelesai(pengajuanSelesaiData);
@@ -68,7 +72,7 @@ const StatPengajuanDashboardUser = () => {
           </svg>
           <div className="text-sm">
             <p className="font-normal text-neutral-500">Ditolak</p>
-            <p className="font-semibold">1 Pengajuan</p>
+            <p className="font-semibold">{pengajuanDitolak?.length} Pengajuan</p>
           </div>
         </div>
       </CardGeneral>

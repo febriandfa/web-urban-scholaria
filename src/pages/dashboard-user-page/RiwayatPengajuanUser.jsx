@@ -5,6 +5,7 @@ import ProsesRiwayatDashboardUser from "../../components/riwayat-dashboard-user-
 import VerifikasiRiwayatDashboardUser from "../../components/riwayat-dashboard-user-components/VerifikasiRiwayatDashboardUser";
 import SurveyRiwayatDashboardUser from "../../components/riwayat-dashboard-user-components/SurveyRiwayatDasboardUser";
 import SelesaiRiwayatDashboardUser from "../../components/riwayat-dashboard-user-components/SelesaiRiwayatDashboardUser";
+import DitolakRiwayatDashboardUser from "../../components/riwayat-dashboard-user-components/DitolakRiwayatDashboardUser";
 
 const Riwayat = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -19,7 +20,8 @@ const Riwayat = () => {
       {activeTab === 0 && <ProsesRiwayatDashboardUser isPropose />}
       {activeTab === 1 && <VerifikasiRiwayatDashboardUser />}
       {activeTab === 2 && <SurveyRiwayatDashboardUser />}
-      {activeTab === 3 && <SelesaiRiwayatDashboardUser isPropose />}
+      {activeTab === 3 && <DitolakRiwayatDashboardUser isPropose />}
+      {activeTab === 4 && <SelesaiRiwayatDashboardUser isPropose />}
     </MainPageLayout>
   );
 };
