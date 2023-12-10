@@ -19,10 +19,10 @@ const KetentuanPerizinan = () => {
           <li>{ketentuanItem}</li>
         ))}
       </ol>
-      <div className="flex items-center gap-4 h-fit">
+      {/* <div className="flex items-center gap-4 h-fit">
         <input className="w-5 h-5" type="checkbox" name="setuju" id="setuju" />
         <label htmlFor="setuju">Saya telah telah bersedia mengikuti persyaratan yang ada pada formulir komitmen perizinan ini.</label>
-      </div>
+      </div> */}
     </div>
   );
 };

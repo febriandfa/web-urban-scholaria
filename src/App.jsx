@@ -40,6 +40,8 @@ import ResetPassword from "./pages/auth-page/ResetPassword";
 import FormTextPengajuanOperasional from "./pages/perizinan-tk-page/operasional/FormTextPengajuanOperasional";
 import FormUploadPengajuanOperasional from "./pages/perizinan-tk-page/operasional/FormUploadPengajuanOperasional";
 import AlurOperasional from "./pages/perizinan-tk-page/operasional/AlurOperasional";
+import TugasSurveySurveyor from "./pages/dashboard-surveyor-page/TugasSurveySurveyor";
+import DetailTugasSurveySurveyor from "./pages/dashboard-surveyor-page/DetailTugasSurveySurveyor";
 // import LihatDokumenUser from "./pages/dashboard-user-page/LihatDokumenUser";
 // import LihatDokumenPageUser from "./pages/dashboard-user-page/LihatDokumenPageUser";
 // import CobaDaftar from "./pages/auth-page/CobaDaftar";
@@ -117,6 +119,10 @@ function App() {
             <Route path="/pengesahan-perizinan-verifikator" element={<PengesahanPerizinanVerifikator />} />
             <Route path="/detail-pengesahan-verifikator" element={<DetailPengesahanPerizinanVerifikator />} />
             <Route path="/terbitkan-perizinan-verifikator" element={<TerbitkanPerizinanVerifikator />} />
+
+            {/* Surveyor */}
+            <Route path="/tugas-survey-surveyor" element={<TugasSurveySurveyor />} />
+            <Route path="/detail-tugas-surveyor" element={<DetailTugasSurveySurveyor />} />
 
             {/* <Route path="/coba-daftar" element={<CobaDaftar />} /> */}
             {/* <Route path="/lihat-dokumen" element={<LihatDokumenPageUser />} /> */}

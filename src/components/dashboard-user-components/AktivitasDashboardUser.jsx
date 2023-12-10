@@ -7,13 +7,13 @@ import LoadingPopup from "../popup-components/LoadingPopup";
 const AktivitasDashboardUser = ({ isPropose }) => {
   const [loading, setLoading] = useState(true);
   const [pengajuan, setPengajuan] = useState();
-  const [profile, setProfile] = useState();
+  // const [profile, setProfile] = useState();
   const pengajuanDetailData = async () => {
     try {
       setLoading(true);
       const response = await userService.getProfile();
       const userID = response?.data?.data?.id;
-      setProfile(response?.data?.data);
+      // setProfile(response?.data?.data);
       console.log("Profile", response);
 
       const responsePengajuan = await userService.getPengajuan(userID);
@@ -51,11 +51,12 @@ const AktivitasDashboardUser = ({ isPropose }) => {
       {pengajuan ? (
         <AktivitasBerjalanPerizinan
           id_surat={pengajuan?.id}
+          id_surat_jenis={pengajuan?.surat_jenis?.id}
           kategoriPerizinan={pengajuan?.kategori}
-          namaPerizinan={pengajuan?.surat_dokumen[0]?.surat_syarat?.surat_jenis?.nama}
+          namaPerizinan={pengajuan?.surat_jenis?.nama}
           tanggalPengajuan={tanggalPengajuan}
           namaSekolah={pengajuan?.nama}
-          pemohon={profile?.nama_lengkap}
+          pemohon={pengajuan?.user?.nama_lengkap}
           status={pengajuan?.status}
         />
       ) : (

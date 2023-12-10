@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const LihatKelengkapanVerifikasiDashboardAdministrator = ({ id_surat }) => {
+const LihatDetailTugasTugasSurveyDashboardSurveyor = ({ id_surat }) => {
   const handleCekClick = async () => {
     try {
       localStorage.setItem("IdSuratDiajukan", id_surat);
@@ -11,7 +11,7 @@ const LihatKelengkapanVerifikasiDashboardAdministrator = ({ id_surat }) => {
   };
 
   return (
-    <Link className="flex w-fit items-center gap-2 text-base font-semibold text-brand-500" to="/kelengkapan-dokumen-operator" onClick={() => handleCekClick(id_surat)}>
+    <Link className="flex w-fit items-center gap-2 text-base font-semibold text-brand-500" to="/detail-tugas-surveyor" onClick={() => handleCekClick(id_surat)}>
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
         <path d="M7 12C7 10.8954 7.89543 10 9 10H19C20.1046 10 21 10.8954 21 12V17C21 18.1046 20.1046 19 19 19H5C6.10457 19 7 18.1046 7 17V12Z" fill="#191D88" />
         <path
@@ -21,9 +21,9 @@ const LihatKelengkapanVerifikasiDashboardAdministrator = ({ id_surat }) => {
           strokeLinecap="round"
         />
       </svg>
-      Lihat Kelengkapan
+      Detail Tugas
     </Link>
   );
 };
 
-export default LihatKelengkapanVerifikasiDashboardAdministrator;
+export default LihatDetailTugasTugasSurveyDashboardSurveyor;

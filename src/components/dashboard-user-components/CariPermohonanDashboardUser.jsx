@@ -69,6 +69,7 @@ const CariPermohonanDashboardUser = () => {
             <h1 className="text-brand-500 text-center font-semibold text-lg mb-4">Data Permohonan Ditemukan</h1>
             <AktivitasBerjalanPerizinan
               id_surat={pengajuan?.id}
+              id_surat_jenis={pengajuan?.surat_dokumen[0]?.surat_syarat?.surat_jenis_id}
               kategoriPerizinan={pengajuan?.kategori}
               namaPerizinan={pengajuan?.surat_dokumen[0]?.surat_syarat?.surat_jenis?.nama}
               tanggalPengajuan={formatTanggal(pengajuan?.created_at)}

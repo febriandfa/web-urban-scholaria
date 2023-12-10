@@ -5,10 +5,11 @@ import { Link } from "react-router-dom";
 import { userService } from "../../services";
 import { getIdSuratDiajukan } from "../../services/storage.service";
 
-const AktivitasBerjalanPerizinan = ({ id_surat, kategoriPerizinan, namaPerizinan, tanggalPengajuan, namaSekolah, pemohon, status }) => {
+const AktivitasBerjalanPerizinan = ({ id_surat, id_surat_jenis, kategoriPerizinan, namaPerizinan, tanggalPengajuan, namaSekolah, pemohon, status }) => {
   const handleAktivitasClick = async () => {
     try {
       localStorage.setItem("IdSuratDiajukan", id_surat);
+      localStorage.setItem("SuratJenisID", id_surat_jenis);
     } catch (error) {
       console.error(error);
     }

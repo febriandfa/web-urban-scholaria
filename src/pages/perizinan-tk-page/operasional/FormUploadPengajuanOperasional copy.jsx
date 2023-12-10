@@ -108,12 +108,7 @@ const FormPerizinanBody = ({ title, loading, kategoriPerizinan, id_surat_pengaju
             Selanjutnya
           </button>
         ) : (
-          <button
-            type="button"
-            onClick={() => handleSubmitPengajuan()}
-            className={`py-2 px-4 text-center w-full rounded-lg text-base font-semibold block ${!isChecked ? "bg-neutral-200 text-neutral-400" : "bg-brand-500 text-white"}`}
-            disabled={!isChecked}
-          >
+          <button type="button" onClick={() => handleSubmitPengajuan()} className={`py-2 px-4 text-center w-full rounded-lg text-base font-semibold block ${!isChecked ? "bg-neutral-200 text-neutral-400" : "bg-brand-500 text-white"}`} disabled={!isChecked}>
             Ajukan Perizinan
           </button>
         )}

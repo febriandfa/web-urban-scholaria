@@ -18,7 +18,7 @@ const VerifikasiDokumenOperator = () => {
 
   const semuaPengajuanData = async () => {
     try {
-      const response = await userService.getSemuaPengajuan();
+      const response = await userService.getSuratStatusVerifOperator();
       console.log("Hasil Semua Pengajuan", response);
       setSemuaPengajuan(response?.data?.data);
     } catch (error) {
@@ -34,11 +34,10 @@ const VerifikasiDokumenOperator = () => {
     setCurrentPage(pageNumber);
   };
 
-  const filteredItems = semuaPengajuan?.filter((item) => item.status === "Verifikasi Operator");
-  const totalPages = Math.ceil(filteredItems?.length / itemsPerPage);
+  const totalPages = Math.ceil(semuaPengajuan?.length / itemsPerPage);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = filteredItems?.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = semuaPengajuan?.slice(indexOfFirstItem, indexOfLastItem);
 
   const headVerifikasiDokumen = ["ID Dokumen", "Nama Pemohonon", "Perizinan", "Tanggal Pengajuan", "Status"];
 
@@ -72,14 +71,14 @@ const VerifikasiDokumenOperator = () => {
             currentItems.map((pengajuan, index) => (
               <TableRowGeneral key={index}>
                 <TableItemGeneral tableItem={pengajuan?.id} />
-                <TableItemGeneral tableItem={pengajuan?.user_id} />
-                <TableItemGeneral tableItem={`${pengajuan?.surat_dokumen[0]?.surat_syarat?.surat_jenis.nama} ${pengajuan?.kategori}`} />
+                <TableItemGeneral tableItem={pengajuan?.user?.nama_lengkap} />
+                <TableItemGeneral tableItem={`${pengajuan?.surat_jenis?.nama} ${pengajuan?.kategori}`} />
                 <TableItemGeneral tableItem={FormatTanggal(pengajuan?.created_at)} />
                 <TableItemGeneral
                   tableItem={pengajuan?.status === "Verifikasi Operator" ? "Perlu Verifikasi" : pengajuan?.status}
                   customColor={getStatusColor(pengajuan?.status === "Verifikasi Operator" ? "Perlu Verifikasi" : pengajuan?.status)}
                 />
-                <TableItemGeneral tableItem={<LihatKelengkapanVerifikasiDashboardAdministrator link={pengajuan?.id} />} />
+                <TableItemGeneral tableItem={<LihatKelengkapanVerifikasiDashboardAdministrator id_surat={pengajuan?.id} />} />
               </TableRowGeneral>
             ))}
         </TableBodyGeneral>
