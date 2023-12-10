@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import HeaderPerizinan from "../../components/pengajuan-perizinan-components/HeaderPerizinan";
-import { iconSD2, iconSMA2, iconSMP2, iconTK2, iconTKIzin } from "../../assets";
+import { bgPerizinanSD, bgPerizinanSMA, bgPerizinanSMP, bgPerizinanTK, iconSD2, iconSMA2, iconSMP2, iconTK2, iconTKIzin } from "../../assets";
 import PerizinanPageLayout from "../../layouts/PerizinanPageLayout";
 import KategoriPerizinan from "../../components/pengajuan-perizinan-components/KategoriPerizinan";
 import kategoriTK from "../../utils/DaftarKategoriTKData";
@@ -9,26 +9,11 @@ import LoadingPopup from "../../components/popup-components/LoadingPopup";
 import LinkBackGeneral from "../../components/general-components/LinkBackGeneral";
 import { getKategoriPerizinan } from "../../services/storage.service";
 
-const InformasiPerizinanHeader = () => {
-  const kategoriPerizinan = getKategoriPerizinan();
-  let img, title;
-  if (kategoriPerizinan === "TK") {
-    img = iconTK2;
-    title = "Taman Kanak-Kanak";
-  } else if (kategoriPerizinan === "SD") {
-    img = iconSD2;
-    title = "Sekolah Dasar";
-  } else if (kategoriPerizinan === "SMP") {
-    img = iconSMP2;
-    title = "Sekolah Menengah Pertama";
-  } else if (kategoriPerizinan === "SMA") {
-    img = iconSMA2;
-    title = "Sekolah Menengah Akhir";
-  }
+const InformasiPerizinanHeader = ({ img, title }) => {
   return <HeaderPerizinan img={img} title={title} link="/tentang-pengajuan-perizinan" />;
 };
 
-const InformasiPerizinanBody = () => {
+const InformasiPerizinanBody = ({ bgPerizinan }) => {
   const [loading, setLoading] = useState(true);
   const [jenisPerizinan, setJenisPerizinan] = useState([]);
   const [panjangSyarat, setPanjangSyarat] = useState({});
@@ -77,7 +62,7 @@ const InformasiPerizinanBody = () => {
       </p>
       <div className="flex flex-col gap-12 w-[85%] mx-auto">
         {jenisPerizinan.map((jenis, index) => (
-          <KategoriPerizinan key={index} img={iconTKIzin} title={jenis.nama} syarat={panjangSyarat[jenis.id]} durasi="14" link={jenis.id} />
+          <KategoriPerizinan key={index} img={bgPerizinan} title={jenis.nama} syarat={panjangSyarat[jenis.id]} durasi="14" link={jenis.id} />
         ))}
       </div>
     </div>
@@ -85,7 +70,27 @@ const InformasiPerizinanBody = () => {
 };
 
 const InformasiPerizinan = () => {
-  return <PerizinanPageLayout childrenHeader={<InformasiPerizinanHeader />} childrenBody={<InformasiPerizinanBody />} />;
+  const kategoriPerizinan = getKategoriPerizinan();
+  let img, title, bgPerizinan;
+  if (kategoriPerizinan === "TK") {
+    img = iconTK2;
+    title = "Taman Kanak-Kanak";
+    bgPerizinan = bgPerizinanTK;
+  } else if (kategoriPerizinan === "SD") {
+    img = iconSD2;
+    title = "Sekolah Dasar";
+    bgPerizinan = bgPerizinanSD;
+  } else if (kategoriPerizinan === "SMP") {
+    img = iconSMP2;
+    title = "Sekolah Menengah Pertama";
+    bgPerizinan = bgPerizinanSMP;
+  } else if (kategoriPerizinan === "SMA") {
+    img = iconSMA2;
+    title = "Sekolah Menengah Akhir";
+    bgPerizinan = bgPerizinanSMA;
+  }
+
+  return <PerizinanPageLayout childrenHeader={<InformasiPerizinanHeader img={img} title={title} />} childrenBody={<InformasiPerizinanBody bgPerizinan={bgPerizinan} />} />;
 };
 
 export default InformasiPerizinan;

@@ -72,8 +72,8 @@ const VerifikasiDokumenVerifikator = () => {
             currentItems.map((pengajuan, index) => (
               <TableRowGeneral key={index}>
                 <TableItemGeneral tableItem={pengajuan?.id} />
-                <TableItemGeneral tableItem={pengajuan?.user_id} />
-                <TableItemGeneral tableItem={`${pengajuan?.surat_dokumen[0]?.surat_syarat?.surat_jenis.nama} ${pengajuan?.kategori}`} />
+                <TableItemGeneral tableItem={pengajuan?.user?.nama_lengkap} />
+                <TableItemGeneral tableItem={`${pengajuan?.surat_jenis.nama} ${pengajuan?.kategori}`} />
                 <TableItemGeneral tableItem={FormatTanggal(pengajuan?.created_at)} />
                 <TableItemGeneral
                   tableItem={pengajuan?.status === "Verifikasi Verifikator" ? "Perlu Verifikasi" : pengajuan?.status}

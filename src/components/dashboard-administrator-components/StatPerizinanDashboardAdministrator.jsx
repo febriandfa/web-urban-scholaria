@@ -1,7 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CardGeneral from "../general-components/CardGeneral";
+import { userService } from "../../services";
 
 const StatPerizinanDashboardAdministrator = () => {
+  const [totalPengajuan, setTotalPengajuan] = useState([0]);
+  const [totalPengajuanDiterima, setTotalPengajuanDiterima] = useState([0]);
+  const [totalPengajuanDitolak, setTotalPengajuanDitolak] = useState([0]);
+  const [totalPengajuanSurvey, setTotalPengajuanSurvey] = useState([0]);
+
+  const getStatistikPengajuanData = async () => {
+    try {
+      const responseTotal = await userService.getSemuaPengajuan();
+      console.log("Total", responseTotal);
+      setTotalPengajuan(responseTotal?.data?.data?.length);
+      setTotalPengajuanDiterima(responseTotal?.data?.data?.filter((item) => item?.status === "Selesai")?.length);
+      setTotalPengajuanDitolak(responseTotal?.data?.data?.filter((item) => item?.status === "Ditolak")?.length);
+      setTotalPengajuanSurvey(responseTotal?.data?.data?.filter((item) => item?.status === "Verifikasi Hasil Survey")?.length);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getStatistikPengajuanData();
+  }, []);
+
   return (
     <div className="flex overflow-x-auto gap-8">
       <CardGeneral>
@@ -16,7 +39,7 @@ const StatPerizinanDashboardAdministrator = () => {
             </svg>
             <p className="text-xs font-semibold text-neutral-800 whitespace-nowrap">Pengajuan Masuk</p>
           </div>
-          <h1 className="font-semibold text-3xl text-warn-300 my-4">200</h1>
+          <h1 className="font-semibold text-3xl text-warn-300 my-4">{totalPengajuan}</h1>
           <div className="flex gap-0.5 items-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none">
               <path d="M6 0L11.1962 9H0.803848L6 0Z" fill="#1F8428" />
@@ -38,7 +61,7 @@ const StatPerizinanDashboardAdministrator = () => {
             </svg>
             <p className="text-xs font-semibold text-neutral-800 whitespace-nowrap">Pengajuan Diterima</p>
           </div>
-          <h1 className="font-semibold text-3xl text-done-500 my-4">200</h1>
+          <h1 className="font-semibold text-3xl text-done-500 my-4">{totalPengajuanDiterima}</h1>
           <div className="flex gap-0.5 items-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none">
               <path d="M6 0L11.1962 9H0.803848L6 0Z" fill="#1F8428" />
@@ -60,7 +83,7 @@ const StatPerizinanDashboardAdministrator = () => {
             </svg>
             <p className="text-xs font-semibold text-neutral-800 whitespace-nowrap">Pengajuan Ditolak</p>
           </div>
-          <h1 className="font-semibold text-3xl text-danger-500 my-4">200</h1>
+          <h1 className="font-semibold text-3xl text-danger-500 my-4">{totalPengajuanDitolak}</h1>
           <div className="flex gap-0.5 items-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="11" height="9" viewBox="0 0 11 9" fill="none">
               <path d="M5.4493 9L0.619624 -9.78799e-07L10.279 -7.02746e-08L5.4493 9Z" fill="#C92025" />
@@ -90,7 +113,7 @@ const StatPerizinanDashboardAdministrator = () => {
             </svg>
             <p className="text-xs font-semibold text-neutral-800 whitespace-nowrap">Proses Survey</p>
           </div>
-          <h1 className="font-semibold text-3xl text-brand-500 my-4">200</h1>
+          <h1 className="font-semibold text-3xl text-brand-500 my-4">{totalPengajuanSurvey}</h1>
           <div className="flex gap-0.5 items-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none">
               <path d="M6 0L11.1962 9H0.803848L6 0Z" fill="#1F8428" />

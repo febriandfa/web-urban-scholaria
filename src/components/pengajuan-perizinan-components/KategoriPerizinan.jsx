@@ -11,7 +11,7 @@ const KategoriPerizinan = ({ img, title, syarat, durasi, link }) => {
   return (
     <CardGeneral>
       <div className="flex items-center  w-[95%] mx-auto">
-        <img className="rounded-lg w-52" src={img} alt="" />
+        <img className="rounded-lg w-52 h-36 object-cover object-center" src={img} alt="" />
         <div className="mr-auto ml-9">
           <h1 className="text-base text-brand-500 font-semibold mb-5">{title}</h1>
           <ul className="flex gap-24">

@@ -29,6 +29,10 @@ import bgConfirmed from "./images/background-confirmed.png";
 import bgInfoIzin from "./images/background-about-izin.png";
 import bgFeedback from "./images/background-feedback.jpeg";
 import bgVerifDokumen from "./images/background-verifikasi-dokumen.jpeg";
+import bgPerizinanTK from "./images/background-perizinan-tk.jpeg";
+import bgPerizinanSD from "./images/background-perizinan-sd.jpeg";
+import bgPerizinanSMP from "./images/background-perizinan-smp.jpeg";
+import bgPerizinanSMA from "./images/background-perizinan-sma.jpeg";
 import imgKosong from "./images/aktivitas-kosong.png";
 import slaPembangunan from "./images/sla-pembangunan.png";
 import slaOperasional from "./images/sla-operasional.png";
@@ -70,6 +74,10 @@ export {
   bgInfoIzin,
   bgFeedback,
   bgVerifDokumen,
+  bgPerizinanTK,
+  bgPerizinanSD,
+  bgPerizinanSMP,
+  bgPerizinanSMA,
   imgKosong,
   slaPembangunan,
   slaOperasional,
