@@ -108,8 +108,24 @@ export const accVerifikasiOperator = async (surat_id) => {
   return await api.patch(`surat/` + surat_id + `/terima-operator`);
 };
 
+export const declineVerifikasiOperator = async (surat_id) => {
+  return await api.patch(`surat/` + surat_id + `/tolak-operator-baru`);
+};
+
 export const getSuratStatusVerifVerifikator = async () => {
   return await api.get("surat?status=Verifikasi Verifikator");
+};
+
+export const getSuratStatusPenjadwalanSurvey = async () => {
+  return await api.get("surat?status=Penjadwalan Survey");
+};
+
+export const getSuratStatusVerifHasilSurvey = async () => {
+  return await api.get("surat?status=Verifikasi Hasil Survey");
+};
+
+export const getSuratStatusDitolak = async () => {
+  return await api.get("surat?status=Ditolak");
 };
 
 export const getSuratStatusSelesai = async () => {

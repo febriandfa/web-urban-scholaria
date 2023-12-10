@@ -13,6 +13,15 @@ const VerifikatorButtonVerifikasiDashboardOperator = ({ verified, idSurat }) => 
     }
   };
 
+  const handleDeclineVerifikasiOperator = async () => {
+    try {
+      const response = await userService.declineVerifikasiOperator(idSurat);
+      console.log("Hasil DECLINE Operator", response);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const triggerAlertAccept = () => {
     Swal.fire({
       imageUrl: alertNextVerifikator,
@@ -37,7 +46,7 @@ const VerifikatorButtonVerifikasiDashboardOperator = ({ verified, idSurat }) => 
 
   return (
     <div>
-      <button className={`py-2 px-4 bg-danger-500 w-full rounded-lg text-base font-semibold text-white mb-3`} type="submit" onClick={triggerAlertDecline}>
+      <button className={`py-2 px-4 bg-danger-500 w-full rounded-lg text-base font-semibold text-white mb-3`} type="submit" onClick={() => handleDeclineVerifikasiOperator(idSurat)}>
         Tolak Pengajuan Permohonan
       </button>
       <button

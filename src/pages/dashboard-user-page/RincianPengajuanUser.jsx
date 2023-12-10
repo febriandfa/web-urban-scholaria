@@ -82,7 +82,7 @@ const RincianPengajuanUser = () => {
           ))}
         </ListDokumenRincianDashboardUser>
       </div>
-      <FooterRincianDashboardUser />
+      <FooterRincianDashboardUser suratSelesai={detailPengajuan?.status === "Selesai"} />
     </MainPageLayout>
   );
 };

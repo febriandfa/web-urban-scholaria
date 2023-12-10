@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AuthPageLayout from "../../layouts/AuthPageLayout";
 import { bgAuth } from "../../assets";
 import { Link, useNavigate } from "react-router-dom";
