@@ -15,7 +15,7 @@ const StatPengajuanDashboardUser = () => {
       console.log("Semua Pengajuan", pengajuanData);
       setPengajuan(pengajuanData);
 
-      const pengajuanDitolakData = pengajuanData.filter((item) => item.status === "Selesai");
+      const pengajuanDitolakData = pengajuanData.filter((item) => item.status === "Ditolak");
       setPengajuanDitolak(pengajuanDitolakData);
 
       const pengajuanSelesaiData = pengajuanData.filter((item) => item.status === "Selesai");

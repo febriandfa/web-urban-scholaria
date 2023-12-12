@@ -47,47 +47,47 @@ const Register = () => {
   });
 
   const handleFormSubmit = async () => {
-    // Validasi Start
-    if (!validateEmail(formData.email)) {
-      console.error("Format email tidak valid");
-      setEmailError(true);
-      return;
-    }
-    console.log("Email Aman");
-    setEmailError(false);
+    // // Validasi Start
+    // if (!validateEmail(formData.email)) {
+    //   console.error("Format email tidak valid");
+    //   setEmailError(true);
+    //   return;
+    // }
+    // console.log("Email Aman");
+    // setEmailError(false);
 
-    if (formData.password !== formData.password_confirm) {
-      console.error("Kata sandi tidak cocok dengan konfirmasi kata sandi");
-      setKonfirmasiPasswordError(true);
-      return;
-    }
-    console.log("Kata Sandi Sama");
-    setKonfirmasiPasswordError(false);
+    // if (formData.password !== formData.password_confirm) {
+    //   console.error("Kata sandi tidak cocok dengan konfirmasi kata sandi");
+    //   setKonfirmasiPasswordError(true);
+    //   return;
+    // }
+    // console.log("Kata Sandi Sama");
+    // setKonfirmasiPasswordError(false);
 
-    if (formData.password.length < 8) {
-      console.error("Kata sandi minimal 8 digit");
-      setDigitPasswordError(true);
-      return;
-    }
-    console.log("Kata Sandi Sudah 8 Digit");
-    setDigitPasswordError(false);
+    // if (formData.password.length < 8) {
+    //   console.error("Kata sandi minimal 8 digit");
+    //   setDigitPasswordError(true);
+    //   return;
+    // }
+    // console.log("Kata Sandi Sudah 8 Digit");
+    // setDigitPasswordError(false);
 
-    if (formData.nomor_identitas.length < 16) {
-      console.error("NIK harus memiliki minimal 16 digit");
-      setNikError(true);
-      return;
-    }
-    console.log("NIK Sudah 16 Digit");
-    setNikError(false);
+    // if (formData.nomor_identitas.length < 16) {
+    //   console.error("NIK harus memiliki minimal 16 digit");
+    //   setNikError(true);
+    //   return;
+    // }
+    // console.log("NIK Sudah 16 Digit");
+    // setNikError(false);
 
-    if (formData.no_telp.length < 10) {
-      console.error("No telp harus memiliki minimal 16 digit");
-      setTelpError(true);
-      return;
-    }
-    console.log("No Telp Sudah 10 Digit");
-    setTelpError(false);
-    // Validasi End
+    // if (formData.no_telp.length < 10) {
+    //   console.error("No telp harus memiliki minimal 16 digit");
+    //   setTelpError(true);
+    //   return;
+    // }
+    // console.log("No Telp Sudah 10 Digit");
+    // setTelpError(false);
+    // // Validasi End
 
     let form = new FormData();
     form.append("email", formData.email);
@@ -112,6 +112,47 @@ const Register = () => {
       console.log("Successful register:", response.data);
 
       if (response?.data?.data) {
+        // Validasi Start
+        // if (!validateEmail(formData.email)) {
+        //   console.error("Format email tidak valid");
+        //   setEmailError(true);
+        //   return;
+        // }
+        // console.log("Email Aman");
+        // setEmailError(false);
+
+        // if (formData.password !== formData.password_confirm) {
+        //   console.error("Kata sandi tidak cocok dengan konfirmasi kata sandi");
+        //   setKonfirmasiPasswordError(true);
+        //   return;
+        // }
+        // console.log("Kata Sandi Sama");
+        // setKonfirmasiPasswordError(false);
+
+        // if (formData.password.length < 8) {
+        //   console.error("Kata sandi minimal 8 digit");
+        //   setDigitPasswordError(true);
+        //   return;
+        // }
+        // console.log("Kata Sandi Sudah 8 Digit");
+        // setDigitPasswordError(false);
+
+        // if (formData.nomor_identitas.length < 16) {
+        //   console.error("NIK harus memiliki minimal 16 digit");
+        //   setNikError(true);
+        //   return;
+        // }
+        // console.log("NIK Sudah 16 Digit");
+        // setNikError(false);
+
+        // if (formData.no_telp.length < 10) {
+        //   console.error("No telp harus memiliki minimal 16 digit");
+        //   setTelpError(true);
+        //   return;
+        // }
+        // console.log("No Telp Sudah 10 Digit");
+        // setTelpError(false);
+        // Validasi End
         console.log("Bisa");
         console.log("Successful register:", response.data);
       } else {
