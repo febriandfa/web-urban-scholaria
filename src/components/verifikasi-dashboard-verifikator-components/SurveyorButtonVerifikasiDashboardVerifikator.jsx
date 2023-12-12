@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import Popup from "reactjs-popup";
 import InputPenolakanPopup from "../popup-components/InputPenolakanPopup";
 import PenugasanSurveyPopup from "../popup-components/PenugasanSurveyPopup";
+import { useNavigate } from "react-router-dom";
+import { userService } from "../../services";
 
 const SurveyorButtonVerifikasiDashboardVerifikator = ({ verified }) => {
   return (
     <div>
       <Popup
         trigger={
-          <button className={`py-2 px-4 bg-danger-500 w-full rounded-lg text-base font-semibold text-white mb-3`} type="submit">
+          <button className={`py-2 px-4 bg-danger-500 w-full rounded-lg text-base font-semibold text-white mb-3`} type="button">
             Tolak Pengajuan Permohonan
           </button>
         }

@@ -2,17 +2,22 @@ import React, { useEffect, useState } from "react";
 import LabelGeneral from "../general-components/LabelGeneral";
 import { bgHome, iconUser } from "../../assets";
 import { userService } from "../../services";
+import LoadingPopup from "../popup-components/LoadingPopup";
 
 const ShowDataDiriDashboardUser = () => {
   const [profile, setProfile] = useState();
+  const [loading, setLoading] = useState(false);
 
   const profileData = async () => {
     try {
+      setLoading(true);
       const response = await userService.getProfile();
       // console.log(response);
       setProfile(response?.data?.data);
+      setLoading(false);
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   };
 
@@ -23,6 +28,7 @@ const ShowDataDiriDashboardUser = () => {
 
   return (
     <>
+      <LoadingPopup loading={loading} />
       <div className="px-10">
         <img className="w-24 h-24 object-cover object-center rounded-full mx-auto mb-16" src={profile?.foto || iconUser} alt="" />
         <div className="grid grid-cols-2">

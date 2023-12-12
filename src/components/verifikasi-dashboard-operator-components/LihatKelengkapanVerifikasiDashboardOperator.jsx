@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const LihatKelengkapanVerifikasiDashboardAdministrator = ({ id_surat }) => {
+const LihatKelengkapanVerifikasiDashboardOperator = ({ id_surat }) => {
   const handleCekClick = async () => {
     try {
       localStorage.setItem("IdSuratDiajukan", id_surat);
@@ -26,4 +26,4 @@ const LihatKelengkapanVerifikasiDashboardAdministrator = ({ id_surat }) => {
   );
 };
 
-export default LihatKelengkapanVerifikasiDashboardAdministrator;
+export default LihatKelengkapanVerifikasiDashboardOperator;

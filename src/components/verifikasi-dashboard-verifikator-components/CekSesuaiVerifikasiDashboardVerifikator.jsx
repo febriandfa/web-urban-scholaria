@@ -8,8 +8,8 @@ import { dokumenPengajuan } from "../../utils/DaftarDokumenPengajuanData";
 import CheckboxVerifikasiDashboardAdministrator from "../verifikasi-dashboard-administrator-components/CheckboxVerifikasiDashboardOperator";
 import LihatFileVerifikasiDashboardAdministrator from "../verifikasi-dashboard-administrator-components/LihatFileVerifikasiDashboardAdministrator";
 
-const CekSesuaiVerifikasiDashboardVerifikator = ({ handleCheckboxChange, checklist }) => {
-  let dokumenPengajuanData = dokumenPengajuan;
+const CekSesuaiVerifikasiDashboardVerifikator = ({ handleCheckboxChange, checklist, dokumenPengajuan }) => {
+  // let dokumenPengajuanData = dokumenPengajuan;
   const tableHead = ["Berkas Persyaratan", "File", "Lihat"];
 
   return (
@@ -32,12 +32,12 @@ const CekSesuaiVerifikasiDashboardVerifikator = ({ handleCheckboxChange, checkli
       <TableGeneral>
         <TableHeadGeneral headTitles={tableHead} />
         <TableBodyGeneral>
-          {dokumenPengajuanData.map((item, index) => (
-            <TableRowGeneral>
-              <TableItemGeneral key={index} tableItem={item.dokumen} wrap />
-              <TableItemGeneral key={index} tableItem="File Ini Panjang Banget Namanya" customColor="text-brand-500" />
-              <TableItemGeneral key={index} tableItem={<LihatFileVerifikasiDashboardAdministrator link="#" />} />
-              <TableItemGeneral key={index} tableItem={<CheckboxVerifikasiDashboardAdministrator onChange={() => handleCheckboxChange(index)} checked={checklist[index]} />} />
+          {dokumenPengajuan?.map((item, index) => (
+            <TableRowGeneral key={index}>
+              <TableItemGeneral tableItem={item?.surat_syarat?.nama} capitalize wrap />
+              <TableItemGeneral tableItem={item?.dokumen_upload?.replace(/^.*?\/dokumen-upload\//, "")} customColor="text-brand-500" wrap />
+              <TableItemGeneral tableItem={<LihatFileVerifikasiDashboardAdministrator link={item?.dokumen_upload} />} />
+              <TableItemGeneral tableItem={<CheckboxVerifikasiDashboardAdministrator onChange={() => handleCheckboxChange(index)} checked={checklist[index]} />} />
             </TableRowGeneral>
           ))}
         </TableBodyGeneral>
