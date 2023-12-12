@@ -5,8 +5,10 @@ import { Link, useNavigate } from "react-router-dom";
 import InputTextGeneral from "../../components/general-components/InputTextGeneral";
 import InputPasswordAuthPage from "../../components/auth-page-components/InputPasswordAuthPage";
 import { userService } from "../../services";
+import LoadingPopup from "../../components/popup-components/LoadingPopup";
 
 const Login = () => {
+  const [loading, setLoading] = useState(false);
   const [akunError, setAkunError] = useState(false);
   let navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -17,10 +19,12 @@ const Login = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true);
       const response = await userService.postLogin(formData);
       localStorage.setItem("TOKEN", response.data.access_token);
       localStorage.setItem("UserDetail", response?.data?.data.role.nama);
       console.log("Login berhasil:", response.data.data);
+      setLoading(false);
       if (response?.data?.data.role.nama === "Pemohon") {
         navigate("/dashboard");
       } else {
@@ -28,6 +32,7 @@ const Login = () => {
       }
     } catch (error) {
       console.error("Login error:", error);
+      setLoading(false);
       setAkunError(true);
     }
   };
@@ -41,6 +46,7 @@ const Login = () => {
 
   return (
     <AuthPageLayout>
+      <LoadingPopup loading={loading} />
       <div className="grid grid-cols-2 w-full h-full pt-10">
         <div>
           <img className="w-1/2 h-full pt-20 object-cover fixed top-0 inset-x-0" src={bgAuth} alt="" />
