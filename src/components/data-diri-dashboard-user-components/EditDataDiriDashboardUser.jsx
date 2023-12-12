@@ -4,8 +4,10 @@ import InputTextGeneral from "../general-components/InputTextGeneral";
 import InputDateGeneral from "../general-components/InputDateGeneral";
 import InputSelectGeneral from "../general-components/InputSelectGeneral";
 import { userService } from "../../services";
+import LoadingPopup from "../popup-components/LoadingPopup";
 
 const EditDataDiriDashboardUser = ({ onViewChange }) => {
+  const [loading, setLoading] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [isUpdateFoto, setIsUpdateFoto] = useState(false);
   const [formData, setFormData] = useState({
@@ -107,6 +109,7 @@ const EditDataDiriDashboardUser = ({ onViewChange }) => {
 
   const getProfileData = async () => {
     try {
+      setLoading(true);
       const response = await userService.getProfile();
       console.log("Hasil get profil:", response);
       setFormData({
@@ -126,8 +129,10 @@ const EditDataDiriDashboardUser = ({ onViewChange }) => {
         no_telp: response?.data?.data?.no_telp,
         pekerjaan: response?.data?.data?.pekerjaan,
       });
+      setLoading(false);
     } catch (error) {
       console.error("Update Error", error);
+      setLoading(false);
     }
   };
 
@@ -185,6 +190,7 @@ const EditDataDiriDashboardUser = ({ onViewChange }) => {
 
   return (
     <form>
+      <LoadingPopup loading={loading} />
       <div className="px-10">
         <img className="w-24 h-24 object-cover object-center rounded-full mx-auto mb-6" src={formData.foto || "URL_default_foto_profil" || iconUser} alt="" />
 

@@ -111,7 +111,7 @@ const Register = () => {
       const response = await userService.postRegister(form);
       console.log("Successful register:", response.data);
 
-      if (response.data.data) {
+      if (response?.data?.data) {
         console.log("Bisa");
         console.log("Successful register:", response.data);
       } else {

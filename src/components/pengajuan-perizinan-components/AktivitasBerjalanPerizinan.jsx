@@ -45,10 +45,13 @@ const AktivitasBerjalanPerizinan = ({ id_surat, id_surat_jenis, kategoriPerizina
     <CardGeneral>
       <Link className="flex gap-5 w-full mx-auto" to="/rincian-pengajuan" onClick={() => handleAktivitasClick(id_surat)}>
         <div className="flex-grow">
-          <div className="flex items-center gap-4 border-b-2 border-neutral-300 pb-6 mb-6 px-5">
+          <div className="flex items-center gap-4 border-b-2 border-neutral-300 pb-6 mb-6 pl-5">
             <img className="w-20 h-20" src={schoolIcon} alt="" />
-            <div>
-              <p className="text-brand-900 font-normal text-sm">Perizinan {kategoriPerizinan}</p>
+            <div className="w-full">
+              <div className="flex justify-between">
+                <p className="text-brand-900 font-normal text-sm">Perizinan {kategoriPerizinan}</p>
+                <p className="font-semibold text-sm">ID: {id_surat}</p>
+              </div>
               {/* <p className="text-brand-900 font-normal text-sm">{jenisPerizinan}</p> */}
               <h5 className="text-brand-500 font-semibold text-base mb-4 capitalize">{namaPerizinan}</h5>
               {/* <h5 className="text-brand-500 font-semibold text-base mb-4 capitalize">Perizinan Pembangunan Sekolah Menengah Atas</h5> */}

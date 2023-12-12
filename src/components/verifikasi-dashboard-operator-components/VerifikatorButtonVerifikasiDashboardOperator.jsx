@@ -2,12 +2,15 @@ import React from "react";
 import Swal from "sweetalert2";
 import { alertNextVerifikator } from "../../assets";
 import { userService } from "../../services";
+import { useNavigate } from "react-router-dom";
 
 const VerifikatorButtonVerifikasiDashboardOperator = ({ verified, idSurat }) => {
+  const navigate = useNavigate();
   const handleAccVerifikasiOperator = async () => {
     try {
       const response = await userService.accVerifikasiOperator(idSurat);
       console.log("Hasil ACC Operator", response);
+      triggerAlertAccept();
     } catch (error) {
       console.error(error);
     }
@@ -17,6 +20,7 @@ const VerifikatorButtonVerifikasiDashboardOperator = ({ verified, idSurat }) => 
     try {
       const response = await userService.declineVerifikasiOperator(idSurat);
       console.log("Hasil DECLINE Operator", response);
+      triggerAlertDecline();
     } catch (error) {
       console.error(error);
     }
@@ -30,6 +34,10 @@ const VerifikatorButtonVerifikasiDashboardOperator = ({ verified, idSurat }) => 
       title: "DILANJUTKAN KE VERIFIKATOR",
       text: "Permohonan berhasil dilanjutkan untuk diverifikasi oleh verifikator",
       confirmButtonText: "Lanjut",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate("/verifikasi-dokumen-operator");
+      }
     });
   };
 
@@ -41,6 +49,10 @@ const VerifikatorButtonVerifikasiDashboardOperator = ({ verified, idSurat }) => 
       title: "PENOLAKAN TERKIRIM",
       text: "Penolakan permohonan telah dikembalikan ke pemohon",
       confirmButtonText: "Lanjut",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate("/verifikasi-dokumen-operator");
+      }
     });
   };
 

@@ -8,7 +8,7 @@ import TableRowGeneral from "../../components/general-components/TableRowGeneral
 import TableItemGeneral from "../../components/general-components/TableItemGeneral";
 import PaginationGeneral from "../../components/general-components/PaginationGeneral";
 import { userService } from "../../services";
-import LihatKelengkapanVerifikasiDashboardAdministrator from "../../components/verifikasi-dashboard-administrator-components/LihatKelengkapanVerifikasiDashboardOperator";
+// import LihatKelengkapanVerifikasiDashboardAdministrator from "../../components/verifikasi-dashboard-administrator-components/LihatKelengkapanVerifikasiDashboardOperator";
 import FormatTanggal from "../../utils/functions/FormatTanggal";
 import LihatDetailTugasTugasSurveyDashboardSurveyor from "../../components/dashboard-surveyor-components/LihatDetailTugasTugasSurveyDashboardSurveyor";
 

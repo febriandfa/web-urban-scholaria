@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Popup from "reactjs-popup";
 import KomentarPenolakanPopup from "../popup-components/KomentarPenolakanPopup";
 
-const FooterRincianDashboardUser = ({ suratSelesai }) => {
+const FooterRincianDashboardUser = ({ suratSelesai, idSurat }) => {
   return (
     <div>
       <Popup
@@ -28,7 +28,7 @@ const FooterRincianDashboardUser = ({ suratSelesai }) => {
           backdropFilter: "blur(5px)",
         }}
       >
-        <KomentarPenolakanPopup />
+        <KomentarPenolakanPopup idSurat={idSurat} />
       </Popup>
       <div className="flex gap-5 mb-4">
         <Link className="flex items-center justify-center gap-2 py-2 px-4 bg-neutral-100 w-full rounded-lg text-base font-semibold text-neutral-909" to="/obrolan">

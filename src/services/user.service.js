@@ -38,6 +38,7 @@ export const updateProfile = async (data) => {
 };
 // PROFILE API END
 
+// PENGAJUAN API START
 export const postPengajuan = async (data) => {
   return await api.post("surat", data);
 };
@@ -70,10 +71,6 @@ export const getSuratSyaratByID = async (surat_jenis_id) => {
   return await api.get(`surat/` + surat_jenis_id + `/syarat`);
 };
 
-// export const getSuratByUserID = async () => {
-//   return await api.get("surat/" + user_id);
-// };
-
 export const postSuratUpload = async (surat_id, surat_jenis_id, surat_syarat_id, data) => {
   return await api.post(`surat/` + surat_id + `/surat-jenis/` + surat_jenis_id + `/upload-dokumen/` + surat_syarat_id, data);
 };
@@ -81,7 +78,9 @@ export const postSuratUpload = async (surat_id, surat_jenis_id, surat_syarat_id,
 export const patchSuratDiajukan = async (surat_id) => {
   return await api.patch(`surat/` + surat_id + `/surat-diajukan`);
 };
+// PENGAJUAN API END
 
+// FEEDBACK API START
 export const postFeedback = async (data) => {
   return await api.post("feedback-pemohon", data);
 };
@@ -89,6 +88,8 @@ export const postFeedback = async (data) => {
 export const getFeedback = async () => {
   return await api.get("feedback-pemohon");
 };
+// FEEDBACK API END
+
 // export const detail = async (id: any): Promise<AxiosResponse<Transaksi>> => {
 //   return await api.get("transaksi/detail?id=" + id);
 // };
@@ -100,6 +101,7 @@ export const getFeedback = async () => {
 //   return await api.post("user/update?id=" + id, data);
 // };
 
+// OPERATOR API START
 export const getSuratStatusVerifOperator = async () => {
   return await api.get("surat?status=Verifikasi Operator");
 };
@@ -111,10 +113,29 @@ export const accVerifikasiOperator = async (surat_id) => {
 export const declineVerifikasiOperator = async (surat_id) => {
   return await api.patch(`surat/` + surat_id + `/tolak-operator-baru`);
 };
+// OPERATOR API END
 
+// VERIFIKATOR API START
 export const getSuratStatusVerifVerifikator = async () => {
   return await api.get("surat?status=Verifikasi Verifikator");
 };
+
+export const accVerifikasiVerifikator = async (surat_id) => {
+  return await api.patch(`surat/` + surat_id + `/terima-verifikator`);
+};
+
+export const postJadwalSurvey = async (surat_id, data) => {
+  return await api.post(`surat/` + surat_id + `/set-jadwal-survey`, data);
+};
+
+export const declineVerifikasiVerifikator = async (surat_id, data) => {
+  return await api.patch(`surat/` + surat_id + `/tolak-verifikator-baru`, data);
+};
+
+// export const declineVerifikasiVerifikator = async (data) => {
+//   return await api.patch(`surat/13/tolak-verifikator-baru`, data);
+// };
+// VERIFIKATOR API END
 
 export const getSuratStatusPenjadwalanSurvey = async () => {
   return await api.get("surat?status=Penjadwalan Survey");

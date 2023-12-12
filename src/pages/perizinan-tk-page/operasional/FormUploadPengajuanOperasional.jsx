@@ -7,14 +7,16 @@ import { userService } from "../../../services";
 import { getIdSuratDiajukan, getKategoriPerizinan, getSuratJenisID } from "../../../services/storage.service";
 import LoadingPopup from "../../../components/popup-components/LoadingPopup";
 import InputFileGeneralCoba from "../../../components/general-components/InputFileGeneralCoba";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const FormPerizinanHeader = ({ title, subtitle }) => {
   return <TitlePerizinan subtitle={`AJUKAN PERIZINAN ${subtitle}`} title={`${title} ${subtitle}`} />;
 };
 
 const FormPerizinanBody = ({ title, loading, kategoriPerizinan, id_surat_pengajuan, id_jenis_surat }) => {
+  const navigate = useNavigate();
   const [showKetentuanSection, setShowKetentuanSection] = useState(false);
-
   // INISIASI FORM PENGAJUAN START
   //   const [idSyaratDokumen, setIdSyaratDokumen] = useState([]);
   const [syaratSurat, setSyaratSurat] = useState([]);
@@ -64,6 +66,7 @@ const FormPerizinanBody = ({ title, loading, kategoriPerizinan, id_surat_pengaju
     try {
       const response = await userService.patchSuratDiajukan(id_surat_pengajuan);
       console.log("Surat Diajukan", response);
+      navigate("/konfirmasi-pengajuan-perizinan");
     } catch (error) {
       console.error(error);
     }

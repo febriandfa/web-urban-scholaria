@@ -8,9 +8,10 @@ import TableRowGeneral from "../../components/general-components/TableRowGeneral
 import TableItemGeneral from "../../components/general-components/TableItemGeneral";
 import MainPageLayout from "../../layouts/MainPageLayout";
 import TitleVerifikasiDashboardAdministrator from "../../components/verifikasi-dashboard-administrator-components/TitleVerifikasiDashboardOperator";
-import LihatKelengkapanVerifikasiDashboardAdministrator from "../../components/verifikasi-dashboard-administrator-components/LihatKelengkapanVerifikasiDashboardOperator";
+// import LihatKelengkapanVerifikasiDashboardAdministrator from "../../components/verifikasi-dashboard-administrator-components/LihatKelengkapanVerifikasiDashboardOperator";
 import { userService } from "../../services";
 import FormatTanggal from "../../utils/functions/FormatTanggal";
+import LihatKelengkapanVerifikasiDashboardVerifikator from "../../components/verifikasi-dashboard-verifikator-components/LihatKelengkapanVerifikasiDashboardVerifikator";
 
 const VerifikasiDokumenVerifikator = () => {
   const [semuaPengajuan, setSemuaPengajuan] = useState();
@@ -79,7 +80,7 @@ const VerifikasiDokumenVerifikator = () => {
                   tableItem={pengajuan?.status === "Verifikasi Verifikator" ? "Perlu Verifikasi" : pengajuan?.status}
                   customColor={getStatusColor(pengajuan?.status === "Verifikasi Verifikator" ? "Perlu Verifikasi" : pengajuan?.status)}
                 />
-                <TableItemGeneral tableItem={<LihatKelengkapanVerifikasiDashboardAdministrator id_surat={pengajuan?.id} />} />
+                <TableItemGeneral tableItem={<LihatKelengkapanVerifikasiDashboardVerifikator id_surat={pengajuan?.id} />} />
               </TableRowGeneral>
             ))}
         </TableBodyGeneral>
