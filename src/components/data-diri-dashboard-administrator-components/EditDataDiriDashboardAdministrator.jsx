@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { bgHome } from "../../assets";
 import InputTextGeneral from "../general-components/InputTextGeneral";
 import { userService } from "../../services";
+import LoadingPopup from "../popup-components/LoadingPopup";
 
 const EditDataDiriDashboardAdministrator = ({ onViewChange }) => {
+  const [loading, setLoading] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [isUpdateFoto, setIsUpdateFoto] = useState(false);
   const [formData, setFormData] = useState({
@@ -28,13 +30,16 @@ const EditDataDiriDashboardAdministrator = ({ onViewChange }) => {
     form.append("no_telp", formData.no_telp);
     form.append("role", formData.role);
     try {
+      setLoading(true);
       const response = await userService.updateProfile(form);
       setIsUpdateFoto(false);
       console.log("Successful register:", response.data);
       console.log(formData);
+      setLoading(false);
       onViewChange();
     } catch (error) {
       console.error("Register error:", error);
+      setLoading(false);
       setIsUpdateFoto(false);
     }
     console.log(formData);
@@ -52,6 +57,7 @@ const EditDataDiriDashboardAdministrator = ({ onViewChange }) => {
 
   const getProfileData = async () => {
     try {
+      setLoading(true);
       const response = await userService.getProfile();
       console.log("Hasil get profil:", response);
       setFormData({
@@ -61,8 +67,10 @@ const EditDataDiriDashboardAdministrator = ({ onViewChange }) => {
         no_telp: response?.data?.data?.no_telp,
         role: response?.data?.data?.role?.nama,
       });
+      setLoading(false);
     } catch (error) {
       console.error("Update Error", error);
+      setLoading(false);
     }
   };
 
@@ -72,6 +80,7 @@ const EditDataDiriDashboardAdministrator = ({ onViewChange }) => {
 
   return (
     <form>
+      <LoadingPopup loading={loading} />
       <div className="px-10">
         <img className="w-24 h-24 object-cover object-center rounded-full mx-auto mb-6" src={formData.foto || "URL_default_foto_profil" || iconUser} alt="" />
         <label className="flex items-center cursor-pointer rounded-lg w-fit h-9 px-4 py-2 bg-brand-500 mx-auto mb-16" htmlFor="foto">

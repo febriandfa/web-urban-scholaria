@@ -93,7 +93,16 @@ const FormPerizinanBody = ({ title, loading, kategoriPerizinan, id_surat_pengaju
           {!showKetentuanSection ? (
             <>
               {syaratSurat.map((item, index) => (
-                <InputFileGeneralCoba key={index} name={formData.dokumen_upload} label={item.nama} ukuranFile={5} selectedFile={formData.dokumen_upload} onFileInputChange={(e) => handleUploadFormSubmit(item.id, e.value)} required />
+                <InputFileGeneralCoba
+                  key={index}
+                  name={formData.dokumen_upload}
+                  label={item.nama}
+                  tipeFile=".pdf"
+                  ukuranFile={5}
+                  selectedFile={formData.dokumen_upload}
+                  onFileInputChange={(e) => handleUploadFormSubmit(item.id, e.value)}
+                  required
+                />
               ))}
             </>
           ) : (

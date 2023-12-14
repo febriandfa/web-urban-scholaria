@@ -4,17 +4,22 @@ import CardGeneral from "../../components/general-components/CardGeneral";
 import feedbackData from "../../utils/DaftarFeedbackData";
 import { userService } from "../../services";
 import FormatTanggal from "../../utils/functions/FormatTanggal";
+import LoadingPopup from "../../components/popup-components/LoadingPopup";
 
 const FeedbackAdministrator = () => {
   const [feedback, setFeedback] = useState();
+  const [loading, setLoading] = useState(false);
 
   const getFeedbackData = async () => {
     try {
+      setLoading(true);
       const response = await userService.getFeedback();
       console.log("Feedbakc Orang-Orang", response);
       setFeedback(response?.data?.data);
+      setLoading(false);
     } catch (error) {
       console.error(error);
+      setLoading(false);
     }
   };
 
@@ -26,6 +31,7 @@ const FeedbackAdministrator = () => {
 
   return (
     <MainPageLayout>
+      <LoadingPopup loading={loading} />
       <h1 className="text-2xl text-brand-500 font-semibold text-center mb-16">Feedback Pemohon</h1>
       <div className="grid grid-cols-3 gap-4">
         {feedback?.map((feedbackItem, index) => (

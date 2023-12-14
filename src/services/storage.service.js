@@ -10,4 +10,6 @@ const getKategoriPerizinan = () => localStorage.getItem("KategoriPerizinan");
 
 const getIdSuratDiajukan = () => localStorage.getItem("IdSuratDiajukan");
 
-export { setToken, getToken, removeToken, getSuratJenisID, getKategoriPerizinan, getIdSuratDiajukan };
+const getIdUser = () => localStorage.getItem("IdPengguna");
+
+export { setToken, getToken, removeToken, getSuratJenisID, getKategoriPerizinan, getIdSuratDiajukan, getIdUser };

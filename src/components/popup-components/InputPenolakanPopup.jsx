@@ -50,13 +50,13 @@ const InputPenolakanPopup = ({ close }) => {
 
   return (
     <div className="p-4 bg-white rounded-xl w-full">
-      <form className="h-[30rem] overflow-y-auto p-2">
+      <form className="h-fit overflow-y-auto p-2 w-96">
         <h1 className="text-2xl font-semibold text-center text-danger-500">Tolak Pengajuan Permohonan</h1>
         <hr className="w-full h-0.5 rounded-full bg-neutral-300 mt-2 mb-4" />
-        {/* <InputTextGeneral name="subject" label="Subject Penolakan" placeholder="Beri alasan penolakan..." required /> */}
+        {/* <InputTextGeneral name="subject" label="Subject Penolakan" placeholder="Beri alasan penolakan..." /> */}
         <InputTextAreaGeneral name="alasan_dikembalikan" id="alasan_dikembalikan" label="Deskripsi Penolakan" placeholder="Jelaskan alasan penolakan..." value={formData.alasan_dikembalikan} onChange={handleInputChange} required />
         {/* <InputFileGeneral name="lampiran-tolak" label="Lampiran" /> */}
-        <button className="py-2 px-4 bg-brand-500 w-full rounded-lg text-base font-semibold text-white" type="button" onClick={() => handleDeclineSubmit()}>
+        <button className="py-2 px-4 bg-danger-500 w-full rounded-lg text-base font-semibold text-white" type="button" onClick={() => handleDeclineSubmit()}>
           Tolak Pengajuan
         </button>
       </form>

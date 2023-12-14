@@ -42,6 +42,8 @@ import FormUploadPengajuanOperasional from "./pages/perizinan-tk-page/operasiona
 import AlurOperasional from "./pages/perizinan-tk-page/operasional/AlurOperasional";
 import TugasSurveySurveyor from "./pages/dashboard-surveyor-page/TugasSurveySurveyor";
 import DetailTugasSurveySurveyor from "./pages/dashboard-surveyor-page/DetailTugasSurveySurveyor";
+import KelolaAkunAdminDinas from "./pages/dashboard-admin-dinas-page/KelolaAkunAdminDinas";
+import DetailPenggunaAdminDinas from "./pages/dashboard-admin-dinas-page/DetailPenggunaAdminDinas";
 // import LihatDokumenUser from "./pages/dashboard-user-page/LihatDokumenUser";
 // import LihatDokumenPageUser from "./pages/dashboard-user-page/LihatDokumenPageUser";
 // import CobaDaftar from "./pages/auth-page/CobaDaftar";
@@ -124,6 +126,9 @@ function App() {
             <Route path="/tugas-survey-surveyor" element={<TugasSurveySurveyor />} />
             <Route path="/detail-tugas-surveyor" element={<DetailTugasSurveySurveyor />} />
 
+            {/* Admin Dinas */}
+            <Route path="/kelola-pengguna-dinas" element={<KelolaAkunAdminDinas />} />
+            <Route path="/detail-pengguna-dinas" element={<DetailPenggunaAdminDinas />} />
             {/* <Route path="/coba-daftar" element={<CobaDaftar />} /> */}
             {/* <Route path="/lihat-dokumen" element={<LihatDokumenPageUser />} /> */}
           </Routes>

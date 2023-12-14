@@ -28,6 +28,8 @@ const Sidebar = ({ role }) => {
 
   const sidebarAdminUtama_0_3 = adminUtamaSidebar.slice(0, 3);
   const sidebarAdminUtama_4 = [adminUtamaSidebar[4]];
+  const sidebarAdminDinas_0_4 = adminDinasSidebar.slice(0, 4);
+  const sidebarAdminDinas_5_6 = adminDinasSidebar.slice(5, 6);
 
   const navigate = useNavigate();
 
@@ -73,20 +75,39 @@ const Sidebar = ({ role }) => {
       <p className="text-base font-semibold">Menu</p>
       <div className="flex flex-col justify-between h-full pb-36">
         <div className="px-3 py-4 overflow-y-auto" style={{ height: "calc(100% - 7rem)" }}>
-          {role === "admin-utama" ? (
-            <ul>
-              {sidebarAdminUtama_0_3.map((sidebarItem, index) => (
-                <div key={index}>
-                  <ItemSidebar icon={sidebarItem.icon} link={sidebarItem.link} title={sidebarItem.title} />
-                </div>
-              ))}
-              <DropdownSidebar />
-              {sidebarAdminUtama_4.map((sidebarItem, index) => (
-                <div key={index}>
-                  <ItemSidebar icon={sidebarItem.icon} link={sidebarItem.link} title={sidebarItem.title} />
-                </div>
-              ))}
-            </ul>
+          {role === "Admin Utama" || role === "Admin Dinas" ? (
+            <>
+              {role === "Admin Utama" && (
+                <ul>
+                  {sidebarAdminUtama_0_3.map((sidebarItem, index) => (
+                    <div key={index}>
+                      <ItemSidebar icon={sidebarItem.icon} link={sidebarItem.link} title={sidebarItem.title} />
+                    </div>
+                  ))}
+                  <DropdownSidebar />
+                  {sidebarAdminUtama_4.map((sidebarItem, index) => (
+                    <div key={index}>
+                      <ItemSidebar icon={sidebarItem.icon} link={sidebarItem.link} title={sidebarItem.title} />
+                    </div>
+                  ))}
+                </ul>
+              )}
+              {role === "Admin Dinas" && (
+                <ul>
+                  {sidebarAdminDinas_0_4.map((sidebarItem, index) => (
+                    <div key={index}>
+                      <ItemSidebar icon={sidebarItem.icon} link={sidebarItem.link} title={sidebarItem.title} />
+                    </div>
+                  ))}
+                  <DropdownSidebar />
+                  {sidebarAdminDinas_5_6.map((sidebarItem, index) => (
+                    <div key={index}>
+                      <ItemSidebar icon={sidebarItem.icon} link={sidebarItem.link} title={sidebarItem.title} />
+                    </div>
+                  ))}
+                </ul>
+              )}
+            </>
           ) : (
             <ul className="space-y-2 font-medium text-base">
               {sidebarData.map((sidebarItem, index) => (

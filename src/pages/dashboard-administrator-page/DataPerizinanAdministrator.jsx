@@ -12,19 +12,24 @@ import PaginationGeneral from "../../components/general-components/PaginationGen
 import UnduhButtonDataPerizinan from "../../components/data-perizinan-dashboard-administrator-components/UnduhButtonDataPerizinan";
 import { userService } from "../../services";
 import FormatTanggal from "../../utils/functions/FormatTanggal";
+import LoadingPopup from "../../components/popup-components/LoadingPopup";
 
 const DataPerizinanAdministrator = ({ isEmpty }) => {
   const [semuaPengajuan, setSemuaPengajuan] = useState();
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+  const [loading, setLoading] = useState(false);
 
   const semuaPengajuanData = async () => {
     try {
+      setLoading(true);
       const response = await userService.getSuratStatusSelesai();
       console.log("Hasil Semua Pengajuan", response);
       setSemuaPengajuan(response?.data?.data);
+      setLoading(false);
     } catch (error) {
       console.error(error);
+      setLoading(false);
     }
   };
 
@@ -44,6 +49,7 @@ const DataPerizinanAdministrator = ({ isEmpty }) => {
 
   return (
     <MainPageLayout>
+      <LoadingPopup loading={loading} />
       <div className="flex justify-between items-center mb-6">
         <div>
           <h1 className="text-xl font-semibold text-brand-500">Data Perizinan</h1>

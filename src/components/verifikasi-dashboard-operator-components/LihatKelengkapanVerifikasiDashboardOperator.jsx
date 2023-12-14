@@ -2,12 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const LihatKelengkapanVerifikasiDashboardOperator = ({ id_surat }) => {
-  const handleCekClick = async () => {
-    try {
-      localStorage.setItem("IdSuratDiajukan", id_surat);
-    } catch (error) {
-      console.error(error);
-    }
+  const handleCekClick = () => {
+    localStorage.setItem("IdSuratDiajukan", id_surat);
   };
 
   return (

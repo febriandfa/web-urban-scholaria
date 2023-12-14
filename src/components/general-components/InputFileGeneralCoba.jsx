@@ -41,7 +41,7 @@ const InputFileGeneralCoba = ({ name, label, tipeFile, ukuranFile, required, sel
         <span className="flex items-center border-r-2 border-neutral-400 pr-4 w-fit h-full text-sm">Pilih File</span>
         <span className="inline-block text-sm text-center mx-auto">{selectedFileName}</span>
         {/* <input className="hidden" id={name} type="file" accept={tipeFile} onChange={handleFileChange} required={required} /> */}
-        <input className="hidden" id={name} type="file" onChange={handleFileChange} required={required} />
+        <input className="hidden" id={name} type="file" accept={tipeFile} onChange={handleFileChange} required={required} />
       </label>
       {fileSizeError && <p className="py-1 text-center text-sm font-semibold text-danger-500">Ukuran File Melebihi {ukuranFile} MB</p>}
     </div>

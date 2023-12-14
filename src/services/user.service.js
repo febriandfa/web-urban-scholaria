@@ -131,10 +131,6 @@ export const postJadwalSurvey = async (surat_id, data) => {
 export const declineVerifikasiVerifikator = async (surat_id, data) => {
   return await api.patch(`surat/` + surat_id + `/tolak-verifikator-baru`, data);
 };
-
-// export const declineVerifikasiVerifikator = async (data) => {
-//   return await api.patch(`surat/13/tolak-verifikator-baru`, data);
-// };
 // VERIFIKATOR API END
 
 export const getSuratStatusPenjadwalanSurvey = async () => {
@@ -151,4 +147,23 @@ export const getSuratStatusDitolak = async () => {
 
 export const getSuratStatusSelesai = async () => {
   return await api.get("surat?status=Selesai");
+};
+//
+//
+//
+//
+export const getPengguna = async () => {
+  return await api.get("users");
+};
+
+export const getPenggunaByID = async (user_id) => {
+  return await api.get("users?user_id=" + user_id);
+};
+
+export const accAktivasiPengguna = async (user_id, data) => {
+  return await api.post("aktivasi-akun/" + user_id, data);
+};
+
+export const declineAktivasiPengguna = async (user_id, data) => {
+  return await api.post("tolak-aktivasi-akun/" + user_id, data);
 };

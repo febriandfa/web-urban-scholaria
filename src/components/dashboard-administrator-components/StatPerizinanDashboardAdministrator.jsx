@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import CardGeneral from "../general-components/CardGeneral";
 import { userService } from "../../services";
+import LoadingPopup from "../popup-components/LoadingPopup";
 
 const StatPerizinanDashboardAdministrator = () => {
+  const [loading, setLoading] = useState(false);
   const [totalPengajuan, setTotalPengajuan] = useState([0]);
   const [totalPengajuanDiterima, setTotalPengajuanDiterima] = useState([0]);
   const [totalPengajuanDitolak, setTotalPengajuanDitolak] = useState([0]);
@@ -10,14 +12,17 @@ const StatPerizinanDashboardAdministrator = () => {
 
   const getStatistikPengajuanData = async () => {
     try {
+      setLoading(true);
       const responseTotal = await userService.getSemuaPengajuan();
       console.log("Total", responseTotal);
       setTotalPengajuan(responseTotal?.data?.data?.length);
       setTotalPengajuanDiterima(responseTotal?.data?.data?.filter((item) => item?.status === "Selesai")?.length);
       setTotalPengajuanDitolak(responseTotal?.data?.data?.filter((item) => item?.status === "Ditolak")?.length);
       setTotalPengajuanSurvey(responseTotal?.data?.data?.filter((item) => item?.status === "Verifikasi Hasil Survey")?.length);
+      setLoading(false);
     } catch (error) {
       console.error(error);
+      setLoading(false);
     }
   };
 
@@ -27,6 +32,7 @@ const StatPerizinanDashboardAdministrator = () => {
 
   return (
     <div className="flex overflow-x-auto gap-8">
+      <LoadingPopup loading={loading} />
       <CardGeneral>
         <div className="w-44">
           <div className="flex items-center gap-1">

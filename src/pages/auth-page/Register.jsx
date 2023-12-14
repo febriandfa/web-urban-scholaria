@@ -34,7 +34,7 @@ const Register = () => {
     password_confirm: "",
     nama_lengkap: "",
     foto: null,
-    ktp: null,
+    ktp_paspor: null,
     nomor_identitas: "",
     jenis_kelamin: "",
     tempat_lahir: "",
@@ -97,7 +97,7 @@ const Register = () => {
     form.append("password_confirm", formData.password_confirm);
     form.append("nama_lengkap", formData.nama_lengkap);
     form.append("foto", formData.foto);
-    form.append("ktp", formData.ktp);
+    form.append("ktp_paspor", formData.ktp_paspor);
     form.append("nomor_identitas", formData.nomor_identitas);
     form.append("jenis_kelamin", formData.jenis_kelamin);
     form.append("tempat_lahir", formData.tempat_lahir);
@@ -112,14 +112,16 @@ const Register = () => {
     try {
       setLoading(true);
       const response = await userService.postRegister(form);
-      console.log("Successful register:", response);
+      // console.log("Successful register:", response);
 
       if (response.data.data) {
         console.log("Bisa");
         console.log("Successful register:", response.data);
+        setLoading(false);
       } else {
         setEmailTerpakaiError(true);
-        console.log("Error Mas Wes Kedaftar");
+        console.error("Akun Sudah Terdaftar");
+        setLoading(false);
         return;
       }
       setLoading(false);
@@ -205,8 +207,8 @@ const Register = () => {
                   <InputPasswordAuthPage name="password" label="Kata Sandi" placeholder="Masukkan Kata Sandi..." value={formData.password} onChange={handleInputChange} required />
                   <InputPasswordAuthPage name="password_confirm" label="Konfirmasi Kata Sandi" placeholder="Masukkan Kata Sandi Lagi..." value={formData.password_confirm} onChange={handleInputChange} required />
                   <InputTextGeneral name="nama_lengkap" label="Nama" placeholder="Masukkan Nama..." value={formData.nama_lengkap} onChange={handleInputChange} required />
-                  <InputFileGeneralCoba name="foto" label="Foto Profil" tipeFile="*" ukuranFile={5} selectedFile={formData.foto} onFileInputChange={handleInputChange} required />
-                  <InputFileGeneralCoba name="ktp" label="KTP" tipeFile="*" ukuranFile={5} selectedFile={formData.ktp} onFileInputChange={handleInputChange} required />
+                  <InputFileGeneralCoba name="foto" label="Foto Profil" tipeFile=".png .jpg .jpeg" ukuranFile={5} selectedFile={formData.foto} onFileInputChange={handleInputChange} required />
+                  <InputFileGeneralCoba name="ktp_paspor" label="KTP" tipeFile=".png .jpg .jpeg" ukuranFile={5} selectedFile={formData.ktp_paspor} onFileInputChange={handleInputChange} required />
                   <InputTextGeneral name="nomor_identitas" label="NIK (Nomor Induk Kependudukan)" placeholder="Masukkan NIK..." maxLength={16} type="number" value={formData.nomor_identitas} onChange={handleInputChange} required />
                   <InputSelectGeneral name="jenis_kelamin" label="Jenis Kelamin" placeholder="Pilih Jenis Kelamin..." value={formData.jenis_kelamin} onChange={handleInputChange} option={optionJenisKelamin} required />
                   <InputTextGeneral name="no_telp" label="Nomor Telepon" placeholder="Masukkan Nomor Telpon..." type="number" maxLength={13} value={formData.no_telp} onChange={handleInputChange} required />
