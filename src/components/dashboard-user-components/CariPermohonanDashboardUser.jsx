@@ -67,6 +67,7 @@ const CariPermohonanDashboardUser = () => {
         >
           <div className="rounded-xl bg-white p-5">
             <h1 className="text-brand-500 text-center font-semibold text-lg mb-4">Data Permohonan Ditemukan</h1>
+            <div className="w-[42rem] h-[14rem] bg-transparent absolute"></div>
             <AktivitasBerjalanPerizinan
               id_surat={pengajuan?.id}
               id_surat_jenis={pengajuan?.surat_dokumen[0]?.surat_syarat?.surat_jenis_id}
@@ -76,6 +77,7 @@ const CariPermohonanDashboardUser = () => {
               namaSekolah={pengajuan?.nama}
               pemohon={pengajuan?.user?.nama_lengkap}
               status={pengajuan?.status}
+              hideButton
             />
           </div>
         </Popup>

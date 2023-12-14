@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { userService } from "../../services";
 import { getIdSuratDiajukan } from "../../services/storage.service";
 
-const AktivitasBerjalanPerizinan = ({ id_surat, id_surat_jenis, kategoriPerizinan, namaPerizinan, tanggalPengajuan, namaSekolah, pemohon, status }) => {
+const AktivitasBerjalanPerizinan = ({ id_surat, id_surat_jenis, kategoriPerizinan, namaPerizinan, tanggalPengajuan, namaSekolah, pemohon, status, hideButton }) => {
   const handleAktivitasClick = async () => {
     try {
       localStorage.setItem("IdSuratDiajukan", id_surat);
@@ -90,18 +90,20 @@ const AktivitasBerjalanPerizinan = ({ id_surat, id_surat_jenis, kategoriPerizina
           </div>
           <p className={`text-sm font-normal text-white py-1 text-center rounded ${statusColor}`}>{status}</p>
         </div>
-        <div className="flex items-end">
-          <button className="flex items-center w-10 h-10 bg-brand-500 rounded">
-            <svg className="mx-auto" xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34" fill="none">
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M10.3607 3.64746C8.51595 3.64746 7.02051 5.13528 7.02051 6.97059V26.9094C7.02051 28.7447 8.51595 30.2325 10.3607 30.2325H23.7214C25.5661 30.2325 27.0615 28.7447 27.0615 26.9094V12.6435C27.0615 11.7622 26.7096 10.9169 26.0832 10.2937L20.3812 4.62078C19.7548 3.99758 18.9052 3.64746 18.0193 3.64746H10.3607ZM18.7111 13.6168C18.7111 12.6992 17.9634 11.9553 17.041 11.9553C16.1187 11.9553 15.3709 12.6992 15.3709 13.6168V19.5749L13.2117 17.4266C12.5595 16.7778 11.502 16.7778 10.8498 17.4266C10.1976 18.0755 10.1976 19.1276 10.8498 19.7764L15.8601 24.7611C16.5123 25.41 17.5697 25.41 18.222 24.7611L23.2322 19.7764C23.8844 19.1276 23.8844 18.0755 23.2322 17.4266C22.58 16.7778 21.5226 16.7778 20.8703 17.4266L18.7111 19.5749V13.6168Z"
-                fill="white"
-              />
-            </svg>
-          </button>
-        </div>
+        {hideButton ? null : (
+          <div className="flex items-end">
+            <button className="flex items-center w-10 h-10 bg-brand-500 rounded">
+              <svg className="mx-auto" xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34" fill="none">
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M10.3607 3.64746C8.51595 3.64746 7.02051 5.13528 7.02051 6.97059V26.9094C7.02051 28.7447 8.51595 30.2325 10.3607 30.2325H23.7214C25.5661 30.2325 27.0615 28.7447 27.0615 26.9094V12.6435C27.0615 11.7622 26.7096 10.9169 26.0832 10.2937L20.3812 4.62078C19.7548 3.99758 18.9052 3.64746 18.0193 3.64746H10.3607ZM18.7111 13.6168C18.7111 12.6992 17.9634 11.9553 17.041 11.9553C16.1187 11.9553 15.3709 12.6992 15.3709 13.6168V19.5749L13.2117 17.4266C12.5595 16.7778 11.502 16.7778 10.8498 17.4266C10.1976 18.0755 10.1976 19.1276 10.8498 19.7764L15.8601 24.7611C16.5123 25.41 17.5697 25.41 18.222 24.7611L23.2322 19.7764C23.8844 19.1276 23.8844 18.0755 23.2322 17.4266C22.58 16.7778 21.5226 16.7778 20.8703 17.4266L18.7111 19.5749V13.6168Z"
+                  fill="white"
+                />
+              </svg>
+            </button>
+          </div>
+        )}
       </Link>
     </CardGeneral>
   );

@@ -53,7 +53,7 @@ const Login = () => {
         </div>
         <section className="h-full w-full">
           <div className="flex flex-col items-center justify-center">
-            <h2 className="font-semibold text-5xl text-brand-500 text-center w-4/5 mb-20">Segera Kembali ke Urban Scolaria!</h2>
+            <h2 className="font-semibold text-5xl text-brand-500 text-center w-4/5 mb-20">Segera Kembali ke Urban Scholaria!</h2>
             <form className="w-[28rem]" onSubmit={handleFormSubmit}>
               <InputTextGeneral name="email" label="Email" placeholder="Masukkan Email..." value={formData.email} onChange={handleInputChange} required />
               <InputPasswordAuthPage name="password" label="Kata Sandi" placeholder="Masukkan Kata Sandi..." value={formData.password} onChange={handleInputChange} required />
