@@ -5,7 +5,7 @@ import AktivitasBerjalanPerizinan from "../pengajuan-perizinan-components/Aktivi
 import LoadingPopup from "../popup-components/LoadingPopup";
 
 const CariPermohonanDashboardUser = () => {
-  const [profile, setProfile] = useState();
+  // const [profile, setProfile] = useState();
   const [pengajuan, setPengajuan] = useState();
   const [idSuratInput, setIdSuratInput] = useState("");
   const [showPopup, setShowPopup] = useState(false);
@@ -15,8 +15,8 @@ const CariPermohonanDashboardUser = () => {
   const handleCariPengajuanDetailData = async (id_surat_input) => {
     try {
       setLoading(true);
-      const response = await userService.getProfile();
-      setProfile(response?.data?.data);
+      // const response = await userService.getProfile();
+      // setProfile(response?.data?.data);
 
       const responsePengajuanDetail = await userService.getPengajuanByID(id_surat_input);
       setPengajuan(responsePengajuanDetail?.data?.data[0]);

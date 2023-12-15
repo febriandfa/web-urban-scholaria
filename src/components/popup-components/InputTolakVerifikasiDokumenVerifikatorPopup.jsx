@@ -8,16 +8,16 @@ import { useNavigate } from "react-router-dom";
 import { userService } from "../../services";
 import { getIdSuratDiajukan } from "../../services/storage.service";
 
-const InputPenolakanPopup = ({ close }) => {
+const InputTolakVerifikasiDokumenVerifikatorPopup = ({ close }) => {
   const navigate = useNavigate();
   const idSurat = getIdSuratDiajukan();
   const [formData, setFormData] = useState({
-    alasan_dikembalikan: "",
+    alasan_ditolak: "",
   });
 
   const handleDeclineSubmit = async () => {
     let form = new FormData();
-    form.append("alasan_dikembalikan", formData.alasan_dikembalikan);
+    form.append("alasan_ditolak", formData.alasan_ditolak);
     try {
       const response = await userService.declineVerifikasiVerifikator(idSurat, form);
       console.log("Decline Success", response);
@@ -54,7 +54,7 @@ const InputPenolakanPopup = ({ close }) => {
         <h1 className="text-2xl font-semibold text-center text-danger-500">Tolak Pengajuan Permohonan</h1>
         <hr className="w-full h-0.5 rounded-full bg-neutral-300 mt-2 mb-4" />
         {/* <InputTextGeneral name="subject" label="Subject Penolakan" placeholder="Beri alasan penolakan..." /> */}
-        <InputTextAreaGeneral name="alasan_dikembalikan" id="alasan_dikembalikan" label="Deskripsi Penolakan" placeholder="Jelaskan alasan penolakan..." value={formData.alasan_dikembalikan} onChange={handleInputChange} required />
+        <InputTextAreaGeneral name="alasan_ditolak" id="alasan_ditolak" label="Deskripsi Penolakan" placeholder="Jelaskan alasan penolakan..." value={formData.alasan_ditolak} onChange={handleInputChange} required />
         {/* <InputFileGeneral name="lampiran-tolak" label="Lampiran" /> */}
         <button className="py-2 px-4 bg-danger-500 w-full rounded-lg text-base font-semibold text-white" type="button" onClick={() => handleDeclineSubmit()}>
           Tolak Pengajuan
@@ -64,4 +64,4 @@ const InputPenolakanPopup = ({ close }) => {
   );
 };
 
-export default InputPenolakanPopup;
+export default InputTolakVerifikasiDokumenVerifikatorPopup;

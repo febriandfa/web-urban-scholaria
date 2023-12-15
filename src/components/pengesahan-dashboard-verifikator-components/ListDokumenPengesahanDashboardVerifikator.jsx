@@ -7,7 +7,7 @@ import TableItemGeneral from "../general-components/TableItemGeneral";
 import { dokumenPengajuan } from "../../utils/DaftarDokumenPengajuanData";
 import LihatFileVerifikasiDashboardAdministrator from "../verifikasi-dashboard-administrator-components/LihatFileVerifikasiDashboardAdministrator";
 
-const ListDokumenPengesahanDashboardVerifikator = () => {
+const ListDokumenPengesahanDashboardVerifikator = ({ dokumenPengajuan }) => {
   const headDokumenPengesahan = ["Berkas Persyaratan", "File"];
   const itemDokumenPengesahan = dokumenPengajuan;
 
@@ -32,11 +32,11 @@ const ListDokumenPengesahanDashboardVerifikator = () => {
         <TableGeneral>
           <TableHeadGeneral headTitles={headDokumenPengesahan} />
           <TableBodyGeneral>
-            {itemDokumenPengesahan.map((item, index) => (
-              <TableRowGeneral>
-                <TableItemGeneral key={index} tableItem={item.dokumen} wrap />
-                <TableItemGeneral key={index} tableItem="File Ini Panjang Banget Namanya" />
-                <TableItemGeneral key={index} tableItem={<LihatFileVerifikasiDashboardAdministrator link="#" />} />
+            {dokumenPengajuan?.map((item, index) => (
+              <TableRowGeneral key={index}>
+                <TableItemGeneral tableItem={item?.surat_syarat?.nama} capitalize wrap />
+                <TableItemGeneral tableItem={item?.dokumen_upload?.replace(/^.*?\/dokumen-upload\//, "")} customColor="text-brand-500" wrap />
+                <TableItemGeneral tableItem={<LihatFileVerifikasiDashboardAdministrator link={item?.dokumen_upload} />} />
               </TableRowGeneral>
             ))}
           </TableBodyGeneral>

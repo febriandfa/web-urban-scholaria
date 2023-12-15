@@ -3,7 +3,7 @@ import TitlePerizinan from "../../../components/pengajuan-perizinan-components/T
 import PerizinanPageLayout from "../../../layouts/PerizinanPageLayout";
 import { getKategoriPerizinan, getSuratJenisID } from "../../../services/storage.service";
 import LinkBackGeneral from "../../../components/general-components/LinkBackGeneral";
-import { bgHome } from "../../../assets";
+import { bgAlurPerizinan, bgHome } from "../../../assets";
 import { userService } from "../../../services";
 
 const AlurPerizinanHeader = () => {
@@ -31,7 +31,7 @@ const AlurPerizinanBody = ({ title, idJenis }) => {
       <h1 className="text-xl font-semibold text-center text-brand-500 mb-8">
         {title} {subtitle}
       </h1>
-      <img src={bgHome} alt="" />
+      <img src={bgAlurPerizinan} alt="" />
     </div>
   );
 };

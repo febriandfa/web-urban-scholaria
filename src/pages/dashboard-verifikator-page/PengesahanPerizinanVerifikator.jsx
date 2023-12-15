@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MainPageLayout from "../../layouts/MainPageLayout";
 import verifikasiDokumenItem from "../../utils/PengajuanPerizinanData";
 import TableGeneral from "../../components/general-components/TableGeneral";
@@ -8,39 +8,55 @@ import TableRowGeneral from "../../components/general-components/TableRowGeneral
 import TableItemGeneral from "../../components/general-components/TableItemGeneral";
 import PaginationGeneral from "../../components/general-components/PaginationGeneral";
 import VerifikasiLinkPengesahanDashboardVerfikator from "../../components/pengesahan-dashboard-verifikator-components/VerifikasiLinkPengesahanDashboardVerfikator";
-
-const getStatusColor = (status) => {
-  let colorClass = "";
-
-  switch (status) {
-    case "Sudah Survey":
-      colorClass = "text-done-500";
-      break;
-    case "Sedang Survey":
-      colorClass = "text-warn-500";
-      break;
-    default:
-      colorClass = "";
-  }
-
-  return colorClass;
-};
+import { userService } from "../../services";
+import FormatTanggal from "../../utils/functions/FormatTanggal";
 
 const PengesahanPerizinanVerifikator = () => {
-  const headPengesahanPerizinan = ["ID Dokumen", "Nama Pemohonon", "Perizinan", "Tanggal Pengajuan", "Status"];
-  const itemPengesahanPerizinan = verifikasiDokumenItem;
-
-  const itemsPerPage = 5;
-  const totalPages = Math.ceil(itemPengesahanPerizinan.length / itemsPerPage);
-
+  const [semuaPengajuan, setSemuaPengajuan] = useState();
   const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
 
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = itemPengesahanPerizinan.slice(indexOfFirstItem, indexOfLastItem);
+  const semuaPengajuanData = async () => {
+    try {
+      const response = await userService.getSuratStatusVerifHasilSurvey();
+      console.log("Hasil Semua Pengajuan", response);
+      setSemuaPengajuan(response?.data?.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    semuaPengajuanData();
+  }, []);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
+  };
+
+  const totalPages = Math.ceil(semuaPengajuan?.length / itemsPerPage);
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = semuaPengajuan?.slice(indexOfFirstItem, indexOfLastItem);
+
+  const headPengesahanPerizinan = ["ID Dokumen", "Nama Pemohonon", "Perizinan", "Tanggal Pengajuan", "Status"];
+
+  const getStatusColor = (status) => {
+    let colorClass = "";
+    switch (status) {
+      case "Selesai":
+        colorClass = "text-done-500";
+        break;
+      case "Perlu Verifikasi":
+        colorClass = "text-warn-500";
+        break;
+      case "Terlambat":
+        colorClass = "text-danger-500";
+        break;
+      default:
+        colorClass = "";
+    }
+    return colorClass;
   };
 
   return (
@@ -51,16 +67,21 @@ const PengesahanPerizinanVerifikator = () => {
       <TableGeneral>
         <TableHeadGeneral headTitles={headPengesahanPerizinan} />
         <TableBodyGeneral>
-          {currentItems.map((item, index) => (
-            <TableRowGeneral>
-              <TableItemGeneral key={index} tableItem={item.id} />
-              <TableItemGeneral key={index} tableItem={item.pemohon} />
-              <TableItemGeneral key={index} tableItem={item.perizinan} />
-              <TableItemGeneral key={index} tableItem={item.tanggal} />
-              <TableItemGeneral key={index} tableItem={item.status_survey} customColor={getStatusColor(item.status_survey)} />
-              <TableItemGeneral key={index} tableItem={<VerifikasiLinkPengesahanDashboardVerfikator link={item.link_3} />} />
-            </TableRowGeneral>
-          ))}
+          {semuaPengajuan &&
+            currentItems &&
+            currentItems.map((pengajuan, index) => (
+              <TableRowGeneral key={index}>
+                <TableItemGeneral tableItem={pengajuan?.id} />
+                <TableItemGeneral tableItem={pengajuan?.user?.nama_lengkap} />
+                <TableItemGeneral tableItem={`${pengajuan?.surat_jenis.nama} ${pengajuan?.kategori}`} />
+                <TableItemGeneral tableItem={FormatTanggal(pengajuan?.created_at)} />
+                <TableItemGeneral
+                  tableItem={pengajuan?.status === "Verifikasi Hasil Survey" ? "Perlu Verifikasi" : pengajuan?.status}
+                  customColor={getStatusColor(pengajuan?.status === "Verifikasi Hasil Survey" ? "Perlu Verifikasi" : pengajuan?.status)}
+                />
+                <TableItemGeneral tableItem={<VerifikasiLinkPengesahanDashboardVerfikator idSurat={pengajuan?.id} />} />
+              </TableRowGeneral>
+            ))}
         </TableBodyGeneral>
       </TableGeneral>
       <PaginationGeneral totalPages={totalPages} currentPage={currentPage} onPageChange={handlePageChange} />

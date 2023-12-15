@@ -1,11 +1,21 @@
 import React, { useState } from "react";
 import Popup from "reactjs-popup";
-import InputPenolakanPopup from "../popup-components/InputPenolakanPopup";
+// import InputPenolakanPopup from "../popup-components/InputPenolakanPopup";
 import PenugasanSurveyPopup from "../popup-components/PenugasanSurveyPopup";
 import { useNavigate } from "react-router-dom";
 import { userService } from "../../services";
+import InputTolakVerifikasiDokumenVerifikatorPopup from "../popup-components/InputTolakVerifikasiDokumenVerifikatorPopup";
 
-const SurveyorButtonVerifikasiDashboardVerifikator = ({ verified }) => {
+const SurveyorButtonVerifikasiDashboardVerifikator = ({ verified, idSurat }) => {
+  // const handleAccVerifikasiVerifikator = async () => {
+  //   try {
+  //     const response = await userService.accVerifikasiVerifikator(idSurat);
+  //     console.log("Sudah ACC Next Jadwal Survey", response);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
   return (
     <div>
       <Popup
@@ -21,11 +31,16 @@ const SurveyorButtonVerifikasiDashboardVerifikator = ({ verified }) => {
           backdropFilter: "blur(5px)",
         }}
       >
-        {(close) => <InputPenolakanPopup close={close} />}
+        {(close) => <InputTolakVerifikasiDokumenVerifikatorPopup close={close} />}
       </Popup>
       <Popup
         trigger={
-          <button className={`py-2 px-4 w-full rounded-lg text-base font-semibold ${verified ? "text-white bg-brand-500" : "text-neutral-500 bg-neutral-100"}`} disabled={!verified} type="submit">
+          <button
+            className={`py-2 px-4 w-full rounded-lg text-base font-semibold ${verified ? "text-white bg-brand-500" : "text-neutral-500 bg-neutral-100"}`}
+            disabled={!verified}
+            type="button"
+            // onClick={() => handleAccVerifikasiVerifikator()}
+          >
             Beri Tugas Ke Surveyor
           </button>
         }
@@ -37,7 +52,7 @@ const SurveyorButtonVerifikasiDashboardVerifikator = ({ verified }) => {
         }}
         contentStyle={{ width: "80%" }}
       >
-        {(close) => <PenugasanSurveyPopup close={close} />}
+        {(close) => <PenugasanSurveyPopup idSurat={idSurat} close={close} />}
       </Popup>
     </div>
   );

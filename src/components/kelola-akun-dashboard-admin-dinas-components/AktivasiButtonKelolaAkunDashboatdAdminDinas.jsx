@@ -7,7 +7,7 @@ import Popup from "reactjs-popup";
 import InputTolakAktivasiPopup from "../popup-components/InputTolakAktivasiPopup";
 import LoadingPopup from "../popup-components/LoadingPopup";
 
-const AktivasiButtonKelolaAkunDashboatdAdminDinas = ({ verified, idUser, tokenAdmin }) => {
+const AktivasiButtonKelolaAkunDashboatdAdminDinas = ({ verified, idUser, tokenAdmin, isActive }) => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
@@ -63,29 +63,37 @@ const AktivasiButtonKelolaAkunDashboatdAdminDinas = ({ verified, idUser, tokenAd
   return (
     <div>
       <LoadingPopup loading={loading} />
-      <Popup
-        trigger={
-          <button className={`py-2 px-4 bg-danger-500 w-full rounded-lg text-base font-semibold text-white mb-3`} type="submit">
-            Tolak Aktivasi Akun
+      {isActive ? (
+        <button className={`py-2 px-4 bg-danger-500 w-full rounded-lg text-base font-semibold text-white mb-3`} type="submit">
+          Hapus Akun
+        </button>
+      ) : (
+        <>
+          <Popup
+            trigger={
+              <button className={`py-2 px-4 bg-danger-500 w-full rounded-lg text-base font-semibold text-white mb-3`} type="submit">
+                Tolak Aktivasi Akun
+              </button>
+            }
+            modal
+            nested
+            overlayStyle={{
+              background: "rgba(128, 128, 128, 0.7)",
+              backdropFilter: "blur(5px)",
+            }}
+          >
+            {(close) => <InputTolakAktivasiPopup close={close} />}
+          </Popup>
+          <button
+            className={`py-2 px-4 w-full rounded-lg text-base font-semibold ${verified ? "text-white bg-brand-500" : "text-neutral-500 bg-neutral-100"}`}
+            disabled={!verified}
+            type="submit"
+            onClick={() => handleAccAktivasiAkun(idUser, tokenAdmin)}
+          >
+            Aktivasi Akun
           </button>
-        }
-        modal
-        nested
-        overlayStyle={{
-          background: "rgba(128, 128, 128, 0.7)",
-          backdropFilter: "blur(5px)",
-        }}
-      >
-        {(close) => <InputTolakAktivasiPopup close={close} />}
-      </Popup>
-      <button
-        className={`py-2 px-4 w-full rounded-lg text-base font-semibold ${verified ? "text-white bg-brand-500" : "text-neutral-500 bg-neutral-100"}`}
-        disabled={!verified}
-        type="submit"
-        onClick={() => handleAccAktivasiAkun(idUser, tokenAdmin)}
-      >
-        Aktivasi Akun
-      </button>
+        </>
+      )}
     </div>
   );
 };
