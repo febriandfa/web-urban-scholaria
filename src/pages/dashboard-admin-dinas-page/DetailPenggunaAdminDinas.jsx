@@ -69,16 +69,24 @@ const DetailPenggunaAdminDinas = () => {
           </div>
         </CardGeneral>
         <p className="font-semibold">File</p>
-        <DokumenKelolaAkunDashboardAdminDinas namaDokumen="Foto Profil" fileDokumen={pengguna?.foto} link={pengguna?.foto} handleCheckboxChange={(e) => handleCheckboxChange("foto", e.target.checked)} checklist={checklist.foto} />
+        <DokumenKelolaAkunDashboardAdminDinas
+          namaDokumen="Foto Profil"
+          fileDokumen={pengguna?.foto}
+          link={pengguna?.foto}
+          handleCheckboxChange={(e) => handleCheckboxChange("foto", e.target.checked)}
+          checklist={checklist.foto}
+          isActive={pengguna?.is_active === "Y"}
+        />
         <DokumenKelolaAkunDashboardAdminDinas
           namaDokumen="KTP"
           fileDokumen={pengguna?.ktp_paspor}
           link={pengguna?.ktp_paspor}
           handleCheckboxChange={(e) => handleCheckboxChange("ktp_paspor", e.target.checked)}
           checklist={checklist.ktp_paspor}
+          isActive={pengguna?.is_active === "Y"}
         />
       </div>
-      <AktivasiButtonKelolaAkunDashboatdAdminDinas verified={isAllChecked} idUser={idUser} tokenAdmin={tokenAdmin} />
+      <AktivasiButtonKelolaAkunDashboatdAdminDinas verified={isAllChecked} idUser={idUser} tokenAdmin={tokenAdmin} isActive={pengguna?.is_active === "Y"} />
     </MainPageLayout>
   );
 };

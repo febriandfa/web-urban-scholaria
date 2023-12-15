@@ -1,16 +1,18 @@
 import React from "react";
 import SalinTeks from "../../utils/functions/SalinTeks";
+import StatusPengajuanDashboardAdministrator from "../dashboard-administrator-components/StatusPengajuanDashboardAdministrator";
 
-const InformasiDetailPengajuanDashboardAdministrator = ({ idPengajuan, jenisPerizinan, tanggalPengajuan, namaSekolah, pemohon }) => {
+const InformasiDetailPengajuanDashboardAdministrator = ({ idPengajuan, jenisPerizinan, tanggalPengajuan, namaSekolah, pemohon, statusPengajuan }) => {
   return (
     <div>
       <h1 className="text-2xl text-brand-500 font-semibold text-center mb-3">{jenisPerizinan}</h1>
-      <div className="flex items-center justify-center mb-10">
+      <StatusPengajuanDashboardAdministrator status={statusPengajuan} />
+      {/* <div className="flex items-center justify-center mb-10">
         <p className="text-sm font-semibold">ID Pengajuan: {idPengajuan}</p>
         <button className="text-warn-500 font-semibold ml-4" type="button" onClick={() => SalinTeks(idPengajuan)}>
           Salin
         </button>
-      </div>
+      </div> */}
       <div className="grid grid-cols-2 gap-20">
         <div className="flex flex-col gap-3">
           <div className="flex items-center">
@@ -45,6 +47,12 @@ const InformasiDetailPengajuanDashboardAdministrator = ({ idPengajuan, jenisPeri
             <p className="text-neutral-500 ml-4">Pemohon</p>
             <p className="text-neutral-500 ml-auto">{pemohon}</p>
           </div>
+        </div>
+        <div className="flex items-start justify-end">
+          <p className="text-sm font-semibold">ID Pengajuan: {idPengajuan}</p>
+          <button className="text-warn-500 font-semibold ml-4" type="button" onClick={() => SalinTeks(idPengajuan)}>
+            Salin
+          </button>
         </div>
       </div>
     </div>

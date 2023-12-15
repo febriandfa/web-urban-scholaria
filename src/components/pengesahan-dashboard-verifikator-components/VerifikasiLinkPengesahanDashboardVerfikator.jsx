@@ -1,9 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const VerifikasiLinkPengesahanDashboardVerfikator = ({ link }) => {
+const VerifikasiLinkPengesahanDashboardVerfikator = ({ idSurat }) => {
+  const handleCekClick = async () => {
+    try {
+      localStorage.setItem("IdSuratDiajukan", idSurat);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
-    <Link className="flex w-fit items-center gap-2 text-base font-semibold text-brand-500" to={link}>
+    <Link className="flex w-fit items-center gap-2 text-base font-semibold text-brand-500" to="/detail-pengesahan-verifikator" onClick={() => handleCekClick()}>
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
         <path d="M7 12C7 10.8954 7.89543 10 9 10H19C20.1046 10 21 10.8954 21 12V17C21 18.1046 20.1046 19 19 19H5C6.10457 19 7 18.1046 7 17V12Z" fill="#191D88" />
         <path

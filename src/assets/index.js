@@ -33,6 +33,7 @@ import bgPerizinanTK from "./images/background-perizinan-tk.jpeg";
 import bgPerizinanSD from "./images/background-perizinan-sd.jpeg";
 import bgPerizinanSMP from "./images/background-perizinan-smp.jpeg";
 import bgPerizinanSMA from "./images/background-perizinan-sma.jpeg";
+import bgAlurPerizinan from "./images/background-alur-perizinan.png";
 import imgKosong from "./images/aktivitas-kosong.png";
 import slaPembangunan from "./images/sla-pembangunan.png";
 import slaOperasional from "./images/sla-operasional.png";
@@ -78,6 +79,7 @@ export {
   bgPerizinanSD,
   bgPerizinanSMP,
   bgPerizinanSMA,
+  bgAlurPerizinan,
   imgKosong,
   slaPembangunan,
   slaOperasional,

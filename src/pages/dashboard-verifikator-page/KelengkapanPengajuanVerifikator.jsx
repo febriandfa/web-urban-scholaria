@@ -77,17 +77,18 @@ const KelengkapanPengajuanVerifikator = () => {
         <hr className="w-full h-0.5 rounded-full bg-neutral-300 my-6" />
         <InformasiDetailPengajuanDashboardAdministrator
           idPengajuan={detailPengajuan?.id}
-          jenisPerizinan={detailPengajuan?.surat_jenis?.nama}
+          jenisPerizinan={`${detailPengajuan?.surat_jenis?.nama} ${detailPengajuan?.kategori}`}
           namaSekolah={detailPengajuan?.nama}
           tanggalPengajuan={FormatTanggal(detailPengajuan?.created_at)}
           pemohon={detailPengajuan?.user?.nama_lengkap}
+          statusPengajuan={detailPengajuan?.status}
         />
         <hr className="w-full h-0.5 rounded-full bg-neutral-300 my-6" />
         <AlamatDetailPengajuanDashboardAdministrator alamat={detailPengajuan?.alamat_lokasi} latitude={detailPengajuan?.latitude} longitude={detailPengajuan?.longitude} />
         <hr className="w-full h-0.5 rounded-full bg-neutral-300 my-6" />
         <CekSesuaiVerifikasiDashboardVerifikator dokumenPengajuan={dokumenPengajuan} handleCheckboxChange={handleCheckboxChange} checklist={isChecked} />
       </div>
-      <SurveyorButtonVerifikasiDashboardVerifikator verified={allChecked} disabled={buttonDisabled} />
+      <SurveyorButtonVerifikasiDashboardVerifikator idSurat={detailPengajuan?.id} verified={allChecked} disabled={buttonDisabled} />
     </MainPageLayout>
   );
 };

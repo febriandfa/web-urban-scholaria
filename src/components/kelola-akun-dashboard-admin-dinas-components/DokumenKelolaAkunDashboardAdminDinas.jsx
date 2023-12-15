@@ -3,7 +3,7 @@ import LihatFileVerifikasiDashboardAdministrator from "../verifikasi-dashboard-a
 import CheckboxVerifikasiDashboardAdministrator from "../verifikasi-dashboard-administrator-components/CheckboxVerifikasiDashboardOperator";
 import CardGeneral from "../general-components/CardGeneral";
 
-const DokumenKelolaAkunDashboardAdminDinas = ({ namaDokumen, fileDokumen, link, handleCheckboxChange, checklist }) => {
+const DokumenKelolaAkunDashboardAdminDinas = ({ namaDokumen, fileDokumen, link, handleCheckboxChange, checklist, isActive }) => {
   return (
     <CardGeneral color="bg-neutral-100" customClass="mb-4">
       <div className="flex items-center gap-3">
@@ -21,9 +21,11 @@ const DokumenKelolaAkunDashboardAdminDinas = ({ namaDokumen, fileDokumen, link, 
           <LihatFileVerifikasiDashboardAdministrator link={link} />
           <p className="text-brand-500 text-sm">{fileDokumen}</p>
         </div>
-        <div className="ml-auto">
-          <CheckboxVerifikasiDashboardAdministrator onChange={handleCheckboxChange} checked={checklist} />
-        </div>
+        {isActive ? null : (
+          <div className="ml-auto">
+            <CheckboxVerifikasiDashboardAdministrator onChange={handleCheckboxChange} checked={checklist} />
+          </div>
+        )}
       </div>
     </CardGeneral>
   );

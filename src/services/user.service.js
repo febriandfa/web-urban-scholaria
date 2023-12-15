@@ -141,6 +141,14 @@ export const getSuratStatusVerifHasilSurvey = async () => {
   return await api.get("surat?status=Verifikasi Hasil Survey");
 };
 
+export const accVerifikasiHasilSurveyVerifikator = async (surat_id, data) => {
+  return await api.post(`surat/` + surat_id + `/terima-hasil-survey`, data);
+};
+
+export const declineVerifikasiHasilSurveyVerifikator = async (surat_id, data) => {
+  return await api.post(`surat/` + surat_id + `/tolak-hasil-survey`, data);
+};
+
 export const getSuratStatusDitolak = async () => {
   return await api.get("surat?status=Ditolak");
 };
