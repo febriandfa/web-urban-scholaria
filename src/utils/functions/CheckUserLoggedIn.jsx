@@ -1,6 +1,6 @@
-const checkUserLoggedIn = () => {
+const CheckUserLoggedIn = () => {
   const userToken = localStorage.getItem("TOKEN");
   return userToken !== null;
 };
 
-export default checkUserLoggedIn;
+export default CheckUserLoggedIn;

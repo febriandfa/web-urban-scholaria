@@ -3,7 +3,7 @@ import { logoUrban } from "../../assets";
 import LinkButtonNavbar from "./LinkButtonNavbar";
 import DropdownNavbar from "./DropdownNavbar";
 import { Link } from "react-router-dom";
-import checkUserLoggedIn from "../../utils/functions/CheckUserLoggedIn";
+import CheckUserLoggedIn from "../../utils/functions/CheckUserLoggedIn";
 import { userService } from "../../services";
 import { getToken } from "../../services/storage.service";
 

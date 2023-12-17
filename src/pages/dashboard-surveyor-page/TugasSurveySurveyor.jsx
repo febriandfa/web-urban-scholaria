@@ -11,48 +11,56 @@ import { userService } from "../../services";
 // import LihatKelengkapanVerifikasiDashboardAdministrator from "../../components/verifikasi-dashboard-administrator-components/LihatKelengkapanVerifikasiDashboardOperator";
 import FormatTanggal from "../../utils/functions/FormatTanggal";
 import LihatDetailTugasTugasSurveyDashboardSurveyor from "../../components/dashboard-surveyor-components/LihatDetailTugasTugasSurveyDashboardSurveyor";
+import LoadingPopup from "../../components/popup-components/LoadingPopup";
 
 const TugasSurveySurveyor = () => {
-  const [semuaPengajuan, setSemuaPengajuan] = useState();
+  const [semuaTugas, setSemuaTugas] = useState();
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+  const [loading, setLoading] = useState(false);
 
-  const semuaPengajuanData = async () => {
+  const semuaTugasData = async () => {
     try {
-      const response = await userService.getSuratStatusVerifVerifikator();
-      console.log("Hasil Semua Pengajuan", response);
-      setSemuaPengajuan(response?.data?.data);
+      setLoading(true);
+      const response = await userService.getTugasSurvey();
+      console.log("Hasil Semua Tugas", response);
+      setSemuaTugas(response?.data?.data);
+      setLoading(false);
     } catch (error) {
       console.error(error);
+      setLoading(false);
     }
   };
 
   useEffect(() => {
-    semuaPengajuanData();
+    semuaTugasData();
   }, []);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
-  const totalPages = Math.ceil(semuaPengajuan?.length / itemsPerPage);
+  const totalPages = Math.ceil(semuaTugas?.length / itemsPerPage);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = semuaPengajuan?.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = semuaTugas?.slice(indexOfFirstItem, indexOfLastItem);
 
-  const headVerifikasiDokumen = ["ID Dokumen", "Nama Pemohonon", "Perizinan", "Tanggal Pengajuan", "Status"];
+  const headTugasSurvey = ["Nama Tugas", "Tanggal Penugasan", "Tenggat", "ID Dokumen", "Status"];
 
   const getStatusColor = (status) => {
     let colorClass = "";
 
     switch (status) {
-      case "Selesai":
-        colorClass = "text-done-500";
+      case "Sudah Disurvey":
+        colorClass = "text-brand-300";
         break;
-      case "Perlu Verifikasi":
+      case "Belum Disurvey":
         colorClass = "text-warn-500";
         break;
-      case "Terlambat":
+      case "Survey Disetujui":
+        colorClass = "text-done-500";
+        break;
+      case "Survey Ditolak":
         colorClass = "text-danger-500";
         break;
       default:
@@ -63,23 +71,21 @@ const TugasSurveySurveyor = () => {
 
   return (
     <MainPageLayout>
+      <LoadingPopup loading={loading} />
       <TitleVerifikasiDashboardAdministrator title="Tugas Survey" />
       <TableGeneral>
-        <TableHeadGeneral headTitles={headVerifikasiDokumen} />
+        <TableHeadGeneral headTitles={headTugasSurvey} />
         <TableBodyGeneral>
-          {semuaPengajuan &&
+          {semuaTugas &&
             currentItems &&
-            currentItems.map((pengajuan, index) => (
+            currentItems.map((tugas, index) => (
               <TableRowGeneral key={index}>
-                <TableItemGeneral tableItem={pengajuan?.id} />
-                <TableItemGeneral tableItem={pengajuan?.user_id} />
-                <TableItemGeneral tableItem={`${pengajuan?.surat_dokumen[0]?.surat_syarat?.surat_jenis.nama} ${pengajuan?.kategori}`} />
-                <TableItemGeneral tableItem={FormatTanggal(pengajuan?.created_at)} />
-                <TableItemGeneral
-                  tableItem={pengajuan?.status === "Verifikasi Verifikator" ? "Perlu Verifikasi" : pengajuan?.status}
-                  customColor={getStatusColor(pengajuan?.status === "Verifikasi Verifikator" ? "Perlu Verifikasi" : pengajuan?.status)}
-                />
-                <TableItemGeneral tableItem={<LihatDetailTugasTugasSurveyDashboardSurveyor />} />
+                <TableItemGeneral tableItem={tugas?.nama_survey} capitalize />
+                <TableItemGeneral tableItem={FormatTanggal(tugas?.jadwal_survey)} />
+                <TableItemGeneral tableItem={FormatTanggal(tugas?.tenggat_survey)} />
+                <TableItemGeneral tableItem={tugas?.surat_id} />
+                <TableItemGeneral tableItem={tugas?.status} customColor={getStatusColor(tugas?.status)} />
+                <TableItemGeneral tableItem={<LihatDetailTugasTugasSurveyDashboardSurveyor id_surat={tugas?.surat_id} />} />
               </TableRowGeneral>
             ))}
         </TableBodyGeneral>

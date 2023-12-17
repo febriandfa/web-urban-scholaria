@@ -123,7 +123,7 @@ const operatorSidebar = [
         />
       </svg>
     ),
-    link: "/verifikasi-dokumen-operator",
+    link: "/verifikasi-perizinan-operator",
     title: "Verifikasi Dokumen",
   },
   {
@@ -225,7 +225,7 @@ const verifikatorSidebar = [
         />
       </svg>
     ),
-    link: "/verifikasi-dokumen-verifikator",
+    link: "/verifikasi-perizinan-verifikator",
     title: "Verifikasi Dokumen",
   },
   {

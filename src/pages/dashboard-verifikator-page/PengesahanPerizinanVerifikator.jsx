@@ -10,19 +10,24 @@ import PaginationGeneral from "../../components/general-components/PaginationGen
 import VerifikasiLinkPengesahanDashboardVerfikator from "../../components/pengesahan-dashboard-verifikator-components/VerifikasiLinkPengesahanDashboardVerfikator";
 import { userService } from "../../services";
 import FormatTanggal from "../../utils/functions/FormatTanggal";
+import LoadingPopup from "../../components/popup-components/LoadingPopup";
 
 const PengesahanPerizinanVerifikator = () => {
   const [semuaPengajuan, setSemuaPengajuan] = useState();
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+  const [loading, setLoading] = useState(false);
 
   const semuaPengajuanData = async () => {
     try {
+      setLoading(true);
       const response = await userService.getSuratStatusVerifHasilSurvey();
       console.log("Hasil Semua Pengajuan", response);
       setSemuaPengajuan(response?.data?.data);
+      setLoading(false);
     } catch (error) {
       console.error(error);
+      setLoading(false);
     }
   };
 
@@ -61,6 +66,7 @@ const PengesahanPerizinanVerifikator = () => {
 
   return (
     <MainPageLayout>
+      <LoadingPopup loading={loading} />
       <div className="h-40 w-full bg-[url('./assets/images/background-pengajuan-header.png')] bg-cover bg-center rounded-lg mb-4">
         <h1 className="font-semibold text-4xl text-white text-center flex flex-col justify-center items-center h-full">PENGESAHAN PERMOHONAN PERIZINAN</h1>
       </div>

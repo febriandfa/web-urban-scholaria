@@ -34,7 +34,7 @@ const CekSesuaiVerifikasiDashboardOperator = ({ handleCheckboxChange, checklist,
           {dokumenPengajuan?.map((item, index) => (
             <TableRowGeneral key={index}>
               <TableItemGeneral tableItem={item?.surat_syarat?.nama} capitalize wrap />
-              <TableItemGeneral tableItem={item?.dokumen_upload?.replace(/^.*?\/dokumen-upload\//, "")} customColor="text-brand-500" wrap />
+              <TableItemGeneral tableItem={item?.dokumen_upload?.replace(/^.*?\/dokumen-upload\//, "")} customColor="text-brand-500" capitalize wrap />
               <TableItemGeneral tableItem={<LihatFileVerifikasiDashboardAdministrator link={item?.dokumen_upload} />} />
               <TableItemGeneral tableItem={<CheckboxVerifikasiDashboardAdministrator onChange={() => handleCheckboxChange(index)} checked={checklist[index]} />} />
             </TableRowGeneral>

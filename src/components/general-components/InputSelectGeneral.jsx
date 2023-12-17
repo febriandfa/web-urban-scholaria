@@ -9,7 +9,7 @@ const InputSelectGeneral = ({ name, label, placeholder, value, required, disable
       </label>
       <div className="relative">
         <select
-          className={`w-full px-3 h-9 rounded-lg text-sm border border-neutral-400 ${disabled ? "bg-neutral-300 text-neutral-500" : "bg-white"}`}
+          className={`w-full px-3 h-9 rounded-lg text-sm border border-neutral-400 capitalize ${disabled ? "bg-neutral-300 text-neutral-500" : "bg-white"}`}
           id={name}
           type="text"
           placeholder={placeholder}
@@ -19,7 +19,7 @@ const InputSelectGeneral = ({ name, label, placeholder, value, required, disable
           onChange={(e) => onChange({ name, value: e.target.value })}
         >
           {option.map((optionItem, index) => (
-            <option key={index} value={optionItem.value}>
+            <option className="capitalize" key={index} value={optionItem.value}>
               {optionItem.text}
             </option>
           ))}

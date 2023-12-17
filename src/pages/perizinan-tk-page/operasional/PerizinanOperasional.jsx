@@ -17,6 +17,7 @@ const InformasiPerizinanHeader = ({ title, kategori }) => {
 const InformasiPerizinanBody = ({ loading, linkAlur, linkSyarat, kategori, namaPerizinan }) => {
   const syaratPengajuanOperasionalTKData = syaratPeangajuanOperasionalTK;
   const isLoggedIn = getToken() !== null;
+  const isRolePemohon = localStorage.getItem("UserDetail");
 
   return (
     <>
@@ -35,7 +36,7 @@ const InformasiPerizinanBody = ({ loading, linkAlur, linkSyarat, kategori, namaP
         </div>
         <div className="col-span-2">
           <InformasiTambahan linkAlur={linkAlur} linkSyarat={linkSyarat} />
-          {isLoggedIn && (
+          {isLoggedIn && isRolePemohon === "Pemohon" && (
             <div className="mx-auto w-fit mt-14">
               {/* <LinkButtonGeneral text="Ajukan Perizinan" link="/form-pengajuan-operasional-tk" /> */}
               <LinkButtonGeneral text="Ajukan Perizinan" link="/pengajuan-perizinan" />
