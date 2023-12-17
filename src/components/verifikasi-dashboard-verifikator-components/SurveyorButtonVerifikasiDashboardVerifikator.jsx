@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import Popup from "reactjs-popup";
-import InputPenolakanPopup from "../popup-components/InputPenolakanPopup";
+// import InputPenolakanPopup from "../popup-components/InputTolakVerifikasiDokumenVerifikatorPopup";
 import PenugasanSurveyPopup from "../popup-components/PenugasanSurveyPopup";
 import { useNavigate } from "react-router-dom";
 import { userService } from "../../services";
+import InputTolakVerifikasiDokumenVerifikatorPopup from "../popup-components/InputTolakVerifikasiDokumenVerifikatorPopup";
 
 const SurveyorButtonVerifikasiDashboardVerifikator = ({ verified }) => {
   return (
@@ -21,7 +22,7 @@ const SurveyorButtonVerifikasiDashboardVerifikator = ({ verified }) => {
           backdropFilter: "blur(5px)",
         }}
       >
-        {(close) => <InputPenolakanPopup close={close} />}
+        {(close) => <InputTolakVerifikasiDokumenVerifikatorPopup close={close} />}
       </Popup>
       <Popup
         trigger={

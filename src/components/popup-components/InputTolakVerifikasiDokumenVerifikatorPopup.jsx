@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { userService } from "../../services";
 import { getIdSuratDiajukan } from "../../services/storage.service";
 
-const InputPenolakanPopup = ({ close }) => {
+const InputTolakVerifikasiDokumenVerifikatorPopup = ({ close }) => {
   const navigate = useNavigate();
   const idSurat = getIdSuratDiajukan();
   const [formData, setFormData] = useState({
@@ -64,4 +64,4 @@ const InputPenolakanPopup = ({ close }) => {
   );
 };
 
-export default InputPenolakanPopup;
+export default InputTolakVerifikasiDokumenVerifikatorPopup;
