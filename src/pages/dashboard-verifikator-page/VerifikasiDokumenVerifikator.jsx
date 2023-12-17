@@ -12,19 +12,26 @@ import TitleVerifikasiDashboardAdministrator from "../../components/verifikasi-d
 import { userService } from "../../services";
 import FormatTanggal from "../../utils/functions/FormatTanggal";
 import LihatKelengkapanVerifikasiDashboardVerifikator from "../../components/verifikasi-dashboard-verifikator-components/LihatKelengkapanVerifikasiDashboardVerifikator";
+import { getSuratJenisID } from "../../services/storage.service";
+import LoadingPopup from "../../components/popup-components/LoadingPopup";
 
 const VerifikasiDokumenVerifikator = () => {
   const [semuaPengajuan, setSemuaPengajuan] = useState();
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+  const suratJenisID = getSuratJenisID();
+  const [loading, setLoading] = useState(false);
 
   const semuaPengajuanData = async () => {
     try {
-      const response = await userService.getSuratStatusVerifVerifikator();
+      setLoading(true);
+      const response = await userService.getSuratStatusVerifVerifikator(suratJenisID);
       console.log("Hasil Semua Pengajuan", response);
       setSemuaPengajuan(response?.data?.data);
+      setLoading(false);
     } catch (error) {
       console.error(error);
+      setLoading(false);
     }
   };
 
@@ -64,6 +71,7 @@ const VerifikasiDokumenVerifikator = () => {
 
   return (
     <MainPageLayout>
+      <LoadingPopup loading={loading} />
       <TitleVerifikasiDashboardAdministrator title="Verifikasi Dokumen" />
       <TableGeneral>
         <TableHeadGeneral headTitles={headVerifikasiDokumen} />

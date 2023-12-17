@@ -6,8 +6,8 @@ const KomentarPenolakanPopup = ({ idSurat }) => {
   const getAlasanDikembalikan = async () => {
     try {
       const response = await userService.getPengajuanByID(idSurat);
-      console.log("Alasan", response?.data?.data[0]?.alasan_dikembalikan);
-      setAlasanDitolak(response?.data?.data[0]?.alasan_dikembalikan);
+      console.log("Alasan", response?.data?.data[0]?.alasan_ditolak);
+      setAlasanDitolak(response?.data?.data[0]?.alasan_ditolak);
     } catch (error) {
       console.error(error);
     }

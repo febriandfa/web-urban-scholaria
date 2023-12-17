@@ -93,7 +93,7 @@ const FormPerizinanBody = ({ title, loading, kategoriPerizinan, idSuratJenis }) 
       <form className="w-4/5 mx-auto" action="#" method="post">
         <CardGeneral customClass="w-full mb-7" color="bg-brand-50">
           <InputTextGeneral name="kategori" label="Kategori" value={formData.kategori} onChange={handleInputChange} required disabled />
-          <InputTextGeneral name="surat_jenis_id" label="ID Surat Jenis" value={namaJenisSurat} onChange={handleInputChange} required disabled />
+          <InputTextGeneral name="surat_jenis_id" label="Surat Jenis" value={namaJenisSurat} onChange={handleInputChange} required disabled />
           <InputTextGeneral name="nama" label="Nama" placeholder="Masukkan Nama Sekolah..." value={formData.nama} onChange={handleInputChange} required />
           <InputTextGeneral name="alamat_lokasi" label="Alamat" placeholder="Masukkan Alamat..." value={formData.alamat_lokasi} onChange={handleInputChange} required />
           <MapPerizinan onLocationChange={handleLocationChange} />

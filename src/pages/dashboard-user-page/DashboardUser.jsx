@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import MainPageLayout from "../../layouts/MainPageLayout";
 import ProfileBarDashboardUser from "../../components/dashboard-user-components/ProfileBarDashboardUser";
 import StatPengajuanDashboardUser from "../../components/dashboard-user-components/StatPengajuanDashboardUser";
 import CariPermohonanDashboardUser from "../../components/dashboard-user-components/CariPermohonanDashboardUser";
 import AktivitasDashboardUser from "../../components/dashboard-user-components/AktivitasDashboardUser";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import notifikasiUser from "../../utils/NotifikasiUserData";
 import ListNotifikasiDashboardUser from "../../components/dashboard-user-components/ListNotifikasiDashboardUser";
+import CheckTokenExpiry from "../../utils/functions/CheckTokenExpiry";
 
 const DashboardUser = () => {
   const notifikasiUserData = notifikasiUser.slice(0, 3);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    CheckTokenExpiry(navigate);
+  }, [navigate]);
 
   return (
     <MainPageLayout>

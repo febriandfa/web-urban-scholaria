@@ -8,6 +8,7 @@ import LinkBackGeneral from "../../components/general-components/LinkBackGeneral
 import { getIdSuratDiajukan } from "../../services/storage.service";
 import { userService } from "../../services";
 import { useNavigate } from "react-router-dom";
+import CheckTokenExpiry from "../../utils/functions/CheckTokenExpiry";
 
 const FeedbackUser = () => {
   const idSurat = getIdSuratDiajukan();
@@ -66,6 +67,10 @@ const FeedbackUser = () => {
       }
     });
   };
+
+  useEffect(() => {
+    CheckTokenExpiry(navigate);
+  }, [navigate]);
 
   return (
     <MainPageLayout>

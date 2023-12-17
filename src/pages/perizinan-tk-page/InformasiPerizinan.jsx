@@ -8,12 +8,15 @@ import { userService } from "../../services";
 import LoadingPopup from "../../components/popup-components/LoadingPopup";
 import LinkBackGeneral from "../../components/general-components/LinkBackGeneral";
 import { getKategoriPerizinan } from "../../services/storage.service";
+import CheckTokenExpiry from "../../utils/functions/CheckTokenExpiry";
+import { useNavigate } from "react-router-dom";
 
 const InformasiPerizinanHeader = ({ img, title }) => {
   return <HeaderPerizinan img={img} title={title} link="/tentang-pengajuan-perizinan" />;
 };
 
 const InformasiPerizinanBody = ({ bgPerizinan }) => {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [jenisPerizinan, setJenisPerizinan] = useState([]);
   const [panjangSyarat, setPanjangSyarat] = useState({});
@@ -52,6 +55,10 @@ const InformasiPerizinanBody = ({ bgPerizinan }) => {
       panjangSyaratSuratData(jenis.id);
     });
   }, [jenisPerizinan]);
+
+  useEffect(() => {
+    CheckTokenExpiry(navigate);
+  }, [navigate]);
 
   return (
     <div>

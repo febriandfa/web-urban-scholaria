@@ -1,3 +1,25 @@
+// import { useEffect, useState } from "react";
+// import { userService } from "../services";
+
+// const [semuaOperasional, setSemuaOperasional] = useState([0]);
+// const [semuaPerubahan, setSemuaPerubahan] = useState([0]);
+// const [semuaPembangunan, setSemuaPembangunan] = useState([0]);
+
+// const getSemuaDataPerizinan = async () => {
+//   try {
+//     const response = await userService.getSemuaPengajuan();
+//     setSemuaPembangunan(response?.data?.data?.filter((item) => item?.surat_jenis_id === "1")?.length);
+//   } catch (error) {
+//     console.error(error);
+//   }
+// };
+
+// useEffect(() => {
+//   getSemuaDataPerizinan();
+// });
+
+// export { semuaPembangunan };
+
 const dataByFilter = {
   Semua: {
     datasetChartKategori: [100, 200, 300],

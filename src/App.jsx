@@ -44,6 +44,9 @@ import TugasSurveySurveyor from "./pages/dashboard-surveyor-page/TugasSurveySurv
 import DetailTugasSurveySurveyor from "./pages/dashboard-surveyor-page/DetailTugasSurveySurveyor";
 import KelolaAkunAdminDinas from "./pages/dashboard-admin-dinas-page/KelolaAkunAdminDinas";
 import DetailPenggunaAdminDinas from "./pages/dashboard-admin-dinas-page/DetailPenggunaAdminDinas";
+import JenisPerizinanVerifikasiDokumenAdministrator from "./pages/dashboard-operator-page/JenisPerizinanVerifikasiDokumenOperator";
+import JenisPerizinanVerifikasiDokumenOperator from "./pages/dashboard-operator-page/JenisPerizinanVerifikasiDokumenOperator";
+import JenisPerizinanVerifikasiDokumenVerifikator from "./pages/dashboard-verifikator-page/JenisPerizinanVerifikasiDokumenVerifikator";
 // import LihatDokumenUser from "./pages/dashboard-user-page/LihatDokumenUser";
 // import LihatDokumenPageUser from "./pages/dashboard-user-page/LihatDokumenPageUser";
 // import CobaDaftar from "./pages/auth-page/CobaDaftar";
@@ -112,10 +115,12 @@ function App() {
             <Route path="/obrolan-administrator" element={<ObrolanAdministrator />} />
 
             {/* Operator */}
+            <Route path="/verifikasi-perizinan-operator" element={<JenisPerizinanVerifikasiDokumenOperator />} />
             <Route path="/verifikasi-dokumen-operator" element={<VerifikasiDokumenOperator />} />
             <Route path="/kelengkapan-dokumen-operator" element={<KelengkapanPengajuanOperator />} />
 
             {/* Verifikator */}
+            <Route path="/verifikasi-perizinan-verifikator" element={<JenisPerizinanVerifikasiDokumenVerifikator />} />
             <Route path="/verifikasi-dokumen-verifikator" element={<VerifikasiDokumenVerifikator />} />
             <Route path="/kelengkapan-dokumen-verifikator" element={<KelengkapanPengajuanVerifikator />} />
             <Route path="/pengesahan-perizinan-verifikator" element={<PengesahanPerizinanVerifikator />} />

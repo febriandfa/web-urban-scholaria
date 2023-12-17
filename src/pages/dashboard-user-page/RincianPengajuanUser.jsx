@@ -9,6 +9,8 @@ import { getIdSuratDiajukan, getSuratJenisID } from "../../services/storage.serv
 import { userService } from "../../services";
 import ItemDokumenRincianDashboardUser from "../../components/rincian-pengajuan-dashboard-user-components/ItemDokumenRincianDashboardUser";
 import LoadingPopup from "../../components/popup-components/LoadingPopup";
+import CheckTokenExpiry from "../../utils/functions/CheckTokenExpiry";
+import { useNavigate } from "react-router-dom";
 
 const RincianPengajuanUser = () => {
   const [detailPengajuan, setDetailPengajuan] = useState();
@@ -17,6 +19,7 @@ const RincianPengajuanUser = () => {
   const [syaratSuratPengajuan, setSyaratSuratPengajuan] = useState([]);
   const getIdSuratDiajukanSaatIni = getIdSuratDiajukan();
   const suratJenisID = getSuratJenisID();
+  const navigate = useNavigate();
   console.log("ID Surat Saat Ini", getIdSuratDiajukanSaatIni);
 
   const pengajuanDetailData = async () => {
@@ -50,6 +53,10 @@ const RincianPengajuanUser = () => {
     pengajuanDetailData();
     syaratPerizinanData(suratJenisID);
   }, []);
+
+  useEffect(() => {
+    CheckTokenExpiry(navigate);
+  }, [navigate]);
 
   const formatTanggal = (dateString) => {
     const options = { year: "numeric", month: "long", day: "numeric" };

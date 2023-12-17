@@ -102,8 +102,12 @@ export const getFeedback = async () => {
 // };
 
 // OPERATOR API START
-export const getSuratStatusVerifOperator = async () => {
-  return await api.get("surat?status=Verifikasi Operator");
+// export const getSuratStatusVerifOperator = async () => {
+//   return await api.get("surat?status=Verifikasi Operator");
+// };
+
+export const getSuratStatusVerifOperator = async (surat_jenis_id) => {
+  return await api.get("surat?status=Verifikasi Operator&surat_jenis_id=" + surat_jenis_id);
 };
 
 export const accVerifikasiOperator = async (surat_id) => {
@@ -116,8 +120,8 @@ export const declineVerifikasiOperator = async (surat_id) => {
 // OPERATOR API END
 
 // VERIFIKATOR API START
-export const getSuratStatusVerifVerifikator = async () => {
-  return await api.get("surat?status=Verifikasi Verifikator");
+export const getSuratStatusVerifVerifikator = async (surat_jenis_id) => {
+  return await api.get("surat?status=Verifikasi Verifikator&surat_jenis_id=" + surat_jenis_id);
 };
 
 export const accVerifikasiVerifikator = async (surat_id) => {
