@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const DragDropUploadGeneral = ({ onDrop, uploadedFiles }) => {
+const DragDropUploadGeneral = ({ onDrop, uploadedFiles, height }) => {
   const [isDragging, setIsDragging] = useState(false);
 
   const handleDragEnter = (e) => {
@@ -32,7 +32,7 @@ const DragDropUploadGeneral = ({ onDrop, uploadedFiles }) => {
 
   return (
     <div
-      className={`w-full h-[33rem] bg-neutral-200 rounded-2xl flex items-center justify-center ${isDragging ? "border-dashed border-2 border-brand-500" : ""}`}
+      className={`w-full ${height ? height : "h-[33rem]"} bg-neutral-200 rounded-2xl flex items-center justify-center ${isDragging ? "border-dashed border-2 border-brand-500" : ""}`}
       onDrop={handleDrop}
       onDragOver={handleDragOver}
       onDragEnter={handleDragEnter}

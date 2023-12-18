@@ -9,11 +9,14 @@ import BuatPerizinanButtonDashboardVerifikator from "../../components/pengesahan
 import { userService } from "../../services";
 import { getIdSuratDiajukan } from "../../services/storage.service";
 import FormatTanggal from "../../utils/functions/FormatTanggal";
+import LoadingPopup from "../../components/popup-components/LoadingPopup";
 
 const DetailPengesahanPerizinanVerifikator = () => {
   const [detailPengajuan, setDetailPengajuan] = useState();
   const [loading, setLoading] = useState(false);
   const [dokumenPengajuan, setDokumenPengajuan] = useState([]);
+  const [tugasSurvey, setTugasSurvey] = useState([]);
+  const [namaSurveyor, setNamaSurveyor] = useState();
   const getIdSuratDiajukanSaatIni = getIdSuratDiajukan();
   console.log("ID Surat Saat Ini", getIdSuratDiajukanSaatIni);
 
@@ -31,8 +34,36 @@ const DetailPengesahanPerizinanVerifikator = () => {
     }
   };
 
+  const hasilSurveyData = async () => {
+    try {
+      setLoading(true);
+      const response = await userService.getTugasSurveyBySuratID(getIdSuratDiajukanSaatIni);
+      setTugasSurvey(response?.data?.data[0]);
+      console.log("Isi Tugas Survey", response);
+      setLoading(false);
+    } catch (error) {
+      console.error(error);
+      setLoading(false);
+    }
+  };
+
+  const getNamaSurveyor = async (idUser) => {
+    try {
+      const response = await userService.getUserByID(idUser);
+      console.log("Nama Surveyor", response?.data?.data[0]?.nama_lengkap);
+      setNamaSurveyor(response?.data?.data[0]?.nama_lengkap);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getNamaSurveyor(tugasSurvey?.user_id);
+  }, [tugasSurvey?.user_id]);
+
   useEffect(() => {
     pengajuanDetailData();
+    hasilSurveyData();
   }, []);
 
   const [isChecked, setIsChecked] = useState([]);
@@ -73,6 +104,7 @@ const DetailPengesahanPerizinanVerifikator = () => {
 
   return (
     <MainPageLayout>
+      <LoadingPopup loading={loading} />
       <div className="mb-16">
         <LinkBackGeneral link="/pengesahan-perizinan-verifikator" />
         <hr className="w-full h-0.5 rounded-full bg-neutral-300 my-6" />
@@ -87,7 +119,18 @@ const DetailPengesahanPerizinanVerifikator = () => {
         <hr className="w-full h-0.5 rounded-full bg-neutral-300 my-6" />
         <AlamatDetailPengajuanDashboardAdministrator alamat={detailPengajuan?.alamat_lokasi} latitude={detailPengajuan?.latitude} longitude={detailPengajuan?.longitude} />
         <hr className="w-full h-0.5 rounded-full bg-neutral-300 my-6" />
-        <HasilSurveyPengesahanDashboardVerifikator handleCheckboxChange={handleCheckboxChange} checklist={checklist} />
+        <HasilSurveyPengesahanDashboardVerifikator
+          namaTugas={tugasSurvey?.nama_survey}
+          surveyor={namaSurveyor}
+          tanggalSurvey={FormatTanggal(tugasSurvey?.jadwal_survey)}
+          tenggatSurvey={FormatTanggal(tugasSurvey?.tenggat_survey)}
+          fileDokumenHasilSurvey={tugasSurvey?.dokumen_survey?.replace(/^.*?\/dokumen-survey\//, "")}
+          linkFileDokumenHasilSurvey={tugasSurvey?.dokumen_survey}
+          fileFotoHasilSurvey={tugasSurvey?.foto_survey ? tugasSurvey.foto_survey?.replace(/^.*?\/foto-survey\//, "") : "Belum Ada Foto Hasil Survey"}
+          linkFileFotoHasilSurvey={tugasSurvey?.foto_survey}
+          handleCheckboxChange={handleCheckboxChange}
+          checklist={checklist}
+        />
         <hr className="w-full h-0.5 rounded-full bg-neutral-300 my-6" />
         <ListDokumenPengesahanDashboardVerifikator dokumenPengajuan={dokumenPengajuan} />
       </div>

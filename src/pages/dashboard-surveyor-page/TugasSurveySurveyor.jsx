@@ -85,7 +85,7 @@ const TugasSurveySurveyor = () => {
                 <TableItemGeneral tableItem={FormatTanggal(tugas?.tenggat_survey)} />
                 <TableItemGeneral tableItem={tugas?.surat_id} />
                 <TableItemGeneral tableItem={tugas?.status} customColor={getStatusColor(tugas?.status)} />
-                <TableItemGeneral tableItem={<LihatDetailTugasTugasSurveyDashboardSurveyor id_surat={tugas?.surat_id} />} />
+                <TableItemGeneral tableItem={<LihatDetailTugasTugasSurveyDashboardSurveyor id_survey={tugas?.id} id_surat={tugas?.surat_id} />} />
               </TableRowGeneral>
             ))}
         </TableBodyGeneral>

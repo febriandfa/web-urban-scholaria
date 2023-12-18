@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const LihatDetailTugasTugasSurveyDashboardSurveyor = ({ id_surat }) => {
+const LihatDetailTugasTugasSurveyDashboardSurveyor = ({ id_survey, id_surat }) => {
   const handleCekClick = async () => {
     try {
+      localStorage.setItem("SurveyID", id_survey);
       localStorage.setItem("IdSuratDiajukan", id_surat);
     } catch (error) {
       console.error(error);

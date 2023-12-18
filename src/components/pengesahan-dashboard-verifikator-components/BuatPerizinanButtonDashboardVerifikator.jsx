@@ -60,7 +60,7 @@ const BuatPerizinanButtonDashboardVerifikator = ({ verified, idSurat }) => {
           backdropFilter: "blur(5px)",
         }}
       >
-        {(close) => <InputTolakHasilSurveyPopup close={close} link="/pengesahan-perizinan-verifikator" />}
+        {(close) => <InputTolakHasilSurveyPopup close={close} />}
       </Popup>
       <Link to="/terbitkan-perizinan-verifikator" onClick={() => handleOnClick()}>
         <button className={`py-2 px-4 w-full rounded-lg text-base font-semibold ${verified ? "text-white bg-brand-500" : "text-neutral-500 bg-neutral-100"}`} disabled={!verified}>

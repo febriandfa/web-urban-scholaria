@@ -160,6 +160,10 @@ export const getTugasSurvey = async () => {
 export const getTugasSurveyBySuratID = async (surat_id) => {
   return await api.get("surveyors?surat_id=" + surat_id);
 };
+
+export const postHasilSurvey = async (survey_id, data) => {
+  return await api.post(`survey/` + survey_id + `/set-hasil-survey`, data);
+};
 //
 //
 //

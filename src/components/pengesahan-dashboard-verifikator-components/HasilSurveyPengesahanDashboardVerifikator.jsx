@@ -4,7 +4,18 @@ import CardGeneral from "../general-components/CardGeneral";
 import CheckboxVerifikasiDashboardAdministrator from "../verifikasi-dashboard-administrator-components/CheckboxVerifikasiDashboardOperator";
 import LihatFileVerifikasiDashboardAdministrator from "../verifikasi-dashboard-administrator-components/LihatFileVerifikasiDashboardAdministrator";
 
-const HasilSurveyPengesahanDashboardVerifikator = ({ handleCheckboxChange, checklist }) => {
+const HasilSurveyPengesahanDashboardVerifikator = ({
+  namaTugas,
+  surveyor,
+  tanggalSurvey,
+  tenggatSurvey,
+  fileDokumenHasilSurvey,
+  linkFileDokumenHasilSurvey,
+  fileFotoHasilSurvey,
+  linkFileFotoHasilSurvey,
+  handleCheckboxChange,
+  checklist,
+}) => {
   return (
     <div>
       <h1 className="text-2xl text-brand-500 font-semibold text-center mb-10 flex items-center gap-2 justify-center">
@@ -25,11 +36,11 @@ const HasilSurveyPengesahanDashboardVerifikator = ({ handleCheckboxChange, check
         </svg>
         Hasil Survey
       </h1>
-      <div className="grid grid-cols-2 mb-7">
-        <LabelGeneral title="Nama Tugas" value="Tugas Survey Pembangunan TK Benih Kasih" />
-        <LabelGeneral title="Surveyor" value="Regi Muhammar (regimuhammar@gmail.com)" />
-        <LabelGeneral title="Tanggal Penugasan" value="13/11/2023" />
-        <LabelGeneral title="Tanggal Tenggat" value="16/11/2023" />
+      <div className="grid grid-cols-2 mb-7 gap-x-20">
+        <LabelGeneral title="Nama Tugas" value={namaTugas} />
+        <LabelGeneral title="Surveyor" value={surveyor} />
+        <LabelGeneral title="Tanggal Penugasan" value={tanggalSurvey} />
+        <LabelGeneral title="Tanggal Tenggat" value={tenggatSurvey} />
       </div>
       <CardGeneral color="bg-neutral-100" customClass="mb-4">
         <div className="flex items-center gap-3">
@@ -44,8 +55,8 @@ const HasilSurveyPengesahanDashboardVerifikator = ({ handleCheckboxChange, check
           </svg>
           <div>
             <p className="font-semibold inline-block mr-4">Dokumen Hasil Survey</p>
-            <LihatFileVerifikasiDashboardAdministrator link="#" />
-            <p className="text-brand-500 text-sm">Hasil Survey_Regi Muhammar.pdf</p>
+            <LihatFileVerifikasiDashboardAdministrator link={linkFileDokumenHasilSurvey} />
+            <p className="text-brand-500 text-sm">{fileDokumenHasilSurvey}</p>
           </div>
           <div className="ml-auto">
             <CheckboxVerifikasiDashboardAdministrator onChange={(e) => handleCheckboxChange("dokumen", e.target.checked)} checked={checklist.dokumen} />
@@ -65,8 +76,8 @@ const HasilSurveyPengesahanDashboardVerifikator = ({ handleCheckboxChange, check
           </svg>
           <div>
             <p className="font-semibold inline-block mr-4">Foto Hasil Survey (Sudah Ada Geotag)</p>
-            <LihatFileVerifikasiDashboardAdministrator link="#" />
-            <p className="text-brand-500 text-sm">Foto Hasil Survey_Regi Muhammar.jpg</p>
+            <LihatFileVerifikasiDashboardAdministrator link={linkFileFotoHasilSurvey} />
+            {fileFotoHasilSurvey !== "Belum Ada Foto Hasil Survey" ? <p className="text-brand-500 text-sm">{fileFotoHasilSurvey}</p> : <p className="text-brand-500 text-sm">Belum Ada Foto Hasil Survey</p>}
           </div>
           <div className="ml-auto">
             <CheckboxVerifikasiDashboardAdministrator onChange={(e) => handleCheckboxChange("foto", e.target.checked)} checked={checklist.foto} />

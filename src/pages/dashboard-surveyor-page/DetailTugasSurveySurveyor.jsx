@@ -37,7 +37,7 @@ const DetailTugasSurveySurveyor = () => {
   const getNamaSurveyor = async (idUser) => {
     try {
       const response = await userService.getUserByID(idUser);
-      console.log("Nama Surveyor", response?.data?.data[0].nama_lengkap);
+      console.log("Nama Surveyor", response?.data?.data[0]?.nama_lengkap);
       setNamaSurveyor(response?.data?.data[0]?.nama_lengkap);
     } catch (error) {
       console.error(error);
@@ -47,7 +47,7 @@ const DetailTugasSurveySurveyor = () => {
   useEffect(() => {
     detailTugasSurveyData();
     getNamaSurveyor(detailTugas?.user_id);
-  }, []);
+  }, [detailTugas?.user_id]);
 
   return (
     <MainPageLayout>
@@ -69,10 +69,12 @@ const DetailTugasSurveySurveyor = () => {
         <HasilSurveyTugasSurveyDashboardSurveyor
           namaTugas={detailTugas?.nama_survey}
           surveyor={namaSurveyor}
-          tanggalTugas={detailTugas?.jadwal_survey}
-          tenggatTugas={detailTugas?.tenggat_survey}
+          tanggalTugas={FormatTanggal(detailTugas?.jadwal_survey)}
+          tenggatTugas={FormatTanggal(detailTugas?.tenggat_survey)}
           suratTugas={detailTugas?.dokumen_surat_tugas?.replace(/^.*?\/dokumen-surat-tugas\//, "")}
-          fotoSurvey={detailTugas?.foto_survey ? detailTugas.foto_survey : "Belum Ada Foto Hasil Survey"}
+          fotoSurvey={detailTugas?.foto_survey ? detailTugas.foto_survey?.replace(/^.*?\/foto_survey\//, "") : "Belum Ada Foto Hasil Survey"}
+          fileDokumenHasilSurvey={detailTugas?.dokumen_survey?.replace(/^.*?\/dokumen-survey\//, "")}
+          linkDokumenHasilSurvey={detailTugas?.dokumen_survey}
         />
       </div>
       <SimpanButtonTugasSurveyDashboardSurveyor />
