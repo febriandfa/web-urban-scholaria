@@ -51,7 +51,7 @@ export const getSemuaPengajuan = async () => {
   return await api.get("surat");
 };
 
-export const getPengajuan = async (user_id) => {
+export const getPengajuanByUserID = async (user_id) => {
   return await api.get("surat/" + user_id);
 };
 
@@ -82,6 +82,19 @@ export const postSuratUpload = async (surat_id, surat_jenis_id, surat_syarat_id,
 export const patchSuratDiajukan = async (surat_id) => {
   return await api.patch(`surat/` + surat_id + `/surat-diajukan`);
 };
+
+export const getBuktiPengajuan = async (surat_id) => {
+  return await api.get(`surat/` + surat_id + `/cetak-kwitansi`);
+};
+
+export const getSuratPerizinan = async (surat_id) => {
+  return await api.get(`surat/` + surat_id + `/cetak-surat`);
+};
+
+export const getSKLegalitas = async (surat_id) => {
+  return await api.get(`surat/` + surat_id + `/cetak-surat-legalitas`);
+};
+
 // PENGAJUAN API END
 
 // FEEDBACK API START
@@ -155,6 +168,10 @@ export const declineVerifikasiHasilSurveyVerifikator = async (surat_id, data) =>
 
 export const getTugasSurvey = async () => {
   return await api.get("surveyors");
+};
+
+export const getTugasSurveyByUserID = async (user_id) => {
+  return await api.get("surveyors?user_id=" + user_id);
 };
 
 export const getTugasSurveyBySuratID = async (surat_id) => {

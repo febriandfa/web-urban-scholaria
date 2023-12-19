@@ -18,10 +18,13 @@ const PenugasanSurveyPopup = ({ close, idSurat }) => {
 
   const handleAccVerifikasiVerifikator = async () => {
     try {
+      setLoading(true);
       const response = await userService.accVerifikasiVerifikator(idSurat);
       console.log("Sudah ACC Next Jadwal Survey", response);
+      setLoading(false);
     } catch (error) {
       console.error(error);
+      setLoading(false);
     }
   };
 
@@ -64,9 +67,11 @@ const PenugasanSurveyPopup = ({ close, idSurat }) => {
 
   const getUserSurveyorData = async () => {
     try {
+      setLoading(true);
       const response = await userService.getUserSurveyor();
       console.log("Surveyornya", response);
       setSurveyor(response?.data?.data);
+      setLoading(false);
       // console.log("formData.user_id", formData.user_id);
       // const updatedOptions = response?.data?.data?.map((item) => ({
       //   id: item.id,
@@ -79,6 +84,7 @@ const PenugasanSurveyPopup = ({ close, idSurat }) => {
       // setSurveyor(newOptions);
     } catch (error) {
       console.error(error);
+      setLoading(false);
     }
   };
 
@@ -90,9 +96,10 @@ const PenugasanSurveyPopup = ({ close, idSurat }) => {
   const triggerAlert = () => {
     // e.preventDefault();
     Swal.fire({
-      imageUrl: alertNextSurveyor,
-      imageHeight: 131,
-      imageWidth: 131,
+      // imageUrl: alertNextSurveyor,
+      // imageHeight: 131,
+      // imageWidth: 131,
+      icon: "success",
       title: "TUGAS BERHASIL TERKIRIM",
       text: "Tugas sudah terkirim ke surveyor, pantau hasil survey di menu pengesahan",
       confirmButtonText: "Lanjut",

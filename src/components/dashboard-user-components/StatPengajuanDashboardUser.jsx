@@ -10,7 +10,7 @@ const StatPengajuanDashboardUser = () => {
     try {
       const response = await userService.getProfile();
       const userID = response?.data?.data?.id;
-      const responsePengajuan = await userService.getPengajuan(userID);
+      const responsePengajuan = await userService.getPengajuanByUserID(userID);
       const pengajuanData = responsePengajuan?.data?.data;
       console.log("Semua Pengajuan", pengajuanData);
       setPengajuan(pengajuanData);

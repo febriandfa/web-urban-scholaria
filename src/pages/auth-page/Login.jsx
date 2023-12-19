@@ -6,6 +6,7 @@ import InputTextGeneral from "../../components/general-components/InputTextGener
 import InputPasswordAuthPage from "../../components/auth-page-components/InputPasswordAuthPage";
 import { userService } from "../../services";
 import LoadingPopup from "../../components/popup-components/LoadingPopup";
+import LinkBackGeneral from "../../components/general-components/LinkBackGeneral";
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
@@ -25,7 +26,14 @@ const Login = () => {
       localStorage.setItem("UserDetail", response?.data?.data.role.nama);
       console.log("Login berhasil:", response.data.data);
       setLoading(false);
-      if (response?.data?.data.role.nama === "Pemohon") {
+
+      if (response?.data?.data?.role?.nama === "Surveyor") {
+        localStorage.setItem("IdSurveyor", response?.data?.data?.id);
+      } else {
+        localStorage.setItem("IdSurveyor", null);
+      }
+
+      if (response?.data?.data?.role?.nama === "Pemohon") {
         navigate("/dashboard");
       } else {
         navigate("/dashboard-administrator");
@@ -52,6 +60,9 @@ const Login = () => {
           <img className="w-1/2 h-full pt-20 object-cover fixed top-0 inset-x-0" src={bgAuth} alt="" />
         </div>
         <section className="h-full w-full">
+          <div className="flex justify-end mb-6">
+            <LinkBackGeneral />
+          </div>
           <div className="flex flex-col items-center justify-center">
             <h2 className="font-semibold text-5xl text-brand-500 text-center w-4/5 mb-20">Segera Kembali ke Urban Scholaria!</h2>
             <form className="w-[28rem]" onSubmit={handleFormSubmit}>

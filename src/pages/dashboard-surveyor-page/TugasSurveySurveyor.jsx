@@ -18,13 +18,14 @@ const TugasSurveySurveyor = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
   const [loading, setLoading] = useState(false);
+  const idSurveyor = localStorage.getItem("IdSurveyor");
 
   const semuaTugasData = async () => {
     try {
       setLoading(true);
-      const response = await userService.getTugasSurvey();
+      const response = await userService.getTugasSurveyByUserID(idSurveyor);
       console.log("Hasil Semua Tugas", response);
-      setSemuaTugas(response?.data?.data);
+      setSemuaTugas(response?.data?.data?.filter((item) => item.status === "Belum Disurvey"));
       setLoading(false);
     } catch (error) {
       console.error(error);

@@ -14,6 +14,7 @@ import FormatTanggal from "../../utils/functions/FormatTanggal";
 import LihatKelengkapanVerifikasiDashboardVerifikator from "../../components/verifikasi-dashboard-verifikator-components/LihatKelengkapanVerifikasiDashboardVerifikator";
 import { getSuratJenisID } from "../../services/storage.service";
 import LoadingPopup from "../../components/popup-components/LoadingPopup";
+import LinkBackGeneral from "../../components/general-components/LinkBackGeneral";
 
 const VerifikasiDokumenVerifikator = () => {
   const [semuaPengajuan, setSemuaPengajuan] = useState();
@@ -72,6 +73,9 @@ const VerifikasiDokumenVerifikator = () => {
   return (
     <MainPageLayout>
       <LoadingPopup loading={loading} />
+      <div className="mb-6">
+        <LinkBackGeneral link="/verifikasi-perizinan-verifikator" />
+      </div>
       <TitleVerifikasiDashboardAdministrator title="Verifikasi Dokumen" />
       <TableGeneral>
         <TableHeadGeneral headTitles={headVerifikasiDokumen} />

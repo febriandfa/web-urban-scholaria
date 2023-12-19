@@ -56,7 +56,7 @@ const InformasiPerizinanBody = ({ bgPerizinan }) => {
   return (
     <div>
       <LoadingPopup loading={loading} />
-      <LinkBackGeneral link="/" />
+      <LinkBackGeneral />
       <p className="font-normal text-lg mb-5 w-[85%] mx-auto mt-5">
         Ditemukan <span className="text-brand-500">{jenisPerizinan.length} Kategori Perizinan</span>
       </p>

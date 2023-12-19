@@ -4,6 +4,7 @@ import PerizinanPageLayout from "../../layouts/PerizinanPageLayout";
 import TitlePerizinan from "../../components/pengajuan-perizinan-components/TitlePerizinan";
 import CardGeneral from "../../components/general-components/CardGeneral";
 import { userService } from "../../services";
+import LinkBackGeneral from "../../components/general-components/LinkBackGeneral";
 
 const TentangPerizinanHeader = () => {
   return <TitlePerizinan subtitle="INFORMASI AJUKAN PERIZINAN" title="Nikmati Kemudahan Perizinan Sekolah Secara Digital" />;
@@ -28,6 +29,7 @@ const TentangPerizinanBody = () => {
 
   return (
     <div className="">
+      <LinkBackGeneral />
       <img className="w-[35rem] mx-auto mb-20" src={bgInfoIzin} alt="" />
       <p className="mb-12">
         Pengajuan Perizinan : proses yang dapat dilakukan oleh individu, bisnis, lembaga atau yang lainnya untuk mendapatkan izin dari pihak yang berwenang, seperti pemerintah atau lembaga regulasi. Pengajuan perizinan ini dapat digunakan

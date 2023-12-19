@@ -27,7 +27,7 @@ const PersyaratanPerizinanBody = ({ loading, title, syarat, idJenis }) => {
   return (
     <div>
       <div className="mb-4">
-        <LinkBackGeneral link={`/pengajuan-perizinan/${idJenis}`} />
+        <LinkBackGeneral />
       </div>
       <LoadingPopup loading={loading} />
       <h1 className="text-xl font-semibold text-center text-brand-500 mb-8">

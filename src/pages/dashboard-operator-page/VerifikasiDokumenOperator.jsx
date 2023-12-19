@@ -13,6 +13,7 @@ import { userService } from "../../services";
 import LihatKelengkapanVerifikasiDashboardOperator from "../../components/verifikasi-dashboard-operator-components/LihatKelengkapanVerifikasiDashboardOperator";
 import { getSuratJenisID } from "../../services/storage.service";
 import LoadingPopup from "../../components/popup-components/LoadingPopup";
+import LinkBackGeneral from "../../components/general-components/LinkBackGeneral";
 
 const VerifikasiDokumenOperator = () => {
   const [semuaPengajuan, setSemuaPengajuan] = useState();
@@ -71,6 +72,9 @@ const VerifikasiDokumenOperator = () => {
   return (
     <MainPageLayout>
       <LoadingPopup loading={loading} />
+      <div className="mb-6">
+        <LinkBackGeneral link="/verifikasi-perizinan-operator" />
+      </div>
       <TitleVerifikasiDashboardAdministrator title="Verifikasi Dokumen" />
       <TableGeneral>
         <TableHeadGeneral headTitles={headVerifikasiDokumen} />

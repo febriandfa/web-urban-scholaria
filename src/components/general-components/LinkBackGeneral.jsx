@@ -1,9 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const LinkBackGeneral = ({ link }) => {
+  const navigate = useNavigate();
+
+  const goBack = () => {
+    navigate(-1);
+  };
+
   return (
-    <Link className="text-brand-500 font-semibold flex items-center gap-1.5" to={link}>
+    <Link className="text-brand-500 font-semibold flex items-center gap-1.5" to={link} onClick={() => window.history.back()}>
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
         <path
           fillRule="evenodd"

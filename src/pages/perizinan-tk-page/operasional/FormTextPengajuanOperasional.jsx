@@ -8,6 +8,7 @@ import { getIdSuratDiajukan, getKategoriPerizinan, getSuratJenisID } from "../..
 import MapPerizinan from "../../../components/pengajuan-perizinan-components/MapPerizinan";
 import LoadingPopup from "../../../components/popup-components/LoadingPopup";
 import { useNavigate } from "react-router-dom";
+import LinkBackGeneral from "../../../components/general-components/LinkBackGeneral";
 
 const FormPerizinanHeader = ({ title, subtitle }) => {
   return <TitlePerizinan subtitle={`AJUKAN PERIZINAN ${subtitle}`} title={`${title} ${subtitle}`} />;
@@ -87,6 +88,9 @@ const FormPerizinanBody = ({ title, loading, kategoriPerizinan, idSuratJenis }) 
   return (
     <div>
       <LoadingPopup loading={loading} />
+      <div className="mb-6">
+        <LinkBackGeneral />
+      </div>
       <h1 className="text-brand-500 font-semibold text-xl text-center mb-5">
         {title} {kategoriPerizinan}
       </h1>

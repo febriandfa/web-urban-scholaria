@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import CardGeneral from "../general-components/CardGeneral";
 import LihatFileVerifikasiDashboardAdministrator from "../verifikasi-dashboard-administrator-components/LihatFileVerifikasiDashboardAdministrator";
 
-const HasilSurveyTugasSurveyDashboardSurveyor = ({ namaTugas, surveyor, tanggalTugas, tenggatTugas, suratTugas, fotoSurvey, fileDokumenHasilSurvey, linkDokumenHasilSurvey }) => {
+const HasilSurveyTugasSurveyDashboardSurveyor = ({ namaTugas, surveyor, tanggalTugas, tenggatTugas, suratTugas, fotoSurvey, fileFotoHasilSurvey, linkFotoHasilSurvey, fileDokumenHasilSurvey, linkDokumenHasilSurvey }) => {
   return (
     <div>
       <div className="flex items-center justify-between mb-9">
@@ -40,7 +40,7 @@ const HasilSurveyTugasSurveyDashboardSurveyor = ({ namaTugas, surveyor, tanggalT
             {suratTugas}
           </a>
         </div>
-        <div className="mb-6">
+        {/* <div className="mb-6">
           <label className="block mb-1 font-semibold text-sm text-brand-500 capitalize">Foto Hasil Survey (Beserta Geotag)</label>
           {fotoSurvey !== "Belum Ada Foto Hasil Survey" ? (
             <a className="w-fit flex items-center h-9 text-sm text-brand-500" href={fotoSurvey} target="_blank">
@@ -49,8 +49,26 @@ const HasilSurveyTugasSurveyDashboardSurveyor = ({ namaTugas, surveyor, tanggalT
           ) : (
             <span className="w-fit flex items-center h-9 text-sm text-neutral-500">{fotoSurvey}</span>
           )}
-        </div>
+        </div> */}
       </div>
+      <CardGeneral color="bg-neutral-100" customClass="mb-4">
+        <div className="flex items-center gap-3">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <path
+              d="M4 9.33341V22.6667C4 24.1395 5.19391 25.3334 6.66667 25.3334H25.3333C26.8061 25.3334 28 24.1395 28 22.6667V12.0001C28 10.5273 26.8061 9.33341 25.3333 9.33341H17.3333L14.6667 6.66675H6.66667C5.19391 6.66675 4 7.86066 4 9.33341Z"
+              stroke="#1E293B"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+          <div>
+            <p className="font-semibold inline-block mr-4">Foto Hasil Survey</p>
+            <LihatFileVerifikasiDashboardAdministrator link={linkFotoHasilSurvey} />
+            <p className="text-brand-500 text-sm">{fileFotoHasilSurvey}</p>
+          </div>
+        </div>
+      </CardGeneral>
       <CardGeneral color="bg-neutral-100" customClass="mb-4">
         <div className="flex items-center gap-3">
           <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">

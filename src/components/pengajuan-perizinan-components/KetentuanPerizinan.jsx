@@ -1,4 +1,5 @@
 import React from "react";
+import LinkBackGeneral from "../general-components/LinkBackGeneral";
 
 const KetentuanPerizinan = () => {
   const ketentuanPengajuan = [

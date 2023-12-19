@@ -9,13 +9,13 @@ const HeaderRincianDashboardUser = ({ status }) => {
     statusColor = "bg-warn-500";
   } else if (status === "Penjadwalan Survey" || status === "Verifikasi Hasil Survey") {
     statusColor = "bg-brand-300";
-  } else if (status === "Diterima") {
+  } else if (status === "Selesai") {
     statusColor = "bg-done-500";
   }
 
   return (
     <div className="flex justify-between">
-      <LinkBackGeneral link="/riwayat" />
+      <LinkBackGeneral />
       <div className="flex items-center gap-4">
         <p className="text-base font-semibold">Status</p>
         <p className={`block w-80 text-sm font-normal text-white py-1 text-center rounded ${statusColor}`}>{status}</p>

@@ -42,8 +42,8 @@ const InputTolakHasilSurveyPopup = ({ close }) => {
   const triggerAlert = () => {
     Swal.fire({
       icon: "error",
-      title: "HASIL SURVEY DITOLAK",
-      text: "Hasil survey telah ditolak",
+      title: "PENOLAKAN TELAH TERKIRIM",
+      text: "Penolakan permohonan telah terkirim ke pemohon beserta komentarnya.",
       confirmButtonText: "Lanjut",
     }).then(() => {
       navigate("/pengesahan-perizinan-verifikator");

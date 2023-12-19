@@ -69,7 +69,8 @@ const FeedbackUser = () => {
 
   return (
     <MainPageLayout>
-      <LinkBackGeneral link="/riwayat" />
+      {/* <LinkBackGeneral link="/riwayat" /> */}
+      <LinkBackGeneral />
       <h1 className="capitalize text-lg font-semibold mt-10 text-center text-brand-900">Beri tahu kami feedbackmu</h1>
       <p className="text-neutral-500 text-sm text-center">Ceritakan saran dan feedbackmu disini</p>
       <img className="w-40 h-40 mx-auto my-5" src={bgFeedback} alt="" />

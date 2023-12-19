@@ -23,7 +23,7 @@ const InformasiPerizinanBody = ({ loading, linkAlur, linkSyarat, kategori, namaP
     <>
       <LoadingPopup loading={loading} />
       <div className="mb-4">
-        <LinkBackGeneral link="/informasi-perizinan" />
+        <LinkBackGeneral />
       </div>
       <div className="grid grid-cols-5 gap-20">
         <div className="col-span-3">

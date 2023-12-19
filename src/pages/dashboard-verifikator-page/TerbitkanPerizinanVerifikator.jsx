@@ -12,6 +12,11 @@ const TerbitkanPerizinanVerifikator = () => {
   const idSurat = getIdSuratDiajukan();
   const verifikatorToken = getToken();
 
+  // const [formData, setFormData] = useState({
+  //   dokumen_survey: null,
+  //   foto_survey: null,
+  // });
+
   const handleAccVerifikasiHasilSurvey = async () => {
     try {
       setLoading(true);

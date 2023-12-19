@@ -18,7 +18,7 @@ const ProsesRiwayatDashboardUser = ({ isPropose }) => {
       console.log("Profile", response);
 
       // GET PENGAJUAN BY USER ID
-      const responsePengajuan = await userService.getPengajuan(userID);
+      const responsePengajuan = await userService.getPengajuanByUserID(userID);
       const idSuratSemua = responsePengajuan?.data?.data?.map((item) => item.id);
       console.log("Surat Terbaru", idSuratSemua);
       const pengajuanData = responsePengajuan?.data?.data;

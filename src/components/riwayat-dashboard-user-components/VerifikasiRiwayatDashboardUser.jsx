@@ -16,7 +16,7 @@ const VerifikasiRiwayatDashboardUser = ({ isPropose }) => {
       setProfile(response?.data?.data);
       console.log("Profile", response);
 
-      const responsePengajuan = await userService.getPengajuan(userID);
+      const responsePengajuan = await userService.getPengajuanByUserID(userID);
 
       const idSuratTerbaru = responsePengajuan?.data?.data?.map((item) => item.id);
       console.log("Surat Terbaru", idSuratTerbaru);

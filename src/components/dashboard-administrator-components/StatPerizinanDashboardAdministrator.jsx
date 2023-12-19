@@ -33,7 +33,7 @@ const StatPerizinanDashboardAdministrator = () => {
   return (
     <div className="flex overflow-x-auto gap-8">
       <LoadingPopup loading={loading} />
-      <CardGeneral>
+      <CardGeneral customClass="mb-2">
         <div className="w-44">
           <div className="flex items-center gap-1">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -45,17 +45,17 @@ const StatPerizinanDashboardAdministrator = () => {
             </svg>
             <p className="text-xs font-semibold text-neutral-800 whitespace-nowrap">Pengajuan Masuk</p>
           </div>
-          <h1 className="font-semibold text-3xl text-warn-300 my-4">{totalPengajuan}</h1>
-          <div className="flex gap-0.5 items-center">
+          <h1 className="font-semibold text-3xl text-warn-300 mt-4">{totalPengajuan}</h1>
+          {/* <div className="flex gap-0.5 items-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none">
               <path d="M6 0L11.1962 9H0.803848L6 0Z" fill="#1F8428" />
             </svg>
             <p className="text-xs font-semibold text-done-500">10%</p>
             <p className="text-[0.5rem] text-neutral-500">dari bulan kemarin</p>
-          </div>
+          </div> */}
         </div>
       </CardGeneral>
-      <CardGeneral>
+      <CardGeneral customClass="mb-2">
         <div className="w-44">
           <div className="flex items-center gap-1">
             <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
@@ -67,17 +67,17 @@ const StatPerizinanDashboardAdministrator = () => {
             </svg>
             <p className="text-xs font-semibold text-neutral-800 whitespace-nowrap">Pengajuan Diterima</p>
           </div>
-          <h1 className="font-semibold text-3xl text-done-500 my-4">{totalPengajuanDiterima}</h1>
-          <div className="flex gap-0.5 items-center">
+          <h1 className="font-semibold text-3xl text-done-500 mt-4">{totalPengajuanDiterima}</h1>
+          {/* <div className="flex gap-0.5 items-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none">
               <path d="M6 0L11.1962 9H0.803848L6 0Z" fill="#1F8428" />
             </svg>
             <p className="text-xs font-semibold text-done-500">10%</p>
             <p className="text-[0.5rem] text-neutral-500">dari bulan kemarin</p>
-          </div>
+          </div> */}
         </div>
       </CardGeneral>
-      <CardGeneral>
+      <CardGeneral customClass="mb-2">
         <div className="w-44">
           <div className="flex items-center gap-1">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -89,17 +89,17 @@ const StatPerizinanDashboardAdministrator = () => {
             </svg>
             <p className="text-xs font-semibold text-neutral-800 whitespace-nowrap">Pengajuan Ditolak</p>
           </div>
-          <h1 className="font-semibold text-3xl text-danger-500 my-4">{totalPengajuanDitolak}</h1>
-          <div className="flex gap-0.5 items-center">
+          <h1 className="font-semibold text-3xl text-danger-500 mt-4">{totalPengajuanDitolak}</h1>
+          {/* <div className="flex gap-0.5 items-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="11" height="9" viewBox="0 0 11 9" fill="none">
               <path d="M5.4493 9L0.619624 -9.78799e-07L10.279 -7.02746e-08L5.4493 9Z" fill="#C92025" />
             </svg>
             <p className="text-xs font-semibold text-danger-500">10%</p>
             <p className="text-[0.5rem] text-neutral-500">dari bulan kemarin</p>
-          </div>
+          </div> */}
         </div>
       </CardGeneral>
-      <CardGeneral>
+      <CardGeneral customClass="mb-2">
         <div className="w-44">
           <div className="flex items-center gap-1">
             <svg xmlns="http://www.w3.org/2000/svg" width="19" height="20" viewBox="0 0 19 20" fill="none">
@@ -119,17 +119,17 @@ const StatPerizinanDashboardAdministrator = () => {
             </svg>
             <p className="text-xs font-semibold text-neutral-800 whitespace-nowrap">Proses Survey</p>
           </div>
-          <h1 className="font-semibold text-3xl text-brand-500 my-4">{totalPengajuanSurvey}</h1>
-          <div className="flex gap-0.5 items-center">
+          <h1 className="font-semibold text-3xl text-brand-500 mt-4">{totalPengajuanSurvey}</h1>
+          {/* <div className="flex gap-0.5 items-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none">
               <path d="M6 0L11.1962 9H0.803848L6 0Z" fill="#1F8428" />
             </svg>
             <p className="text-xs font-semibold text-done-500">10%</p>
             <p className="text-[0.5rem] text-neutral-500">dari bulan kemarin</p>
-          </div>
+          </div> */}
         </div>
       </CardGeneral>
-      <CardGeneral>
+      <CardGeneral customClass="mb-2">
         <div className="w-44">
           <div className="flex items-center gap-1">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -142,14 +142,14 @@ const StatPerizinanDashboardAdministrator = () => {
             </svg>
             <p className="text-xs font-semibold text-neutral-800 whitespace-nowrap">Pengajuan Terlambat</p>
           </div>
-          <h1 className="font-semibold text-3xl text-neutral-700 my-4">200</h1>
-          <div className="flex gap-0.5 items-center">
+          <h1 className="font-semibold text-3xl text-neutral-700 mt-4">200</h1>
+          {/* <div className="flex gap-0.5 items-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none">
               <path d="M6 0L11.1962 9H0.803848L6 0Z" fill="#1F8428" />
             </svg>
             <p className="text-xs font-semibold text-done-500">10%</p>
             <p className="text-[0.5rem] text-neutral-500">dari bulan kemarin</p>
-          </div>
+          </div> */}
         </div>
       </CardGeneral>
     </div>

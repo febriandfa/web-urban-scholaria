@@ -196,7 +196,7 @@ const Register = () => {
         </div>
         <section className="w-full h-full">
           <div className="flex justify-end mb-6">
-            <LinkBackGeneral link="/masuk" />
+            <LinkBackGeneral />
           </div>
           <div className="flex flex-col items-center justify-center">
             <h2 className="font-semibold text-5xl text-brand-500 text-center w-4/5 mb-8">Mari Bergabung di Urban Scholaria!</h2>
@@ -207,8 +207,8 @@ const Register = () => {
                   <InputPasswordAuthPage name="password" label="Kata Sandi" placeholder="Masukkan Kata Sandi..." value={formData.password} onChange={handleInputChange} required />
                   <InputPasswordAuthPage name="password_confirm" label="Konfirmasi Kata Sandi" placeholder="Masukkan Kata Sandi Lagi..." value={formData.password_confirm} onChange={handleInputChange} required />
                   <InputTextGeneral name="nama_lengkap" label="Nama" placeholder="Masukkan Nama..." value={formData.nama_lengkap} onChange={handleInputChange} required />
-                  <InputFileGeneralCoba name="foto" label="Foto Profil" tipeFile=".png .jpg .jpeg" ukuranFile={5} selectedFile={formData.foto} onFileInputChange={handleInputChange} required />
-                  <InputFileGeneralCoba name="ktp_paspor" label="KTP" tipeFile=".png .jpg .jpeg" ukuranFile={5} selectedFile={formData.ktp_paspor} onFileInputChange={handleInputChange} required />
+                  <InputFileGeneralCoba name="foto" label="Foto Profil" tipeFile=".png, .jpg, .jpeg" ukuranFile={5} selectedFile={formData.foto} onFileInputChange={handleInputChange} required />
+                  <InputFileGeneralCoba name="ktp_paspor" label="KTP" tipeFile=".png, .jpg, .jpeg" ukuranFile={5} selectedFile={formData.ktp_paspor} onFileInputChange={handleInputChange} required />
                   <InputTextGeneral name="nomor_identitas" label="NIK (Nomor Induk Kependudukan)" placeholder="Masukkan NIK..." maxLength={16} type="number" value={formData.nomor_identitas} onChange={handleInputChange} required />
                   <InputSelectGeneral name="jenis_kelamin" label="Jenis Kelamin" placeholder="Pilih Jenis Kelamin..." value={formData.jenis_kelamin} onChange={handleInputChange} option={optionJenisKelamin} required />
                   <InputTextGeneral name="no_telp" label="Nomor Telepon" placeholder="Masukkan Nomor Telpon..." type="number" maxLength={13} value={formData.no_telp} onChange={handleInputChange} required />

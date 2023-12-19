@@ -9,6 +9,7 @@ import LoadingPopup from "../../../components/popup-components/LoadingPopup";
 import InputFileGeneralCoba from "../../../components/general-components/InputFileGeneralCoba";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import LinkBackGeneral from "../../../components/general-components/LinkBackGeneral";
 
 const FormPerizinanHeader = ({ title, subtitle }) => {
   return <TitlePerizinan subtitle={`AJUKAN PERIZINAN ${subtitle}`} title={`${title} ${subtitle}`} />;
@@ -85,6 +86,19 @@ const FormPerizinanBody = ({ title, loading, kategoriPerizinan, id_surat_pengaju
   return (
     <div>
       <LoadingPopup loading={loading} />
+      {showKetentuanSection && (
+        <button className="text-brand-500 font-semibold flex items-center gap-1.5 mb-6" onClick={toggleKetentuanSection}>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path
+              fillRule="evenodd"
+              clipRule="evenodd"
+              d="M15.2484 6.35147C15.7171 6.8201 15.7171 7.5799 15.2484 8.04853L11.297 12L15.2484 15.9515C15.7171 16.4201 15.7171 17.1799 15.2484 17.6485C14.7798 18.1172 14.02 18.1172 13.5514 17.6485L8.75137 12.8485C8.28275 12.3799 8.28275 11.6201 8.75137 11.1515L13.5514 6.35147C14.02 5.88284 14.7798 5.88284 15.2484 6.35147Z"
+              fill="currentColor"
+            />
+          </svg>
+          Kembali
+        </button>
+      )}
       <h1 className="text-brand-500 font-semibold text-xl text-center mb-5">
         {title} {kategoriPerizinan}
       </h1>

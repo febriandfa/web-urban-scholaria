@@ -16,7 +16,7 @@ const AktivitasDashboardUser = ({ isPropose }) => {
       // setProfile(response?.data?.data);
       console.log("Profile", response);
 
-      const responsePengajuan = await userService.getPengajuan(userID);
+      const responsePengajuan = await userService.getPengajuanByUserID(userID);
 
       const idSuratTerbaru = responsePengajuan?.data?.data?.slice(-1)[0].id;
       console.log("Surat Terbaru", idSuratTerbaru);

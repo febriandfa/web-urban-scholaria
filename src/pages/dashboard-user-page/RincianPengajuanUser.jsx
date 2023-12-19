@@ -9,6 +9,7 @@ import { getIdSuratDiajukan, getSuratJenisID } from "../../services/storage.serv
 import { userService } from "../../services";
 import ItemDokumenRincianDashboardUser from "../../components/rincian-pengajuan-dashboard-user-components/ItemDokumenRincianDashboardUser";
 import LoadingPopup from "../../components/popup-components/LoadingPopup";
+import DokumenHasilRincianDashboardUser from "../../components/rincian-pengajuan-dashboard-user-components/DokumenHasilRincianDashboardUser";
 
 const RincianPengajuanUser = () => {
   const [detailPengajuan, setDetailPengajuan] = useState();
@@ -82,7 +83,8 @@ const RincianPengajuanUser = () => {
           ))}
         </ListDokumenRincianDashboardUser>
       </div>
-      <FooterRincianDashboardUser idSurat={detailPengajuan?.id} suratSelesai={detailPengajuan?.status === "Selesai"} />
+      {detailPengajuan?.status === "Selesai" && <DokumenHasilRincianDashboardUser />}
+      <FooterRincianDashboardUser idSurat={detailPengajuan?.id} statusSurat={detailPengajuan?.status} />
     </MainPageLayout>
   );
 };

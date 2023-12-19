@@ -1,5 +1,7 @@
 import React from "react";
 import SalinTeks from "../../utils/functions/SalinTeks";
+import Popup from "reactjs-popup";
+import MapPopup from "../popup-components/MapPopup";
 
 const AlamatDetailPengajuanDashboardAdministrator = ({ alamat, latitude, longitude }) => {
   return (
@@ -33,7 +35,17 @@ const AlamatDetailPengajuanDashboardAdministrator = ({ alamat, latitude, longitu
             <p className="ml-auto">{longitude}</p>
           </div>
         </div>
-        <button className="text-warn-500 font-semibold ml-auto place-self-start">Lihat Lokasi</button>
+        <Popup
+          trigger={<button className="text-warn-500 font-semibold ml-auto place-self-start">Lihat Lokasi</button>}
+          modal
+          nested
+          overlayStyle={{
+            background: "rgba(128, 128, 128, 0.7)",
+            backdropFilter: "blur(5px)",
+          }}
+        >
+          {(close) => <MapPopup alamat={alamat} latitude={latitude} longitude={longitude} close={close} />}
+        </Popup>
       </div>
     </div>
   );

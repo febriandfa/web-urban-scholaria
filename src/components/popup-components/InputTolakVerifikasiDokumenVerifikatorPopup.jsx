@@ -11,6 +11,7 @@ import { getIdSuratDiajukan } from "../../services/storage.service";
 const InputTolakVerifikasiDokumenVerifikatorPopup = ({ close }) => {
   const navigate = useNavigate();
   const idSurat = getIdSuratDiajukan();
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     alasan_ditolak: "",
   });
@@ -19,11 +20,14 @@ const InputTolakVerifikasiDokumenVerifikatorPopup = ({ close }) => {
     let form = new FormData();
     form.append("alasan_ditolak", formData.alasan_ditolak);
     try {
+      setLoading(true);
       const response = await userService.declineVerifikasiVerifikator(idSurat, form);
       console.log("Decline Success", response);
+      setLoading(false);
       triggerAlert();
     } catch (error) {
       console.error(error);
+      setLoading(false);
     }
   };
 
@@ -36,9 +40,10 @@ const InputTolakVerifikasiDokumenVerifikatorPopup = ({ close }) => {
 
   const triggerAlert = () => {
     Swal.fire({
-      imageUrl: alertPenolakan,
-      imageHeight: 131,
-      imageWidth: 131,
+      // imageUrl: alertPenolakan,
+      // imageHeight: 131,
+      // imageWidth: 131,
+      icon: "error",
       title: "PENOLAKAN TELAH DIKIRIM",
       text: "Penolakan permohonan telah terkirim ke pemohon beserta komentarnya.",
       confirmButtonText: "Lanjut",

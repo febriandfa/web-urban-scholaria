@@ -74,7 +74,7 @@ const KelengkapanPengajuanOperator = () => {
     <MainPageLayout>
       <LoadingPopup loading={loading} />
       <div className="mb-16">
-        <LinkBackGeneral link="/verifikasi-dokumen-operator" />
+        <LinkBackGeneral />
         <hr className="w-full h-0.5 rounded-full bg-neutral-300 my-6" />
         <InformasiDetailPengajuanDashboardAdministrator
           idPengajuan={detailPengajuan?.id}

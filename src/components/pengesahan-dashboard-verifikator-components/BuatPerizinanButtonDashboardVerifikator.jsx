@@ -1,12 +1,48 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 import { alertNextVerifikator } from "../../assets";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { userService } from "../../services";
 import Popup from "reactjs-popup";
 import InputTolakHasilSurveyPopup from "../popup-components/InputTolakHasilSurveyPopup";
+import { getIdSuratDiajukan, getToken } from "../../services/storage.service";
+import LoadingPopup from "../popup-components/LoadingPopup";
 
 const BuatPerizinanButtonDashboardVerifikator = ({ verified, idSurat }) => {
+  // const idSurat = getIdSuratDiajukan();
+  const verifikatorToken = getToken();
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const handleAccVerifikasiHasilSurvey = async () => {
+    try {
+      setLoading(true);
+      const response = await userService.accVerifikasiHasilSurveyVerifikator(idSurat, verifikatorToken);
+      console.log("Hasil Survey ACC", response);
+      setLoading(false);
+      triggerAlert();
+    } catch (error) {
+      console.error(error);
+      setLoading(false);
+    }
+  };
+
+  const triggerAlert = () => {
+    // e.preventDefault();
+    Swal.fire({
+      // imageUrl: alertPenerbitan,
+      // imageHeight: 131,
+      // imageWidth: 131,
+      icon: "success",
+      title: "PERIZINAN TELAH TERBIT",
+      text: "Selamat Surat Perizinan telah terbit dan terkirim ke pemohon",
+      confirmButtonText: "Lanjut",
+    }).then(() => {
+      navigate("/pengesahan-perizinan-verifikator");
+      close();
+    });
+  };
+
   // const [formData, setFormData] = useState({
   //   alasan_ditolak: "",
   // });
@@ -30,9 +66,9 @@ const BuatPerizinanButtonDashboardVerifikator = ({ verified, idSurat }) => {
   //   }));
   // };
 
-  const handleOnClick = () => {
-    localStorage.setItem("IdSuratDiajukan", idSurat);
-  };
+  // const handleOnClick = () => {
+  //   localStorage.setItem("IdSuratDiajukan", idSurat);
+  // };
 
   // const triggerAlertDecline = () => {
   //   Swal.fire({
@@ -47,6 +83,7 @@ const BuatPerizinanButtonDashboardVerifikator = ({ verified, idSurat }) => {
 
   return (
     <div>
+      <LoadingPopup loading={loading} />
       <Popup
         trigger={
           <button className={`py-2 px-4 bg-danger-500 w-full rounded-lg text-base font-semibold text-white mb-3`} type="button">
@@ -62,11 +99,11 @@ const BuatPerizinanButtonDashboardVerifikator = ({ verified, idSurat }) => {
       >
         {(close) => <InputTolakHasilSurveyPopup close={close} />}
       </Popup>
-      <Link to="/terbitkan-perizinan-verifikator" onClick={() => handleOnClick()}>
-        <button className={`py-2 px-4 w-full rounded-lg text-base font-semibold ${verified ? "text-white bg-brand-500" : "text-neutral-500 bg-neutral-100"}`} disabled={!verified}>
-          Buat Perizinan
-        </button>
-      </Link>
+      {/* <Link to="/terbitkan-perizinan-verifikator" onClick={() => handleAccVerifikasiHasilSurvey()}> */}
+      <button className={`py-2 px-4 w-full rounded-lg text-base font-semibold ${verified ? "text-white bg-brand-500" : "text-neutral-500 bg-neutral-100"}`} disabled={!verified} onClick={() => handleAccVerifikasiHasilSurvey()}>
+        Buat Perizinan
+      </button>
+      {/* </Link> */}
     </div>
   );
 };

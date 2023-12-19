@@ -75,6 +75,8 @@ const DetailTugasSurveySurveyor = () => {
           fotoSurvey={detailTugas?.foto_survey ? detailTugas.foto_survey?.replace(/^.*?\/foto_survey\//, "") : "Belum Ada Foto Hasil Survey"}
           fileDokumenHasilSurvey={detailTugas?.dokumen_survey?.replace(/^.*?\/dokumen-survey\//, "")}
           linkDokumenHasilSurvey={detailTugas?.dokumen_survey}
+          fileFotoHasilSurvey={detailTugas?.foto_survey?.replace(/^.*?\/foto-survey\//, "")}
+          linkFotoHasilSurvey={detailTugas?.foto_survey}
         />
       </div>
       <SimpanButtonTugasSurveyDashboardSurveyor />
