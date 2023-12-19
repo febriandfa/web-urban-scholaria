@@ -137,8 +137,8 @@ export const accVerifikasiOperator = async (surat_id) => {
   return await api.patch(`surat/` + surat_id + `/terima-operator`);
 };
 
-export const declineVerifikasiOperator = async (surat_id) => {
-  return await api.patch(`surat/` + surat_id + `/tolak-operator-baru`);
+export const declineVerifikasiOperator = async (surat_id, data) => {
+  return await api.patch(`surat/` + surat_id + `/tolak-operator-baru`, data);
 };
 // OPERATOR API END
 

@@ -84,7 +84,7 @@ const FeedbackUser = () => {
         <InputTextGeneral name="nama_lengkap" label="Nama" value={profile?.nama_lengkap} disabled />
         <InputTextGeneral name="email" label="Alamat Email" value={profile?.email} disabled />
         <InputTextGeneral name="no_telp" label="No. Handphone" value={profile?.no_telp} disabled />
-        <InputTextAreaGeneral name="isi" id="isi" label="Isi Feedback" placeholder="Tuliskan Feedbackmu..." value={formData.isi} onChange={handleInputChange} />
+        <InputTextAreaGeneral name="isi" label="Isi Feedback" placeholder="Tuliskan Feedbackmu..." value={formData.isi} onChange={handleInputChange} />
         <button className="flex items-center justify-center gap-3 py-2 px-4 bg-brand-500 w-full rounded-lg text-base font-semibold text-white" type="button" onClick={() => handleFeedbackSubmit()}>
           Kirim Feedback
         </button>

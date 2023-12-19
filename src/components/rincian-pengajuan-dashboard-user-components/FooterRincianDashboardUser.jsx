@@ -54,19 +54,20 @@ const FooterRincianDashboardUser = ({ statusSurat, idSurat }) => {
             />
           </svg>
         </Link>
-        {statusSurat === "Selesai" && (
-          <Link className="flex items-center justify-center gap-2 py-2 px-4 bg-neutral-100 w-full rounded-lg text-base font-semibold text-neutral-900" to="/feedback">
-            Feedback{" "}
-            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M18.5 13V5C18.5 3.89543 17.6046 3 16.5 3H4.5C3.39543 3 2.5 3.89543 2.5 5V13C2.5 14.1046 3.39543 15 4.5 15H7.5L10.5 18L13.5 15H16.5C17.6046 15 18.5 14.1046 18.5 13ZM5.5 7C5.5 6.44772 5.94772 6 6.5 6H14.5C15.0523 6 15.5 6.44772 15.5 7C15.5 7.55228 15.0523 8 14.5 8H6.5C5.94772 8 5.5 7.55228 5.5 7ZM6.5 10C5.94772 10 5.5 10.4477 5.5 11C5.5 11.5523 5.94772 12 6.5 12H9.5C10.0523 12 10.5 11.5523 10.5 11C10.5 10.4477 10.0523 10 9.5 10H6.5Z"
-                fill="#0F172A"
-              />
-            </svg>
-          </Link>
-        )}
+        {statusSurat === "Selesai" ||
+          (statusSurat === "Ditolak" && (
+            <Link className="flex items-center justify-center gap-2 py-2 px-4 bg-neutral-100 w-full rounded-lg text-base font-semibold text-neutral-900" to="/feedback">
+              Feedback{" "}
+              <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M18.5 13V5C18.5 3.89543 17.6046 3 16.5 3H4.5C3.39543 3 2.5 3.89543 2.5 5V13C2.5 14.1046 3.39543 15 4.5 15H7.5L10.5 18L13.5 15H16.5C17.6046 15 18.5 14.1046 18.5 13ZM5.5 7C5.5 6.44772 5.94772 6 6.5 6H14.5C15.0523 6 15.5 6.44772 15.5 7C15.5 7.55228 15.0523 8 14.5 8H6.5C5.94772 8 5.5 7.55228 5.5 7ZM6.5 10C5.94772 10 5.5 10.4477 5.5 11C5.5 11.5523 5.94772 12 6.5 12H9.5C10.0523 12 10.5 11.5523 10.5 11C10.5 10.4477 10.0523 10 9.5 10H6.5Z"
+                  fill="#0F172A"
+                />
+              </svg>
+            </Link>
+          ))}
       </div>
       {statusSurat === "Selesai" ? null : (
         <button className="flex items-center justify-center gap-3 py-2 px-4 bg-brand-500 w-full rounded-lg text-base font-semibold text-white" type="submit" onClick={cetakBuktiPengajuan}>
