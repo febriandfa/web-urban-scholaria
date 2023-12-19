@@ -12,6 +12,8 @@ import { userService } from "../../services";
 import FormatTanggal from "../../utils/functions/FormatTanggal";
 import LihatDetailTugasTugasSurveyDashboardSurveyor from "../../components/dashboard-surveyor-components/LihatDetailTugasTugasSurveyDashboardSurveyor";
 import LoadingPopup from "../../components/popup-components/LoadingPopup";
+import { useNavigate } from "react-router-dom";
+import CheckTokenExpiry from "../../utils/functions/CheckTokenExpiry";
 
 const TugasSurveySurveyor = () => {
   const [semuaTugas, setSemuaTugas] = useState();
@@ -69,6 +71,12 @@ const TugasSurveySurveyor = () => {
     }
     return colorClass;
   };
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    CheckTokenExpiry(navigate);
+  }, [navigate]);
 
   return (
     <MainPageLayout>

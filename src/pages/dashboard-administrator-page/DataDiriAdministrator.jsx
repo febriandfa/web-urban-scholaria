@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MainPageLayout from "../../layouts/MainPageLayout";
 import ProfileBarDashboardAdministrator from "../../components/dashboard-administrator-components/ProfileBarDashboardAdministrator";
 import CardGeneral from "../../components/general-components/CardGeneral";
 import ShowDataDiriDashboardAdministrator from "../../components/data-diri-dashboard-administrator-components/ShowDataDiriDashboardAdministrator";
 import EditDataDiriDashboardAdministrator from "../../components/data-diri-dashboard-administrator-components/EditDataDiriDashboardAdministrator";
+import { useNavigate } from "react-router-dom";
+import CheckTokenExpiry from "../../utils/functions/CheckTokenExpiry";
 
 const DataDiriAdministrator = () => {
   const [isShowEdit, setIsShowEdit] = useState(false);
@@ -15,6 +17,12 @@ const DataDiriAdministrator = () => {
   const handleViewShow = () => {
     setIsShowEdit(false);
   };
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    CheckTokenExpiry(navigate);
+  }, [navigate]);
 
   return (
     <MainPageLayout>

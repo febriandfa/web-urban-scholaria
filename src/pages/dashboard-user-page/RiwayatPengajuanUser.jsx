@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MainPageLayout from "../../layouts/MainPageLayout";
 import TabMenuRiwayatDashboardUser from "../../components/riwayat-dashboard-user-components/TabMenuRiwayatDashboardUser";
 import ProsesRiwayatDashboardUser from "../../components/riwayat-dashboard-user-components/ProsesRiwayatDashboardUser";
@@ -6,6 +6,8 @@ import VerifikasiRiwayatDashboardUser from "../../components/riwayat-dashboard-u
 import SurveyRiwayatDashboardUser from "../../components/riwayat-dashboard-user-components/SurveyRiwayatDasboardUser";
 import SelesaiRiwayatDashboardUser from "../../components/riwayat-dashboard-user-components/SelesaiRiwayatDashboardUser";
 import DitolakRiwayatDashboardUser from "../../components/riwayat-dashboard-user-components/DitolakRiwayatDashboardUser";
+import { useNavigate } from "react-router-dom";
+import CheckTokenExpiry from "../../utils/functions/CheckTokenExpiry";
 
 const Riwayat = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -13,6 +15,12 @@ const Riwayat = () => {
   const handleTabClick = (index) => {
     setActiveTab(index);
   };
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    CheckTokenExpiry(navigate);
+  }, [navigate]);
 
   return (
     <MainPageLayout>

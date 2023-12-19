@@ -25,6 +25,7 @@ const Login = () => {
       localStorage.setItem("TOKEN", response.data.access_token);
       localStorage.setItem("UserDetail", response?.data?.data.role.nama);
       console.log("Login berhasil:", response.data.data);
+      const currentTime = new Date();
       setLoading(false);
 
       if (response?.data?.data?.role?.nama === "Surveyor") {
@@ -34,8 +35,14 @@ const Login = () => {
       }
 
       if (response?.data?.data?.role?.nama === "Pemohon") {
+        const tokenExpiryPemohon = currentTime.getTime() + 3 * 60 * 60 * 1000;
+        localStorage.setItem("TOKEN_EXPIRY", tokenExpiryPemohon);
+        console.log("Token Expiry", tokenExpiryPemohon);
         navigate("/dashboard");
       } else {
+        const tokenExpiryAdmin = currentTime.getTime() + 10 * 60 * 60 * 1000;
+        localStorage.setItem("TOKEN_EXPIRY", tokenExpiryAdmin);
+        console.log("Token Expiry", tokenExpiryAdmin);
         navigate("/dashboard-administrator");
       }
     } catch (error) {

@@ -107,6 +107,16 @@ export const getFeedback = async () => {
 };
 // FEEDBACK API END
 
+// NOTIFIKASI API START
+export const getAllNotifikasi = async () => {
+  return await api.get("notifikasi");
+};
+
+export const getTandaiDibaca = async (notifikasi_id) => {
+  return await api.get(`notifikasi/` + notifikasi_id + `/mark-as-seen`);
+};
+// NOTIFIKASI API END
+
 // export const detail = async (id: any): Promise<AxiosResponse<Transaksi>> => {
 //   return await api.get("transaksi/detail?id=" + id);
 // };

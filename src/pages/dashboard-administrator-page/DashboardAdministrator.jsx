@@ -10,6 +10,8 @@ import VerticalBarChartDashboardAdministrator from "../../components/dashboard-a
 import HorizontalBarChartDashboardAdministrator from "../../components/dashboard-administrator-components/HorizontalBarChartDashboardAdministrator";
 import SLADashboardAdministrator from "../../components/dashboard-administrator-components/SLADashboardAdministrator";
 import ListButtonFilterDashboardAdministrator from "../../components/dashboard-administrator-components/ListButtonFilterDashboardAdministrator";
+import { useNavigate } from "react-router-dom";
+import CheckTokenExpiry from "../../utils/functions/CheckTokenExpiry";
 
 const DashboardAdministrator = () => {
   const [activeFilter, setActiveFilter] = useState("Semua");
@@ -47,6 +49,12 @@ const DashboardAdministrator = () => {
   const handleFilterClick = (filter) => {
     setActiveFilter(filter);
   };
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    CheckTokenExpiry(navigate);
+  }, [navigate]);
 
   return (
     <MainPageLayout>

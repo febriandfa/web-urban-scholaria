@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import MainPageLayout from "../../layouts/MainPageLayout";
 import CariPermohonanDashboardUser from "../../components/dashboard-user-components/CariPermohonanDashboardUser";
 import CardGeneral from "../../components/general-components/CardGeneral";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { userService } from "../../services";
 import LoadingPopup from "../../components/popup-components/LoadingPopup";
+import CheckTokenExpiry from "../../utils/functions/CheckTokenExpiry";
 
 const JenisPerizinanVerifikasiVerifikator = () => {
   const [jenisPerizinan, setJenisPerizinan] = useState([]);
@@ -48,6 +49,12 @@ const JenisPerizinanVerifikasiVerifikator = () => {
   const handleJenisOnClick = (idSuratJenis) => {
     localStorage.setItem("SuratJenisID", idSuratJenis);
   };
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    CheckTokenExpiry(navigate);
+  }, [navigate]);
 
   return (
     <MainPageLayout>

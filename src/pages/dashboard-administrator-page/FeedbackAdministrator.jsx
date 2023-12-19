@@ -5,6 +5,8 @@ import feedbackData from "../../utils/DaftarFeedbackData";
 import { userService } from "../../services";
 import FormatTanggal from "../../utils/functions/FormatTanggal";
 import LoadingPopup from "../../components/popup-components/LoadingPopup";
+import { useNavigate } from "react-router-dom";
+import CheckTokenExpiry from "../../utils/functions/CheckTokenExpiry";
 
 const FeedbackAdministrator = () => {
   const [feedback, setFeedback] = useState();
@@ -28,6 +30,12 @@ const FeedbackAdministrator = () => {
   }, []);
 
   // const feedback = feedbackData;
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    CheckTokenExpiry(navigate);
+  }, [navigate]);
 
   return (
     <MainPageLayout>

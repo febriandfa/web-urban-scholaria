@@ -13,6 +13,8 @@ import UnduhButtonDataPerizinan from "../../components/data-perizinan-dashboard-
 import { userService } from "../../services";
 import FormatTanggal from "../../utils/functions/FormatTanggal";
 import LoadingPopup from "../../components/popup-components/LoadingPopup";
+import { useNavigate } from "react-router-dom";
+import CheckTokenExpiry from "../../utils/functions/CheckTokenExpiry";
 
 const DataPerizinanAdministrator = ({ isEmpty }) => {
   const [semuaPengajuan, setSemuaPengajuan] = useState();
@@ -46,6 +48,12 @@ const DataPerizinanAdministrator = ({ isEmpty }) => {
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = semuaPengajuan?.slice(indexOfFirstItem, indexOfLastItem);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    CheckTokenExpiry(navigate);
+  }, [navigate]);
 
   return (
     <MainPageLayout>

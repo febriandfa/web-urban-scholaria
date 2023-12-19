@@ -11,6 +11,8 @@ import VerifikasiLinkPengesahanDashboardVerfikator from "../../components/penges
 import { userService } from "../../services";
 import FormatTanggal from "../../utils/functions/FormatTanggal";
 import LoadingPopup from "../../components/popup-components/LoadingPopup";
+import { useNavigate } from "react-router-dom";
+import CheckTokenExpiry from "../../utils/functions/CheckTokenExpiry";
 
 const PengesahanPerizinanVerifikator = () => {
   const [semuaPengajuan, setSemuaPengajuan] = useState();
@@ -63,6 +65,12 @@ const PengesahanPerizinanVerifikator = () => {
     }
     return colorClass;
   };
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    CheckTokenExpiry(navigate);
+  }, [navigate]);
 
   return (
     <MainPageLayout>

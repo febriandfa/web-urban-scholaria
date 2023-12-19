@@ -39,6 +39,7 @@ const Sidebar = ({ role }) => {
       if (response.status === 200) {
         removeToken();
         localStorage.setItem("UserDetail", null);
+        localStorage.setItem("TOKEN_EXPIRY", null);
         // localStorage.setItem("USER_DETAIL", null);
         navigate("/");
         console.log("Berhasil logout");
