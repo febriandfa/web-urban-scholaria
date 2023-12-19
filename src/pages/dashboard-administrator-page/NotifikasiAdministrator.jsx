@@ -66,17 +66,13 @@ const NotifikasiAdministrator = () => {
         <div className="my-8 p-6 rounded-2xl bg-neutral-100">
           <h1 className="block mb-2 font-semibold text-base text-brand-500 capitalize">Notifikasi</h1>
           <CardGeneral color="bg-white" customClass="max-h-96 overflow-y-auto">
-            {notifikasi?.map((item, index) => (
-              <ListNotifikasiDashboardUser
-                key={index}
-                showNotifikasiDetail={showNotifikasiDetail}
-                judulNotifikasi={item?.judul}
-                // isiNotifikasi={item?.deskripsi}
-                tanggalNotifikasi={FormatWaktu(item?.created_at)}
-                index={index}
-                isSeen={item?.is_seen === "Y"}
-              />
-            ))}
+            {notifikasi && notifikasi.length > 0 ? (
+              notifikasi.map((item, index) => (
+                <ListNotifikasiDashboardUser key={index} showNotifikasiDetail={showNotifikasiDetail} judulNotifikasi={item?.judul} tanggalNotifikasi={FormatWaktu(item?.created_at)} index={index} isSeen={item?.is_seen === "Y"} />
+              ))
+            ) : (
+              <p className="font-semibold text-sm capitalize text-center">Tidak ada notifikasi.</p>
+            )}
           </CardGeneral>
         </div>
         {selectedNotifikasi !== null && (

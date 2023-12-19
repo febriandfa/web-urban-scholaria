@@ -9,6 +9,7 @@ import MapPerizinan from "../../../components/pengajuan-perizinan-components/Map
 import LoadingPopup from "../../../components/popup-components/LoadingPopup";
 import { useNavigate } from "react-router-dom";
 import LinkBackGeneral from "../../../components/general-components/LinkBackGeneral";
+import InputTextAreaGeneral from "../../../components/general-components/InputTextAreaGeneral";
 
 const FormPerizinanHeader = ({ title, subtitle }) => {
   return <TitlePerizinan subtitle={`AJUKAN PERIZINAN ${subtitle}`} title={`${title} ${subtitle}`} />;
@@ -99,6 +100,7 @@ const FormPerizinanBody = ({ title, loading, kategoriPerizinan, idSuratJenis }) 
           <InputTextGeneral name="kategori" label="Kategori" value={formData.kategori} onChange={handleInputChange} required disabled />
           <InputTextGeneral name="surat_jenis_id" label="ID Surat Jenis" value={namaJenisSurat} onChange={handleInputChange} required disabled />
           <InputTextGeneral name="nama" label="Nama" placeholder="Masukkan Nama Sekolah..." value={formData.nama} onChange={handleInputChange} required />
+          {/* <InputTextAreaGeneral name="nama" label="Nama" placeholder="Masukkan Nama Sekolah..." value={formData.nama} onChange={handleInputChange} required /> */}
           <InputTextGeneral name="alamat_lokasi" label="Alamat" placeholder="Masukkan Alamat..." value={formData.alamat_lokasi} onChange={handleInputChange} required />
           <MapPerizinan onLocationChange={handleLocationChange} />
           <InputTextGeneral name="longitude" label="Longitude" placeholder="Masukkan Longitude..." value={formData.longitude} onChange={handleInputChange} required />

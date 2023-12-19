@@ -15,7 +15,7 @@ const ListNotifikasiDashboardUser = ({ color, notifikasi, showNotifikasiDetail, 
           </svg>
         </div>
         <div className="w-full">
-          <h1 className="font-semibold text-sm mb-1">{judulNotifikasi}</h1>
+          <h1 className="font-semibold text-sm capitalize mb-1">{judulNotifikasi}</h1>
           {/* <p className="font-normal text-xs text-neutral-500 overflow-hidden whitespace-nowrap">{isiNotifikasi}</p> */}
           <p className="font-normal text-neutral-500 text-xs ml-auto">{tanggalNotifikasi}</p>
         </div>
