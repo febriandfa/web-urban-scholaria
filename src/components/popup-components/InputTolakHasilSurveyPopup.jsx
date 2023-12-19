@@ -18,11 +18,9 @@ const InputTolakHasilSurveyPopup = ({ close }) => {
   });
 
   const handleDeclineSubmit = async () => {
-    let form = new FormData();
-    form.append("alasan_ditolak", formData.alasan_ditolak);
     try {
       setLoading(true);
-      const response = await userService.declineVerifikasiHasilSurveyVerifikator(idSurat, form);
+      const response = await userService.declineVerifikasiHasilSurveyVerifikator(idSurat, formData);
       console.log("Decline Success", response);
       setLoading(false);
       triggerAlert();

@@ -137,9 +137,16 @@ export const accVerifikasiOperator = async (surat_id) => {
   return await api.patch(`surat/` + surat_id + `/terima-operator`);
 };
 
+
+
+
 export const declineVerifikasiOperator = async (surat_id, data) => {
   return await api.patch(`surat/` + surat_id + `/tolak-operator-baru`, data);
 };
+
+
+
+
 // OPERATOR API END
 
 // VERIFIKATOR API START
@@ -205,7 +212,7 @@ export const getSuratStatusSelesai = async () => {
 //
 //
 //
-//
+// AKTIVASI AKUN API START
 export const getPengguna = async () => {
   return await api.get("users");
 };
@@ -220,4 +227,17 @@ export const accAktivasiPengguna = async (user_id, data) => {
 
 export const declineAktivasiPengguna = async (user_id, data) => {
   return await api.post("tolak-aktivasi-akun/" + user_id, data);
+};
+// AKTIVASI AKUN API END
+
+export const postPerizinanBaru = async (data) => {
+  return await api.post("surat-jenis", data);
+};
+
+export const postSyaratPerizinanBaru = async (data) => {
+  return await api.post("surat-syarat", data);
+};
+
+export const deleteSyaratPerizinanBaru = async (surat_syarat_id) => {
+  return await api.delete("surat-syarat/" + surat_syarat_id);
 };
