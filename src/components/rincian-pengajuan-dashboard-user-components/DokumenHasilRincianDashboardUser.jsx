@@ -2,7 +2,7 @@ import React from "react";
 import CardGeneral from "../general-components/CardGeneral";
 import LihatFileVerifikasiDashboardAdministrator from "../verifikasi-dashboard-administrator-components/LihatFileVerifikasiDashboardAdministrator";
 
-const DokumenHasilRincianDashboardUser = ({ fileBuktiPengajuan, linkBuktiPengajuan, fileSuratPerizinan, linkSuratPerizinan, fileSkLegalitas, linkSkLegalitas }) => {
+const DokumenHasilRincianDashboardUser = ({ idSurat, fileBuktiPengajuan, linkBuktiPengajuan, fileSuratPerizinan, linkSuratPerizinan, fileSkLegalitas, linkSkLegalitas }) => {
   return (
     <div className="mb-16">
       <CardGeneral color="bg-neutral-100" customClass="mb-4">
@@ -18,10 +18,13 @@ const DokumenHasilRincianDashboardUser = ({ fileBuktiPengajuan, linkBuktiPengaju
           </svg>
           <div>
             <p className="font-semibold inline-block mr-4">Bukti Pengajuan Permohonan</p>
-            <LihatFileVerifikasiDashboardAdministrator link={linkBuktiPengajuan} />
-            <p className="text-brand-500 text-sm">{fileBuktiPengajuan}</p>
+            {/* <LihatFileVerifikasiDashboardAdministrator link={linkSuratPerizinan} /> */}
+            {/* <p className="text-brand-500 text-sm">{fileSuratPerizinan}</p> */}
           </div>
-          <button className="text-brand-500 font-semibold flex items-center ml-auto">
+          <a className="font-semibold text-brand_2-500 ml-auto" href={`https://urbanscholaria.my.id/api/surat/` + idSurat + `/cetak-kwitansi`} target="_blank">
+            Lihat
+          </a>
+          {/* <button className="text-brand-500 font-semibold flex items-center ml-auto">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
               <path
                 fillRule="evenodd"
@@ -31,7 +34,7 @@ const DokumenHasilRincianDashboardUser = ({ fileBuktiPengajuan, linkBuktiPengaju
               />
             </svg>
             Unduh
-          </button>
+          </button> */}
         </div>
       </CardGeneral>
       <CardGeneral color="bg-neutral-100" customClass="mb-4">
@@ -47,10 +50,13 @@ const DokumenHasilRincianDashboardUser = ({ fileBuktiPengajuan, linkBuktiPengaju
           </svg>
           <div>
             <p className="font-semibold inline-block mr-4">Surat Perizinan</p>
-            <LihatFileVerifikasiDashboardAdministrator link={linkSuratPerizinan} />
-            <p className="text-brand-500 text-sm">{fileSuratPerizinan}</p>
+            {/* <LihatFileVerifikasiDashboardAdministrator link={linkBuktiPengajuan} /> */}
+            {/* <p className="text-brand-500 text-sm">{fileBuktiPengajuan}</p> */}
           </div>
-          <button className="text-brand-500 font-semibold flex items-center ml-auto">
+          <a className="font-semibold text-brand_2-500 ml-auto" href={`https://urbanscholaria.my.id/api/surat/` + idSurat + `/cetak-surat`} target="_blank">
+            Lihat
+          </a>
+          {/* <button className="text-brand-500 font-semibold flex items-center ml-auto">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
               <path
                 fillRule="evenodd"
@@ -60,7 +66,7 @@ const DokumenHasilRincianDashboardUser = ({ fileBuktiPengajuan, linkBuktiPengaju
               />
             </svg>
             Unduh
-          </button>
+          </button> */}
         </div>
       </CardGeneral>
       <CardGeneral color="bg-neutral-100" customClass="mb-4">
@@ -76,10 +82,13 @@ const DokumenHasilRincianDashboardUser = ({ fileBuktiPengajuan, linkBuktiPengaju
           </svg>
           <div>
             <p className="font-semibold inline-block mr-4">SK Legalitas Perizinan</p>
-            <LihatFileVerifikasiDashboardAdministrator link={linkSkLegalitas} />
-            <p className="text-brand-500 text-sm">{fileSkLegalitas}</p>
+            {/* <LihatFileVerifikasiDashboardAdministrator link={linkSkLegalitas} /> */}
+            {/* <p className="text-brand-500 text-sm">{fileSkLegalitas}</p> */}
           </div>
-          <button className="text-brand-500 font-semibold flex items-center ml-auto">
+          <a className="font-semibold text-brand_2-500 ml-auto" href={`https://urbanscholaria.my.id/api/surat/` + idSurat + `/cetak-surat-legalitas`} target="_blank">
+            Lihat
+          </a>
+          {/* <button className="text-brand-500 font-semibold flex items-center ml-auto">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
               <path
                 fillRule="evenodd"
@@ -89,7 +98,7 @@ const DokumenHasilRincianDashboardUser = ({ fileBuktiPengajuan, linkBuktiPengaju
               />
             </svg>
             Unduh
-          </button>
+          </button> */}
         </div>
       </CardGeneral>
     </div>

@@ -46,6 +46,9 @@ import KelolaAkunAdminDinas from "./pages/dashboard-admin-dinas-page/KelolaAkunA
 import DetailPenggunaAdminDinas from "./pages/dashboard-admin-dinas-page/DetailPenggunaAdminDinas";
 import JenisPerizinanVerifikasiVerifikator from "./pages/dashboard-verifikator-page/JenisPerizinanVerifikasiVerifikator";
 import JenisPerizinanVerifikasiOperator from "./pages/dashboard-operator-page/JenisPerizinanVerifikasiOperator";
+import InformasiPerizinanAdminUtama from "./pages/dashboard-admin-utama-page/InformasiPerizinanAdminUtama";
+import TambahPerizinanAdminUtama from "./pages/dashboard-admin-utama-page/TambahPerizinanAdminUtama";
+import TambahSyaratAdminUtama from "./pages/dashboard-admin-utama-page/TambahSyaratAdminUtama";
 // import LihatDokumenUser from "./pages/dashboard-user-page/LihatDokumenUser";
 // import LihatDokumenPageUser from "./pages/dashboard-user-page/LihatDokumenPageUser";
 // import CobaDaftar from "./pages/auth-page/CobaDaftar";
@@ -133,6 +136,12 @@ function App() {
             {/* Admin Dinas */}
             <Route path="/kelola-pengguna-dinas" element={<KelolaAkunAdminDinas />} />
             <Route path="/detail-pengguna-dinas" element={<DetailPenggunaAdminDinas />} />
+
+            {/* Admin Utama */}
+            <Route path="/informasi-perizinan-utama" element={<InformasiPerizinanAdminUtama />} />
+            <Route path="/tambah-perizinan-utama" element={<TambahPerizinanAdminUtama />} />
+            <Route path="/tambah-syarat-utama" element={<TambahSyaratAdminUtama />} />
+
             {/* <Route path="/coba-daftar" element={<CobaDaftar />} /> */}
             {/* <Route path="/lihat-dokumen" element={<LihatDokumenPageUser />} /> */}
           </Routes>

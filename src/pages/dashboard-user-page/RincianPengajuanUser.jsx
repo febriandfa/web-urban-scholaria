@@ -92,7 +92,7 @@ const RincianPengajuanUser = () => {
           ))}
         </ListDokumenRincianDashboardUser>
       </div>
-      {detailPengajuan?.status === "Selesai" && <DokumenHasilRincianDashboardUser />}
+      {detailPengajuan?.status === "Selesai" && <DokumenHasilRincianDashboardUser idSurat={detailPengajuan?.id} />}
       <FooterRincianDashboardUser idSurat={detailPengajuan?.id} statusSurat={detailPengajuan?.status} />
     </MainPageLayout>
   );

@@ -17,6 +17,7 @@ const FormPerizinanHeader = ({ title, subtitle }) => {
 
 const FormPerizinanBody = ({ title, loading, kategoriPerizinan, idSuratJenis }) => {
   const navigate = useNavigate();
+  const [namaSuratJenis, setNamaSuratJenis] = useState();
   // INISIASI FORM PENGAJUAN START
   const [formData, setFormData] = useState({
     kategori: kategoriPerizinan,
@@ -77,14 +78,28 @@ const FormPerizinanBody = ({ title, loading, kategoriPerizinan, idSuratJenis }) 
     return true;
   };
 
-  let namaJenisSurat;
-  if (formData.surat_jenis_id === "1") {
-    namaJenisSurat = "Pengajuan Perizinan Pembangunan";
-  } else if (formData.surat_jenis_id === "2") {
-    namaJenisSurat = "Pengajuan Perizinan Operasional";
-  } else if (formData.surat_jenis_id === "3") {
-    namaJenisSurat = "Pengajuan Perizinan Perubahan Operasional";
-  }
+  const getDetailSuratJenisData = async () => {
+    try {
+      const response = await userService.getSuratJenisDetailByID(idSuratJenis);
+      console.log("Detail Jenis By ID", response);
+      setNamaSuratJenis(response?.data?.data?.nama);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getDetailSuratJenisData();
+  }, []);
+
+  // let namaJenisSurat;
+  // if (formData.surat_jenis_id === "1") {
+  //   namaJenisSurat = "Pengajuan Perizinan Pembangunan";
+  // } else if (formData.surat_jenis_id === "2") {
+  //   namaJenisSurat = "Pengajuan Perizinan Operasional";
+  // } else if (formData.surat_jenis_id === "3") {
+  //   namaJenisSurat = "Pengajuan Perizinan Perubahan Operasional";
+  // }
 
   return (
     <div>
@@ -98,7 +113,7 @@ const FormPerizinanBody = ({ title, loading, kategoriPerizinan, idSuratJenis }) 
       <form className="w-4/5 mx-auto" action="#" method="post">
         <CardGeneral customClass="w-full mb-7" color="bg-brand-50">
           <InputTextGeneral name="kategori" label="Kategori" value={formData.kategori} onChange={handleInputChange} required disabled />
-          <InputTextGeneral name="surat_jenis_id" label="ID Surat Jenis" value={namaJenisSurat} onChange={handleInputChange} required disabled />
+          <InputTextGeneral name="surat_jenis_id" label="ID Surat Jenis" value={namaSuratJenis} onChange={handleInputChange} required disabled />
           <InputTextGeneral name="nama" label="Nama" placeholder="Masukkan Nama Sekolah..." value={formData.nama} onChange={handleInputChange} required />
           {/* <InputTextAreaGeneral name="nama" label="Nama" placeholder="Masukkan Nama Sekolah..." value={formData.nama} onChange={handleInputChange} required /> */}
           <InputTextGeneral name="alamat_lokasi" label="Alamat" placeholder="Masukkan Alamat..." value={formData.alamat_lokasi} onChange={handleInputChange} required />
@@ -157,8 +172,8 @@ const FormTextPengajuanOperasional = () => {
 
   return (
     <PerizinanPageLayout
-      childrenHeader={<FormPerizinanHeader title={jenisPerizinan.nama} subtitle={subtitle} />}
-      childrenBody={<FormPerizinanBody title={jenisPerizinan.nama} loading={loading} kategoriPerizinan={kategoriPerizinan} idSuratJenis={jenisSuratID} />}
+      childrenHeader={<FormPerizinanHeader title={jenisPerizinan?.nama} subtitle={subtitle} />}
+      childrenBody={<FormPerizinanBody title={jenisPerizinan?.nama} loading={loading} kategoriPerizinan={kategoriPerizinan} idSuratJenis={jenisSuratID} />}
     />
   );
 };
