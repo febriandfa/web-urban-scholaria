@@ -7,8 +7,11 @@ import InputFileGeneral from "../../components/general-components/InputFileGener
 import InputFileGeneralCoba from "../../components/general-components/InputFileGeneralCoba";
 import { userService } from "../../services";
 import { Link } from "react-router-dom";
+import LoadingPopup from "../../components/popup-components/LoadingPopup";
+import { getKategoriPerizinan } from "../../services/storage.service";
 
 const TambahPerizinanAdminUtama = () => {
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     nama: "",
     deskripsi: "",
@@ -23,11 +26,14 @@ const TambahPerizinanAdminUtama = () => {
     form.append("gambar_alur_permohonan", formData.gambar_alur_permohonan);
     form.append("gambar_service_level_aggreement", formData.gambar_service_level_aggreement);
     try {
+      setLoading(true);
       const response = await userService.postPerizinanBaru(form);
       localStorage.setItem("SuratJenisID", response?.data?.data?.id);
       console.log("Perizinan Baru Berhasil Ditambahkan", response);
+      setLoading(false);
     } catch (error) {
       console.error(error);
+      setLoading(false);
     }
   };
 
@@ -38,13 +44,16 @@ const TambahPerizinanAdminUtama = () => {
     }));
   };
 
+  const kategoriPerizinan = getKategoriPerizinan();
+
   return (
     <MainPageLayout>
+      <LoadingPopup loading={loading} />
       <div className="h-40 w-full bg-[url('./assets/images/background-pengajuan-header.png')] bg-cover bg-center rounded-lg mb-10 relative">
         <div className="absolute top-3 left-2">
           <LinkBackGeneral white />
         </div>
-        <h1 className="font-semibold text-3xl text-white text-center flex flex-col justify-center items-center h-full">Tambah Perizinan</h1>
+        <h1 className="font-semibold text-3xl text-white text-center flex flex-col justify-center items-center h-full">Tambah Perizinan {kategoriPerizinan}</h1>
       </div>
       <form className="w-4/5 mx-auto">
         <InputTextGeneral name="nama" label="Nama Perizinan" placeholder="Masukkan Nama Perizinan..." value={formData.nama} onChange={handleInputChange} required />

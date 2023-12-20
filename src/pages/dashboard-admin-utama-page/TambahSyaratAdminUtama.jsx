@@ -8,22 +8,27 @@ import InputFileGeneralCoba from "../../components/general-components/InputFileG
 import { userService } from "../../services";
 import TambahSyaratPopup from "../../components/popup-components/TambahSyaratPopup";
 import Popup from "reactjs-popup";
-import { getSuratJenisID } from "../../services/storage.service";
+import { getKategoriPerizinan, getSuratJenisID } from "../../services/storage.service";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import LoadingPopup from "../../components/popup-components/LoadingPopup";
 
 const TambahSyaratAdminUtama = () => {
   const navigate = useNavigate();
   const idSuratJenis = getSuratJenisID();
   const [syaratSurat, setSyaratSurat] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const getSyaratPerizinanBaru = async () => {
     try {
+      setLoading(true);
       const response = await userService.getSyaratBySuratJenisID(idSuratJenis);
       console.log("Syarat-Syarat Izin Baru", response);
       setSyaratSurat(response?.data?.data);
+      setLoading(false);
     } catch (error) {
       console.error(error);
+      setLoading(false);
     }
   };
 
@@ -33,11 +38,14 @@ const TambahSyaratAdminUtama = () => {
 
   const deleteSyaratPerizinanBaru = async (syaratId) => {
     try {
+      setLoading(true);
       const response = await userService.deleteSyaratPerizinanBaru(syaratId);
       console.log("Berhasil Hapus", response);
-      window.location.reload();
+      // window.location.reload();
+      setLoading(false);
     } catch (error) {
       console.error(error);
+      setLoading(false);
     }
   };
 
@@ -53,13 +61,16 @@ const TambahSyaratAdminUtama = () => {
     });
   };
 
+  const kategoriPerizinan = getKategoriPerizinan();
+
   return (
     <MainPageLayout>
+      <LoadingPopup loading={loading} />
       <div className="h-40 w-full bg-[url('./assets/images/background-pengajuan-header.png')] bg-cover bg-center rounded-lg mb-10 relative">
         <div className="absolute top-3 left-2">
           <LinkBackGeneral white />
         </div>
-        <h1 className="font-semibold text-3xl text-white text-center flex flex-col justify-center items-center h-full">Tambah Perizinan</h1>
+        <h1 className="font-semibold text-3xl text-white text-center flex flex-col justify-center items-center h-full">Tambah Perizinan {kategoriPerizinan}</h1>
       </div>
       <div className="w-4/5 mx-auto">
         <div className="mb-6">

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const InputFileGeneralCoba = ({ name, label, tipeFile, ukuranFile, required, selectedFile, onFileInputChange }) => {
+const InputFileGeneralCoba = ({ name, label, tipeFile, ukuranFile, required, selectedFile, onFileInputChange, update }) => {
   const [selectedFileName, setSelectedFileName] = useState("Belum Ada File Yang Dipilih");
   const [fileSizeError, setFileSizeError] = useState(false);
 
@@ -43,6 +43,7 @@ const InputFileGeneralCoba = ({ name, label, tipeFile, ukuranFile, required, sel
         {/* <input className="hidden" id={name} type="file" accept={tipeFile} onChange={handleFileChange} required={required} /> */}
         <input className="hidden" id={name} type="file" accept={tipeFile} onChange={handleFileChange} required={required} />
       </label>
+      {update && <p className="text-xs font-normal text-neutral-500">File Lama : {update}</p>}
       {fileSizeError && <p className="py-1 text-center text-sm font-semibold text-danger-500">Ukuran File Melebihi {ukuranFile} MB</p>}
     </div>
   );

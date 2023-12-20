@@ -3,9 +3,11 @@ import InputTextGeneral from "../general-components/InputTextGeneral";
 import { userService } from "../../services";
 import { getSuratJenisID } from "../../services/storage.service";
 import Swal from "sweetalert2";
+import LoadingPopup from "./LoadingPopup";
 
 const TambahSyaratPopup = ({ idSuratJenis, close }) => {
   //   const getIdSuratJenis = getSuratJenisID();
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     surat_jenis_id: idSuratJenis,
     nama: "",
@@ -16,11 +18,14 @@ const TambahSyaratPopup = ({ idSuratJenis, close }) => {
     form.append("surat_jenis_id", formData.surat_jenis_id);
     form.append("nama", formData.nama);
     try {
+      setLoading(true);
       const response = await userService.postSyaratPerizinanBaru(form);
       console.log("Syarat Tertambah Lurr", response);
+      setLoading(false);
       triggerAlert();
     } catch (error) {
       console.error(error);
+      setLoading(false);
     }
   };
 
@@ -45,6 +50,7 @@ const TambahSyaratPopup = ({ idSuratJenis, close }) => {
 
   return (
     <div className="p-4 bg-white rounded-xl w-[40rem]">
+      <LoadingPopup loading={loading} />
       <h1 className="text-2xl font-semibold text-center text-brand-500">Tambah Persyaratan</h1>
       <hr className="w-full h-0.5 rounded-full bg-neutral-300 my-6" />
       <InputTextGeneral name="nama" label="Nama Persyaratan" placeholder="Masukkan Nama Persyaratan..." value={formData.nama} onChange={handleInputChange} required />

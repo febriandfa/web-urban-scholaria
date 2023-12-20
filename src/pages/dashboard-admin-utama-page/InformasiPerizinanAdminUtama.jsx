@@ -4,8 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { userService } from "../../services";
 import LoadingPopup from "../../components/popup-components/LoadingPopup";
 import CheckTokenExpiry from "../../utils/functions/CheckTokenExpiry";
-import { iconTK2 } from "../../assets";
+import { bgPerizinanSD, bgPerizinanSMA, bgPerizinanSMP, bgPerizinanTK, iconSD2, iconSMA2, iconSMP2, iconTK2 } from "../../assets";
 import HeaderInformasiPerizinanAdminUtama from "../../components/dashboard-admin-utama-components/HeaderInformasiPerizinanAdminUtama";
+import { getKategoriPerizinan } from "../../services/storage.service";
 
 const InformasiPerizinanAdminUtama = () => {
   const [jenisPerizinan, setJenisPerizinan] = useState([]);
@@ -52,16 +53,32 @@ const InformasiPerizinanAdminUtama = () => {
     CheckTokenExpiry(navigate);
   }, [navigate]);
 
+  const kategoriPerizinan = getKategoriPerizinan();
+  let img, title;
+  if (kategoriPerizinan === "TK") {
+    img = iconTK2;
+    title = "Taman Kanak-Kanak";
+  } else if (kategoriPerizinan === "SD") {
+    img = iconSD2;
+    title = "Sekolah Dasar";
+  } else if (kategoriPerizinan === "SMP") {
+    img = iconSMP2;
+    title = "Sekolah Menengah Pertama";
+  } else if (kategoriPerizinan === "SMA") {
+    img = iconSMA2;
+    title = "Sekolah Menengah Akhir";
+  }
+
   return (
     <MainPageLayout>
       <LoadingPopup loading={loading} />
-      <HeaderInformasiPerizinanAdminUtama img={iconTK2} title="SEKOLAH MENENGAH AKHIR" link="/tambah-perizinan-utama" />
+      <HeaderInformasiPerizinanAdminUtama img={img} title={title} link="/tambah-perizinan-utama" />
       <p className="mt-6 mb-4">
         Ditemukan <span className="text-brand-500">{jenisPerizinan.length} Jenis Perizinan</span>
       </p>
       {jenisPerizinan.map((jenis, index) => (
         <div className="relative" key={index}>
-          <Link className="flex justify-between items-center bg-neutral-100 rounded-lg py-4 px-8 my-5 shadow-md" onClick={() => handleJenisOnClick(jenis.id)} to="/verifikasi-dokumen-operator">
+          <Link className="flex justify-between items-center bg-neutral-100 rounded-lg py-4 px-8 my-5 shadow-md" onClick={() => handleJenisOnClick(jenis.id)} to="/edit-perizinan-utama">
             <h3 className="font-semibold text-lg">{jenis.nama}</h3>
             <svg className="w-7 h-7" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none">
               <path

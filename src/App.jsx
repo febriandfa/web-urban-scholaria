@@ -49,6 +49,8 @@ import JenisPerizinanVerifikasiOperator from "./pages/dashboard-operator-page/Je
 import InformasiPerizinanAdminUtama from "./pages/dashboard-admin-utama-page/InformasiPerizinanAdminUtama";
 import TambahPerizinanAdminUtama from "./pages/dashboard-admin-utama-page/TambahPerizinanAdminUtama";
 import TambahSyaratAdminUtama from "./pages/dashboard-admin-utama-page/TambahSyaratAdminUtama";
+import EditPerizinanAdminUtama from "./pages/dashboard-admin-utama-page/EditPerizinanAdminUtama";
+import VerifiyOTP from "./pages/auth-page/VerifiyOTP";
 // import LihatDokumenUser from "./pages/dashboard-user-page/LihatDokumenUser";
 // import LihatDokumenPageUser from "./pages/dashboard-user-page/LihatDokumenPageUser";
 // import CobaDaftar from "./pages/auth-page/CobaDaftar";
@@ -86,6 +88,7 @@ function App() {
             <Route path="/daftar" element={<Register />} />
             <Route path="/masuk" element={<Login />} />
             <Route path="/lupa-password" element={<LupaPassword />} />
+            <Route path="/verifikasi-otp" element={<VerifiyOTP />} />
             <Route path="/reset-password" element={<ResetPassword />} />
 
             {/* Perizinan */}
@@ -141,6 +144,7 @@ function App() {
             <Route path="/informasi-perizinan-utama" element={<InformasiPerizinanAdminUtama />} />
             <Route path="/tambah-perizinan-utama" element={<TambahPerizinanAdminUtama />} />
             <Route path="/tambah-syarat-utama" element={<TambahSyaratAdminUtama />} />
+            <Route path="/edit-perizinan-utama" element={<EditPerizinanAdminUtama />} />
 
             {/* <Route path="/coba-daftar" element={<CobaDaftar />} /> */}
             {/* <Route path="/lihat-dokumen" element={<LihatDokumenPageUser />} /> */}

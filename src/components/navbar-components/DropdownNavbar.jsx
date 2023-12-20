@@ -6,7 +6,7 @@ import LoadingPopup from "../popup-components/LoadingPopup";
 
 const DropdownNavbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   // const [kategoriPerizinanSelected, setKategoriPerizinanSelected] = useState("");
 
   const handleDropdown = () => {
@@ -15,16 +15,16 @@ const DropdownNavbar = () => {
 
   const handleDropdownClick = async (kategori_perizinan) => {
     setIsDropdownOpen(false);
-    setLoading(true);
+    // setLoading(true);
     localStorage.setItem("KategoriPerizinan", kategori_perizinan);
-    setTimeout(() => {
-      setLoading(false);
-    }, 200);
+    // setTimeout(() => {
+    //   setLoading(false);
+    // }, 200);
   };
 
   return (
     <div>
-      <LoadingPopup loading={loading} />
+      {/* <LoadingPopup loading={loading} /> */}
       <ul className="flex items-center">
         <button className="rounded-lg text-center inline-flex items-center" type="button" onClick={handleDropdown}>
           Pengajuan

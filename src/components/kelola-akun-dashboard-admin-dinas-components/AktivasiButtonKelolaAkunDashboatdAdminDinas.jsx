@@ -63,11 +63,10 @@ const AktivasiButtonKelolaAkunDashboatdAdminDinas = ({ verified, idUser, tokenAd
   return (
     <div>
       <LoadingPopup loading={loading} />
-      {isActive ? (
-        <button className={`py-2 px-4 bg-danger-500 w-full rounded-lg text-base font-semibold text-white mb-3`} type="submit">
-          Hapus Akun
-        </button>
-      ) : (
+      {isActive ? // <button className={`py-2 px-4 bg-danger-500 w-full rounded-lg text-base font-semibold text-white mb-3`} type="submit">
+      //   Hapus Akun
+      // </button>
+      null : (
         <>
           <Popup
             trigger={

@@ -137,15 +137,9 @@ export const accVerifikasiOperator = async (surat_id) => {
   return await api.patch(`surat/` + surat_id + `/terima-operator`);
 };
 
-
-
-
 export const declineVerifikasiOperator = async (surat_id, data) => {
   return await api.patch(`surat/` + surat_id + `/tolak-operator-baru`, data);
 };
-
-
-
 
 // OPERATOR API END
 
@@ -238,6 +232,33 @@ export const postSyaratPerizinanBaru = async (data) => {
   return await api.post("surat-syarat", data);
 };
 
+export const updatePerizinanBaru = async (surat_jenis_id, data) => {
+  return await api.post("surat-jenis/" + surat_jenis_id, data);
+};
+
+export const deletePerizinanBaru = async (surat_jenis_id) => {
+  return await api.delete("surat-jenis/" + surat_jenis_id);
+};
+
 export const deleteSyaratPerizinanBaru = async (surat_syarat_id) => {
   return await api.delete("surat-syarat/" + surat_syarat_id);
+};
+//
+//
+//
+//
+export const postSendOTP = async (data) => {
+  return await api.post("send-otp", data);
+};
+
+export const getSendOTPAgain = async (data) => {
+  return await api.get("send-otp-again", data);
+};
+
+export const postVerifyOTP = async (data) => {
+  return await api.post("verify-otp", data);
+};
+
+export const postResetPassword = async (data) => {
+  return await api.post("reset-password", data);
 };

@@ -9,9 +9,15 @@ const DropdownSidebar = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
+  const handleDropdownClick = async (kategori_perizinan) => {
+    localStorage.setItem("KategoriPerizinan", kategori_perizinan);
+  };
+
   const location = useLocation();
 
-  const activeItem = location.pathname === "/informasi-perizinan-tk" || location.pathname === "/informasi-perizinan-sd" || location.pathname === "/informasi-perizinan-smp" || location.pathname === "/informasi-perizinan-sma";
+  const activeItem = location.pathname === "/informasi-perizinan-utama";
+
+  // const activeItem = location.pathname === "/informasi-perizinan-tk" || location.pathname === "/informasi-perizinan-sd" || location.pathname === "/informasi-perizinan-smp" || location.pathname === "/informasi-perizinan-sma";
 
   return (
     <li>
@@ -33,26 +39,26 @@ const DropdownSidebar = () => {
       </button>
       {isDropdownOpen ? (
         <ul className="pl-6 text-sm">
-          <Link to="/informasi-perizinan-tk">
-            <li className={`p-2 flex items-center gap-2 ${location.pathname === "/informasi-perizinan-tk" ? "text-brand-500" : "text-neutral-800"}`}>
+          <Link to="/informasi-perizinan-utama" onClick={() => handleDropdownClick("TK")}>
+            <li className={`p-2 flex items-center gap-2 ${location.pathname === "/informasi-perizinan-utama" ? "text-brand-500" : "text-neutral-800"}`}>
               <img className="w-6 h-6" src={iconTK} alt="" />
               Perizinan TK
             </li>
           </Link>
-          <Link to="/informasi-perizinan-sd">
-            <li className={`p-2 flex items-center gap-2 ${location.pathname === "/informasi-perizinan-sd" ? "text-brand-500" : "text-neutral-800"}`}>
+          <Link to="/informasi-perizinan-utama" onClick={() => handleDropdownClick("SD")}>
+            <li className={`p-2 flex items-center gap-2 ${location.pathname === "/informasi-perizinan-utama" ? "text-brand-500" : "text-neutral-800"}`}>
               <img className="w-6 h-6" src={iconSD} alt="" />
               Perizinan SD
             </li>
           </Link>
-          <Link to="/informasi-perizinan-smp">
-            <li className={`p-2 flex items-center gap-2 ${location.pathname === "/informasi-perizinan-smp" ? "text-brand-500" : "text-neutral-800"}`}>
+          <Link to="/informasi-perizinan-utama" onClick={() => handleDropdownClick("SMP")}>
+            <li className={`p-2 flex items-center gap-2 ${location.pathname === "/informasi-perizinan-utama" ? "text-brand-500" : "text-neutral-800"}`}>
               <img className="w-6 h-6" src={iconSMP} alt="" />
               Perizinan SMP
             </li>
           </Link>
-          <Link to="/informasi-perizinan-sma">
-            <li className={`p-2 flex items-center gap-2 ${location.pathname === "/informasi-perizinan-sma" ? "text-brand-500" : "text-neutral-800"}`}>
+          <Link to="/informasi-perizinan-utama" onClick={() => handleDropdownClick("SMA")}>
+            <li className={`p-2 flex items-center gap-2 ${location.pathname === "/informasi-perizinan-utama" ? "text-brand-500" : "text-neutral-800"}`}>
               <img className="w-6 h-6" src={iconSMA} alt="" />
               Perizinan SMA
             </li>
