@@ -15,6 +15,7 @@ const PenugasanSurveyPopup = ({ close, idSurat }) => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [surveyor, setSurveyor] = useState([]);
+  const [idSurveyor, setIdSurveyor] = useState();
 
   const handleAccVerifikasiVerifikator = async () => {
     try {
@@ -45,6 +46,7 @@ const PenugasanSurveyPopup = ({ close, idSurat }) => {
     form.append("jadwal_survey", formData.jadwal_survey);
     form.append("tenggat_survey", formData.tenggat_survey);
     form.append("dokumen_surat_tugas", formData.dokumen_surat_tugas);
+    console.log("user_id", formData);
     try {
       setLoading(true);
       handleAccVerifikasiVerifikator();
@@ -65,6 +67,11 @@ const PenugasanSurveyPopup = ({ close, idSurat }) => {
     }));
   };
 
+  const handleChange = (e) => {
+    const selectedUserId = e.target.value;
+    setFormData({ ...formData, user_id: selectedUserId });
+  };
+
   const getUserSurveyorData = async () => {
     try {
       setLoading(true);
@@ -72,16 +79,6 @@ const PenugasanSurveyPopup = ({ close, idSurat }) => {
       console.log("Surveyornya", response);
       setSurveyor(response?.data?.data);
       setLoading(false);
-      // console.log("formData.user_id", formData.user_id);
-      // const updatedOptions = response?.data?.data?.map((item) => ({
-      //   id: item.id,
-      //   value: item.id,
-      //   text: item.nama_lengkap,
-      // }));
-
-      // const newOptions = [...surveyor, ...updatedOptions];
-
-      // setSurveyor(newOptions);
     } catch (error) {
       console.error(error);
       setLoading(false);
@@ -119,6 +116,10 @@ const PenugasanSurveyPopup = ({ close, idSurat }) => {
     }));
   };
 
+  const onChange = (selectedUserId) => {
+    console.log("Selected User ID:", selectedUserId);
+  };
+
   return (
     <div className="p-4 w-[99%] rounded-xl bg-white">
       <LoadingPopup loading={loading} />
@@ -130,9 +131,9 @@ const PenugasanSurveyPopup = ({ close, idSurat }) => {
             <div>
               <InputTextGeneral name="nama_survey" label="Nama Tugas" placeholder="Beri nama tugas survey..." value={formData.nama_survey} onChange={handleInputChange} />
               {/* <InputNamaFilterDashboardAdministrator /> */}
-              <InputTextGeneral name="user_id" label="ID Surveyor" placeholder="Beri nama tugas survey..." value={formData.user_id} onChange={handleInputChange} />
+              {/* <InputTextGeneral name="user_id" label="ID Surveyor" placeholder="Beri nama tugas survey..." value={formData.user_id} onChange={handleInputChange} /> */}
               {/* <InputSelectGeneral name="user_id" label="Surveyor" placeholder="Pilih Surveyor..." value={formData.user_id} onChange={handleInputChange} option={surveyor} required /> */}
-              {/* <div className="mb-6">
+              <div className="mb-6">
                 <label className="block mb-1 font-semibold text-sm text-brand-500 capitalize" htmlFor="user_id">
                   Surveyor
                   <span className="text-danger-500">*</span>
@@ -145,8 +146,9 @@ const PenugasanSurveyPopup = ({ close, idSurat }) => {
                     placeholder="Pilih Surveyor..."
                     value={formData.user_id}
                     required
-                    onChange={(e) => onChange({ user_id, value: e.target.value })}
+                    onChange={(e) => handleChange(e)}
                   >
+                    <option value="">Pilih Surveyor</option>
                     {surveyor?.map((surveyorItem, index) => (
                       <option className="capitalize" key={index} value={surveyorItem?.id}>
                         {surveyorItem?.nama_lengkap}
@@ -162,7 +164,7 @@ const PenugasanSurveyPopup = ({ close, idSurat }) => {
                     />
                   </svg>
                 </div>
-              </div> */}
+              </div>
               <InputTextAreaGeneral name="deskripsi_survey" id="deskripsi_survey" label="Deskripsi Tugas" placeholder="Jelaskan detail tugas..." value={formData.deskripsi_survey} onChange={handleInputChange} />
               <InputDateGeneral name="jadwal_survey" label="Tanggal Penugasan" value={formData.jadwal_survey} onChange={handleInputChange} required />
               <InputDateGeneral name="tenggat_survey" label="Tanggal Tenggat" value={formData.tenggat_survey} onChange={handleInputChange} />

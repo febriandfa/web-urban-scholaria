@@ -14,7 +14,7 @@ const InformasiPerizinanHeader = ({ title, kategori }) => {
   return <TitlePerizinan subtitle={`INFORMASI PERIZINAN ${kategori}`} title={`${title} ${kategori}`} />;
 };
 
-const InformasiPerizinanBody = ({ loading, linkAlur, linkSyarat, kategori, namaPerizinan }) => {
+const InformasiPerizinanBody = ({ loading, linkAlur, linkSyarat, kategori, namaPerizinan, sla }) => {
   const syaratPengajuanOperasionalTKData = syaratPeangajuanOperasionalTK;
   const isLoggedIn = getToken() !== null;
   const isRolePemohon = localStorage.getItem("UserDetail");
@@ -33,6 +33,7 @@ const InformasiPerizinanBody = ({ loading, linkAlur, linkSyarat, kategori, namaP
             syarat={syaratPengajuanOperasionalTKData}
             catatan="Mohon diingat bahwa setiap permohonan harus memastikan kepatuhan dengan regulasi terkini dan aktif berkomunikasi dengan instansi terkait. Keharusan untuk memberikan informasi yang akurat sangat penting, karena kelalaian dapat mengakibatkan penolakan permohonan. Perlu dicatat bahwa URBAN SCHOLARIA tidak memiliki kewenangan untuk mengubah keputusan pemerintah. Oleh karena itu, pemohon diharapkan mengikuti proses perizinan dengan cermat."
           />
+          {isLoggedIn && isRolePemohon !== "Pemohon" && <img className="w-full object-cover" src={`https://urbanscholaria.my.id/storage/${sla}`} alt="" />}
         </div>
         <div className="col-span-2">
           <InformasiTambahan linkAlur={linkAlur} linkSyarat={linkSyarat} />
@@ -85,7 +86,7 @@ const PerizinanOperasional = () => {
   return (
     <PerizinanPageLayout
       childrenHeader={<InformasiPerizinanHeader title={jenisPerizinan.nama} kategori={kategori} />}
-      childrenBody={<InformasiPerizinanBody loading={loading} linkAlur={jenisSuratID} linkSyarat={jenisSuratID} kategori={kategori} namaPerizinan={jenisPerizinan?.nama} />}
+      childrenBody={<InformasiPerizinanBody loading={loading} linkAlur={jenisSuratID} linkSyarat={jenisSuratID} kategori={kategori} namaPerizinan={jenisPerizinan?.nama} sla={jenisPerizinan?.gambar_service_level_aggreement} />}
     />
   );
 };

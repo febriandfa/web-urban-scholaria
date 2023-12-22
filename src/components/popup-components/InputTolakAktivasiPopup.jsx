@@ -32,7 +32,7 @@ const InputTolakAktivasiPopup = ({ close }) => {
     }
   };
 
-  const handleInputChange = ({ name, value }) => {
+const handleInputChange = ({ name, value }) => {
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,

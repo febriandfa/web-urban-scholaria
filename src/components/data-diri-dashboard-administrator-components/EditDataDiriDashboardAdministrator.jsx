@@ -82,7 +82,7 @@ const EditDataDiriDashboardAdministrator = ({ onViewChange }) => {
     <form>
       <LoadingPopup loading={loading} />
       <div className="px-10">
-        <img className="w-24 h-24 object-cover object-center rounded-full mx-auto mb-6" src={formData.foto || "URL_default_foto_profil" || iconUser} alt="" />
+        <img className="w-24 h-24 object-cover object-center rounded-full mx-auto mb-6" src={`https://urbanscholaria.my.id/storage/${formData.foto}` || "URL_default_foto_profil" || iconUser} alt="" />
         <label className="flex items-center cursor-pointer rounded-lg w-fit h-9 px-4 py-2 bg-brand-500 mx-auto mb-16" htmlFor="foto">
           <span className="flex items-center text-base font-semibold text-white">Ubah Foto Profil</span>
           <input

@@ -7,19 +7,24 @@ import { userService } from "../../services";
 import { getIdUser, getToken } from "../../services/storage.service";
 import DokumenKelolaAkunDashboardAdminDinas from "../../components/kelola-akun-dashboard-admin-dinas-components/DokumenKelolaAkunDashboardAdminDinas";
 import AktivasiButtonKelolaAkunDashboatdAdminDinas from "../../components/kelola-akun-dashboard-admin-dinas-components/AktivasiButtonKelolaAkunDashboatdAdminDinas";
+import LoadingPopup from "../../components/popup-components/LoadingPopup";
 
 const DetailPenggunaAdminDinas = () => {
   const [pengguna, setPengguna] = useState();
+  const [loading, setLoading] = useState(false);
   const idUser = getIdUser();
   const tokenAdmin = getToken();
 
   const getDataPenggunaByID = async () => {
     try {
+      setLoading(true);
       const response = await userService.getPenggunaByID(idUser);
       console.log("Info Pengguna By ID", response?.data?.data);
       setPengguna(response?.data?.data[0]);
+      setLoading(false);
     } catch (error) {
       console.error(error);
+      setLoading(false);
     }
   };
 
@@ -43,7 +48,8 @@ const DetailPenggunaAdminDinas = () => {
 
   return (
     <MainPageLayout>
-      <LinkBackGeneral link="/kelola-pengguna-dinas" />
+      <LoadingPopup loading={loading} />
+      <LinkBackGeneral />
       <hr className="w-full h-0.5 rounded-full bg-neutral-300 my-6" />
       <div className="w-11/12 mx-auto mb-12">
         <h1 className="text-brand-500 font-semibold text-2xl text-center mb-6">ID Pengguna : {pengguna?.id}</h1>

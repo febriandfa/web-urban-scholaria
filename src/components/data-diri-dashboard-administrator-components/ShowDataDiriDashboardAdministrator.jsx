@@ -30,7 +30,7 @@ const ShowDataDiriDashboardAdministrator = () => {
     <div>
       <LoadingPopup loading={loading} />
       <div className="px-10">
-        <img className="w-24 h-24 object-cover object-center rounded-full mx-auto mb-16" src={profile?.foto || iconUser} alt="" />
+        <img className="w-24 h-24 object-cover object-center rounded-full mx-auto mb-16" src={`https://urbanscholaria.my.id/storage/${profile?.foto}` || iconUser} alt="" />
         <div className="grid grid-cols-2">
           <div>
             <div className="w-60">

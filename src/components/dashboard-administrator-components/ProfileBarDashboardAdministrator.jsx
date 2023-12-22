@@ -25,7 +25,7 @@ const ProfileBarDashboardAdministrator = ({ onClick }) => {
 
   return (
     <div className="flex items-center pb-4 border-b-2 border-neutral-300">
-      <img className="rounded-full w-16 h-16 object-cover object-center" src={profile.foto} alt="" />
+      <img className="rounded-full w-16 h-16 object-cover object-center" src={`https://urbanscholaria.my.id/storage/${profil?.foto}`} alt="" />
       <div className="font-semibold mr-auto ml-8">
         <p className="text-neutral-500 text-sm">Selamat Datang</p>
         <p className="text-lg">{profil ? profil?.nama_lengkap : "Loading..."}</p>

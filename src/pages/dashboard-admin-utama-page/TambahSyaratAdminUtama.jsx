@@ -117,7 +117,7 @@ const TambahSyaratAdminUtama = () => {
           </Popup>
         </div>
         <button className={`py-2 px-4 mt-16 w-full rounded-lg text-base font-semibold text-white bg-brand-500`} to="/informasi-perizinan-utama" type="button" onClick={triggerAlert}>
-          Tambah Perizinan
+          Simpan Perizinan
         </button>
       </div>
     </MainPageLayout>

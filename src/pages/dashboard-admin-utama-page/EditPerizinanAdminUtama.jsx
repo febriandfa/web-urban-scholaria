@@ -159,7 +159,7 @@ const EditPerizinanAdminUtama = () => {
         </div>
         <div className="mb-6">
           <label className="block font-semibold text-sm text-brand-500 capitalize" htmlFor="gambar_service_level_aggreement">
-            Alur Permohonan
+            Service Level Agreement Permohonan
             <span className={`text-danger-500`}>*</span>
           </label>
           <label className="text-xs font-normal text-neutral-500 mb-1" htmlFor="gambar_service_level_aggreement">

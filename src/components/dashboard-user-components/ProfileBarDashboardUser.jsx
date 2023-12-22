@@ -24,7 +24,7 @@ const ProfileBarDashboardUser = ({ onClick }) => {
       // const response = await axios.get("https://urbanscholaria.my.id/api/profile", config);
       // localStorage.setItem("tokenUser", JSON.stringify(response.data.access_token));
       // navigate("/dashboard");
-      // console.log({ response });
+      console.log("Profile Bar", response);
       setProfil(response?.data?.data);
     } catch (error) {
       console.error("Login error:", error);
@@ -39,7 +39,7 @@ const ProfileBarDashboardUser = ({ onClick }) => {
 
   return (
     <div className="flex items-center pb-4 border-b-2 border-neutral-300">
-      <img className="rounded-full w-16 h-16 object-cover object-center" src={profile.foto || iconUser} alt="" />
+      <img className="rounded-full w-16 h-16 object-cover object-center" src={`https://urbanscholaria.my.id/storage/${profil?.foto}` || iconUser} alt="" />
       <div className="font-semibold mr-auto ml-8">
         <p className="text-neutral-500 text-sm">Selamat Datang</p>
         <p className="text-lg">{profil ? profil?.nama_lengkap : "Loading..."}</p>

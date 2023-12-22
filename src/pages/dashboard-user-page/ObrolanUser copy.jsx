@@ -11,8 +11,6 @@ const ObrolanUser = () => {
   const [loading, setLoading] = useState(false);
   const messagesEndRef = useRef(null);
   const messagesContainerRef = useRef(null);
-  const roomChatId = localStorage.getItem("RoomChatId");
-  const [dummyState, rerender] = useState(1);
 
   const [formData, setFormData] = useState({
     receiver_user_id: "10",
@@ -21,12 +19,30 @@ const ObrolanUser = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // const currentTime = new Date();
+    // const formattedTime = currentTime.toLocaleString("en-US", { hour: "numeric", minute: "numeric", hour12: true });
+
+    // const newMessage = {
+    //   text: inputPesan,
+    //   sender: "user",
+    //   time: formattedTime,
+    // };
+
+    const roomChatId = localStorage.getItem("RoomChatId");
+
+    // try {
+    //   const response = await userService.postSendMessage(roomChatId, { receiver_user_id: formData.receiver_user_id, message: newMessage.text });
+    //   console.log("Terkirim", response);
+    //   setPesan([...pesan, newMessage]);
+    //   setInputPesan("");
+    // } catch (error) {
+    //   console.error(error);
+    // }
     try {
-      const response = await userService.postSendMessage(roomChatId, formData);
+      const response = await userService.postSendMessage(roomChatId, { receiver_user_id: formData.receiver_user_id, message: formData.message });
       console.log("Terkirim", response);
       setPesan([...pesan, formData.message]);
       setInputPesan("");
-      rerender(dummyState + 1);
     } catch (error) {
       console.error(error);
     }
@@ -40,29 +56,30 @@ const ObrolanUser = () => {
     const roomChatId = localStorage.getItem("RoomChatId");
     const fetchChatRoom = async () => {
       try {
-        // setLoading(true);
+        setLoading(true);
         const response = await userService.getChatRoom(roomChatId);
         const chatRoomData = response?.data;
         console.log("chatRoomData", chatRoomData);
 
         if (chatRoomData && Array.isArray(chatRoomData.messages)) {
+          // Menggabungkan semua pesan dari array-array tersebut menjadi satu array tunggal
           const allMessages = chatRoomData.messages.reduce((accumulator, currentArray) => {
             return accumulator.concat(currentArray);
           }, []);
 
           setPesan(allMessages);
         }
-        // setLoading(false);
+        setLoading(false);
       } catch (error) {
         console.error("Gagal mendapatkan pesan:", error);
-        // setLoading(false);
+        setLoading(false);
       }
     };
 
     if (roomChatId) {
       fetchChatRoom();
     }
-  }, [dummyState]);
+  }, []);
 
   useEffect(() => {
     const messagesContainer = messagesContainerRef.current;
@@ -72,32 +89,6 @@ const ObrolanUser = () => {
       messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [pesan]);
-
-  const updatePesan = async () => {
-    try {
-      const response = await userService.getChatRoom(roomChatId);
-      const chatRoomData = response?.data;
-      console.log("chatRoomData", chatRoomData);
-
-      if (chatRoomData && Array.isArray(chatRoomData.messages)) {
-        const allMessages = chatRoomData.messages.reduce((accumulator, currentArray) => {
-          return accumulator.concat(currentArray);
-        }, []);
-
-        setPesan(allMessages);
-      }
-    } catch (error) {
-      console.error("Gagal mendapatkan pesan:", error);
-    }
-  };
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      updatePesan();
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <MainPageLayout>
@@ -114,8 +105,9 @@ const ObrolanUser = () => {
             {messageData.account === "10" && <img className="w-6 h-6 rounded-full object-cover object-center" src={bgHome} alt="" />}
             <div className={`p-4 bg-brand_2-100 w-fit rounded-xl my-2 ${messageData.account !== "10" ? "ml-auto" : "mr-auto"}`}>
               <p className="text-sm mb-3">{messageData.message}</p>
-              <p className="text-neutral-700 text-[0.5rem]">{messageData.created_at ? FormatWaktu(messageData.created_at) : null}</p>
+              <p className="text-neutral-700 text-[0.5rem]">{FormatWaktu(messageData.created_at)}</p>
             </div>
+            {/* {messageData.sender === "10" && <img className="w-6 h-6 rounded-full object-cover object-center" src={bgHome} alt="" />} */}
           </div>
         ))}
         <div ref={messagesEndRef} />

@@ -262,3 +262,32 @@ export const postVerifyOTP = async (data) => {
 export const postResetPassword = async (data) => {
   return await api.post("reset-password", data);
 };
+
+//
+//
+//
+//
+//
+// CHAT API START
+export const postStartChat = async (data) => {
+  return await api.post("start-chat", data);
+};
+
+export const postSendMessage = async (room_id, data) => {
+  return await api.post("send-message/" + room_id, data);
+};
+
+export const getChatList = async () => {
+  return await api.get("get-chat-list");
+};
+
+export const getChatRoom = async (room_id) => {
+  return await api.get("get-chat-room/" + room_id);
+};
+// CHAT API END
+
+// KONTAK API START
+export const postKontak = async (data) => {
+  return await api.post("hubungi-kami", data);
+};
+// KONTAK API END
