@@ -5,7 +5,7 @@ import { userService } from "../../services";
 import FormatWaktu from "../../utils/functions/FormatWaktu";
 import LoadingPopup from "../../components/popup-components/LoadingPopup";
 
-const ObrolanAdministrator = () => {
+const ObrolanSurveyor = () => {
   const [pesan, setPesan] = useState([]);
   const [inputPesan, setInputPesan] = useState("");
   const [roomList, setRoomList] = useState([]);
@@ -25,7 +25,7 @@ const ObrolanAdministrator = () => {
     };
 
     try {
-      const response = await userService.postSendMessage(roomChatId, { receiver_user_id: receiver, message: newMessage.text });
+      const response = await userService.postSendMessage(roomChatId, { receiver_user_id: "11", message: newMessage.text });
       console.log("Terkirim", response);
       setPesan([...pesan, newMessage]);
       setInputPesan("");
@@ -146,8 +146,8 @@ const ObrolanAdministrator = () => {
           <div ref={messagesContainerRef} className="h-[20rem] overflow-y-auto">
             {pesan.map((messageData, index) => (
               <div className="flex gap-2 items-end px-10" key={index}>
-                {messageData.account !== "10" && <img className="w-6 h-6 rounded-full object-cover object-center" src={bgHome} alt="" />}
-                <div className={`p-4 bg-brand_2-100 w-fit rounded-xl my-2 ${messageData.account === "10" ? "ml-auto" : "mr-auto"}`}>
+                {messageData.account === "11" && <img className="w-6 h-6 rounded-full object-cover object-center" src={bgHome} alt="" />}
+                <div className={`p-4 bg-brand_2-100 w-fit rounded-xl my-2 ${messageData.account !== "11" ? "ml-auto" : "mr-auto"}`}>
                   <p className="text-sm mb-3">{messageData.message}</p>
                   <p className="text-neutral-700 text-[0.5rem]">{messageData.created_at ? FormatWaktu(messageData.created_at) : null}</p>
                 </div>
@@ -181,4 +181,4 @@ const ObrolanAdministrator = () => {
   );
 };
 
-export default ObrolanAdministrator;
+export default ObrolanSurveyor;

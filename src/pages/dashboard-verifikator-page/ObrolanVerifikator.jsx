@@ -5,7 +5,7 @@ import { userService } from "../../services";
 import FormatWaktu from "../../utils/functions/FormatWaktu";
 import LoadingPopup from "../../components/popup-components/LoadingPopup";
 
-const ObrolanAdministrator = () => {
+const ObrolanVerifikator = () => {
   const [pesan, setPesan] = useState([]);
   const [inputPesan, setInputPesan] = useState("");
   const [roomList, setRoomList] = useState([]);
@@ -16,6 +16,7 @@ const ObrolanAdministrator = () => {
   const messagesContainerRef = useRef(null);
   const [dummyState, rerender] = useState(1);
   const roomChatId = localStorage.getItem("RoomChatId");
+  const receiverChatId = localStorage.getItem("ReceiverId");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,7 +26,7 @@ const ObrolanAdministrator = () => {
     };
 
     try {
-      const response = await userService.postSendMessage(roomChatId, { receiver_user_id: receiver, message: newMessage.text });
+      const response = await userService.postSendMessage(roomChatId, { receiver_user_id: receiverChatId, message: newMessage.text });
       console.log("Terkirim", response);
       setPesan([...pesan, newMessage]);
       setInputPesan("");
@@ -33,9 +34,6 @@ const ObrolanAdministrator = () => {
     } catch (error) {
       console.error(error);
     }
-
-    // setPesan([...pesan, newMessage]);
-    // setInputPesan("");
   };
 
   const getChatRoomList = async () => {
@@ -51,8 +49,9 @@ const ObrolanAdministrator = () => {
     }
   };
 
-  const chatListOnClick = (idRoom) => () => {
+  const chatListOnClick = (idRoom, idReceiver) => () => {
     localStorage.setItem("RoomChatId", idRoom);
+    localStorage.setItem("ReceiverId", idReceiver);
     setIdRoomChat(idRoom);
     // updatePesan();
   };
@@ -133,7 +132,7 @@ const ObrolanAdministrator = () => {
       <div className="grid grid-cols-7 gap-x-10">
         <div className="col-span-2">
           {roomList.map((room, index) => (
-            <button className="p-2 mb-2 text-left bg-neutral-100 w-full flex items-center gap-3 border border-neutral-300 rounded-lg" key={index} onClick={chatListOnClick(room?.id)}>
+            <button className="p-2 mb-2 text-left bg-neutral-100 w-full flex items-center gap-3 border border-neutral-300 rounded-lg" key={index} onClick={chatListOnClick(room?.id, room?.user_after_dash?.id)}>
               <img className="w-10 h-10 rounded-full object-cover object-center" src={iconUser} alt="" />
               <div className="w-full">
                 <p className="text-sm font-semibold whitespace-nowrap overflow-hidden overflow-ellipsis max-w-[175px]">{room?.user_after_dash?.nama_lengkap}</p>
@@ -146,8 +145,8 @@ const ObrolanAdministrator = () => {
           <div ref={messagesContainerRef} className="h-[20rem] overflow-y-auto">
             {pesan.map((messageData, index) => (
               <div className="flex gap-2 items-end px-10" key={index}>
-                {messageData.account !== "10" && <img className="w-6 h-6 rounded-full object-cover object-center" src={bgHome} alt="" />}
-                <div className={`p-4 bg-brand_2-100 w-fit rounded-xl my-2 ${messageData.account === "10" ? "ml-auto" : "mr-auto"}`}>
+                {messageData.account !== "11" && <img className="w-6 h-6 rounded-full object-cover object-center" src={bgHome} alt="" />}
+                <div className={`p-4 bg-brand_2-100 w-fit rounded-xl my-2 ${messageData.account === "11" ? "ml-auto" : "mr-auto"}`}>
                   <p className="text-sm mb-3">{messageData.message}</p>
                   <p className="text-neutral-700 text-[0.5rem]">{messageData.created_at ? FormatWaktu(messageData.created_at) : null}</p>
                 </div>
@@ -181,4 +180,4 @@ const ObrolanAdministrator = () => {
   );
 };
 
-export default ObrolanAdministrator;
+export default ObrolanVerifikator;

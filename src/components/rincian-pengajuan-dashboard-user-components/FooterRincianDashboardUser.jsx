@@ -5,6 +5,16 @@ import KomentarPenolakanPopup from "../popup-components/KomentarPenolakanPopup";
 import { userService } from "../../services";
 
 const FooterRincianDashboardUser = ({ statusSurat, idSurat }) => {
+  const handleObrolanOnClick = async () => {
+    try {
+      const response = await userService.postStartChat({ receiver_user_id: "10" });
+      console.log("Room Didapat", response);
+      localStorage.setItem("RoomChatId", response?.data?.room_id);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div>
       {statusSurat === "Ditolak" && (
@@ -34,7 +44,7 @@ const FooterRincianDashboardUser = ({ statusSurat, idSurat }) => {
         </Popup>
       )}
       <div className="flex gap-5 mb-4">
-        <Link className="flex items-center justify-center gap-2 py-2 px-4 bg-neutral-100 w-full rounded-lg text-base font-semibold text-neutral-909" to="/obrolan">
+        <Link className="flex items-center justify-center gap-2 py-2 px-4 bg-neutral-100 w-full rounded-lg text-base font-semibold text-neutral-909" to="/obrolan" onClick={() => handleObrolanOnClick()}>
           Obrolan{" "}
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
             <path

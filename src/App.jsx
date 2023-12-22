@@ -51,6 +51,8 @@ import TambahPerizinanAdminUtama from "./pages/dashboard-admin-utama-page/Tambah
 import TambahSyaratAdminUtama from "./pages/dashboard-admin-utama-page/TambahSyaratAdminUtama";
 import EditPerizinanAdminUtama from "./pages/dashboard-admin-utama-page/EditPerizinanAdminUtama";
 import VerifiyOTP from "./pages/auth-page/VerifiyOTP";
+import ObrolanVerifikator from "./pages/dashboard-verifikator-page/ObrolanVerifikator";
+import ObrolanSurveyor from "./pages/dashboard-surveyor-page/ObrolanSurveyor";
 // import LihatDokumenUser from "./pages/dashboard-user-page/LihatDokumenUser";
 // import LihatDokumenPageUser from "./pages/dashboard-user-page/LihatDokumenPageUser";
 // import CobaDaftar from "./pages/auth-page/CobaDaftar";
@@ -96,7 +98,6 @@ function App() {
             <Route path="/pengajuan-perizinan/:id" element={<PerizinanOperasional />} />
             <Route path="/alur-perizinan/:id" element={<AlurOperasional />} />
             <Route path="/syarat-perizinan/:id" element={<PersyaratanOperasional />} />
-            {/* <Route path="/form-pengajuan-operasional-tk" element={<FormPengajuanOperasional />} /> */}
             <Route path="/pengajuan-perizinan" element={<FormTextPengajuanOperasional />} />
             <Route path="/pengajuan-perizinan-upload-dokumen" element={<FormUploadPengajuanOperasional />} />
             <Route path="/tentang-pengajuan-perizinan" element={<TentangPengajuan />} />
@@ -131,10 +132,12 @@ function App() {
             <Route path="/pengesahan-perizinan-verifikator" element={<PengesahanPerizinanVerifikator />} />
             <Route path="/detail-pengesahan-verifikator" element={<DetailPengesahanPerizinanVerifikator />} />
             <Route path="/terbitkan-perizinan-verifikator" element={<TerbitkanPerizinanVerifikator />} />
+            <Route path="/obrolan-verifikator" element={<ObrolanVerifikator />} />
 
             {/* Surveyor */}
             <Route path="/tugas-survey-surveyor" element={<TugasSurveySurveyor />} />
             <Route path="/detail-tugas-surveyor" element={<DetailTugasSurveySurveyor />} />
+            <Route path="/obrolan-surveyor" element={<ObrolanSurveyor />} />
 
             {/* Admin Dinas */}
             <Route path="/kelola-pengguna-dinas" element={<KelolaAkunAdminDinas />} />

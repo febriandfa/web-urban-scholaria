@@ -43,6 +43,12 @@ const Sidebar = ({ role }) => {
         removeToken();
         localStorage.setItem("UserDetail", null);
         localStorage.setItem("TOKEN_EXPIRY", null);
+        localStorage.setItem("RoomChatId", null);
+        localStorage.setItem("KategoriPerizinan", null);
+        localStorage.setItem("IdSuratDiajukan", null);
+        localStorage.setItem("SurveyID", null);
+        localStorage.setItem("SuratJenisID", null);
+        localStorage.setItem("ReceiverId", null);
         // localStorage.setItem("USER_DETAIL", null);
         navigate("/");
         console.log("Berhasil logout");

@@ -22,6 +22,7 @@ const PenugasanSurveyPopup = ({ close, idSurat }) => {
       setLoading(true);
       const response = await userService.accVerifikasiVerifikator(idSurat);
       console.log("Sudah ACC Next Jadwal Survey", response);
+      handleStartChat();
       setLoading(false);
     } catch (error) {
       console.error(error);
@@ -52,6 +53,7 @@ const PenugasanSurveyPopup = ({ close, idSurat }) => {
       handleAccVerifikasiVerifikator();
       const response = await userService.postJadwalSurvey(idSurat, form);
       console.log("Penugasan Survey Done", response);
+      postSendMessage();
       setLoading(false);
       triggerAlert();
     } catch (error) {
@@ -69,6 +71,7 @@ const PenugasanSurveyPopup = ({ close, idSurat }) => {
 
   const handleChange = (e) => {
     const selectedUserId = e.target.value;
+    setIdSurveyor(selectedUserId);
     setFormData({ ...formData, user_id: selectedUserId });
   };
 
@@ -91,11 +94,7 @@ const PenugasanSurveyPopup = ({ close, idSurat }) => {
   }, []);
 
   const triggerAlert = () => {
-    // e.preventDefault();
     Swal.fire({
-      // imageUrl: alertNextSurveyor,
-      // imageHeight: 131,
-      // imageWidth: 131,
       icon: "success",
       title: "TUGAS BERHASIL TERKIRIM",
       text: "Tugas sudah terkirim ke surveyor, pantau hasil survey di menu pengesahan",
@@ -116,8 +115,24 @@ const PenugasanSurveyPopup = ({ close, idSurat }) => {
     }));
   };
 
-  const onChange = (selectedUserId) => {
-    console.log("Selected User ID:", selectedUserId);
+  const handleStartChat = async () => {
+    try {
+      const response = await userService.postStartChat({ receiver_user_id: idSurveyor });
+      console.log("Room Didapat", response);
+      localStorage.setItem("RoomChatId", response?.data?.room_id);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const postSendMessage = async () => {
+  const roomChatId = localStorage.getItem("RoomChatId");
+    try {
+      const response = await userService.postSendMessage(roomChatId, { receiver_user_id: idSurveyor, message: "Segera melakukan survey" });
+      console.log("Terkirim", response);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -130,9 +145,6 @@ const PenugasanSurveyPopup = ({ close, idSurat }) => {
           <div className="grid grid-cols-2 gap-8">
             <div>
               <InputTextGeneral name="nama_survey" label="Nama Tugas" placeholder="Beri nama tugas survey..." value={formData.nama_survey} onChange={handleInputChange} />
-              {/* <InputNamaFilterDashboardAdministrator /> */}
-              {/* <InputTextGeneral name="user_id" label="ID Surveyor" placeholder="Beri nama tugas survey..." value={formData.user_id} onChange={handleInputChange} /> */}
-              {/* <InputSelectGeneral name="user_id" label="Surveyor" placeholder="Pilih Surveyor..." value={formData.user_id} onChange={handleInputChange} option={surveyor} required /> */}
               <div className="mb-6">
                 <label className="block mb-1 font-semibold text-sm text-brand-500 capitalize" htmlFor="user_id">
                   Surveyor
