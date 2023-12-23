@@ -89,13 +89,13 @@ const Login = () => {
               <div>
                 <p className="mt-3 text-xs font-normal text-neutral-600">
                   Dengan masuk Urban Scholaria, saya menyetujui{" "}
-                  <a className="text-brand-500 font-semibold" href="#">
+                  <Link className="text-brand-500 font-semibold" to="/syarat-ketentuan">
                     Syarat & Ketentuan
-                  </a>{" "}
+                  </Link>{" "}
                   serta{" "}
-                  <a className="text-brand-500 font-semibold" href="#">
+                  <Link className="text-brand-500 font-semibold" to="/syarat-ketentuan">
                     Kebijakan Privasi
-                  </a>{" "}
+                  </Link>{" "}
                   yang berlaku.
                 </p>
               </div>

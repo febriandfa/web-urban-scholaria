@@ -110,7 +110,8 @@ function App() {
             <Route path="/notifikasi" element={<NotifikasiUser />} />
             <Route path="/obrolan" element={<ObrolanUser />} />
             <Route path="/feedback" element={<FeedbackUser />} />
-            <Route path="/rincian-pengajuan" element={<RincianPengajuanUser />} />
+            {/* <Route path="/rincian-pengajuan" element={<RincianPengajuanUser />} /> */}
+            <Route path="/rincian-pengajuan/:id_surat" element={<RincianPengajuanUser />} />
 
             {/* Administrator */}
             <Route path="/dashboard-administrator" element={<DashboardAdministrator />} />

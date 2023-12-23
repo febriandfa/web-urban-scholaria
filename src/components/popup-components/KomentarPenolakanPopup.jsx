@@ -18,10 +18,10 @@ const KomentarPenolakanPopup = ({ idSurat }) => {
   }, []);
 
   return (
-    <div className="p-6 bg-white rounded-xl w-[30rem]">
+    <div className="p-6 bg-white rounded-xl w-[30rem] h-[10rem]">
       <h1 className="text-2xl font-semibold text-center text-danger-500">Komentar Penolakan</h1>
       <hr className="w-full h-0.5 rounded-full bg-neutral-300 mt-2 mb-4" />
-      <p className="text-sm pl-4">{alasanDitolak}</p>
+      <p className="pl-4">{alasanDitolak}</p>
     </div>
   );
 };

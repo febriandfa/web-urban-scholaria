@@ -7,15 +7,6 @@ import { userService } from "../../services";
 import InputTolakVerifikasiDokumenVerifikatorPopup from "../popup-components/InputTolakVerifikasiDokumenVerifikatorPopup";
 
 const SurveyorButtonVerifikasiDashboardVerifikator = ({ verified, idSurat }) => {
-  // const handleAccVerifikasiVerifikator = async () => {
-  //   try {
-  //     const response = await userService.accVerifikasiVerifikator(idSurat);
-  //     console.log("Sudah ACC Next Jadwal Survey", response);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
   return (
     <div>
       <Popup
@@ -39,7 +30,6 @@ const SurveyorButtonVerifikasiDashboardVerifikator = ({ verified, idSurat }) => 
             className={`py-2 px-4 w-full rounded-lg text-base font-semibold ${verified ? "text-white bg-brand-500" : "text-neutral-500 bg-neutral-100"}`}
             disabled={!verified}
             type="button"
-            // onClick={() => handleAccVerifikasiVerifikator()}
           >
             Beri Tugas Ke Surveyor
           </button>

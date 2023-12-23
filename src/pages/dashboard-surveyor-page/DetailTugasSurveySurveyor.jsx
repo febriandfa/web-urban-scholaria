@@ -79,7 +79,7 @@ const DetailTugasSurveySurveyor = () => {
           linkFotoHasilSurvey={detailTugas?.foto_survey}
         />
       </div>
-      <SimpanButtonTugasSurveyDashboardSurveyor />
+      <SimpanButtonTugasSurveyDashboardSurveyor idSurat={detailPengajuan?.id} />
     </MainPageLayout>
   );
 };

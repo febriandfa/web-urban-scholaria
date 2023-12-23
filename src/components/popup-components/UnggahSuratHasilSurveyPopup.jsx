@@ -72,16 +72,18 @@ const UnggahSuratHasilSurveyPopup = ({ close }) => {
       <hr className="w-full h-0.5 rounded-full bg-neutral-300 my-4" />
       <div className="grid grid-cols-2 gap-x-10">
         <div>
-          <h4 className="font-semibold text-lg text-center mb-3">Upload Surat Hasil Survey</h4>
+          <h4 className="font-semibold text-lg text-center">Upload Surat Hasil Survey</h4>
+          <p className="text-neutral-500 text-xs text-center mb-3">.pdf</p>
           <DragDropUploadGeneral height="h-[18rem]" onDrop={handleDrop} uploadedFiles={uploadedFiles} />
         </div>
         <div>
-          <h4 className="font-semibold text-lg text-center mb-3">Upload Foto Hasil Survey</h4>
+          <h4 className="font-semibold text-lg text-center">Upload Foto Hasil Survey</h4>
+          <p className="text-neutral-500 text-xs text-center mb-3">.png, .jpg, .jpeg</p>
           <DragDropUploadGeneral height="h-[18rem]" onDrop={handleDropFoto} uploadedFiles={uploadedFilesFoto} />
         </div>
       </div>
       <button className="mt-6 py-2 px-4 bg-brand-500 w-full rounded-lg text-base font-semibold text-white" type="button" onClick={() => handleHasilSurveySubmit()}>
-        Kirim Penugasan
+        Simpan
       </button>
       {/* </div> */}
     </div>

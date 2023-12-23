@@ -126,9 +126,9 @@ const PenugasanSurveyPopup = ({ close, idSurat }) => {
   };
 
   const postSendMessage = async () => {
-  const roomChatId = localStorage.getItem("RoomChatId");
+    const roomChatId = localStorage.getItem("RoomChatId");
     try {
-      const response = await userService.postSendMessage(roomChatId, { receiver_user_id: idSurveyor, message: "Segera melakukan survey" });
+      const response = await userService.postSendMessage(roomChatId, { receiver_user_id: idSurveyor, message: `Segera Melakukan Survey Untuk ID Surat ${idSurat}` });
       console.log("Terkirim", response);
     } catch (error) {
       console.error(error);
@@ -183,9 +183,7 @@ const PenugasanSurveyPopup = ({ close, idSurat }) => {
             </div>
             <div>
               <h2 className="text-lg font-semibold text-center">Upload Surat Tugas</h2>
-              <a className="text-xs text-brand-500 text-center block mb-2" href="#">
-                Unduh Template Surat Tugas
-              </a>
+              <p className="text-xs text-brand-500 text-center block mb-2">.pdf</p>
               <DragDropUploadGeneral onDrop={handleDrop} uploadedFiles={uploadedFiles} />
             </div>
           </div>

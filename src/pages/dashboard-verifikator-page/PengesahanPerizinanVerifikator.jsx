@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import MainPageLayout from "../../layouts/MainPageLayout";
-import verifikasiDokumenItem from "../../utils/PengajuanPerizinanData";
 import TableGeneral from "../../components/general-components/TableGeneral";
 import TableHeadGeneral from "../../components/general-components/TableHeadGeneral";
 import TableBodyGeneral from "../../components/general-components/TableBodyGeneral";

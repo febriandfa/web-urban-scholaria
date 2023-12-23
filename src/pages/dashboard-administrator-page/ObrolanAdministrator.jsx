@@ -158,14 +158,14 @@ const ObrolanAdministrator = () => {
           {/* Tampilan Pesan */}
           <form onSubmit={handleSubmit} className="mt-8 flex items-center gap-4 w-11/12 mx-auto">
             <input className="w-full px-3 h-9 rounded-lg text-sm border border-neutral-400" type="text" value={inputPesan} onChange={(e) => setInputPesan(e.target.value)} placeholder="Ketik pesan..." />
-            <button>
+            {/* <button>
               <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" width="25" height="27" viewBox="0 0 25 27" fill="none">
                 <path
                   d="M7.63889 15.5233L11.1111 19.9585L15.9722 13.3057L22.2222 22.1761H2.77778M25 23.6545V2.95681C25 1.31578 23.75 0 22.2222 0H2.77778C2.04107 0 1.33453 0.31152 0.813592 0.866031C0.292658 1.42054 0 2.17262 0 2.95681V23.6545C0 24.4387 0.292658 25.1908 0.813592 25.7453C1.33453 26.2998 2.04107 26.6113 2.77778 26.6113H22.2222C22.9589 26.6113 23.6655 26.2998 24.1864 25.7453C24.7073 25.1908 25 24.4387 25 23.6545Z"
                   fill="#6F74DA"
                 />
               </svg>
-            </button>
+            </button> */}
             <button type="submit">
               <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
                 <path

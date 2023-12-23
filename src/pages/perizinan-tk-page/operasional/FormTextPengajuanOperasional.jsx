@@ -9,7 +9,6 @@ import MapPerizinan from "../../../components/pengajuan-perizinan-components/Map
 import LoadingPopup from "../../../components/popup-components/LoadingPopup";
 import { useNavigate } from "react-router-dom";
 import LinkBackGeneral from "../../../components/general-components/LinkBackGeneral";
-import InputTextAreaGeneral from "../../../components/general-components/InputTextAreaGeneral";
 
 const FormPerizinanHeader = ({ title, subtitle }) => {
   return <TitlePerizinan subtitle={`AJUKAN PERIZINAN ${subtitle}`} title={`${title} ${subtitle}`} />;
@@ -92,15 +91,6 @@ const FormPerizinanBody = ({ title, loading, kategoriPerizinan, idSuratJenis }) 
     getDetailSuratJenisData();
   }, []);
 
-  // let namaJenisSurat;
-  // if (formData.surat_jenis_id === "1") {
-  //   namaJenisSurat = "Pengajuan Perizinan Pembangunan";
-  // } else if (formData.surat_jenis_id === "2") {
-  //   namaJenisSurat = "Pengajuan Perizinan Operasional";
-  // } else if (formData.surat_jenis_id === "3") {
-  //   namaJenisSurat = "Pengajuan Perizinan Perubahan Operasional";
-  // }
-
   return (
     <div>
       <LoadingPopup loading={loading} />
@@ -113,9 +103,8 @@ const FormPerizinanBody = ({ title, loading, kategoriPerizinan, idSuratJenis }) 
       <form className="w-4/5 mx-auto" action="#" method="post">
         <CardGeneral customClass="w-full mb-7" color="bg-brand-50">
           <InputTextGeneral name="kategori" label="Kategori" value={formData.kategori} onChange={handleInputChange} required disabled />
-          <InputTextGeneral name="surat_jenis_id" label="ID Surat Jenis" value={namaSuratJenis} onChange={handleInputChange} required disabled />
+          <InputTextGeneral name="surat_jenis_id" label="Surat Jenis" value={namaSuratJenis} onChange={handleInputChange} required disabled />
           <InputTextGeneral name="nama" label="Nama" placeholder="Masukkan Nama Sekolah..." value={formData.nama} onChange={handleInputChange} required />
-          {/* <InputTextAreaGeneral name="nama" label="Nama" placeholder="Masukkan Nama Sekolah..." value={formData.nama} onChange={handleInputChange} required /> */}
           <InputTextGeneral name="alamat_lokasi" label="Alamat" placeholder="Masukkan Alamat..." value={formData.alamat_lokasi} onChange={handleInputChange} required />
           <MapPerizinan onLocationChange={handleLocationChange} />
           <InputTextGeneral name="longitude" label="Longitude" placeholder="Masukkan Longitude..." value={formData.longitude} onChange={handleInputChange} required />

@@ -10,7 +10,7 @@ import { userService } from "../../services";
 import ItemDokumenRincianDashboardUser from "../../components/rincian-pengajuan-dashboard-user-components/ItemDokumenRincianDashboardUser";
 import LoadingPopup from "../../components/popup-components/LoadingPopup";
 import DokumenHasilRincianDashboardUser from "../../components/rincian-pengajuan-dashboard-user-components/DokumenHasilRincianDashboardUser";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import CheckTokenExpiry from "../../utils/functions/CheckTokenExpiry";
 import FormatTanggal from "../../utils/functions/FormatTanggal";
 
@@ -22,14 +22,15 @@ const RincianPengajuanUser = () => {
   const getIdSuratDiajukanSaatIni = getIdSuratDiajukan();
   const suratJenisID = getSuratJenisID();
   console.log("ID Surat Saat Ini", getIdSuratDiajukanSaatIni);
+  let { id_surat } = useParams();
 
   const pengajuanDetailData = async () => {
     try {
       setLoading(true);
-      const response = await userService.getPengajuanByID(getIdSuratDiajukanSaatIni);
+      const response = await userService.getPengajuanByID(id_surat || getIdSuratDiajukanSaatIni);
       setDetailPengajuan(response?.data?.data[0]);
       console.log("Isi Pengajuan", response);
-      const responseProfile = await userService.getProfile();
+      // const responseProfile = await userService.getProfile();
       // setProfil(responseProfile?.data?.data);
       // setDaftarSyarat(response?.data?.data[0]?.surat_dokumen[0]?.surat_syarat);
       setDaftarSyarat(response?.data?.data[0]?.surat_dokumen);
@@ -54,12 +55,6 @@ const RincianPengajuanUser = () => {
     pengajuanDetailData();
     syaratPerizinanData(suratJenisID);
   }, []);
-
-  // const formatTanggal = (dateString) => {
-  //   const options = { year: "numeric", month: "long", day: "numeric" };
-  //   const formattedDate = new Date(dateString).toLocaleDateString("id-ID", options);
-  //   return formattedDate;
-  // };
 
   const navigate = useNavigate();
 

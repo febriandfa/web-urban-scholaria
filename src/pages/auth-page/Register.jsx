@@ -255,13 +255,13 @@ const Register = () => {
               <div className="mt-4">
                 <p className="text-xs font-normal text-neutral-600">
                   Dengan mendaftarkan akun Urban Scholaria, saya menyetujui{" "}
-                  <a className="text-brand-500 font-semibold" href="#">
+                  <Link className="text-brand-500 font-semibold" to="/syarat-ketentuan">
                     Syarat & Ketentuan
-                  </a>{" "}
+                  </Link>{" "}
                   serta{" "}
-                  <a className="text-brand-500 font-semibold" href="#">
+                  <Link className="text-brand-500 font-semibold" to="/syarat-ketentuan">
                     Kebijakan Privasi
-                  </a>{" "}
+                  </Link>{" "}
                   yang berlaku.
                 </p>
               </div>
