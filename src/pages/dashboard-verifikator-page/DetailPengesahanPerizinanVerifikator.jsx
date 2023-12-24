@@ -7,7 +7,7 @@ import HasilSurveyPengesahanDashboardVerifikator from "../../components/pengesah
 import ListDokumenPengesahanDashboardVerifikator from "../../components/pengesahan-dashboard-verifikator-components/ListDokumenPengesahanDashboardVerifikator";
 import BuatPerizinanButtonDashboardVerifikator from "../../components/pengesahan-dashboard-verifikator-components/BuatPerizinanButtonDashboardVerifikator";
 import { userService } from "../../services";
-import { getIdSuratDiajukan } from "../../services/storage.service";
+import { getIdSuratDiajukan, getSuratJenisID } from "../../services/storage.service";
 import FormatTanggal from "../../utils/functions/FormatTanggal";
 import LoadingPopup from "../../components/popup-components/LoadingPopup";
 
@@ -17,6 +17,8 @@ const DetailPengesahanPerizinanVerifikator = () => {
   const [dokumenPengajuan, setDokumenPengajuan] = useState([]);
   const [tugasSurvey, setTugasSurvey] = useState([]);
   const [namaSurveyor, setNamaSurveyor] = useState();
+  const [syaratSuratPengajuan, setSyaratSuratPengajuan] = useState([]);
+  const suratJenisID = getSuratJenisID();
   const getIdSuratDiajukanSaatIni = getIdSuratDiajukan();
   console.log("ID Surat Saat Ini", getIdSuratDiajukanSaatIni);
 
@@ -31,6 +33,16 @@ const DetailPengesahanPerizinanVerifikator = () => {
     } catch (error) {
       console.error(error);
       setLoading(false);
+    }
+  };
+
+  const syaratPerizinanData = async (surat_jenis_id) => {
+    try {
+      const response = await userService.getSyaratBySuratJenisID(surat_jenis_id);
+      setSyaratSuratPengajuan(response?.data?.data);
+      console.log("Syarat Response:", response);
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -64,7 +76,8 @@ const DetailPengesahanPerizinanVerifikator = () => {
   useEffect(() => {
     pengajuanDetailData();
     hasilSurveyData();
-  }, []);
+    syaratPerizinanData(suratJenisID);
+  }, [suratJenisID]);
 
   const [isChecked, setIsChecked] = useState([]);
 
@@ -106,7 +119,7 @@ const DetailPengesahanPerizinanVerifikator = () => {
     <MainPageLayout>
       <LoadingPopup loading={loading} />
       <div className="mb-16">
-        <LinkBackGeneral link="/pengesahan-perizinan-verifikator" />
+        <LinkBackGeneral />
         <hr className="w-full h-0.5 rounded-full bg-neutral-300 my-6" />
         <InformasiDetailPengajuanDashboardAdministrator
           idPengajuan={detailPengajuan?.id}
@@ -132,7 +145,7 @@ const DetailPengesahanPerizinanVerifikator = () => {
           checklist={checklist}
         />
         <hr className="w-full h-0.5 rounded-full bg-neutral-300 my-6" />
-        <ListDokumenPengesahanDashboardVerifikator dokumenPengajuan={dokumenPengajuan} />
+        <ListDokumenPengesahanDashboardVerifikator dokumenPengajuan={dokumenPengajuan} dokumenTerpenuhi={dokumenPengajuan?.length} jumlahDokumen={syaratSuratPengajuan?.length} />
       </div>
       <BuatPerizinanButtonDashboardVerifikator idSurat={detailPengajuan?.id} verified={isAllChecked} disabled={buttonDisabled} />
     </MainPageLayout>

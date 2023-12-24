@@ -8,13 +8,13 @@ import { dokumenPengajuan } from "../../utils/DaftarDokumenPengajuanData";
 import CheckboxVerifikasiDashboardAdministrator from "../verifikasi-dashboard-administrator-components/CheckboxVerifikasiDashboardOperator";
 import LihatFileVerifikasiDashboardAdministrator from "../verifikasi-dashboard-administrator-components/LihatFileVerifikasiDashboardAdministrator";
 
-const CekSesuaiVerifikasiDashboardVerifikator = ({ handleCheckboxChange, checklist, dokumenPengajuan }) => {
+const CekSesuaiVerifikasiDashboardVerifikator = ({ handleCheckboxChange, checklist, dokumenPengajuan, dokumenTerpenuhi, jumlahDokumen }) => {
   // let dokumenPengajuanData = dokumenPengajuan;
   const tableHead = ["Berkas Persyaratan", "File", "Lihat"];
 
   return (
     <div>
-      <h1 className="text-2xl text-brand-500 font-semibold text-center mb-10 flex items-center gap-2 justify-center">
+      <h1 className="text-2xl text-brand-500 font-semibold text-center flex items-center gap-2 justify-center">
         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
           <path
             d="M9.33333 15.9998C9.33333 14.5271 10.5272 13.3332 12 13.3332H25.3333C26.8061 13.3332 28 14.5271 28 15.9998V22.6665C28 24.1393 26.8061 25.3332 25.3333 25.3332H6.66667C8.13943 25.3332 9.33333 24.1393 9.33333 22.6665V15.9998Z"
@@ -29,6 +29,9 @@ const CekSesuaiVerifikasiDashboardVerifikator = ({ handleCheckboxChange, checkli
         </svg>
         Verifikasi Dokumen
       </h1>
+      <p className="text-brand-500 font-semibold text-center mb-10">
+        {dokumenTerpenuhi}/{jumlahDokumen}
+      </p>
       <TableGeneral>
         <TableHeadGeneral headTitles={tableHead} />
         <TableBodyGeneral>

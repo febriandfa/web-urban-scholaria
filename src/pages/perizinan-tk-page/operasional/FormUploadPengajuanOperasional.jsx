@@ -7,9 +7,7 @@ import { userService } from "../../../services";
 import { getIdSuratDiajukan, getKategoriPerizinan, getSuratJenisID } from "../../../services/storage.service";
 import LoadingPopup from "../../../components/popup-components/LoadingPopup";
 import InputFileGeneralCoba from "../../../components/general-components/InputFileGeneralCoba";
-import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-import LinkBackGeneral from "../../../components/general-components/LinkBackGeneral";
 
 const FormPerizinanHeader = ({ title, subtitle }) => {
   return <TitlePerizinan subtitle={`AJUKAN PERIZINAN ${subtitle}`} title={`${title} ${subtitle}`} />;
@@ -19,7 +17,6 @@ const FormPerizinanBody = ({ title, loading, kategoriPerizinan, id_surat_pengaju
   const navigate = useNavigate();
   const [showKetentuanSection, setShowKetentuanSection] = useState(false);
   // INISIASI FORM PENGAJUAN START
-  //   const [idSyaratDokumen, setIdSyaratDokumen] = useState([]);
   const [syaratSurat, setSyaratSurat] = useState([]);
   const [isChecked, setIsChecked] = useState(false);
   const [formData, setFormData] = useState({
@@ -37,8 +34,6 @@ const FormPerizinanBody = ({ title, loading, kategoriPerizinan, id_surat_pengaju
         "Syarat ID:",
         response?.data?.data?.map((item) => item.id)
       );
-      //   const idSyarat = response?.data?.data?.map((item) => item.id) || [];
-      //   setIdSyaratDokumen(idSyarat);
     } catch (error) {
       console.error(error);
     }
@@ -63,6 +58,7 @@ const FormPerizinanBody = ({ title, loading, kategoriPerizinan, id_surat_pengaju
   };
   // HANDLE UPLOAD FORM SUBMIT END
 
+  // HANDLE SUBMIT FORM START
   const handleSubmitPengajuan = async () => {
     try {
       const response = await userService.patchSuratDiajukan(id_surat_pengajuan);
@@ -72,6 +68,7 @@ const FormPerizinanBody = ({ title, loading, kategoriPerizinan, id_surat_pengaju
       console.error(error);
     }
   };
+  // HANDLE SUBMIT FORM END
 
   const toggleKetentuanSection = (e) => {
     e.preventDefault();

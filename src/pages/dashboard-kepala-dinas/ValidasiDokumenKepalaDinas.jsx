@@ -1,37 +1,23 @@
 import React, { useEffect, useState } from "react";
 import MainPageLayout from "../../layouts/MainPageLayout";
+import { userService } from "../../services";
+import { useNavigate } from "react-router-dom";
 import TableGeneral from "../../components/general-components/TableGeneral";
 import TableHeadGeneral from "../../components/general-components/TableHeadGeneral";
 import TableBodyGeneral from "../../components/general-components/TableBodyGeneral";
 import TableRowGeneral from "../../components/general-components/TableRowGeneral";
 import TableItemGeneral from "../../components/general-components/TableItemGeneral";
 import PaginationGeneral from "../../components/general-components/PaginationGeneral";
-import VerifikasiLinkPengesahanDashboardVerfikator from "../../components/pengesahan-dashboard-verifikator-components/VerifikasiLinkPengesahanDashboardVerfikator";
-import { userService } from "../../services";
+import ValidasiLinkDashboardKepalaDinas from "../../components/dashboard-kepala-dinas-components/ValidasiLinkDashboardKepalaDinas";
+import CheckTokenExpiry from "../../utils/functions/CheckTokenExpiry";
 import FormatTanggal from "../../utils/functions/FormatTanggal";
 import LoadingPopup from "../../components/popup-components/LoadingPopup";
-import { useNavigate } from "react-router-dom";
-import CheckTokenExpiry from "../../utils/functions/CheckTokenExpiry";
 
-const PengesahanPerizinanVerifikator = () => {
+const ValidasiDokumenKepalaDinas = () => {
   const [semuaPengajuan, setSemuaPengajuan] = useState();
-  const [hasilSurvey, setHasilSurvey] = useState();
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
   const [loading, setLoading] = useState(false);
-
-  const semuaHasilSurvey = async () => {
-    try {
-      setLoading(true);
-      const response = await userService.getTugasSurvey();
-      console.log("Hasil Semua Tugas", response);
-      setHasilSurvey(response?.data?.data);
-      setLoading(false);
-    } catch (error) {
-      console.error(error);
-      setLoading(false);
-    }
-  };
 
   const semuaPengajuanData = async () => {
     try {
@@ -48,7 +34,6 @@ const PengesahanPerizinanVerifikator = () => {
 
   useEffect(() => {
     semuaPengajuanData();
-    semuaHasilSurvey();
   }, []);
 
   const handlePageChange = (pageNumber) => {
@@ -60,7 +45,7 @@ const PengesahanPerizinanVerifikator = () => {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = semuaPengajuan?.slice(indexOfFirstItem, indexOfLastItem);
 
-  const headPengesahanPerizinan = ["ID Dokumen", "Nama Pemohonon", "Perizinan", "Tanggal Pengajuan", "Status"];
+  const headValidasiDokumen = ["ID Dokumen", "Nama Pemohonon", "Perizinan", "Tanggal Pengajuan", "Status"];
 
   const getStatusColor = (status) => {
     let colorClass = "";
@@ -90,10 +75,10 @@ const PengesahanPerizinanVerifikator = () => {
     <MainPageLayout>
       <LoadingPopup loading={loading} />
       <div className="h-40 w-full bg-[url('./assets/images/background-pengajuan-header.png')] bg-cover bg-center rounded-lg mb-4">
-        <h1 className="font-semibold text-4xl text-white text-center flex flex-col justify-center items-center h-full">PENGESAHAN PERMOHONAN PERIZINAN</h1>
+        <h1 className="font-semibold text-4xl text-white text-center flex flex-col justify-center items-center h-full">VALIDASI DOKUMEN</h1>
       </div>
       <TableGeneral>
-        <TableHeadGeneral headTitles={headPengesahanPerizinan} />
+        <TableHeadGeneral headTitles={headValidasiDokumen} />
         <TableBodyGeneral>
           {semuaPengajuan &&
             currentItems &&
@@ -107,7 +92,7 @@ const PengesahanPerizinanVerifikator = () => {
                   tableItem={pengajuan?.status === "Verifikasi Hasil Survey" ? "Perlu Verifikasi" : pengajuan?.status}
                   customColor={getStatusColor(pengajuan?.status === "Verifikasi Hasil Survey" ? "Perlu Verifikasi" : pengajuan?.status)}
                 />
-                <TableItemGeneral tableItem={<VerifikasiLinkPengesahanDashboardVerfikator idSurat={pengajuan?.id} />} />
+                <TableItemGeneral tableItem={<ValidasiLinkDashboardKepalaDinas idSurat={pengajuan?.id} />} />
               </TableRowGeneral>
             ))}
         </TableBodyGeneral>
@@ -117,4 +102,4 @@ const PengesahanPerizinanVerifikator = () => {
   );
 };
 
-export default PengesahanPerizinanVerifikator;
+export default ValidasiDokumenKepalaDinas;

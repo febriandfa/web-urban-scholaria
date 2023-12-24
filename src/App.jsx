@@ -53,6 +53,8 @@ import EditPerizinanAdminUtama from "./pages/dashboard-admin-utama-page/EditPeri
 import VerifiyOTP from "./pages/auth-page/VerifiyOTP";
 import ObrolanVerifikator from "./pages/dashboard-verifikator-page/ObrolanVerifikator";
 import ObrolanSurveyor from "./pages/dashboard-surveyor-page/ObrolanSurveyor";
+import ValidasiDokumenKepalaDinas from "./pages/dashboard-kepala-dinas/ValidasiDokumenKepalaDinas";
+import DetailValidasiKepalaDinas from "./pages/dashboard-kepala-dinas/DetailValidasiKepalaDinas";
 // import LihatDokumenUser from "./pages/dashboard-user-page/LihatDokumenUser";
 // import LihatDokumenPageUser from "./pages/dashboard-user-page/LihatDokumenPageUser";
 // import CobaDaftar from "./pages/auth-page/CobaDaftar";
@@ -140,15 +142,19 @@ function App() {
             <Route path="/detail-tugas-surveyor" element={<DetailTugasSurveySurveyor />} />
             <Route path="/obrolan-surveyor" element={<ObrolanSurveyor />} />
 
-            {/* Admin Dinas */}
-            <Route path="/kelola-pengguna-dinas" element={<KelolaAkunAdminDinas />} />
-            <Route path="/detail-pengguna-dinas" element={<DetailPenggunaAdminDinas />} />
-
             {/* Admin Utama */}
             <Route path="/informasi-perizinan-utama" element={<InformasiPerizinanAdminUtama />} />
             <Route path="/tambah-perizinan-utama" element={<TambahPerizinanAdminUtama />} />
             <Route path="/tambah-syarat-utama" element={<TambahSyaratAdminUtama />} />
             <Route path="/edit-perizinan-utama" element={<EditPerizinanAdminUtama />} />
+
+            {/* Admin Dinas */}
+            <Route path="/kelola-pengguna-dinas" element={<KelolaAkunAdminDinas />} />
+            <Route path="/detail-pengguna-dinas" element={<DetailPenggunaAdminDinas />} />
+
+            {/* Kepala Dinas */}
+            <Route path="/validasi-dokumen-kepala" element={<ValidasiDokumenKepalaDinas />} />
+            <Route path="/detail-validasi-kepala" element={<DetailValidasiKepalaDinas />} />
 
             {/* <Route path="/coba-daftar" element={<CobaDaftar />} /> */}
             {/* <Route path="/lihat-dokumen" element={<LihatDokumenPageUser />} /> */}

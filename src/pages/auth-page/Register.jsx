@@ -39,7 +39,7 @@ const Register = () => {
     jenis_kelamin: "",
     tempat_lahir: "",
     tanggal_lahir: "",
-    provinsi: "",
+    provinsi: "Jawa Timur",
     kabupaten_kota: "",
     kecamatan: "",
     kelurahan: "",
@@ -187,6 +187,165 @@ const Register = () => {
     },
   ];
 
+  const optionKabupatenKota = [
+    {
+      value: "",
+      text: "Pilih Kabupaten/Kota",
+    },
+    {
+      value: "Bangkalan",
+      text: "Bangkalan",
+    },
+    {
+      value: "Banyuwangi",
+      text: "Banyuwangi",
+    },
+    {
+      value: "Blitar",
+      text: "Blitar",
+    },
+    {
+      value: "Bojonegoro",
+      text: "Bojonegoro",
+    },
+    {
+      value: "Bondowoso",
+      text: "Bondowoso",
+    },
+    {
+      value: "Gresik",
+      text: "Gresik",
+    },
+    {
+      value: "Jember",
+      text: "Jember",
+    },
+    {
+      value: "Jombang",
+      text: "Jombang",
+    },
+    {
+      value: "Kediri",
+      text: "Kediri",
+    },
+    {
+      value: "Lamongan",
+      text: "Lamongan",
+    },
+    {
+      value: "Lumajang",
+      text: "Lumajang",
+    },
+    {
+      value: "Madiun",
+      text: "Madiun",
+    },
+    {
+      value: "Magetan",
+      text: "Magetan",
+    },
+    {
+      value: "Malang",
+      text: "Malang",
+    },
+    {
+      value: "Mojokerto",
+      text: "Mojokerto",
+    },
+    {
+      value: "Nganjuk",
+      text: "Nganjuk",
+    },
+    {
+      value: "Ngawi",
+      text: "Ngawi",
+    },
+    {
+      value: "Pacitan",
+      text: "Pacitan",
+    },
+    {
+      value: "Pamekasan",
+      text: "Pamekasan",
+    },
+    {
+      value: "Pasuruan",
+      text: "Pasuruan",
+    },
+    {
+      value: "Ponorogo",
+      text: "Ponorogo",
+    },
+    {
+      value: "Probolinggo",
+      text: "Probolinggo",
+    },
+    {
+      value: "Sampang",
+      text: "Sampang",
+    },
+    {
+      value: "Sidoarjo",
+      text: "Sidoarjo",
+    },
+    {
+      value: "Situbondo",
+      text: "Situbondo",
+    },
+    {
+      value: "Sumenep",
+      text: "Sumenep",
+    },
+    {
+      value: "Trenggalek",
+      text: "Trenggalek",
+    },
+    {
+      value: "Tuban",
+      text: "Tuban",
+    },
+    {
+      value: "Tulungagung",
+      text: "Tulungagung",
+    },
+    {
+      value: "Kota Batu",
+      text: "Kota Batu",
+    },
+    {
+      value: "Kota Blitar",
+      text: "Kota Blitar",
+    },
+    {
+      value: "Kota Kediri",
+      text: "Kota Kediri",
+    },
+    {
+      value: "Kota Madiun",
+      text: "Kota Madiun",
+    },
+    {
+      value: "Kota Malang",
+      text: "Kota Malang",
+    },
+    {
+      value: "Kota Mojokerto",
+      text: "Kota Mojokerto",
+    },
+    {
+      value: "Kota Pasuruan",
+      text: "Kota Pasuruan",
+    },
+    {
+      value: "Kota Probolinggo",
+      text: "Kota Probolinggo",
+    },
+    {
+      value: "Kota Surabaya",
+      text: "Kota Surabaya",
+    },
+  ];
+
   return (
     <AuthPageLayout>
       <LoadingPopup loading={loading} />
@@ -218,8 +377,11 @@ const Register = () => {
                 <>
                   <InputTextGeneral name="tempat_lahir" label="Tempat Lahir" placeholder="Masukkan Tempat Lahir..." value={formData.tempat_lahir} onChange={handleInputChange} required />
                   <InputDateGeneral name="tanggal_lahir" label="Tanggal Lahir" placeholder="Masukkan Tanggal Lahir..." value={formData.tanggal_lahir} onChange={handleInputChange} required />
-                  <InputTextGeneral name="provinsi" label="Provinsi" placeholder="Masukkan Provinsi..." value={formData.provinsi} onChange={handleInputChange} required />
-                  <InputTextGeneral name="kabupaten_kota" label="Kabupaten atau Kota" placeholder="Masukkan Kabupaten Kota..." value={formData.kabupaten_kota} onChange={handleInputChange} required />
+                  <InputTextGeneral name="provinsi" label="Provinsi" placeholder="Masukkan Provinsi..." value={formData.provinsi} onChange={handleInputChange} required disabled />
+
+                  <InputSelectGeneral name="kabupaten_kota" label="Kabupaten atau Kota" placeholder="Pilih Kabupaten atau Kota..." value={formData.kabupaten_kota} onChange={handleInputChange} option={optionKabupatenKota} required />
+
+                  {/* <InputTextGeneral name="kabupaten_kota" label="Kabupaten atau Kota" placeholder="Masukkan Kabupaten Kota..." value={formData.kabupaten_kota} onChange={handleInputChange} required /> */}
                   <InputTextGeneral name="kecamatan" label="Kecamatan" placeholder="Masukkan Kecamatan..." value={formData.kecamatan} onChange={handleInputChange} required />
                   <InputTextGeneral name="kelurahan" label="Kelurahan" placeholder="Masukkan Kelurahan..." value={formData.kelurahan} onChange={handleInputChange} required />
                   <InputTextGeneral name="alamat" label="Alamat" placeholder="Masukkan alamat..." value={formData.alamat} onChange={handleInputChange} required />

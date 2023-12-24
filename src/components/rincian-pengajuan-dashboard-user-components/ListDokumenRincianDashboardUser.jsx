@@ -3,8 +3,8 @@ import { dokumenPengajuan } from "../../utils/DaftarDokumenPengajuanData";
 import ItemDokumenRincianDashboardUser from "./ItemDokumenRincianDashboardUser";
 
 const ListDokumenRincianDashboardUser = ({ daftarSyarat, dokumenTerpenuhi, jumlahDokumen, children }) => {
-  let dokumenPengajuanData = dokumenPengajuan;
-  const syarat = daftarSyarat;
+  // let dokumenPengajuanData = dokumenPengajuan;
+  // const syarat = daftarSyarat;
 
   return (
     <div>

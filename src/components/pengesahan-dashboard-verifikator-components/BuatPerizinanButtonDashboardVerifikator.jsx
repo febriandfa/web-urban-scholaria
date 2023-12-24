@@ -34,8 +34,8 @@ const BuatPerizinanButtonDashboardVerifikator = ({ verified, idSurat }) => {
       // imageHeight: 131,
       // imageWidth: 131,
       icon: "success",
-      title: "PERIZINAN TELAH TERBIT",
-      text: "Selamat Surat Perizinan telah terbit dan terkirim ke pemohon",
+      title: "HASIL SURVEY TERVERIFIKASI",
+      text: "Hasil survey telah terverifikasi dan dilanjutkan ke Kepala Dinas",
       confirmButtonText: "Lanjut",
     }).then(() => {
       navigate("/pengesahan-perizinan-verifikator");
@@ -101,7 +101,7 @@ const BuatPerizinanButtonDashboardVerifikator = ({ verified, idSurat }) => {
       </Popup>
       {/* <Link to="/terbitkan-perizinan-verifikator" onClick={() => handleAccVerifikasiHasilSurvey()}> */}
       <button className={`py-2 px-4 w-full rounded-lg text-base font-semibold ${verified ? "text-white bg-brand-500" : "text-neutral-500 bg-neutral-100"}`} disabled={!verified} onClick={() => handleAccVerifikasiHasilSurvey()}>
-        Buat Perizinan
+        Validasi ke Kepala Dinas
       </button>
       {/* </Link> */}
     </div>

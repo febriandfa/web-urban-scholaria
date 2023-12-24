@@ -30,7 +30,6 @@ const DashboardAdministrator = () => {
   const labelChartKategoriValue = [`TK: ${totalByKategoriTK}`, `SD: ${totalByKategoriSD}`, `SMP: ${totalByKategoriSMP}`, `SMA: ${totalByKategoriSMA}`];
   const labelChartBulanValue = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
   const labelChartWilayahValue = [
-    "Surabaya",
     "Bangkalan",
     "Banyuwangi",
     "Blitar",
@@ -60,14 +59,15 @@ const DashboardAdministrator = () => {
     "Trenggalek",
     "Tuban",
     "Tulungagung",
-    "Batu",
-    "Blitar",
-    "Kediri",
-    "Madiun",
-    "Malang",
-    "Mojokerto",
-    "Pasuruan",
-    "Probolinggo",
+    "Kota Batu",
+    "Kota Blitar",
+    "Kota Kediri",
+    "Kota Madiun",
+    "Kota Malang",
+    "Kota Mojokerto",
+    "Kota Pasuruan",
+    "Kota Probolinggo",
+    "Kota Surabaya",
   ];
 
   const [dataSetPerizinanByBulan, setDataSetPerizinanByBulan] = useState([]);

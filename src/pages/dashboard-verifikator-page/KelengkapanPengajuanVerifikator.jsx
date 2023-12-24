@@ -6,7 +6,7 @@ import CekSesuaiVerifikasiDashboardVerifikator from "../../components/verifikasi
 import SurveyorButtonVerifikasiDashboardVerifikator from "../../components/verifikasi-dashboard-verifikator-components/SurveyorButtonVerifikasiDashboardVerifikator.jsx";
 import InformasiDetailPengajuanDashboardAdministrator from "../../components/detail-pengajuan-dashboard-administrator/InformasiDetailPengajuanDashboardAdministrator.jsx";
 import AlamatDetailPengajuanDashboardAdministrator from "../../components/detail-pengajuan-dashboard-administrator/AlamatDetailPengajuanDashboardAdministrator.jsx";
-import { getIdSuratDiajukan } from "../../services/storage.service.js";
+import { getIdSuratDiajukan, getSuratJenisID } from "../../services/storage.service.js";
 import { userService } from "../../services/index.js";
 import LoadingPopup from "../../components/popup-components/LoadingPopup.jsx";
 import FormatTanggal from "../../utils/functions/FormatTanggal.jsx";
@@ -15,6 +15,8 @@ const KelengkapanPengajuanVerifikator = () => {
   const [detailPengajuan, setDetailPengajuan] = useState();
   const [loading, setLoading] = useState(false);
   const [dokumenPengajuan, setDokumenPengajuan] = useState([]);
+  const [syaratSuratPengajuan, setSyaratSuratPengajuan] = useState([]);
+  const suratJenisID = getSuratJenisID();
   const getIdSuratDiajukanSaatIni = getIdSuratDiajukan();
   console.log("ID Surat Saat Ini", getIdSuratDiajukanSaatIni);
 
@@ -32,9 +34,20 @@ const KelengkapanPengajuanVerifikator = () => {
     }
   };
 
+  const syaratPerizinanData = async (surat_jenis_id) => {
+    try {
+      const response = await userService.getSyaratBySuratJenisID(surat_jenis_id);
+      setSyaratSuratPengajuan(response?.data?.data);
+      console.log("Syarat Response:", response);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     pengajuanDetailData();
-  }, []);
+    syaratPerizinanData(suratJenisID);
+  }, [suratJenisID]);
 
   const [isChecked, setIsChecked] = useState([]);
 
@@ -86,7 +99,13 @@ const KelengkapanPengajuanVerifikator = () => {
         <hr className="w-full h-0.5 rounded-full bg-neutral-300 my-6" />
         <AlamatDetailPengajuanDashboardAdministrator alamat={detailPengajuan?.alamat_lokasi} latitude={detailPengajuan?.latitude} longitude={detailPengajuan?.longitude} />
         <hr className="w-full h-0.5 rounded-full bg-neutral-300 my-6" />
-        <CekSesuaiVerifikasiDashboardVerifikator dokumenPengajuan={dokumenPengajuan} handleCheckboxChange={handleCheckboxChange} checklist={isChecked} />
+        <CekSesuaiVerifikasiDashboardVerifikator
+          dokumenPengajuan={dokumenPengajuan}
+          dokumenTerpenuhi={dokumenPengajuan?.length}
+          jumlahDokumen={syaratSuratPengajuan?.length}
+          handleCheckboxChange={handleCheckboxChange}
+          checklist={isChecked}
+        />
       </div>
       <SurveyorButtonVerifikasiDashboardVerifikator idSurat={detailPengajuan?.id} verified={allChecked} disabled={buttonDisabled} />
     </MainPageLayout>

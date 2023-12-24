@@ -30,9 +30,6 @@ const RincianPengajuanUser = () => {
       const response = await userService.getPengajuanByID(id_surat || getIdSuratDiajukanSaatIni);
       setDetailPengajuan(response?.data?.data[0]);
       console.log("Isi Pengajuan", response);
-      // const responseProfile = await userService.getProfile();
-      // setProfil(responseProfile?.data?.data);
-      // setDaftarSyarat(response?.data?.data[0]?.surat_dokumen[0]?.surat_syarat);
       setDaftarSyarat(response?.data?.data[0]?.surat_dokumen);
       setLoading(false);
     } catch (error) {

@@ -100,7 +100,7 @@ const EditDataDiriDashboardAdministrator = ({ onViewChange }) => {
         <div className="grid grid-cols-2">
           <div>
             <div className="w-60">
-              <InputTextGeneral name="nama_lengkap" label="Nama Lengkap" value={formData.nama_lengkap} onChange={handleProfileChange} required disabled />
+              <InputTextGeneral name="nama_lengkap" label="Nama Lengkap" value={formData.nama_lengkap} onChange={handleProfileChange} required />
             </div>
             <div className="w-60">
               <InputTextGeneral name="no_telp" label="Nomor Handphone" value={formData.no_telp} onChange={handleProfileChange} required />
