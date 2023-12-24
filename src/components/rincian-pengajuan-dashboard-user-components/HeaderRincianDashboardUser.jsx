@@ -9,7 +9,7 @@ const HeaderRincianDashboardUser = ({ status }) => {
     statusColor = "bg-warn-500";
   } else if (status === "Penjadwalan Survey" || status === "Verifikasi Hasil Survey") {
     statusColor = "bg-brand-300";
-  } else if (status === "Pengeluaran Surat") {
+  } else if (status === "Pengeluaran Surat" || status === "Validasi Kepala Dinas") {
     statusColor = "bg-brand-500";
   } else if (status === "Selesai") {
     statusColor = "bg-done-500";
