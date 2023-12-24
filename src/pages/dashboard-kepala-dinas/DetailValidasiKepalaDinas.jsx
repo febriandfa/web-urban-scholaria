@@ -69,7 +69,7 @@ const DetailValidasiKepalaDinas = () => {
         <hr className="w-full h-0.5 rounded-full bg-neutral-300 my-6" />
         <ListDokumenPengesahanDashboardVerifikator dokumenPengajuan={dokumenPengajuan} dokumenTerpenuhi={dokumenPengajuan?.length} jumlahDokumen={syaratSuratPengajuan?.length} />
       </div>
-      <ButtonSetujuiDashboardKepalaDinas />
+      <ButtonSetujuiDashboardKepalaDinas idSurat={detailPengajuan?.id} />
     </MainPageLayout>
   );
 };

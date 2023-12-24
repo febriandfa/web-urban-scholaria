@@ -10,10 +10,13 @@ import { userService } from "../../services";
 import { getIdSuratDiajukan, getSuratJenisID } from "../../services/storage.service";
 import FormatTanggal from "../../utils/functions/FormatTanggal";
 import LoadingPopup from "../../components/popup-components/LoadingPopup";
+import HasilValidasiKepalaDinasDashboardVerifikator from "../../components/pengesahan-dashboard-verifikator-components/HasilValidasiKepalaDinasDashboardVerifikator";
+import TerbitkanPerizinanButtonDashboardVerifikator from "../../components/pengesahan-dashboard-verifikator-components/TerbitkanPerizinanButtonDashboardVerifikator";
 
 const DetailPengesahanPerizinanVerifikator = () => {
   const [detailPengajuan, setDetailPengajuan] = useState();
   const [loading, setLoading] = useState(false);
+  const [statusSurat, setStatusSurat] = useState();
   const [dokumenPengajuan, setDokumenPengajuan] = useState([]);
   const [tugasSurvey, setTugasSurvey] = useState([]);
   const [namaSurveyor, setNamaSurveyor] = useState();
@@ -27,6 +30,7 @@ const DetailPengesahanPerizinanVerifikator = () => {
       setLoading(true);
       const response = await userService.getPengajuanByID(getIdSuratDiajukanSaatIni);
       setDetailPengajuan(response?.data?.data[0]);
+      setStatusSurat(response?.data?.data[0]?.status);
       console.log("Isi Pengajuan", response);
       setDokumenPengajuan(response?.data?.data[0]?.surat_dokumen);
       setLoading(false);
@@ -132,22 +136,30 @@ const DetailPengesahanPerizinanVerifikator = () => {
         <hr className="w-full h-0.5 rounded-full bg-neutral-300 my-6" />
         <AlamatDetailPengajuanDashboardAdministrator alamat={detailPengajuan?.alamat_lokasi} latitude={detailPengajuan?.latitude} longitude={detailPengajuan?.longitude} />
         <hr className="w-full h-0.5 rounded-full bg-neutral-300 my-6" />
-        <HasilSurveyPengesahanDashboardVerifikator
-          namaTugas={tugasSurvey?.nama_survey}
-          surveyor={namaSurveyor}
-          tanggalSurvey={FormatTanggal(tugasSurvey?.jadwal_survey)}
-          tenggatSurvey={FormatTanggal(tugasSurvey?.tenggat_survey)}
-          fileDokumenHasilSurvey={tugasSurvey?.dokumen_survey?.replace(/^.*?\/dokumen-survey\//, "")}
-          linkFileDokumenHasilSurvey={tugasSurvey?.dokumen_survey}
-          fileFotoHasilSurvey={tugasSurvey?.foto_survey ? tugasSurvey.foto_survey?.replace(/^.*?\/foto-survey\//, "") : "Belum Ada Foto Hasil Survey"}
-          linkFileFotoHasilSurvey={tugasSurvey?.foto_survey}
-          handleCheckboxChange={handleCheckboxChange}
-          checklist={checklist}
-        />
+        {statusSurat === "Pengeluaran Surat" ? (
+          <HasilValidasiKepalaDinasDashboardVerifikator idSurat={detailPengajuan?.id} />
+        ) : (
+          <HasilSurveyPengesahanDashboardVerifikator
+            namaTugas={tugasSurvey?.nama_survey}
+            surveyor={namaSurveyor}
+            tanggalSurvey={FormatTanggal(tugasSurvey?.jadwal_survey)}
+            tenggatSurvey={FormatTanggal(tugasSurvey?.tenggat_survey)}
+            fileDokumenHasilSurvey={tugasSurvey?.dokumen_survey?.replace(/^.*?\/dokumen-survey\//, "")}
+            linkFileDokumenHasilSurvey={tugasSurvey?.dokumen_survey}
+            fileFotoHasilSurvey={tugasSurvey?.foto_survey ? tugasSurvey.foto_survey?.replace(/^.*?\/foto-survey\//, "") : "Belum Ada Foto Hasil Survey"}
+            linkFileFotoHasilSurvey={tugasSurvey?.foto_survey}
+            handleCheckboxChange={handleCheckboxChange}
+            checklist={checklist}
+          />
+        )}
         <hr className="w-full h-0.5 rounded-full bg-neutral-300 my-6" />
         <ListDokumenPengesahanDashboardVerifikator dokumenPengajuan={dokumenPengajuan} dokumenTerpenuhi={dokumenPengajuan?.length} jumlahDokumen={syaratSuratPengajuan?.length} />
       </div>
-      <BuatPerizinanButtonDashboardVerifikator idSurat={detailPengajuan?.id} verified={isAllChecked} disabled={buttonDisabled} />
+      {statusSurat === "Pengeluaran Surat" ? (
+        <TerbitkanPerizinanButtonDashboardVerifikator idSurat={detailPengajuan?.id} />
+      ) : (
+        <BuatPerizinanButtonDashboardVerifikator idSurat={detailPengajuan?.id} verified={isAllChecked} disabled={buttonDisabled} />
+      )}
     </MainPageLayout>
   );
 };

@@ -148,6 +148,18 @@ export const getSuratStatusVerifVerifikator = async (surat_jenis_id) => {
   return await api.get("surat?status=Verifikasi Verifikator&surat_jenis_id=" + surat_jenis_id);
 };
 
+export const getSuratStatusPengeluaranSurat = async () => {
+  return await api.get("surat?status=Pengeluaran Surat");
+};
+
+export const getSuratStatusPenjadwalanSurvey = async () => {
+  return await api.get("surat?status=Penjadwalan Survey");
+};
+
+export const getSuratStatusVerifHasilSurvey = async () => {
+  return await api.get("surat?status=Verifikasi Hasil Survey");
+};
+
 export const accVerifikasiVerifikator = async (surat_id) => {
   return await api.patch(`surat/` + surat_id + `/terima-verifikator`);
 };
@@ -159,15 +171,6 @@ export const postJadwalSurvey = async (surat_id, data) => {
 export const declineVerifikasiVerifikator = async (surat_id, data) => {
   return await api.patch(`surat/` + surat_id + `/tolak-verifikator-baru`, data);
 };
-// VERIFIKATOR API END
-
-export const getSuratStatusPenjadwalanSurvey = async () => {
-  return await api.get("surat?status=Penjadwalan Survey");
-};
-
-export const getSuratStatusVerifHasilSurvey = async () => {
-  return await api.get("surat?status=Verifikasi Hasil Survey");
-};
 
 export const accVerifikasiHasilSurveyVerifikator = async (surat_id, data) => {
   return await api.post(`surat/` + surat_id + `/terima-hasil-survey`, data);
@@ -177,6 +180,16 @@ export const declineVerifikasiHasilSurveyVerifikator = async (surat_id, data) =>
   return await api.post(`surat/` + surat_id + `/tolak-hasil-survey`, data);
 };
 
+export const accHasilKepalaDinasVerifikator = async (surat_id, data) => {
+  return await api.post(`surat/` + surat_id + `/terima-hasil-kepala-dinas`, data);
+};
+
+export const declineHasilKepalaDinasVerifikator = async (surat_id, data) => {
+  return await api.post(`surat/` + surat_id + `/tolak-hasil-kepala-dinas`, data);
+};
+// VERIFIKATOR API END
+
+// SURVEYOR API START
 export const getTugasSurvey = async () => {
   return await api.get("surveyors");
 };
@@ -192,6 +205,21 @@ export const getTugasSurveyBySuratID = async (surat_id) => {
 export const postHasilSurvey = async (survey_id, data) => {
   return await api.post(`survey/` + survey_id + `/set-hasil-survey`, data);
 };
+// SURVEYOR API END
+
+// KEPALA DINAS API START
+export const getSuratStatusValidasiKepalaDinas = async () => {
+  return await api.get("surat?status=Validasi Kepala Dinas");
+};
+
+export const accValidasiDokumen = async (surat_id, data) => {
+  return await api.post(`surat/` + surat_id + `/terima-kepala-dinas`, data);
+};
+
+export const declineValidasiDokumen = async (surat_id, data) => {
+  return await api.post(`surat/` + surat_id + `/tolak-kepala-dinas`, data);
+};
+// KEPALA DINAS API END
 //
 //
 //
@@ -224,6 +252,7 @@ export const declineAktivasiPengguna = async (user_id, data) => {
 };
 // AKTIVASI AKUN API END
 
+// ADMIN UTAMA & DINAS START
 export const postPerizinanBaru = async (data) => {
   return await api.post("surat-jenis", data);
 };
@@ -243,10 +272,13 @@ export const deletePerizinanBaru = async (surat_jenis_id) => {
 export const deleteSyaratPerizinanBaru = async (surat_syarat_id) => {
   return await api.delete("surat-syarat/" + surat_syarat_id);
 };
+// ADMIN UTAMA & DINAS END
+
 //
 //
 //
 //
+// RESET PASS API START
 export const postSendOTP = async (data) => {
   return await api.post("send-otp", data);
 };
@@ -262,7 +294,7 @@ export const postVerifyOTP = async (data) => {
 export const postResetPassword = async (data) => {
   return await api.post("reset-password", data);
 };
-
+// RESET PASS API END
 //
 //
 //

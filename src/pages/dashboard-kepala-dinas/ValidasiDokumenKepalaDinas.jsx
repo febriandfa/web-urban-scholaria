@@ -22,7 +22,7 @@ const ValidasiDokumenKepalaDinas = () => {
   const semuaPengajuanData = async () => {
     try {
       setLoading(true);
-      const response = await userService.getSuratStatusVerifHasilSurvey();
+      const response = await userService.getSuratStatusValidasiKepalaDinas();
       console.log("Hasil Semua Pengajuan", response);
       setSemuaPengajuan(response?.data?.data);
       setLoading(false);

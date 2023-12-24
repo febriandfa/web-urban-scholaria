@@ -1,20 +1,20 @@
 import React, { useState } from "react";
-import Swal from "sweetalert2";
 import LoadingPopup from "../popup-components/LoadingPopup";
+import Swal from "sweetalert2";
 import { userService } from "../../services";
 import { getToken } from "../../services/storage.service";
 import { useNavigate } from "react-router-dom";
 
-const ButtonSetujuiDashboardKepalaDinas = ({ idSurat }) => {
+const TerbitkanPerizinanButtonDashboardVerifikator = ({ idSurat }) => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const kepalaDinasToken = getToken();
+  const verifikatorToken = getToken();
 
   const handleAccValidasiDokumen = async () => {
     try {
       setLoading(true);
-      const response = await userService.accValidasiDokumen(idSurat, kepalaDinasToken);
-      console.log("Kepala Dinas ACC", response);
+      const response = await userService.accHasilKepalaDinasVerifikator(idSurat, verifikatorToken);
+      console.log("Surat Selesai", response);
       setLoading(false);
       triggerAlert();
     } catch (error) {
@@ -26,11 +26,11 @@ const ButtonSetujuiDashboardKepalaDinas = ({ idSurat }) => {
   const triggerAlert = () => {
     Swal.fire({
       icon: "success",
-      title: "PERIZINAN TELAH TERBIT",
-      text: "Selamat Surat Perizinan telah terbit",
+      title: "PERIZINAN TERKIRIM KE PEMOHON!",
+      text: "Pengajuan Permohonan Perizinan Selesai dan Perizinan berhasil dikirimkan ke Pemohon",
       confirmButtonText: "Lanjut",
     }).then(() => {
-      navigate("/validasi-dokumen-kepala");
+      navigate("/pengesahan-perizinan-verifikator");
       close();
     });
   };
@@ -39,13 +39,10 @@ const ButtonSetujuiDashboardKepalaDinas = ({ idSurat }) => {
     <>
       <LoadingPopup loading={loading} />
       <button className={`py-2 px-4 w-full rounded-lg text-base font-semibold text-white bg-brand-500`} onClick={() => handleAccValidasiDokumen()}>
-        Terbitkan Perizinan
+        Keluarkan Perizinan
       </button>
     </>
   );
-  {
-    /* </Link> */
-  }
 };
 
-export default ButtonSetujuiDashboardKepalaDinas;
+export default TerbitkanPerizinanButtonDashboardVerifikator;

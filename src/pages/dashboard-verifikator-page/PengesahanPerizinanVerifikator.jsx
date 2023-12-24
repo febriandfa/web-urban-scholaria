@@ -12,6 +12,7 @@ import FormatTanggal from "../../utils/functions/FormatTanggal";
 import LoadingPopup from "../../components/popup-components/LoadingPopup";
 import { useNavigate } from "react-router-dom";
 import CheckTokenExpiry from "../../utils/functions/CheckTokenExpiry";
+import SerahkanLinkPengesahanDashboardVerifikator from "../../components/pengesahan-dashboard-verifikator-components/SerahkanLinkPengesahanDashboardVerifikator";
 
 const PengesahanPerizinanVerifikator = () => {
   const [semuaPengajuan, setSemuaPengajuan] = useState();
@@ -33,21 +34,22 @@ const PengesahanPerizinanVerifikator = () => {
     }
   };
 
-  const semuaPengajuanData = async () => {
-    try {
-      setLoading(true);
-      const response = await userService.getSuratStatusVerifHasilSurvey();
-      console.log("Hasil Semua Pengajuan", response);
-      setSemuaPengajuan(response?.data?.data);
-      setLoading(false);
-    } catch (error) {
-      console.error(error);
-      setLoading(false);
-    }
-  };
+  // const semuaPengajuanData = async () => {
+  //   try {
+  //     setLoading(true);
+  //     // const response = await userService.getSuratStatusVerifHasilSurvey();
+  //     const response = await userService.getSuratStatusPengeluaranSurat();
+  //     console.log("Hasil Semua Pengajuan", response);
+  //     setSemuaPengajuan(response?.data?.data);
+  //     setLoading(false);
+  //   } catch (error) {
+  //     console.error(error);
+  //     setLoading(false);
+  //   }
+  // };
 
   useEffect(() => {
-    semuaPengajuanData();
+    // semuaPengajuanData();
     semuaHasilSurvey();
   }, []);
 
@@ -55,24 +57,27 @@ const PengesahanPerizinanVerifikator = () => {
     setCurrentPage(pageNumber);
   };
 
+  const filteredPengajuan = hasilSurvey?.filter((item) => item?.surat?.status !== "Selesai");
+  const sortedPengajuan = filteredPengajuan?.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+
   const totalPages = Math.ceil(semuaPengajuan?.length / itemsPerPage);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = semuaPengajuan?.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = sortedPengajuan?.slice(indexOfFirstItem, indexOfLastItem);
 
   const headPengesahanPerizinan = ["ID Dokumen", "Nama Pemohonon", "Perizinan", "Tanggal Pengajuan", "Status"];
 
   const getStatusColor = (status) => {
     let colorClass = "";
     switch (status) {
-      case "Selesai":
+      case "Sudah Validasi":
         colorClass = "text-done-500";
         break;
-      case "Perlu Verifikasi":
-        colorClass = "text-warn-500";
+      case "Sudah Disurvey":
+        colorClass = "text-brand-500";
         break;
-      case "Terlambat":
-        colorClass = "text-danger-500";
+      case "Belum Disurvey":
+        colorClass = "text-warn-500";
         break;
       default:
         colorClass = "";
@@ -95,19 +100,27 @@ const PengesahanPerizinanVerifikator = () => {
       <TableGeneral>
         <TableHeadGeneral headTitles={headPengesahanPerizinan} />
         <TableBodyGeneral>
-          {semuaPengajuan &&
+          {hasilSurvey &&
             currentItems &&
             currentItems.map((pengajuan, index) => (
               <TableRowGeneral key={index}>
-                <TableItemGeneral tableItem={pengajuan?.id} />
-                <TableItemGeneral tableItem={pengajuan?.user?.nama_lengkap} />
-                <TableItemGeneral tableItem={`${pengajuan?.surat_jenis.nama} ${pengajuan?.kategori}`} />
+                <TableItemGeneral tableItem={pengajuan?.surat_id} />
+                <TableItemGeneral tableItem={pengajuan?.surat?.user?.nama_lengkap} />
+                <TableItemGeneral tableItem={`${pengajuan?.surat?.surat_jenis.nama} ${pengajuan?.surat?.kategori}`} />
                 <TableItemGeneral tableItem={FormatTanggal(pengajuan?.created_at)} />
                 <TableItemGeneral
-                  tableItem={pengajuan?.status === "Verifikasi Hasil Survey" ? "Perlu Verifikasi" : pengajuan?.status}
-                  customColor={getStatusColor(pengajuan?.status === "Verifikasi Hasil Survey" ? "Perlu Verifikasi" : pengajuan?.status)}
+                  tableItem={pengajuan?.status === "Sudah Disurvey" && pengajuan?.surat?.status === "Pengeluaran Surat" ? "Sudah Validasi" : pengajuan?.status}
+                  customColor={getStatusColor(pengajuan?.status === "Sudah Disurvey" && pengajuan?.surat?.status === "Pengeluaran Surat" ? "Sudah Validasi" : pengajuan?.status)}
                 />
-                <TableItemGeneral tableItem={<VerifikasiLinkPengesahanDashboardVerfikator idSurat={pengajuan?.id} />} />
+                <TableItemGeneral
+                  tableItem={
+                    pengajuan?.status === "Sudah Disurvey" && pengajuan?.surat?.status === "Pengeluaran Surat" ? (
+                      <SerahkanLinkPengesahanDashboardVerifikator statusSurat={pengajuan?.surat?.status} idSurat={pengajuan?.surat_id} />
+                    ) : (
+                      <VerifikasiLinkPengesahanDashboardVerfikator statusSurvey={pengajuan?.status} idSurat={pengajuan?.surat_id} />
+                    )
+                  }
+                />
               </TableRowGeneral>
             ))}
         </TableBodyGeneral>
