@@ -79,6 +79,10 @@ export const postSuratUpload = async (surat_id, surat_jenis_id, surat_syarat_id,
   return await api.post(`surat/` + surat_id + `/surat-jenis/` + surat_jenis_id + `/upload-dokumen/` + surat_syarat_id, data);
 };
 
+export const postSuratUpdate = async (surat_id, surat_jenis_id, surat_syarat_id, data) => {
+  return await api.post(`surat/` + surat_id + `/surat-jenis/` + surat_jenis_id + `/upload-dokumen/` + surat_syarat_id, data);
+};
+
 export const patchSuratDiajukan = async (surat_id) => {
   return await api.patch(`surat/` + surat_id + `/surat-diajukan`);
 };

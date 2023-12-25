@@ -2,6 +2,8 @@ import React from "react";
 import LinkButtonGeneral from "../general-components/LinkButtonGeneral";
 
 const HeaderInformasiPerizinanAdminUtama = ({ img, title, link }) => {
+  const isNotAdmin = localStorage.getItem("UserDetail") !== "Admin Utama" && localStorage.getItem("UserDetail") !== "Admin Dinas";
+
   return (
     <section className="h-32 bg-[url('./assets/images/background-pengajuan-header.png')] bg-no-repeat bg-cover flex flex-col justify-center mb-10 rounded-xl">
       <div className="flex items-center px-10 justify-between">
@@ -26,7 +28,7 @@ const HeaderInformasiPerizinanAdminUtama = ({ img, title, link }) => {
             <p className="text-white text-xs font-semibold">Nikmati Kemudahan Perizinan Sekolah Secara Digital</p>
           </div>
         </div>
-        <LinkButtonGeneral link={link} text="Tambah Perizinan" />
+        {!isNotAdmin && <LinkButtonGeneral link={link} text="Tambah Perizinan" />}
       </div>
     </section>
   );

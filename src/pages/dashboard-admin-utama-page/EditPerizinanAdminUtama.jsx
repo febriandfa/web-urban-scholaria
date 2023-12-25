@@ -24,6 +24,7 @@ const EditPerizinanAdminUtama = () => {
     gambar_service_level_aggreement: null,
     _method: "",
   });
+  const isNotAdmin = localStorage.getItem("UserDetail") !== "Admin Utama" && localStorage.getItem("UserDetail") !== "Admin Dinas";
 
   const handleFormUpdate = async () => {
     let form = new FormData();
@@ -126,8 +127,8 @@ const EditPerizinanAdminUtama = () => {
         </h1>
       </div>
       <form className="w-4/5 mx-auto">
-        <InputTextGeneral name="nama" label="Nama Perizinan" placeholder="Masukkan Nama Perizinan..." value={formData.nama} onChange={handleInputChange} required />
-        <InputTextAreaGeneral name="deskripsi" label="Deskripsi Perizinan" placeholder="Masukkan Deskripsi Perizinan..." value={formData.deskripsi} onChange={handleInputChange} required />
+        <InputTextGeneral name="nama" label="Nama Perizinan" placeholder="Masukkan Nama Perizinan..." value={formData.nama} onChange={handleInputChange} required disabled={isNotAdmin} />
+        <InputTextAreaGeneral name="deskripsi" label="Deskripsi Perizinan" placeholder="Masukkan Deskripsi Perizinan..." value={formData.deskripsi} onChange={handleInputChange} required disabled={isNotAdmin} />
         <div className="mb-6">
           <label className="block font-semibold text-sm text-brand-500 capitalize" htmlFor="gambar_alur_permohonan">
             Alur Permohonan
@@ -136,7 +137,7 @@ const EditPerizinanAdminUtama = () => {
           <label className="text-xs font-normal text-neutral-500 mb-1" htmlFor="gambar_alur_permohonan">
             Format: .png, .jpg, .jpeg (Max 5 MB)
           </label>
-          <label className="flex items-center cursor-pointer rounded-lg w-full h-9 px-3 border border-neutral-400 bg-white" htmlFor="gambar_alur_permohonan">
+          <label className={`flex items-center rounded-lg w-full h-9 px-3 border border-neutral-400 ${isNotAdmin ? "bg-neutral-300 text-gray-500 cursor-default" : "bg-white cursor-pointer"}`} htmlFor="gambar_alur_permohonan">
             <span className="flex items-center border-r-2 border-neutral-400 pr-4 w-fit h-full text-sm">Pilih File</span>
             <span className="inline-block text-sm text-center mx-auto">
               {formData.gambar_alur_permohonan instanceof File
@@ -154,6 +155,7 @@ const EditPerizinanAdminUtama = () => {
                 handleInputChange({ name: "gambar_alur_permohonan", value: e.target.files[0] }), setIsUpdateAlur(true);
               }}
               required
+              disabled={isNotAdmin}
             />
           </label>
         </div>
@@ -165,7 +167,7 @@ const EditPerizinanAdminUtama = () => {
           <label className="text-xs font-normal text-neutral-500 mb-1" htmlFor="gambar_service_level_aggreement">
             Format: .png, .jpg, .jpeg (Max 5 MB)
           </label>
-          <label className="flex items-center cursor-pointer rounded-lg w-full h-9 px-3 border border-neutral-400 bg-white" htmlFor="gambar_service_level_aggreement">
+          <label className={`flex items-center rounded-lg w-full h-9 px-3 border border-neutral-400 ${isNotAdmin ? "bg-neutral-300 text-gray-500 cursor-default" : "bg-white cursor-pointer"}`} htmlFor="gambar_service_level_aggreement">
             <span className="flex items-center border-r-2 border-neutral-400 pr-4 w-fit h-full text-sm">Pilih File</span>
             <span className="inline-block text-sm text-center mx-auto">
               {formData.gambar_service_level_aggreement instanceof File
@@ -183,20 +185,29 @@ const EditPerizinanAdminUtama = () => {
                 handleInputChange({ name: "gambar_service_level_aggreement", value: e.target.files[0] }), setIsUpdateSLA(true);
               }}
               required
+              disabled={isNotAdmin}
             />
           </label>
         </div>
-        <Link className={`block text-center py-2 px-4 mt-16 w-full rounded-lg text-base font-semibold text-white bg-brand-500`} to="/tambah-syarat-utama" onClick={() => handleFormUpdate()}>
-          Edit Persyaratan
-        </Link>
-        <button
-          className={`block text-center py-2 px-4 mt-4 w-full rounded-lg text-base font-semibold ${syaratLength === 0 ? "text-white bg-danger-500" : "bg-neutral-200 text-neutral-400"}`}
-          type="button"
-          onClick={triggerAlert}
-          disabled={syaratLength !== 0}
-        >
-          Hapus Perizinan
-        </button>
+        {isNotAdmin ? (
+          <Link className={`block text-center py-2 px-4 mt-16 w-full rounded-lg text-base font-semibold text-white bg-brand-500`} to="/tambah-syarat-utama">
+            Selanjutnya
+          </Link>
+        ) : (
+          <>
+            <Link className={`block text-center py-2 px-4 mt-16 w-full rounded-lg text-base font-semibold text-white bg-brand-500`} to="/tambah-syarat-utama" onClick={() => handleFormUpdate()}>
+              Edit Persyaratan
+            </Link>
+            <button
+              className={`block text-center py-2 px-4 mt-4 w-full rounded-lg text-base font-semibold ${syaratLength === 0 ? "text-white bg-danger-500" : "bg-neutral-200 text-neutral-400"}`}
+              type="button"
+              onClick={triggerAlert}
+              disabled={syaratLength !== 0}
+            >
+              Hapus Perizinan
+            </button>
+          </>
+        )}
       </form>
     </MainPageLayout>
   );

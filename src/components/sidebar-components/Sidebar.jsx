@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { logoUrban } from "../../assets";
 import ItemSidebar from "./ItemSidebar";
-import { userSidebar, operatorSidebar, verifikatorSidebar, surveyorSidebar, auditorSidebar, adminUtamaSidebar, adminDinasSidebar, kepalaDinasSidebar } from "../../utils/MenuSidebarData";
+import { userSidebar, operatorSidebar, verifikatorSidebar, surveyorSidebar, auditorSidebar, adminUtamaSidebar, adminDinasSidebar, kepalaDinasSidebar, walikotaBupatiSidebar } from "../../utils/MenuSidebarData";
 import DropdownSidebar from "./DropdownSidebar";
 import { userService } from "../../services";
 import { removeToken } from "../../services/storage.service";
@@ -29,6 +29,8 @@ const Sidebar = ({ role }) => {
     sidebarData = adminDinasSidebar;
   } else if (role === "Kepala Dinas") {
     sidebarData = kepalaDinasSidebar;
+  } else if (role === "Walikota / Bupati") {
+    sidebarData = walikotaBupatiSidebar;
   }
 
   const sidebarAdminUtama_0_3 = adminUtamaSidebar.slice(0, 3);
@@ -37,6 +39,8 @@ const Sidebar = ({ role }) => {
   const sidebarAdminDinas_5_6 = adminDinasSidebar.slice(5, 6);
   const sidebarKepalaDinas_0_4 = kepalaDinasSidebar.slice(0, 4);
   const sidebarKepalaDinas_5 = [kepalaDinasSidebar[5]];
+  const sidebarWalikotaBupati_0_3 = walikotaBupatiSidebar.slice(0, 3);
+  const sidebarWalikotaBupati_4 = [walikotaBupatiSidebar[4]];
 
   const navigate = useNavigate();
 
@@ -99,7 +103,7 @@ const Sidebar = ({ role }) => {
       <p className="text-base font-semibold">Menu</p>
       <div className="flex flex-col justify-between h-full pb-36">
         <div className="px-3 py-4 overflow-y-auto" style={{ height: "calc(100% - 7rem)" }}>
-          {role === "Admin Utama" || role === "Admin Dinas" || role === "Kepala Dinas" ? (
+          {role === "Admin Utama" || role === "Admin Dinas" || role === "Kepala Dinas" || role === "Walikota / Bupati" ? (
             <>
               {role === "Admin Utama" && (
                 <ul>
@@ -140,6 +144,21 @@ const Sidebar = ({ role }) => {
                   ))}
                   <DropdownSidebar />
                   {sidebarKepalaDinas_5.map((sidebarItem, index) => (
+                    <div key={index}>
+                      <ItemSidebar icon={sidebarItem.icon} link={sidebarItem.link} title={sidebarItem.title} />
+                    </div>
+                  ))}
+                </ul>
+              )}
+              {role === "Walikota / Bupati" && (
+                <ul>
+                  {sidebarWalikotaBupati_0_3.map((sidebarItem, index) => (
+                    <div key={index}>
+                      <ItemSidebar icon={sidebarItem.icon} link={sidebarItem.link} title={sidebarItem.title} />
+                    </div>
+                  ))}
+                  <DropdownSidebar />
+                  {sidebarWalikotaBupati_4.map((sidebarItem, index) => (
                     <div key={index}>
                       <ItemSidebar icon={sidebarItem.icon} link={sidebarItem.link} title={sidebarItem.title} />
                     </div>

@@ -81,7 +81,7 @@ const DataPerizinanAdministrator = ({ isEmpty }) => {
                   <TableItemGeneral tableItem={pengajuan?.user?.nama_lengkap} />
                   <TableItemGeneral tableItem={`${pengajuan?.surat_jenis?.nama} ${pengajuan?.kategori}`} />
                   <TableItemGeneral tableItem={FormatTanggal(pengajuan?.created_at)} />
-                  <TableItemGeneral tableItem={<UnduhButtonDataPerizinan />} />
+                  <TableItemGeneral tableItem={<UnduhButtonDataPerizinan idSurat={pengajuan?.id} />} />
                 </TableRowGeneral>
               ))}
             </TableBodyGeneral>
