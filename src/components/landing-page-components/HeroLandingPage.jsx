@@ -1,7 +1,11 @@
 import React from "react";
 import LinkButtonGeneral from "../general-components/LinkButtonGeneral";
+import { getToken } from "../../services/storage.service";
 
 const HeroLandingPage = () => {
+  const isLoggedIn = getToken() !== null;
+  const roleUser = localStorage.getItem("UserDetail");
+
   return (
     <section className="py-20 min-h-screen px-20 bg-[url('./assets/images/background-home.png')] bg-cover bg-center flex flex-col justify-center gap-8">
       <div className="flex items-center">
@@ -11,7 +15,7 @@ const HeroLandingPage = () => {
       <h1 className="text-5xl font-semibold w-3/5 text-start text-brand-900">Ajukan Izin Pendidikan Kapanpun, Dimanapun dengan Sistem Online Kami</h1>
       <h2 className="text-xl text-start font-semibold text-neutral-500 w-1/2">“Segera Ajukan Izin Pendidikan dengan Sistem Online Kami yang Cepat dan Efisien”</h2>
       <LinkButtonGeneral
-        link="#"
+        link={isLoggedIn ? (roleUser === "Pemohon" ? "/dashboard" : "/dashboard-administrator") : "/masuk"}
         text="Mulai Ajukan Perizinan"
         aftersvg={
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">

@@ -15,11 +15,7 @@ const DropdownNavbar = () => {
 
   const handleDropdownClick = async (kategori_perizinan) => {
     setIsDropdownOpen(false);
-    // setLoading(true);
     localStorage.setItem("KategoriPerizinan", kategori_perizinan);
-    // setTimeout(() => {
-    //   setLoading(false);
-    // }, 200);
   };
 
   return (
