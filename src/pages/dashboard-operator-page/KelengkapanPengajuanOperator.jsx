@@ -14,6 +14,7 @@ import LoadingPopup from "../../components/popup-components/LoadingPopup.jsx";
 const KelengkapanPengajuanOperator = () => {
   const [detailPengajuan, setDetailPengajuan] = useState();
   const [loading, setLoading] = useState(false);
+  const [jenisId, setJenisId] = useState();
   const [dokumenPengajuan, setDokumenPengajuan] = useState([]);
   const [syaratSuratPengajuan, setSyaratSuratPengajuan] = useState([]);
   const suratJenisID = getSuratJenisID();
@@ -25,6 +26,7 @@ const KelengkapanPengajuanOperator = () => {
       setLoading(true);
       const response = await userService.getPengajuanByID(getIdSuratDiajukanSaatIni);
       setDetailPengajuan(response?.data?.data[0]);
+      setJenisId(response?.data?.data[0]?.surat_jenis_id);
       console.log("Isi Pengajuan", response);
       setDokumenPengajuan(response?.data?.data[0]?.surat_dokumen);
       setLoading(false);
@@ -46,8 +48,8 @@ const KelengkapanPengajuanOperator = () => {
 
   useEffect(() => {
     pengajuanDetailData();
-    syaratPerizinanData(suratJenisID);
-  }, [suratJenisID]);
+    syaratPerizinanData(jenisId);
+  }, [jenisId]);
 
   // let dokumenPengajuanData = dokumenPengajuan;
 

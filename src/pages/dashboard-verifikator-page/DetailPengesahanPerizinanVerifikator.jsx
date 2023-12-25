@@ -16,12 +16,13 @@ import TerbitkanPerizinanButtonDashboardVerifikator from "../../components/penge
 const DetailPengesahanPerizinanVerifikator = () => {
   const [detailPengajuan, setDetailPengajuan] = useState();
   const [loading, setLoading] = useState(false);
+  const [jenisId, setJenisId] = useState();
   const [statusSurat, setStatusSurat] = useState();
   const [dokumenPengajuan, setDokumenPengajuan] = useState([]);
   const [tugasSurvey, setTugasSurvey] = useState([]);
   const [namaSurveyor, setNamaSurveyor] = useState();
   const [syaratSuratPengajuan, setSyaratSuratPengajuan] = useState([]);
-  const suratJenisID = getSuratJenisID();
+  // const suratJenisID = getSuratJenisID();
   const getIdSuratDiajukanSaatIni = getIdSuratDiajukan();
   console.log("ID Surat Saat Ini", getIdSuratDiajukanSaatIni);
 
@@ -31,6 +32,7 @@ const DetailPengesahanPerizinanVerifikator = () => {
       const response = await userService.getPengajuanByID(getIdSuratDiajukanSaatIni);
       setDetailPengajuan(response?.data?.data[0]);
       setStatusSurat(response?.data?.data[0]?.status);
+      setJenisId(response?.data?.data[0]?.surat_jenis_id);
       console.log("Isi Pengajuan", response);
       setDokumenPengajuan(response?.data?.data[0]?.surat_dokumen);
       setLoading(false);
@@ -80,8 +82,8 @@ const DetailPengesahanPerizinanVerifikator = () => {
   useEffect(() => {
     pengajuanDetailData();
     hasilSurveyData();
-    syaratPerizinanData(suratJenisID);
-  }, [suratJenisID]);
+    syaratPerizinanData(jenisId);
+  }, [jenisId]);
 
   const [isChecked, setIsChecked] = useState([]);
 

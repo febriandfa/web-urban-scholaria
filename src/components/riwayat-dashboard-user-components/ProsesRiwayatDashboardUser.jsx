@@ -3,6 +3,7 @@ import AktivitasBerjalanPerizinan from "../pengajuan-perizinan-components/Aktivi
 import AktivitasKosongPerizinan from "../pengajuan-perizinan-components/AktivitasKosongPerizinan";
 import { userService } from "../../services";
 import LoadingPopup from "../popup-components/LoadingPopup";
+import FormatTanggal from "../../utils/functions/FormatTanggal";
 
 const ProsesRiwayatDashboardUser = ({ isPropose }) => {
   const [loading, setLoading] = useState(true);
@@ -38,12 +39,6 @@ const ProsesRiwayatDashboardUser = ({ isPropose }) => {
     pengajuanDetailData();
   }, []);
 
-  const formatTanggal = (dateString) => {
-    const options = { year: "numeric", month: "long", day: "numeric" };
-    const formattedDate = new Date(dateString).toLocaleDateString("id-ID", options);
-    return formattedDate;
-  };
-
   return (
     <div className="flex flex-col gap-10">
       <LoadingPopup loading={loading} />
@@ -55,7 +50,7 @@ const ProsesRiwayatDashboardUser = ({ isPropose }) => {
             id_surat_jenis={item?.surat_jenis?.id}
             kategoriPerizinan={item?.kategori}
             namaPerizinan={item?.surat_jenis?.nama}
-            tanggalPengajuan={formatTanggal(item?.created_at)}
+            tanggalPengajuan={FormatTanggal(item?.created_at)}
             namaSekolah={item?.nama}
             pemohon={item?.user?.nama_lengkap}
             status={item?.status}
