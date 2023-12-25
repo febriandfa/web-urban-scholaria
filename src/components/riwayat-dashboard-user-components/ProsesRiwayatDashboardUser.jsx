@@ -22,10 +22,10 @@ const ProsesRiwayatDashboardUser = ({ isPropose }) => {
       const responsePengajuan = await userService.getPengajuanByUserID(userID);
       const idSuratSemua = responsePengajuan?.data?.data?.map((item) => item.id);
       console.log("Surat Terbaru", idSuratSemua);
-      const pengajuanData = responsePengajuan?.data?.data;
+      const pengajuanData = responsePengajuan?.data?.data?.filter((item) => item.status !== "Pengisian Dokumen");
       console.log("Semua Pengajuan", pengajuanData);
 
-      const sortedPengajuan = pengajuanData.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+      const sortedPengajuan = pengajuanData.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
 
       setPengajuan(sortedPengajuan);
       setLoading(false);

@@ -13,7 +13,8 @@ const StatPengajuanDashboardUser = () => {
       const responsePengajuan = await userService.getPengajuanByUserID(userID);
       const pengajuanData = responsePengajuan?.data?.data;
       console.log("Semua Pengajuan", pengajuanData);
-      setPengajuan(pengajuanData);
+      const semuaPengajuanData = pengajuanData.filter((item) => item.status !== "Pengisian Dokumen");
+      setPengajuan(semuaPengajuanData);
 
       const pengajuanDitolakData = pengajuanData.filter((item) => item.status === "Ditolak");
       setPengajuanDitolak(pengajuanDitolakData);

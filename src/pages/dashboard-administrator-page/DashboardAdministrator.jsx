@@ -96,20 +96,20 @@ const DashboardAdministrator = () => {
       setTotalPengajuanDiterima(data.filter((item) => item?.status === "Selesai")?.length);
       setTotalPengajuanDitolak(data.filter((item) => item?.status === "Ditolak")?.length);
       setTotalPengajuanSurvey(data.filter((item) => item?.status === "Verifikasi Hasil Survey")?.length);
-      setTotalByJenis1(data.filter((item) => item?.surat_jenis_id === "1")?.length);
-      setTotalByJenis2(data.filter((item) => item?.surat_jenis_id === "2")?.length);
-      setTotalByJenis3(data.filter((item) => item?.surat_jenis_id === "3")?.length);
-      setTotalByKategoriTK(data.filter((item) => item?.kategori === "TK")?.length);
-      setTotalByKategoriSD(data.filter((item) => item?.kategori === "SD")?.length);
-      setTotalByKategoriSMP(data.filter((item) => item?.kategori === "SMP")?.length);
-      setTotalByKategoriSMA(data.filter((item) => item?.kategori === "SMA")?.length);
+      setTotalByJenis1(data.filter((item) => item?.surat_jenis_id === "1" && item?.status !== "Pengisian Dokumen")?.length);
+      setTotalByJenis2(data.filter((item) => item?.surat_jenis_id === "2" && item?.status !== "Pengisian Dokumen")?.length);
+      setTotalByJenis3(data.filter((item) => item?.surat_jenis_id === "3" && item?.status !== "Pengisian Dokumen")?.length);
+      setTotalByKategoriTK(data.filter((item) => item?.kategori === "TK" && item?.status !== "Pengisian Dokumen")?.length);
+      setTotalByKategoriSD(data.filter((item) => item?.kategori === "SD" && item?.status !== "Pengisian Dokumen")?.length);
+      setTotalByKategoriSMP(data.filter((item) => item?.kategori === "SMP" && item?.status !== "Pengisian Dokumen")?.length);
+      setTotalByKategoriSMA(data.filter((item) => item?.kategori === "SMA" && item?.status !== "Pengisian Dokumen")?.length);
 
       const updateTotalByBulan = () => {
         const counts = labelChartBulanValue.reduce((acc, bulan, index) => {
           acc[bulan] =
             data.filter((item) => {
               const date = new Date(item.created_at);
-              return date.getMonth() === index;
+              return date.getMonth() === index && item.status !== "Pengisian Dokumen";
             })?.length || 0;
           return acc;
         }, {});
@@ -121,7 +121,7 @@ const DashboardAdministrator = () => {
 
       const updateTotalByWilayah = () => {
         const counts = labelChartWilayahValue.reduce((acc, wilayah) => {
-          acc[wilayah] = data.filter((item) => item?.user?.kabupaten_kota === wilayah)?.length || 0;
+          acc[wilayah] = data.filter((item) => item?.status !== "Pengisian Dokumen" && item?.user?.kabupaten_kota === wilayah)?.length || 0;
           return acc;
         }, {});
         setTotalByWilayah(counts);

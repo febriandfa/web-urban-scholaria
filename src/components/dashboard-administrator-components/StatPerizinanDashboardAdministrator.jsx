@@ -15,7 +15,7 @@ const StatPerizinanDashboardAdministrator = () => {
       setLoading(true);
       const responseTotal = await userService.getSemuaPengajuan();
       console.log("Total", responseTotal);
-      setTotalPengajuan(responseTotal?.data?.data?.length);
+      setTotalPengajuan(responseTotal?.data?.data?.filter((item) => item?.status !== "Pengisian Dokumen").length);
       setTotalPengajuanDiterima(responseTotal?.data?.data?.filter((item) => item?.status === "Selesai")?.length);
       setTotalPengajuanDitolak(responseTotal?.data?.data?.filter((item) => item?.status === "Ditolak")?.length);
       setTotalPengajuanSurvey(responseTotal?.data?.data?.filter((item) => item?.status === "Verifikasi Hasil Survey")?.length);
