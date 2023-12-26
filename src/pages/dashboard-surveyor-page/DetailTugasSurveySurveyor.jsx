@@ -53,7 +53,7 @@ const DetailTugasSurveySurveyor = () => {
     <MainPageLayout>
       <LoadingPopup loading={loading} />
       <div className="mb-16">
-        <LinkBackGeneral link="/tugas-survey-surveyor" />
+        <LinkBackGeneral />
         <hr className="w-full h-0.5 rounded-full bg-neutral-300 my-6" />
         <InformasiDetailPengajuanDashboardAdministrator
           idPengajuan={detailPengajuan?.id}
@@ -79,7 +79,7 @@ const DetailTugasSurveySurveyor = () => {
           linkFotoHasilSurvey={detailTugas?.foto_survey}
         />
       </div>
-      <SimpanButtonTugasSurveyDashboardSurveyor idSurat={detailPengajuan?.id} />
+      <SimpanButtonTugasSurveyDashboardSurveyor disabled={detailTugas?.dokumen_survey === null && detailTugas?.foto_survey === null} idSurat={detailPengajuan?.id} />
     </MainPageLayout>
   );
 };
