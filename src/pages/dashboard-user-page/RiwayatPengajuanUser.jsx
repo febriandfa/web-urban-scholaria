@@ -8,6 +8,7 @@ import SelesaiRiwayatDashboardUser from "../../components/riwayat-dashboard-user
 import DitolakRiwayatDashboardUser from "../../components/riwayat-dashboard-user-components/DitolakRiwayatDashboardUser";
 import { useNavigate } from "react-router-dom";
 import CheckTokenExpiry from "../../utils/functions/CheckTokenExpiry";
+import ValidasiRiwayatDashboardUser from "../../components/riwayat-dashboard-user-components/ValidasiRiwayatDashboardUser";
 
 const Riwayat = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -28,8 +29,9 @@ const Riwayat = () => {
       {activeTab === 0 && <ProsesRiwayatDashboardUser isPropose />}
       {activeTab === 1 && <VerifikasiRiwayatDashboardUser />}
       {activeTab === 2 && <SurveyRiwayatDashboardUser />}
-      {activeTab === 3 && <DitolakRiwayatDashboardUser isPropose />}
-      {activeTab === 4 && <SelesaiRiwayatDashboardUser isPropose />}
+      {activeTab === 3 && <ValidasiRiwayatDashboardUser />}
+      {activeTab === 4 && <DitolakRiwayatDashboardUser isPropose />}
+      {activeTab === 5 && <SelesaiRiwayatDashboardUser isPropose />}
     </MainPageLayout>
   );
 };
