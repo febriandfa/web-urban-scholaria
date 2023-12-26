@@ -5,6 +5,7 @@ import TitleLandingPage from "./TitleLandingPage";
 import InputTextAreaGeneral from "../general-components/InputTextAreaGeneral";
 import { userService } from "../../services";
 import LoadingPopup from "../popup-components/LoadingPopup";
+import Swal from "sweetalert2";
 
 const KontakLandingPage = () => {
   const [loading, setLoading] = useState(false);
@@ -19,6 +20,7 @@ const KontakLandingPage = () => {
       setLoading(true);
       const response = await userService.postKontak(formData);
       console.log("Send Kontak", response);
+      triggerAlert();
       setLoading(false);
     } catch (error) {
       console.error(error);
@@ -31,6 +33,17 @@ const KontakLandingPage = () => {
       ...prevData,
       [name]: value,
     }));
+  };
+
+  const triggerAlert = () => {
+    Swal.fire({
+      icon: "success",
+      title: "EMAIL TERKIRIM",
+      text: "Terima kasih telah menghubungi kami",
+      confirmButtonText: "Lanjut",
+    }).then(() => {
+      close();
+    });
   };
 
   return (
